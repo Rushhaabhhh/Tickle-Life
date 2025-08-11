@@ -9,7 +9,8 @@ const navItems = [
   { title: 'Industry', href: '/industry' },
   { title: 'Services', href: '/services' },
   { title: 'Resources', href: '/resources' },
-  { title: 'Contact Us', href: '/contact' },
+  { title: 'Contact Us', href: '/contact-us' },
+  { title: 'About Us', href: '/about-us' },
 ]
 
 export default function Navbar() {
