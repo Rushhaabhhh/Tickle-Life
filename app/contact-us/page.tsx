@@ -43,7 +43,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-400 to-purple-600 p-4 font-inter">
+    <div className="min-h-screen flex items-center justify-center bg-[linear-gradient(135deg,#667eea_0%,#764ba2_100%)] p-4 font-inter">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -83,7 +83,7 @@ export default function ContactPage() {
                   </label>
                   <input
                     type="email"
-                    className={`w-full px-4 py-3 rounded-xl border-2 text-base outline-none transition-all ${
+                    className={`w-full px-4 py-3 rounded-xl border-2 text-base outline-none transition-all text-slate-500 ${
                       errors.email
                         ? "border-red-500 bg-red-50"
                         : email
@@ -106,7 +106,7 @@ export default function ContactPage() {
                   <input
                     type="url"
                     placeholder="https://example.com"
-                    className={`w-full px-4 py-3 rounded-xl border-2 text-base outline-none transition-all ${
+                    className={`w-full px-4 py-3 rounded-xl border-2 text-base outline-none transition-all text-slate-500  ${
                       errors.website
                         ? "border-red-500 bg-red-50"
                         : website
@@ -133,13 +133,13 @@ export default function ContactPage() {
 
                 {/* Telegram */}
                 <div>
-                  <label className="block text-slate-400 font-normal mb-2">
+                  <label className="block text-slate-700 font-normal mb-2">
                     Telegram handle (optional):
                   </label>
                   <input
                     type="text"
                     placeholder="@yourusername"
-                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-gray-50 text-base outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-gray-50 text-base outline-none transition-all text-slate-500"
                     value={telegram}
                     onChange={(e) => {
                       let val = e.target.value;
@@ -155,7 +155,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className={`w-full py-4 rounded-xl font-semibold text-white text-lg transition-all relative overflow-hidden ${
+                  className={`w-full py-4 rounded-xl font-semibold text-white text-lg transition-all relative overflow-hidden cursor-pointer ${
                     loading
                       ? "bg-gray-400 cursor-not-allowed"
                       : "bg-gradient-to-br from-indigo-400 to-purple-500 hover:shadow-xl hover:-translate-y-1"

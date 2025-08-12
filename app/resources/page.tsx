@@ -173,8 +173,7 @@ const ResourceCenter = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-purple-700">
-      {/* Hero Section */}
+    <div className="min-h-screen bg-[linear-gradient(135deg,#667eea_0%,#764ba2_100%)]">
       <div 
         ref={heroRef}
         className="mx-5 md:mx-10 pt-10 pb-6"
@@ -204,7 +203,7 @@ const ResourceCenter = () => {
                 <button
                   key={filter.key}
                   onClick={() => filterContent(filter.key)}
-                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 ${
+                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer ${
                     activeFilter === filter.key
                       ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/30'
                       : 'bg-white text-slate-600 border-2 border-slate-200 hover:bg-indigo-500 hover:text-white hover:border-indigo-500'
@@ -215,7 +214,7 @@ const ResourceCenter = () => {
               ))}
             </div>
             
-            <div className="relative max-w-md mx-auto md:mx-0">
+            <div className="relative max-w-md mx-auto md:mx-0 text-black">
               <input
                 type="text"
                 placeholder="Find guides, compliance checklists, onboarding resources…"
@@ -229,7 +228,7 @@ const ResourceCenter = () => {
 
           {/* Featured Content */}
           <div className="p-6 md:p-10">
-            <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden group cursor-pointer transition-transform duration-500 hover:scale-[1.02]">
+            <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden group transition-transform duration-500 hover:scale-[1.02]">
               <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full transform translate-x-16 -translate-y-16"></div>
               <div className="relative z-10">
                 <h3 className="text-2xl md:text-4xl font-bold mb-4">
@@ -238,7 +237,7 @@ const ResourceCenter = () => {
                 <p className="text-lg md:text-xl mb-8 opacity-90 max-w-2xl">
                   Comprehensive analysis of emerging payment technologies, regulatory frameworks, and compliance strategies for the evolving iGaming landscape.
                 </p>
-                <button className="inline-flex items-center gap-2 bg-white text-indigo-600 px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl group">
+                <button className="inline-flex items-center gap-2 bg-white text-indigo-600 px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl group cursor-pointer">
                   <Download className="w-5 h-5" />
                   Download Whitepaper
                 </button>
@@ -262,7 +261,7 @@ const ResourceCenter = () => {
                     <div
                       key={resource.id}
                       ref={el => { cardsRef.current[index] = el }}
-                      className="bg-slate-50 rounded-2xl p-6 transition-all duration-500 hover:bg-white hover:shadow-xl hover:-translate-y-2 border border-slate-100 group cursor-pointer relative overflow-hidden"
+                      className="bg-slate-50 rounded-2xl p-6 transition-all duration-500 hover:bg-white hover:shadow-xl hover:-translate-y-2 border border-slate-100 group relative overflow-hidden"
                     >
                       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
                       
@@ -284,7 +283,7 @@ const ResourceCenter = () => {
                         {resource.description}
                       </p>
                       
-                      <button className="inline-flex items-center gap-2 bg-indigo-500 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-indigo-600 hover:scale-105 group-hover:shadow-lg">
+                      <button className="inline-flex items-center gap-2 bg-indigo-500 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-indigo-600 hover:scale-105 group-hover:shadow-lg cursor-pointer">
                         <IconComponent className="w-4 h-4" />
                         {getActionText(resource.type)}
                       </button>
@@ -299,7 +298,7 @@ const ResourceCenter = () => {
               <button
                 onClick={loadMoreContent}
                 disabled={isLoading}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-10 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-10 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               >
                 {isLoading ? (
                   <>

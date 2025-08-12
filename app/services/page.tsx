@@ -95,7 +95,7 @@ const Services: React.FC = () => {
 
   const handleShowStack = () => {
     if (getSelectedModules().length > 0) {
-      setShowStackPreview(true);
+      setShowStackPreview(prev => !prev);
     }
   };
 
@@ -124,11 +124,21 @@ const Services: React.FC = () => {
         
 
       {/* Services Hero */}
-      <section className="bg-gradient-to-br from-blue-800 to-blue-600 text-white py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/5"></div>
+      <section className="relative bg-[linear-gradient(135deg,#1e3a8a_0%,#3b82f6_100%)] text-white py-20 overflow-hidden">
+        {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
-          <svg className="w-full h-full" viewBox="0 0 1000 1000">
-            <polygon fill="currentColor" points="0,1000 1000,0 1000,1000"/>
+          <svg className="w-full h-full" viewBox="0 0 100 18" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern
+                id="bgPattern"
+                width="20"
+                height="20"
+                patternUnits="userSpaceOnUse"
+              >
+                <polygon fill="currentColor" points="0,20 20,0 20,20" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#bgPattern)" />
           </svg>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -200,7 +210,7 @@ const Services: React.FC = () => {
               className={`
                 px-12 py-4 rounded-full text-xl font-semibold transition-all duration-300
                 ${getSelectedModules().length > 0
-                  ? 'bg-amber-500 text-white hover:bg-amber-600 hover:-translate-y-1 shadow-lg hover:shadow-xl'
+                  ? 'bg-amber-500 text-white hover:bg-amber-600 hover:-translate-y-1 shadow-lg hover:shadow-xl cursor-pointer'
                   : 'bg-gray-400 text-gray-600 cursor-not-allowed'
                 }
               `}
@@ -215,12 +225,11 @@ const Services: React.FC = () => {
           </div>
           
           {/* Stack Preview */}
-          {showStackPreview && getSelectedModules().length > 0 && (
+          {showStackPreview && (
             <div className="mt-8 bg-gradient-to-br from-emerald-50 to-emerald-100 border-2 border-emerald-500 rounded-xl p-8">
               <h4 className="text-2xl font-bold text-emerald-800 text-center mb-6">
                 Your Custom Payment Stack
               </h4>
-              
               <div className="flex flex-wrap justify-center gap-4 mb-8">
                 {getSelectedModules().map((module) => (
                   <div
@@ -373,7 +382,7 @@ const Services: React.FC = () => {
           
           <div className="text-center">
             <button
-              className="bg-emerald-500 text-white px-10 py-4 rounded-full text-xl font-semibold hover:bg-emerald-600 transition-all duration-300 hover:-translate-y-1 shadow-lg hover:shadow-xl"
+              className="bg-emerald-500 text-white px-10 py-4 rounded-full text-xl font-semibold hover:bg-emerald-600 transition-all duration-300 hover:-translate-y-1 shadow-lg hover:shadow-xl cursor-pointer"
               onClick={scrollToEligibility}
             >
               Check eligibility in my vertical
@@ -401,7 +410,7 @@ const Services: React.FC = () => {
                 </label>
                 <select 
                   name="geography"
-                  className="text-black w-full p-4 border-2 border-slate-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-300"
+                  className="text-black w-full p-4 border-2 border-slate-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-300 cursor-pointer"
                   required
                 >
                   <option value="">Select region...</option>
@@ -421,7 +430,7 @@ const Services: React.FC = () => {
                 </label>
                 <select 
                   name="volume"
-                  className="text-black w-full p-4 border-2 border-slate-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-300"
+                  className="text-black w-full p-4 border-2 border-slate-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-300 cursor-pointer"
                   required
                 >
                   <option value="">Select volume...</option>
@@ -439,7 +448,7 @@ const Services: React.FC = () => {
                 </label>
                 <select 
                   name="traffic"
-                  className="text-black w-full p-4 border-2 border-slate-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-300"
+                  className="text-black w-full p-4 border-2 border-slate-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-300 cursor-pointer"
                   required
                 >
                   <option value="">Select traffic type...</option>
@@ -456,7 +465,7 @@ const Services: React.FC = () => {
                 </label>
                 <select 
                   name="vertical"
-                  className="text-black w-full p-4 border-2 border-slate-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-300"
+                  className="text-black w-full p-4 border-2 border-slate-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-300 cursor-pointer"
                   required
                 >
                   <option value="">Select vertical...</option>
@@ -472,7 +481,7 @@ const Services: React.FC = () => {
               <div className="md:col-span-2">
                 <button
                   type="submit"
-                  className="w-full bg-blue-500 text-white py-4 rounded-full text-xl font-semibold hover:bg-blue-600 transition-all duration-300 hover:-translate-y-1 shadow-lg hover:shadow-xl"
+                  className="w-full bg-blue-500 text-white py-4 rounded-full text-xl font-semibold hover:bg-blue-600 transition-all duration-300 hover:-translate-y-1 shadow-lg hover:shadow-xl cursor-pointer"
                 >
                   Calculate Eligibility
                 </button>

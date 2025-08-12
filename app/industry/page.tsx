@@ -107,79 +107,90 @@ const IndustriesPage: React.FC = () => {
     setEligibilityResult(result)
   }
 
-//   const calculateCosts = () => {
-//     const industrySelect = document.getElementById('simIndustry') as HTMLSelectElement
-//     const volumeSelect = document.getElementById('simVolume') as HTMLSelectElement
-//     const paymentSelect = document.getElementById('simPaymentMethod') as HTMLSelectElement
+  const calculateCosts = () => {
+    const industrySelect = document.getElementById('simIndustry') as HTMLSelectElement
+    const volumeSelect = document.getElementById('simVolume') as HTMLSelectElement
+    const paymentSelect = document.getElementById('simPaymentMethod') as HTMLSelectElement
     
-//     const industry = industrySelect?.value
-//     const volume = parseInt(volumeSelect?.value || '0')
-//     const paymentMethod = paymentSelect?.value
+    const industry = industrySelect?.value
+    const volume = parseInt(volumeSelect?.value || '0')
+    const paymentMethod = paymentSelect?.value
     
-//     if (!industry || !volume || !paymentMethod) {
-//       alert('Please fill all fields')
-//       return
-//     }
+    if (!industry || !volume || !paymentMethod) {
+      alert('Please fill all fields')
+      return
+    }
 
-//     // Industry risk multipliers
-//     const industryRates: Record<string, { base: number; risk: number }> = {
-//       'igaming': { base: 3.2, risk: 1.2 },
-//       'forex': { base: 2.8, risk: 1.1 },
-//       'adult': { base: 4.5, risk: 1.5 },
-//       'cryptocurrency': { base: 5.2, risk: 1.8 },
-//       'nutraceuticals': { base: 3.8, risk: 1.3 },
-//       'cbd': { base: 6.2, risk: 2.0 },
-//       'travel': { base: 3.5, risk: 1.2 },
-//       'dating': { base: 4.0, risk: 1.4 },
-//       'telemarketing': { base: 4.8, risk: 1.6 },
-//       'ecigarettes': { base: 5.8, risk: 1.9 },
-//       'weightloss': { base: 4.2, risk: 1.4 }
-//     }
+    // Industry risk multipliers
+    const industryRates: Record<string, { base: number; risk: number }> = {
+      'igaming': { base: 3.2, risk: 1.2 },
+      'forex': { base: 2.8, risk: 1.1 },
+      'adult': { base: 4.5, risk: 1.5 },
+      'cryptocurrency': { base: 5.2, risk: 1.8 },
+      'nutraceuticals': { base: 3.8, risk: 1.3 },
+      'cbd': { base: 6.2, risk: 2.0 },
+      'travel': { base: 3.5, risk: 1.2 },
+      'dating': { base: 4.0, risk: 1.4 },
+      'telemarketing': { base: 4.8, risk: 1.6 },
+      'ecigarettes': { base: 5.8, risk: 1.9 },
+      'weightloss': { base: 4.2, risk: 1.4 }
+    }
 
-//     // Payment method modifiers
-//     const paymentRates: Record<string, number> = {
-//       'cards': 1.0,
-//       'apms': 0.85,
-//       'crypto': 1.3,
-//       'bank_transfer': 0.6,
-//       'e_wallets': 0.9,
-//       'mixed': 0.8
-//     }
+    // Payment method modifiers
+    const paymentRates: Record<string, number> = {
+      'cards': 1.0,
+      'apms': 0.85,
+      'crypto': 1.3,
+      'bank_transfer': 0.6,
+      'e_wallets': 0.9,
+      'mixed': 0.8
+    }
 
-//     // Volume discounts
-//     const volumeDiscount = volume > 5000000 ? 0.85 : volume > 1000000 ? 0.9 : volume > 500000 ? 0.95 : 1.0
+    // Volume discounts
+    const volumeDiscount = volume > 5000000 ? 0.85 : volume > 1000000 ? 0.9 : volume > 500000 ? 0.95 : 1.0
 
-//     const baseRate = industryRates[industry]?.base || 3.5
-//     const finalRate = baseRate * (paymentRates[paymentMethod] || 1.0) * volumeDiscount
-//     const monthlyCost = volume * finalRate / 100
-//     const setupCost = (industryRates[industry]?.risk || 1.0) * 1500
-//     const reserveRate = Math.min((industryRates[industry]?.risk || 1.0) * 3, 15)
+    const baseRate = industryRates[industry]?.base || 3.5
+    const finalRate = baseRate * (paymentRates[paymentMethod] || 1.0) * volumeDiscount
+    const monthlyCost = volume * finalRate / 100
+    const setupCost = (industryRates[industry]?.risk || 1.0) * 1500
+    const reserveRate = Math.min((industryRates[industry]?.risk || 1.0) * 3, 15)
 
-//     const industryFactors: Record<string, string[]> = {
-//       'igaming': ['🎯 Gaming license requirements', '🌍 Multi-jurisdiction processing', '🛡️ Responsible gaming controls'],
-//       'forex': ['📈 High-frequency trading support', '⚡ Instant funding capabilities', '🛡️ Enhanced fraud detection'],
-//       'adult': ['🔞 Age verification systems', '💳 Discrete billing descriptors', '🛡️ Chargeback protection']
-//     }
+    const industryFactors: Record<string, string[]> = {
+      'igaming': ['🎯 Gaming license requirements', '🌍 Multi-jurisdiction processing', '🛡️ Responsible gaming controls'],
+      'forex': ['📈 High-frequency trading support', '⚡ Instant funding capabilities', '🛡️ Enhanced fraud detection'],
+      'adult': ['🔞 Age verification systems', '💳 Discrete billing descriptors', '🛡️ Chargeback protection']
+    }
 
-//     const factors = industryFactors[industry] || ['🎯 Industry risk assessment', '🌍 Geographic processing costs', '🛡️ Enhanced fraud protection']
+    const factors = industryFactors[industry] || ['🎯 Industry risk assessment', '🌍 Geographic processing costs', '🛡️ Enhanced fraud protection']
 
-//     setCostResult({
-//       mdr: finalRate,
-//       monthly: monthlyCost,
-//       setup: setupCost,
-//       reserve: reserveRate,
-//       factors
-//     })
-//   }
+    setCostResult({
+      mdr: finalRate,
+      monthly: monthlyCost,
+      setup: setupCost,
+      reserve: reserveRate,
+      factors
+    })
+  }
 
   return (
     <div className="min-h-screen bg-slate-50">
 
       {/* Hero Section */}
-      <section ref={heroRef} className="bg-gradient-to-br from-blue-900 to-blue-600 text-white py-20 overflow-hidden relative">
-        <div className="absolute inset-0 opacity-10">
-          <svg className="w-full h-full" viewBox="0 0 1000 1000">
-            <polygon fill="rgba(255,255,255,0.1)" points="0,1000 1000,300 1000,1000"/>
+      <section className="relative bg-[linear-gradient(135deg,#1e3a8a_0%,#3b82f6_100%)] text-white py-20 overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <svg className="w-full h-full" viewBox="0 0 100 18" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern
+                id="bgPattern"
+                width="20"
+                height="20"
+                patternUnits="userSpaceOnUse"
+              >
+                <polygon fill="currentColor" points="0,20 20,0 20,20" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#bgPattern)" />
           </svg>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -227,11 +238,11 @@ const IndustriesPage: React.FC = () => {
                   y: -10,
                   transition: { duration: 0.3 }
                 }}
-                className="bg-white border-3 border-slate-200 rounded-2xl p-8 text-center cursor-pointer relative overflow-hidden group hover:border-blue-500 hover:shadow-xl transition-all duration-300"
+                className="bg-white border-3 border-slate-200 rounded-2xl p-8 text-black text-center cursor-pointer relative overflow-hidden group hover:border-blue-500 hover:shadow-xl transition-all duration-300"
                 onClick={() => setActiveModal('qualification')}
               >
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent"
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-500"
                   initial={{ x: '-100%' }}
                   whileHover={{ x: '100%' }}
                   transition={{ duration: 0.5 }}
@@ -293,7 +304,7 @@ const IndustriesPage: React.FC = () => {
                 <span className="bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Specialized</span>
               </div>
               
-              <div className="bg-blue-50 p-4 rounded-xl mb-5 border-l-4 border-blue-500">
+              <div className="bg-blue-50 p-4 rounded-xl mb-5 border-l-4 border-blue-500 text-black">
                 <strong className="text-blue-900">Explore:</strong> Click to see all supported high-risk verticals with tailored compliance solutions
               </div>
               
@@ -415,6 +426,59 @@ const IndustriesPage: React.FC = () => {
         </div>
       </section>
 
+      {/* Compliance & FAQ Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.h2
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold text-center mb-12 text-blue-900"
+          >
+            Compliance & FAQ
+          </motion.h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+            {[
+              {
+                question: 'Can I onboard this vertical in my geo?',
+                answer:
+                  'Eligibility varies by geography and business model. We maintain licensing and compliance requirements for each region and can provide instant qualification checking.',
+              },
+              {
+                question: 'Which flows are disqualified?',
+                answer:
+                  'We maintain strict compliance standards. Certain traffic sources, models, or jurisdictions may be restricted based on regulations and risk assessment.',
+              },
+              {
+                question: 'What documentation do I need?',
+                answer:
+                  'Requirements vary by industry and geography. We provide a comprehensive checklist and dedicated compliance support during onboarding.',
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-slate-50 p-6 rounded-2xl border-l-4 border-blue-500"
+              >
+                <div className="text-xl font-bold text-blue-900 mb-3">
+                  {item.question}
+                </div>
+                <p className="text-slate-700 mb-4">{item.answer}</p>
+                <button
+                  className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold"
+                  onClick={() => setActiveModal(item.question)}
+                >
+                  Learn More
+                </button>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Eligibility Widget */}
       <section className="py-20 bg-gradient-to-br from-slate-100 to-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -434,7 +498,7 @@ const IndustriesPage: React.FC = () => {
                 <label className="block text-blue-900 font-semibold mb-2">Target Geography:</label>
                 <select 
                   id="geoSelect"
-                  className="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors"
+                  className="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors cursor-pointer text-black"
                 >
                   <option value="">Select region...</option>
                   <option value="eu">European Union</option>
@@ -451,7 +515,7 @@ const IndustriesPage: React.FC = () => {
                 <label className="block text-blue-900 font-semibold mb-2">Business Vertical:</label>
                 <select 
                   id="verticalSelect"
-                  className="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors"
+                  className="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors cursor-pointer text-black"
                 >
                   <option value="">Select industry...</option>
                   <option value="igaming">iGaming</option>
@@ -473,7 +537,7 @@ const IndustriesPage: React.FC = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={checkEligibility}
-              className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-5 rounded-full text-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-5 rounded-full text-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
             >
               Check Eligibility & Requirements
             </motion.button>
@@ -535,6 +599,155 @@ const IndustriesPage: React.FC = () => {
             </AnimatePresence>
             </motion.div>
         </div>
+        </section>
+        
+        {/* Payment Cost Simulator Section */}
+        <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-500 text-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.h2
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl font-bold text-center mb-12"
+            >
+              Payment Cost Simulator
+            </motion.h2>
+
+            <div className="bg-white text-black rounded-3xl p-10 shadow-xl">
+              <p className="text-center text-lg text-slate-600 mb-8">
+                Get instant estimates for MDR and monthly costs based on your industry,
+                volume, and payment methods
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div>
+                  <label className="block font-semibold mb-2">Industry:</label>
+                  <select
+                    id="simIndustry"
+                    className="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-blue-500 cursor-pointer"
+                  >
+                    <option value="">Select industry...</option>
+                    {[
+                      'igaming',
+                      'forex',
+                      'adult',
+                      'cryptocurrency',
+                      'nutraceuticals',
+                      'cbd',
+                      'travel',
+                      'dating',
+                      'telemarketing',
+                      'ecigarettes',
+                      'weightloss',
+                    ].map((ind) => (
+                      <option key={ind} value={ind}>
+                        {ind}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-semibold mb-2">
+                    Monthly Volume (USD):
+                  </label>
+                  <select
+                    id="simVolume"
+                    className="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-blue-500 cursor-pointer"
+                  >
+                    <option value="">Select volume...</option>
+                    <option value="50000">$50K - $100K</option>
+                    <option value="200000">$100K - $500K</option>
+                    <option value="750000">$500K - $1M</option>
+                    <option value="2500000">$1M - $5M</option>
+                    <option value="7500000">$5M - $10M</option>
+                    <option value="15000000">$10M+</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-semibold mb-2">
+                    Primary Payment Method:
+                  </label>
+                  <select
+                    id="simPaymentMethod"
+                    className="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-blue-500 cursor-pointer"
+                  >
+                    <option value="">Select payment method...</option>
+                    <option value="cards">Credit/Debit Cards</option>
+                    <option value="apms">Alternative Payment Methods</option>
+                    <option value="crypto">Cryptocurrency</option>
+                    <option value="bank_transfer">Bank Transfer</option>
+                    <option value="e_wallets">E-Wallets</option>
+                    <option value="mixed">Mixed Payment Stack</option>
+                  </select>
+                </div>
+              </div>
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={calculateCosts}
+                className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-5 rounded-full text-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+              >
+                Calculate My Costs
+              </motion.button>
+
+              <AnimatePresence>
+                {costResult && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="mt-8"
+                  >
+                    <h4 className="text-center text-2xl font-bold text-blue-900 mb-6">
+                      Your Estimated Processing Costs
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-5 mb-8">
+                      <div className="bg-blue-50 p-5 rounded-xl text-center border-2 border-blue-200">
+                        <div className="text-lg font-semibold">MDR</div>
+                        <div className="text-2xl font-bold">
+                          {costResult.mdr.toFixed(2)}%
+                        </div>
+                      </div>
+                      <div className="bg-blue-50 p-5 rounded-xl text-center border-2 border-blue-200">
+                        <div className="text-lg font-semibold">Monthly Cost</div>
+                        <div className="text-2xl font-bold">
+                          ${costResult.monthly.toLocaleString()}
+                        </div>
+                      </div>
+                      <div className="bg-blue-50 p-5 rounded-xl text-center border-2 border-blue-200">
+                        <div className="text-lg font-semibold">Setup</div>
+                        <div className="text-2xl font-bold">
+                          ${costResult.setup.toLocaleString()}
+                        </div>
+                      </div>
+                      <div className="bg-blue-50 p-5 rounded-xl text-center border-2 border-blue-200">
+                        <div className="text-lg font-semibold">Reserve</div>
+                        <div className="text-2xl font-bold">
+                          {costResult.reserve.toFixed(1)}%
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-slate-50 p-6 rounded-xl">
+                      <h5 className="font-semibold mb-4 text-blue-900">
+                        Cost Factors for Your Industry:
+                      </h5>
+                      <ul className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        {costResult.factors.map((factor, index) => (
+                          <li key={index} className="flex items-center gap-2">
+                            <span>{factor.split(' ')[0]}</span>
+                            <span>{factor.substring(2)}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
         </section>
     </div>
   )
