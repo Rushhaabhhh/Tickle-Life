@@ -278,7 +278,7 @@ const Services: React.FC = () => {
               <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
                 <strong className="text-blue-800">Available Markets:</strong>
                 <div className="flex flex-wrap gap-2 mt-3 justify-center">
-                  {['EU', 'UK', 'India', 'GCC', 'LATAM', 'APAC', '+9 more'].map((market) => (
+                  {['EU', 'UK', 'GCC', 'LATAM', '+9 more'].map((market) => (
                     <span key={market} className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm">
                       {market}
                     </span>
@@ -416,7 +416,6 @@ const Services: React.FC = () => {
                   <option value="">Select region...</option>
                   <option value="eu">European Union</option>
                   <option value="uk">United Kingdom</option>
-                  <option value="india">India</option>
                   <option value="gcc">GCC Countries</option>
                   <option value="latam">Latin America</option>
                   <option value="apac">Asia Pacific</option>
@@ -472,9 +471,6 @@ const Services: React.FC = () => {
                   <option value="igaming">iGaming</option>
                   <option value="forex">Forex/CFD</option>
                   <option value="adult">Adult Entertainment</option>
-                  <option value="crypto">Cryptocurrency</option>
-                  <option value="nutra">Nutraceuticals</option>
-                  <option value="other">Other High-Risk</option>
                 </select>
               </div>
               

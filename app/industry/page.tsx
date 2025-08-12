@@ -139,11 +139,7 @@ const IndustriesPage: React.FC = () => {
     // Payment method modifiers
     const paymentRates: Record<string, number> = {
       'cards': 1.0,
-      'apms': 0.85,
       'crypto': 1.3,
-      'bank_transfer': 0.6,
-      'e_wallets': 0.9,
-      'mixed': 0.8
     }
 
     // Volume discounts
@@ -674,11 +670,7 @@ const IndustriesPage: React.FC = () => {
                   >
                     <option value="">Select payment method...</option>
                     <option value="cards">Credit/Debit Cards</option>
-                    <option value="apms">Alternative Payment Methods</option>
                     <option value="crypto">Cryptocurrency</option>
-                    <option value="bank_transfer">Bank Transfer</option>
-                    <option value="e_wallets">E-Wallets</option>
-                    <option value="mixed">Mixed Payment Stack</option>
                   </select>
                 </div>
               </div>
