@@ -95,7 +95,7 @@ const PSPHomepage = () => {
   };
 
   return (
-    <div className="font-sans text-gray-800 bg-gray-50">
+    <div className="font-sans text-gray-800 bg-gray-50 text-xl">
       {/* Hero Section */}
       <section className="relative bg-[linear-gradient(135deg,#1e3a8a_0%,#3b82f6_100%)] text-white py-20 overflow-hidden">
         {/* Background Pattern */}
@@ -114,29 +114,37 @@ const PSPHomepage = () => {
             <rect width="100%" height="100%" fill="url(#bgPattern)" />
           </svg>
         </div>
-        <div className="container mx-auto px-5 relative z-10">
+        <div className="container mx-auto px-5 relative z-10 p-5">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-5 drop-shadow-sm">
+            <h1 className="md:text-9xl font-bold mb-5 drop-shadow-sm">
               The trusted PSP for regulated, high-risk merchants
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-amber-300 font-semibold">
+            <p className="md:text mb-8 text-amber-300 font-semibold text-right p-10">
               Not everyone is eligible — see if you fit.
             </p>
-            <button
-              onClick={() => setShowQualificationModal(true)}
-              className="bg-amber-500 hover:bg-amber-600 text-white px-10 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:-translate-y-1 shadow-lg hover:shadow-amber-500/30 cursor-pointer"
-            >
-              Check if you qualify
-            </button>
-            
-            {/* Trust Badges */}
-            <div className="flex justify-center gap-8 mt-10 flex-wrap">
+
+            <div className="flex justify-between items-start mt-10 p-10">
+            {/* Trust Badges on Left */}
+            <div className="flex flex-col gap-4">
               {['🛡️ PCI DSS Level 1', '🏦 27 Bank Partners', '🌍 Multi-Geo Licensed', '🏆 Industry Awards'].map((badge, index) => (
-                <div key={index} className="px-5 py-2 rounded-full backdrop-blur border border-white border-opacity-20">
+                <div
+                  key={index}
+                  className="px-9 py-3 rounded-full backdrop-blur border border-white border-opacity-20"
+                >
                   {badge}
                 </div>
               ))}
             </div>
+
+            {/* Button on Right */}
+            <button
+              onClick={() => setShowQualificationModal(true)}
+              className="bg-amber-500 hover:bg-amber-600 text-white px-14 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:-translate-y-1 shadow-lg hover:shadow-amber-500/30 cursor-pointer"
+            >
+              Check if you qualify
+            </button>
+          </div>
+
             
             {/* Stats */}
             <div className="flex justify-center gap-10 mt-8 flex-wrap">
@@ -147,7 +155,7 @@ const PSPHomepage = () => {
                 { number: '15+', label: 'Licensed Geos' }
               ].map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-amber-300">{stat.number}</div>
+                  <div className="text-2xl md:text-5xl font-bold text-amber-300">{stat.number}</div>
                   <div className="text-sm opacity-90">{stat.label}</div>
                 </div>
               ))}

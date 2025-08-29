@@ -1,12 +1,18 @@
 'use client'
-import { Linke } from 'lucide-react'
+import { Mail } from 'lucide-react'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
+import Heart from './Heart'
 
 const navItems = [
-  { title: 'HOME', href: '/' },
-  { title: 'ABOUT', href: '/about' },
-  { title: 'CONTACT', href: '/contact' },
+  { title: 'Simulator', href: '/' },
+  { title: 'Home', href: '/home' },
+  { title: 'Industry', href: '/industry' },
+  { title: 'Services', href: '/services' },
+  { title: 'Resources', href: '/resources' },
+  { title: 'Contact Us', href: '/contact-us' },
+  { title: 'About Us', href: '/about-us' },
 ]
 
 export default function FullscreenMenu() {
@@ -20,37 +26,43 @@ export default function FullscreenMenu() {
 
   return (
     <>
-      {/* Menu Button */}
-      <nav className="fixed top-0 right-0 w-full z-50 flex justify-end p-6 bg-transparent">
+       {/* Top Navbar */}
+       <nav className="fixed top-0 w-full z-50 flex justify-end p-6 bg-transparent">
         <button
-          aria-label="Open menu"
+          aria-label="Toggle menu"
           onClick={() => setOpen(true)}
-          className="text-white text-3xl font-bold outline-none hover:scale-110 transition"
+          className="text-white text-3xl font-bold cursor-pointer transition-transform duration-300 hover:scale-110 outline-bg-black focus:outline-none hover:text-[#b2ff2b]"
+          style={{ transform: open ? 'rotate(90deg)' : 'rotate(0deg)' }}
         >
           ☰
         </button>
       </nav>
 
       {/* Overlay Fullscreen Menu */}
-      <div className={`fixed inset-0 z-[100] transition-opacity duration-700 
+      <div className={`fixed inset-0 z-[100] transition-opacity duration-700
         ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         {/* Video BG */}
-        <video
+          {/* <video
           autoPlay
-          muted
           loop
+          muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0"
+          className="absolute inset-0 z-10 w-full h-full bg-gray-950 object-cover"
         >
-          <source src="/cosmic-bg.mp4" type="video/mp4" />
-        </video>
-        {/* Optional: color overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-20 z-0" />
+          <source src="/bg2.mp4" type="video/mp4" />
+        </video> */}
+        {/* <Image
+          src="/demo.jpeg"
+          alt="Background"
+          fill
+          className="w-full h-auto bg-gray-950 inset-0 z-10"
+          priority
+        /> */}
+        
+        <div className="absolute inset-0 bg-gray-950 bg-opacity-20 z-0" />
 
-        {/* UI Layer */}
         <div className="relative z-10 flex flex-col h-full">
 
-          {/* CLOSE Button and Misc on top-right */}
           <div className="w-full flex justify-end items-center pt-8 pr-12 gap-8 text-white text-base tracking-wide">
             <button
               aria-label="Close menu"
@@ -62,12 +74,11 @@ export default function FullscreenMenu() {
             </button>
           </div>
 
-          {/* Main: Big Left Aligned Nav */}
           <div className="flex-1 flex flex-row">
             {/* Navigation */}
             <div className="flex flex-col justify-center pl-[8vw] pt-0" style={{height: '100%'}}>
               {navItems.map(({ title, href }, idx) => (
-                <div key={href} className="flex flex-row items-center mb-2">
+                <div key={href} className="flex flex-row items-center mb-8">
                   {pathname === href &&
                     <span className="text-[#b2ff2b] text-5xl mr-4 -ml-6">&#8250;</span> 
                   }
@@ -89,6 +100,11 @@ export default function FullscreenMenu() {
                       xl:text-[4vw]
                       2xl:text-[3.8vw]
                       opacity-95
+                      hover:opacity-100
+                      duration-400
+                      cursor-pointer
+                      hover:scale-110
+                      hover:decoration-smooth
                     `}
                     style={{
                       lineHeight: '1.0',
@@ -104,33 +120,38 @@ export default function FullscreenMenu() {
 
             {/* Side Content: Description Block */}
             <div className="flex-1 hidden md:flex items-center justify-center">
-              <div className="ml-8 w-full max-w-sm text-right pr-10">
+              <div className="ml-150 w-full max-w-sm text-left pr-10">
                 <div className="text-white text-[1.3vw] font-sans opacity-95 leading-snug tracking-tight"
                   style={{textShadow: '0 1px 8px rgba(0,0,0,0.13)'}}>
-                  Unlock an unparalleled DeFi<br/>
-                  experience that perfectly<br/>
-                  blends top-tier security with<br/>
-                  seamless user interaction.
+                  The trusted PSP for regulated,<br/>
+                  high-risk merchants<br/>
+                  Not everyone is eligible<br/>
+                  see if you fit.
                 </div>
                 <div className="pt-7">
-                  <span className="uppercase text-[0.9vw] font-semibold text-white opacity-80 tracking-widest border-b border-white/40 hover:text-[#b2ff2b] cursor-pointer" style={{letterSpacing: '0.12em'}}>
-                    HATOM APP &nbsp; &#8250;
-                  </span>
+                  <a
+                    href="https://www.ticklecharge.com" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="uppercase text-[0.9vw] font-semibold text-white opacity-80 tracking-widest border-b border-white/40 hover:text-[#b2ff2b] cursor-pointer"
+                    style={{ letterSpacing: '0.12em' }}
+                  >
+                    TICKLE LIFE &nbsp; &#8250;
+                  </a>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Bottom-left icon/social */}
           <div className="absolute bottom-10 left-12 text-white opacity-80 select-none">
             <a
-              href="https://www.linkedin.com/in/YOUR_HANDLE"
+              href="mailto:your.email@example.com"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2"
+              className="grid place-items-center w-7 h-7 rounded-full border border-white/40 hover:border-[#b2ff2b] transition-colors duration-300 hover:bg-[#b2ff2b] hover:text-black"
             >
-              <Linkedin className="w-5 h-5" />
-              <span className="text-xs font-bold">in</span>
+              <Mail className="w-4 h-4" />
+              <span className="sr-only">Mail</span>
             </a>
           </div>
         </div>
