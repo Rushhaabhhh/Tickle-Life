@@ -1,8 +1,7 @@
 'use client'
 
 import React, { useState, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 
 interface EligibilityResult {
   status: string
@@ -29,6 +28,9 @@ interface CostResult {
 }
 
 const IndustriesPage: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: containerRef })
+  
   const [selectedVertical, setSelectedVertical] = useState<string>('')
   const [showMoreVerticals, setShowMoreVerticals] = useState<boolean>(false)
   const [eligibilityResult, setEligibilityResult] = useState<EligibilityResult | null>(null)
@@ -38,6 +40,42 @@ const IndustriesPage: React.FC = () => {
   const heroRef = useRef<HTMLElement>(null)
   const tilesRef = useRef<HTMLDivElement>(null)
   const outcomeRef = useRef<HTMLElement>(null)
+
+  const chartOpacity = useTransform(scrollYProgress, [0, 0.3], [0.3, 1])
+  const chartScale = useTransform(scrollYProgress, [0, 0.3], [0.8, 1])
+
+  // Animated chart background component
+  const AnimatedChart = () => (
+    <motion.svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 800 400"
+      className="absolute inset-0 opacity-20"
+      style={{ opacity: chartOpacity, scale: chartScale }}
+    >
+      <motion.path
+        d="M0,350 Q100,300 200,250 T400,200 T600,150 T800,100"
+        stroke="currentColor"
+        strokeWidth="2"
+        fill="none"
+        className="text-gray-400"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 2, ease: "easeInOut" }}
+      />
+      <motion.path
+        d="M0,380 Q150,330 300,280 T600,230 T800,180"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        fill="none"
+        className="text-gray-300"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 2.5, delay: 0.3, ease: "easeInOut" }}
+      />
+      <circle cx="700" cy="120" r="80" fill="none" stroke="currentColor" strokeWidth="1" className="text-gray-200" opacity="0.5" />
+    </motion.svg>
+  )
 
   const industryData: Record<string, IndustryData> = {
     igaming: {
@@ -74,7 +112,6 @@ const IndustriesPage: React.FC = () => {
     { id: 'weightloss', icon: '⚖️', title: 'Weight Loss', subtitle: 'Diet & fitness products' }
   ]
 
-
   const checkEligibility = () => {
     const geoSelect = document.getElementById('geoSelect') as HTMLSelectElement
     const verticalSelect = document.getElementById('verticalSelect') as HTMLSelectElement
@@ -87,7 +124,6 @@ const IndustriesPage: React.FC = () => {
       return
     }
 
-    // Simulate eligibility check
     const eligibilityData: Record<string, EligibilityResult> = {
       'eu-igaming': { status: 'Eligible', description: 'Full processing available with MGA licensing', onboarding: '3-5 days', approval: '98%', setup: '$1,500' },
       'uk-forex': { status: 'Eligible', description: 'FCA regulated brokers welcome', onboarding: '5-7 days', approval: '95%', setup: '$2,000' },
@@ -121,7 +157,6 @@ const IndustriesPage: React.FC = () => {
       return
     }
 
-    // Industry risk multipliers
     const industryRates: Record<string, { base: number; risk: number }> = {
       'igaming': { base: 3.2, risk: 1.2 },
       'forex': { base: 2.8, risk: 1.1 },
@@ -136,13 +171,11 @@ const IndustriesPage: React.FC = () => {
       'weightloss': { base: 4.2, risk: 1.4 }
     }
 
-    // Payment method modifiers
     const paymentRates: Record<string, number> = {
       'cards': 1.0,
       'crypto': 1.3,
     }
 
-    // Volume discounts
     const volumeDiscount = volume > 5000000 ? 0.85 : volume > 1000000 ? 0.9 : volume > 500000 ? 0.95 : 1.0
 
     const baseRate = industryRates[industry]?.base || 3.5
@@ -168,153 +201,189 @@ const IndustriesPage: React.FC = () => {
     })
   }
 
+  const getTypeColor = (type: string) => {
+    return 'bg-black'
+  }
+
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div ref={containerRef} className="min-h-screen bg-white text-black relative overflow-x-hidden">
+
+      {/* Navigation Sidebar */}
+      <div className="fixed left-20 top-1/2 transform -translate-y-1/2 z-20">
+        <div className="flex flex-col items-center space-y-8 pl-4">
+          {["INDUSTRIES", "ELIGIBILITY", "COSTS"].map((item) => (
+            <div
+              key={item}
+              className="writing-mode-vertical text-md tracking-wider text-gray-600 rotate-180 cursor-pointer hover:text-gray-900"
+              style={{ writingMode: 'vertical-rl' }}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Hero Section */}
-      <section className="relative bg-[linear-gradient(135deg,#1e3a8a_0%,#3b82f6_100%)] text-white py-20 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <svg className="w-full h-full" viewBox="0 0 100 18" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <pattern
-                id="bgPattern"
-                width="20"
-                height="20"
-                patternUnits="userSpaceOnUse"
-              >
-                <polygon fill="currentColor" points="0,20 20,0 20,20" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#bgPattern)" />
-          </svg>
+      <section className="min-h-screen flex flex-col items-center justify-center relative pt-20">
+        <div
+          className="border p-8 max-w-7xl w-full mx-4 flex flex-col items-center"
+          style={{ borderColor: "rgba(100, 100, 100, 0.3)" }}
+        >
+          <AnimatedChart />
+
+          <motion.div
+            className="relative z-10 w-full max-w-5xl text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.5 }}
+          >
+            <motion.h1
+              className="mx-auto leading-tight mb-12 max-w-full"
+              style={{ fontFamily: "'OC Mikola', sans-serif", fontSize: "clamp(2rem, 10vw, 6rem)" }}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1.5, delay: 1 }}
+            >
+              <span style={{ whiteSpace: 'nowrap' }}>Tailored payment solutions </span><br />
+              <span style={{ whiteSpace: 'nowrap' }}>for your industry's </span><br />
+              <span style={{ whiteSpace: 'nowrap' }}>compliance and growth</span>
+            </motion.h1>
+          </motion.div>
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <motion.h1 
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="text-4xl md:text-6xl font-bold mb-6 text-shadow"
+
+        <div
+          className="border p-8 max-w-7xl w-full mx-4 mt-8 flex flex-col items-end"
+          style={{ borderColor: "rgba(100, 100, 100, 0.3)" }}
+        >
+          <motion.div
+            className="relative z-10 w-full max-w-xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.5 }}
           >
-            Tailored payment solutions for your industry&apos;s compliance and growth
-          </motion.h1>
-          <motion.p 
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto"
-          >
-            See how we optimize approval and reliability for each high-risk vertical
-          </motion.p>
+            <motion.p
+              className="text-lg md:text-lg max-w-xl leading-relaxed text-gray-700 text-right w-full p-4"
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 1, delay: 2.2 }}
+            >
+              See how we optimize approval and reliability<br/>
+              for each high-risk vertical.
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
-      {/* Industries Tiles */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h2 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-center mb-12 text-blue-900"
+      {/* Industries Section */}
+      <section className="flex items-center justify-center relative px-8">
+        <div
+          className="border p-8 max-w-7xl w-full mx-4 mt-8 flex flex-col items-center"
+          style={{ borderColor: "rgba(100, 100, 100, 0.3)" }}
+        >
+          <AnimatedChart />
+
+          <motion.div
+            className="text-center relative z-10 max-w-6xl mx-auto mb-12"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1.5 }}
+            viewport={{ once: true, margin: "-200px" }}
           >
-            Choose Your Industry
-          </motion.h2>
-          
-          <div ref={tilesRef} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+            <motion.h2
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[0.8] tracking-tight mb-16"
+              initial={{ scale: 0.8, y: 100 }}
+              whileInView={{ scale: 1, y: 0 }}
+              transition={{ duration: 1.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+              viewport={{ once: true, margin: "-200px" }}
+            >
+              CHOOSE YOUR INDUSTRY
+            </motion.h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 w-full max-w-6xl relative z-10">
             {/* Main Industry Tiles */}
             {Object.entries(industryData).map(([key, data], index) => (
               <motion.div
                 key={key}
-                initial={{ opacity: 0, y: 100 }}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                whileHover={{ 
-                  y: -10,
-                  transition: { duration: 0.3 }
-                }}
-                className="bg-white border-3 border-slate-200 rounded-2xl p-8 text-black text-center cursor-pointer relative overflow-hidden group hover:border-blue-500 hover:shadow-xl transition-all duration-300"
+                transition={{ delay: index * 0.1 }}
+                className="bg-gray-50 border border-gray-300 p-8 text-center cursor-pointer relative overflow-hidden group hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
                 onClick={() => setActiveModal('qualification')}
               >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-500"
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: '100%' }}
-                  transition={{ duration: 0.5 }}
-                />
+                <div className="absolute left-1 top-1 w-3 h-3 border-t-2 border-l-2 border-gray-400 pointer-events-none" />
+                <div className="absolute right-1 top-1 w-3 h-3 border-t-2 border-r-2 border-gray-400 pointer-events-none" />
+                <div className="absolute left-1 bottom-1 w-3 h-3 border-b-2 border-l-2 border-gray-400 pointer-events-none" />
+                <div className="absolute right-1 bottom-1 w-3 h-3 border-b-2 border-r-2 border-gray-400 pointer-events-none" />
                 
                 <div className="text-6xl mb-5">{data.icon}</div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-900">{data.title}</h3>
+                <h3 className="text-2xl font-bold mb-4">{data.title}</h3>
                 
                 <div className="flex flex-wrap justify-center gap-2 mb-5">
                   {data.badges.map((badge, badgeIndex) => (
-                    <motion.span
+                    <span
                       key={badge}
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      transition={{ delay: 0.1 * badgeIndex }}
-                      className="bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-semibold"
+                      className="bg-black text-white px-3 py-1 text-sm font-semibold"
                     >
                       {badge}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
                 
-                <div className="bg-blue-50 p-4 rounded-xl mb-5 border-l-4 border-blue-500">
-                  <strong className="text-blue-900">Key Feature:</strong> {data.feature}
+                <div className="bg-white p-4 border border-gray-300 mb-5">
+                  <strong>Key Feature:</strong> {data.feature}
                 </div>
                 
-                <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white p-4 rounded-xl mb-6 font-semibold text-lg">
+                <div className="bg-gray-800 text-white p-4 mb-6 font-semibold text-lg">
                   ⚡ {data.approvalRate}
                 </div>
                 
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-amber-500 hover:bg-amber-600 text-white px-8 py-3 rounded-full font-semibold w-full transition-colors"
+                <button
+                  className="bg-black text-white px-8 py-3 font-semibold w-full transition-all duration-300 hover:bg-gray-800"
                   onClick={(e) => {
                     e.stopPropagation()
                     setActiveModal('qualification')
                   }}
                 >
                   Get qualified for {data.title}
-                </motion.button>
+                </button>
               </motion.div>
             ))}
 
             {/* More Industries Tile */}
             <motion.div
-              initial={{ opacity: 0, y: 100 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-              className="bg-slate-100 border-2 border-dashed border-slate-300 rounded-2xl p-8 text-center cursor-pointer relative hover:border-blue-500 hover:bg-blue-50 transition-all duration-300"
+              transition={{ delay: 0.3 }}
+              className="bg-gray-100 border-2 border-dashed border-gray-400 p-8 text-center cursor-pointer relative hover:bg-gray-50 transition-all duration-300"
               onClick={() => setShowMoreVerticals(!showMoreVerticals)}
             >
+              <div className="absolute left-1 top-1 w-3 h-3 border-t-2 border-l-2 border-gray-400 pointer-events-none" />
+              <div className="absolute right-1 top-1 w-3 h-3 border-t-2 border-r-2 border-gray-400 pointer-events-none" />
+              <div className="absolute left-1 bottom-1 w-3 h-3 border-b-2 border-l-2 border-gray-400 pointer-events-none" />
+              <div className="absolute right-1 bottom-1 w-3 h-3 border-b-2 border-r-2 border-gray-400 pointer-events-none" />
+              
               <div className="text-6xl mb-5">⚡</div>
-              <h3 className="text-2xl font-bold mb-4 text-blue-900">More Industries</h3>
+              <h3 className="text-2xl font-bold mb-4">More Industries</h3>
               
               <div className="flex flex-wrap justify-center gap-2 mb-5">
-                <span className="bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Multi-Licensed</span>
-                <span className="bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Specialized</span>
+                <span className="bg-black text-white px-3 py-1 text-sm font-semibold">Multi-Licensed</span>
+                <span className="bg-black text-white px-3 py-1 text-sm font-semibold">Specialized</span>
               </div>
               
-              <div className="bg-blue-50 p-4 rounded-xl mb-5 border-l-4 border-blue-500 text-black">
-                <strong className="text-blue-900">Explore:</strong> Click to see all supported high-risk verticals with tailored compliance solutions
+              <div className="bg-white p-4 border border-gray-300 mb-5">
+                <strong>Explore:</strong> Click to see all supported high-risk verticals with tailored compliance solutions
               </div>
               
-              <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white p-4 rounded-xl mb-6 font-semibold text-lg">
+              <div className="bg-gray-800 text-white p-4 mb-6 font-semibold text-lg">
                 ⚡ Industry-specific optimization available
               </div>
               
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-amber-500 hover:bg-amber-600 text-white px-8 py-3 rounded-full font-semibold w-full transition-colors"
-              >
+              <button className="bg-black text-white px-8 py-3 font-semibold w-full transition-all duration-300 hover:bg-gray-800">
                 View All Industries
-              </motion.button>
+              </button>
               
               <AnimatePresence>
                 {showMoreVerticals && (
@@ -322,7 +391,7 @@ const IndustriesPage: React.FC = () => {
                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className="absolute top-full left-0 right-0 bg-white border border-slate-200 rounded-2xl p-5 shadow-xl mt-3 z-20"
+                    className="absolute top-full left-0 right-0 bg-white border border-gray-300 p-5 shadow-xl mt-3 z-20"
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {moreIndustries.map((industry, index) => (
@@ -331,17 +400,17 @@ const IndustriesPage: React.FC = () => {
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.05 }}
-                          className="p-3 cursor-pointer rounded-lg hover:bg-slate-100 transition-colors text-left"
+                          className="p-3 cursor-pointer hover:bg-gray-100 transition-colors text-left"
                           onClick={(e) => {
                             e.stopPropagation()
                             setSelectedVertical(industry.id)
                             setShowMoreVerticals(false)
                           }}
                         >
-                          <div className="font-semibold text-blue-900">
+                          <div className="font-semibold">
                             {industry.icon} {industry.title}
                           </div>
-                          <div className="text-sm text-slate-600">{industry.subtitle}</div>
+                          <div className="text-sm text-gray-600">{industry.subtitle}</div>
                         </motion.div>
                       ))}
                     </div>
@@ -354,117 +423,115 @@ const IndustriesPage: React.FC = () => {
       </section>
 
       {/* Success Stories */}
-      <section ref={outcomeRef} className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h2 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-center mb-12 text-blue-900"
-          >
-            Industry Success Stories
-          </motion.h2>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            {[
-              {
-                stat: '98%',
-                statDesc: 'Approval rate for EU iGaming operators',
-                testimonial: '"TrustPay\'s understanding of MGA requirements and their technical integration made our European expansion seamless. Our payment success rates increased by 23% after switching."',
-                author: '— Sarah Johnson, CTO at EuroSlots Gaming'
-              },
-              {
-                stat: '$2.3B',
-                statDesc: 'Processed for Forex brokers in 2024',
-                testimonial: '"The instant funding capability and their specialized fraud protection for trading accounts has been game-changing. We\'ve reduced funding friction by 40%."',
-                author: '— Marcus Chen, Head of Payments at TradePro'
-              },
-              {
-                stat: '0.3%',
-                statDesc: 'Chargeback rate for adult merchants',
-                testimonial: '"Their discrete billing and enhanced chargeback protection tools helped us maintain excellent payment metrics while growing our subscriber base."',
-                author: '— Alex Rivera, Director of Operations at ContentHub'
-              }
-            ].map((story, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                whileHover={{ y: -5 }}
-                className="outcome-card bg-white p-10 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <motion.div 
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white p-5 rounded-2xl text-center mb-6"
-                >
-                  <div className="text-4xl font-bold mb-2">{story.stat}</div>
-                  <div className="text-lg opacity-90">{story.statDesc}</div>
-                </motion.div>
-                
-                <div className="text-lg italic text-slate-600 mb-5 leading-relaxed">
-                  {story.testimonial}
-                </div>
-                
-                <div className="font-semibold text-blue-900 mb-3">{story.author}</div>
-                
-                <motion.a
-                  whileHover={{ x: 5 }}
-                  href="#case-study"
-                  className="text-blue-500 hover:text-blue-700 font-semibold hover:underline transition-colors"
-                >
-                  See full case study →
-                </motion.a>
-              </motion.div>
-            ))}
-          </div>
+      <section className="relative py-24 px-8 bg-[#f9f9f9] overflow-hidden max-w-7xl mx-auto">
+        <AnimatedChart />
+        
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">Industry Success Stories</h2>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+          {[
+            {
+              stat: '98%',
+              statDesc: 'Approval rate for EU iGaming operators',
+              testimonial: '"TrustPay\'s understanding of MGA requirements and their technical integration made our European expansion seamless. Our payment success rates increased by 23% after switching."',
+              author: '— Sarah Johnson, CTO at EuroSlots Gaming'
+            },
+            {
+              stat: '$2.3B',
+              statDesc: 'Processed for Forex brokers in 2024',
+              testimonial: '"The instant funding capability and their specialized fraud protection for trading accounts has been game-changing. We\'ve reduced funding friction by 40%."',
+              author: '— Marcus Chen, Head of Payments at TradePro'
+            },
+            {
+              stat: '0.3%',
+              statDesc: 'Chargeback rate for adult merchants',
+              testimonial: '"Their discrete billing and enhanced chargeback protection tools helped us maintain excellent payment metrics while growing our subscriber base."',
+              author: '— Alex Rivera, Director of Operations at ContentHub'
+            }
+          ].map((story, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2 }}
+              className="bg-white p-10 border border-gray-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative"
+            >
+              <div className="absolute left-1 top-1 w-3 h-3 border-t-2 border-l-2 border-gray-400 pointer-events-none" />
+              <div className="absolute right-1 top-1 w-3 h-3 border-t-2 border-r-2 border-gray-400 pointer-events-none" />
+              <div className="absolute left-1 bottom-1 w-3 h-3 border-b-2 border-l-2 border-gray-400 pointer-events-none" />
+              <div className="absolute right-1 bottom-1 w-3 h-3 border-b-2 border-r-2 border-gray-400 pointer-events-none" />
+              
+              <div className="bg-black text-white p-5 text-center mb-6">
+                <div className="text-4xl font-bold mb-2">{story.stat}</div>
+                <div className="text-lg opacity-90">{story.statDesc}</div>
+              </div>
+              
+              <div className="text-lg italic text-gray-600 mb-5 leading-relaxed">
+                {story.testimonial}
+              </div>
+              
+              <div className="font-semibold text-black mb-3">{story.author}</div>
+              
+              <button className="text-gray-600 hover:text-black font-semibold hover:underline transition-colors cursor-pointer">
+                See full case study →
+              </button>
+            </motion.div>
+          ))}
         </div>
       </section>
 
       {/* Compliance & FAQ Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h2
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-center mb-12 text-blue-900"
-          >
-            Compliance & FAQ
-          </motion.h2>
+      <section className="flex items-center justify-center relative px-8">
+        <div
+          className="border p-8 max-w-7xl w-full mx-4 mt-8 flex flex-col items-center"
+          style={{ borderColor: "rgba(100, 100, 100, 0.3)" }}
+        >
+          <AnimatedChart />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+          <motion.div
+            className="text-center relative z-10 max-w-6xl mx-auto mb-12"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1.5 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-12">Compliance & FAQ</h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl relative z-10">
             {[
               {
                 question: 'Can I onboard this vertical in my geo?',
-                answer:
-                  'Eligibility varies by geography and business model. We maintain licensing and compliance requirements for each region and can provide instant qualification checking.',
+                answer: 'Eligibility varies by geography and business model. We maintain licensing and compliance requirements for each region and can provide instant qualification checking.'
               },
               {
                 question: 'Which flows are disqualified?',
-                answer:
-                  'We maintain strict compliance standards. Certain traffic sources, models, or jurisdictions may be restricted based on regulations and risk assessment.',
+                answer: 'We maintain strict compliance standards. Certain traffic sources, models, or jurisdictions may be restricted based on regulations and risk assessment.'
               },
               {
                 question: 'What documentation do I need?',
-                answer:
-                  'Requirements vary by industry and geography. We provide a comprehensive checklist and dedicated compliance support during onboarding.',
-              },
+                answer: 'Requirements vary by industry and geography. We provide a comprehensive checklist and dedicated compliance support during onboarding.'
+              }
             ].map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-slate-50 p-6 rounded-2xl border-l-4 border-blue-500"
+                className="bg-gray-50 p-6 border border-gray-300 relative"
               >
-                <div className="text-xl font-bold text-blue-900 mb-3">
-                  {item.question}
-                </div>
-                <p className="text-slate-700 mb-4">{item.answer}</p>
+                <div className="absolute left-1 top-1 w-3 h-3 border-t-2 border-l-2 border-gray-400 pointer-events-none" />
+                <div className="absolute right-1 top-1 w-3 h-3 border-t-2 border-r-2 border-gray-400 pointer-events-none" />
+                <div className="absolute left-1 bottom-1 w-3 h-3 border-b-2 border-l-2 border-gray-400 pointer-events-none" />
+                <div className="absolute right-1 bottom-1 w-3 h-3 border-b-2 border-r-2 border-gray-400 pointer-events-none" />
+                
+                <div className="text-xl font-bold mb-3">{item.question}</div>
+                <p className="text-gray-700 mb-4">{item.answer}</p>
                 <button
-                  className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold"
+                  className="bg-black text-white px-4 py-2 font-semibold hover:bg-gray-800 transition-colors cursor-pointer"
                   onClick={() => setActiveModal(item.question)}
                 >
                   Learn More
@@ -476,273 +543,290 @@ const IndustriesPage: React.FC = () => {
       </section>
 
       {/* Eligibility Widget */}
-      <section className="py-20 bg-gradient-to-br from-slate-100 to-slate-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white p-12 rounded-3xl shadow-xl"
-          >
-            <h3 className="text-3xl font-bold text-center mb-4 text-blue-900">Check Your Eligibility</h3>
-            <p className="text-center text-slate-600 mb-10 text-lg">
-              Pick your geography and vertical to see eligibility, onboarding time, and requirements
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div>
-                <label className="block text-blue-900 font-semibold mb-2">Target Geography:</label>
-                <select 
-                  id="geoSelect"
-                  className="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors cursor-pointer text-black"
-                >
-                  <option value="">Select region...</option>
-                  <option value="eu">European Union</option>
-                  <option value="uk">United Kingdom</option>
-                  <option value="india">India</option>
-                  <option value="gcc">GCC Countries</option>
-                  <option value="latam">Latin America</option>
-                  <option value="apac">Asia Pacific</option>
-                  <option value="na">North America</option>
-                </select>
-              </div>
-              
-              <div>
-                <label className="block text-blue-900 font-semibold mb-2">Business Vertical:</label>
-                <select 
-                  id="verticalSelect"
-                  className="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors cursor-pointer text-black"
-                >
-                  <option value="">Select industry...</option>
-                  <option value="igaming">iGaming</option>
-                  <option value="forex">Forex & CFD Trading</option>
-                  <option value="adult">Adult Entertainment</option>
-                  <option value="cryptocurrency">Cryptocurrency</option>
-                  <option value="nutraceuticals">Nutraceuticals</option>
-                  <option value="cbd">CBD/Cannabis</option>
-                  <option value="travel">High-Risk Travel</option>
-                  <option value="dating">Dating & Social</option>
-                  <option value="telemarketing">Telemarketing</option>
-                  <option value="ecigarettes">E-cigarettes</option>
-                  <option value="weightloss">Weight Loss</option>
-                </select>
-              </div>
-            </div>
-            
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={checkEligibility}
-              className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-5 rounded-full text-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+      <section className="py-24 px-4 md:px-8 bg-[#fafafa] relative overflow-hidden">
+        <div
+          className="border p-8 max-w-7xl mx-auto flex flex-col items-center"
+          style={{ borderColor: "rgba(100, 100, 100, 0.3)" }}
+        >
+          <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
+            <svg
+              width="100%"
+              height="100"
+              viewBox="0 0 1600 100"
+              fill="none"
+              className="opacity-40"
             >
-              Check Eligibility & Requirements
-            </motion.button>
-            
-            <AnimatePresence>
-              {eligibilityResult && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="mt-8 p-8 bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl border-l-4 border-emerald-500"
-                >
-                  <div className="text-center mb-6">
-                    <div className={`text-2xl font-bold mb-2 ${
-                      eligibilityResult.status.includes('Eligible') ? 'text-emerald-600' : 
-                      eligibilityResult.status.includes('Restricted') ? 'text-amber-600' : 'text-red-600'
-                    }`}>
-                      {eligibilityResult.status}
-                    </div>
-                    <p className="text-slate-700">{eligibilityResult.description}</p>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
-                    <div className="bg-white p-5 rounded-xl text-center">
-                      <div className="text-2xl font-bold text-emerald-600 mb-1">{eligibilityResult.onboarding}</div>
-                      <div className="text-emerald-800 font-medium">Onboarding Time</div>
-                    </div>
-                    <div className="bg-white p-5 rounded-xl text-center">
-                      <div className="text-2xl font-bold text-emerald-600 mb-1">{eligibilityResult.approval}</div>
-                      <div className="text-emerald-800 font-medium">Approval Rate</div>
-                    </div>
-                    <div className="bg-white p-5 rounded-xl text-center">
-                      <div className="text-2xl font-bold text-emerald-600 mb-1">{eligibilityResult.setup}</div>
-                      <div className="text-emerald-800 font-medium">Setup Fee</div>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-white p-5 rounded-xl">
-                    <h5 className="text-blue-900 font-semibold mb-4">Required Documentation:</h5>
-                    <ul className="space-y-2">
-                      {['Valid business license', 'Regulatory compliance certificates', 'Financial statements (last 6 months)', 'Risk management documentation'].map((req, index) => (
-                        <motion.li
-                          key={index}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                          className="flex items-center text-slate-700"
-                        >
-                            <svg className="w-5 h-5 text-emerald-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M16.707 4.293a1 1 0 00-1.414-1.414l-8 8a1 1 0 01-.707.293H4a1 1 0 100 2h3a1 1 0 00.707-.293l8-8z" />
-                            </svg>
-                            {req}
-                        </motion.li>
-                        ))}
-                    </ul>
-                    </div>
-                </motion.div>
-                )}
-            </AnimatePresence>
-            </motion.div>
-        </div>
-        </section>
-        
-        {/* Payment Cost Simulator Section */}
-        <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-500 text-white">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.h2
+              <path
+                d="M0,60 Q400,100 800,40 T1600,80"
+                stroke="#bebebe"
+                strokeWidth="0.8"
+                fill="none"
+              />
+            </svg>
+          </div>
+
+          <div className="w-full max-w-4xl relative z-10">
+            <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-bold text-center mb-12"
+              className="bg-white p-12 border border-gray-300 relative"
             >
-              Payment Cost Simulator
-            </motion.h2>
-
-            <div className="bg-white text-black rounded-3xl p-10 shadow-xl">
-              <p className="text-center text-lg text-slate-600 mb-8">
-                Get instant estimates for MDR and monthly costs based on your industry,
-                volume, and payment methods
+              <div className="absolute left-1 top-1 w-3 h-3 border-t-2 border-l-2 border-gray-400 pointer-events-none" />
+              <div className="absolute right-1 top-1 w-3 h-3 border-t-2 border-r-2 border-gray-400 pointer-events-none" />
+              <div className="absolute left-1 bottom-1 w-3 h-3 border-b-2 border-l-2 border-gray-400 pointer-events-none" />
+              <div className="absolute right-1 bottom-1 w-3 h-3 border-b-2 border-r-2 border-gray-400 pointer-events-none" />
+              
+              <h3 className="text-3xl font-bold text-center mb-4">Check Your Eligibility</h3>
+              <p className="text-center text-gray-600 mb-10 text-lg">
+                Pick your geography and vertical to see eligibility, onboarding time, and requirements
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div>
-                  <label className="block font-semibold mb-2">Industry:</label>
-                  <select
-                    id="simIndustry"
-                    className="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-blue-500 cursor-pointer"
+                  <label className="block font-semibold mb-2">Target Geography:</label>
+                  <select 
+                    id="geoSelect"
+                    className="w-full p-4 border-2 border-gray-300 focus:border-black focus:outline-none transition-colors cursor-pointer"
+                  >
+                    <option value="">Select region...</option>
+                    <option value="eu">European Union</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="india">India</option>
+                    <option value="gcc">GCC Countries</option>
+                    <option value="latam">Latin America</option>
+                    <option value="apac">Asia Pacific</option>
+                    <option value="na">North America</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block font-semibold mb-2">Business Vertical:</label>
+                  <select 
+                    id="verticalSelect"
+                    className="w-full p-4 border-2 border-gray-300 focus:border-black focus:outline-none transition-colors cursor-pointer"
                   >
                     <option value="">Select industry...</option>
-                    {[
-                      'igaming',
-                      'forex',
-                      'adult',
-                      'cryptocurrency',
-                      'nutraceuticals',
-                      'cbd',
-                      'travel',
-                      'dating',
-                      'telemarketing',
-                      'ecigarettes',
-                      'weightloss',
-                    ].map((ind) => (
-                      <option key={ind} value={ind}>
-                        {ind}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block font-semibold mb-2">
-                    Monthly Volume (USD):
-                  </label>
-                  <select
-                    id="simVolume"
-                    className="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-blue-500 cursor-pointer"
-                  >
-                    <option value="">Select volume...</option>
-                    <option value="50000">$50K - $100K</option>
-                    <option value="200000">$100K - $500K</option>
-                    <option value="750000">$500K - $1M</option>
-                    <option value="2500000">$1M - $5M</option>
-                    <option value="7500000">$5M - $10M</option>
-                    <option value="15000000">$10M+</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block font-semibold mb-2">
-                    Primary Payment Method:
-                  </label>
-                  <select
-                    id="simPaymentMethod"
-                    className="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-blue-500 cursor-pointer"
-                  >
-                    <option value="">Select payment method...</option>
-                    <option value="cards">Credit/Debit Cards</option>
-                    <option value="crypto">Cryptocurrency</option>
+                    <option value="igaming">iGaming</option>
+                    <option value="forex">Forex & CFD Trading</option>
+                    <option value="adult">Adult Entertainment</option>
+                    <option value="cryptocurrency">Cryptocurrency</option>
+                    <option value="nutraceuticals">Nutraceuticals</option>
+                    <option value="cbd">CBD/Cannabis</option>
+                    <option value="travel">High-Risk Travel</option>
+                    <option value="dating">Dating & Social</option>
+                    <option value="telemarketing">Telemarketing</option>
+                    <option value="ecigarettes">E-cigarettes</option>
+                    <option value="weightloss">Weight Loss</option>
                   </select>
                 </div>
               </div>
-
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={calculateCosts}
-                className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-5 rounded-full text-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+              
+              <button
+                onClick={checkEligibility}
+                className="w-full bg-black text-white py-5 text-xl font-semibold hover:bg-gray-800 transition-colors cursor-pointer"
               >
-                Calculate My Costs
-              </motion.button>
-
+                Check Eligibility & Requirements
+              </button>
+              
               <AnimatePresence>
-                {costResult && (
+                {eligibilityResult && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="mt-8"
+                    className="mt-8 p-8 bg-gray-50 border border-gray-300"
                   >
-                    <h4 className="text-center text-2xl font-bold text-blue-900 mb-6">
-                      Your Estimated Processing Costs
-                    </h4>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-5 mb-8">
-                      <div className="bg-blue-50 p-5 rounded-xl text-center border-2 border-blue-200">
-                        <div className="text-lg font-semibold">MDR</div>
-                        <div className="text-2xl font-bold">
-                          {costResult.mdr.toFixed(2)}%
-                        </div>
+                    <div className="text-center mb-6">
+                      <div className={`text-2xl font-bold mb-2 ${
+                        eligibilityResult.status.includes('Eligible') ? 'text-black' : 
+                        eligibilityResult.status.includes('Restricted') ? 'text-gray-600' : 'text-gray-800'
+                      }`}>
+                        {eligibilityResult.status}
                       </div>
-                      <div className="bg-blue-50 p-5 rounded-xl text-center border-2 border-blue-200">
-                        <div className="text-lg font-semibold">Monthly Cost</div>
-                        <div className="text-2xl font-bold">
-                          ${costResult.monthly.toLocaleString()}
-                        </div>
+                      <p className="text-gray-700">{eligibilityResult.description}</p>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+                      <div className="bg-white p-5 text-center border border-gray-300">
+                        <div className="text-2xl font-bold mb-1">{eligibilityResult.onboarding}</div>
+                        <div className="font-medium">Onboarding Time</div>
                       </div>
-                      <div className="bg-blue-50 p-5 rounded-xl text-center border-2 border-blue-200">
-                        <div className="text-lg font-semibold">Setup</div>
-                        <div className="text-2xl font-bold">
-                          ${costResult.setup.toLocaleString()}
-                        </div>
+                      <div className="bg-white p-5 text-center border border-gray-300">
+                        <div className="text-2xl font-bold mb-1">{eligibilityResult.approval}</div>
+                        <div className="font-medium">Approval Rate</div>
                       </div>
-                      <div className="bg-blue-50 p-5 rounded-xl text-center border-2 border-blue-200">
-                        <div className="text-lg font-semibold">Reserve</div>
-                        <div className="text-2xl font-bold">
-                          {costResult.reserve.toFixed(1)}%
-                        </div>
+                      <div className="bg-white p-5 text-center border border-gray-300">
+                        <div className="text-2xl font-bold mb-1">{eligibilityResult.setup}</div>
+                        <div className="font-medium">Setup Fee</div>
                       </div>
                     </div>
-
-                    <div className="bg-slate-50 p-6 rounded-xl">
-                      <h5 className="font-semibold mb-4 text-blue-900">
-                        Cost Factors for Your Industry:
-                      </h5>
-                      <ul className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                        {costResult.factors.map((factor, index) => (
-                          <li key={index} className="flex items-center gap-2">
-                            <span>{factor.split(' ')[0]}</span>
-                            <span>{factor.substring(2)}</span>
-                          </li>
+                    
+                    <div className="bg-white p-5 border border-gray-300">
+                      <h5 className="font-semibold mb-4">Required Documentation:</h5>
+                      <ul className="space-y-2">
+                        {['Valid business license', 'Regulatory compliance certificates', 'Financial statements (last 6 months)', 'Risk management documentation'].map((req, index) => (
+                          <motion.li
+                            key={index}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                            className="flex items-center text-gray-700"
+                          >
+                            <span className="w-5 h-5 mr-2">✓</span>
+                            {req}
+                          </motion.li>
                         ))}
                       </ul>
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Payment Cost Simulator Section */}
+      <section className="relative py-24 px-8 bg-black text-white overflow-hidden max-w-7xl mx-auto">
+        <AnimatedChart />
+        
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">Payment Cost Simulator</h2>
+        </div>
+
+        <div className="bg-white text-black p-10 border border-gray-300 relative">
+          <div className="absolute left-1 top-1 w-3 h-3 border-t-2 border-l-2 border-gray-400 pointer-events-none" />
+          <div className="absolute right-1 top-1 w-3 h-3 border-t-2 border-r-2 border-gray-400 pointer-events-none" />
+          <div className="absolute left-1 bottom-1 w-3 h-3 border-b-2 border-l-2 border-gray-400 pointer-events-none" />
+          <div className="absolute right-1 bottom-1 w-3 h-3 border-b-2 border-r-2 border-gray-400 pointer-events-none" />
+          
+          <p className="text-center text-lg text-gray-600 mb-8">
+            Get instant estimates for MDR and monthly costs based on your industry, volume, and payment methods
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div>
+              <label className="block font-semibold mb-2">Industry:</label>
+              <select
+                id="simIndustry"
+                className="w-full p-4 border-2 border-gray-300 focus:border-black cursor-pointer"
+              >
+                <option value="">Select industry...</option>
+                {[
+                  'igaming',
+                  'forex',
+                  'adult',
+                  'cryptocurrency',
+                  'nutraceuticals',
+                  'cbd',
+                  'travel',
+                  'dating',
+                  'telemarketing',
+                  'ecigarettes',
+                  'weightloss',
+                ].map((ind) => (
+                  <option key={ind} value={ind}>
+                    {ind}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="block font-semibold mb-2">Monthly Volume (USD):</label>
+              <select
+                id="simVolume"
+                className="w-full p-4 border-2 border-gray-300 focus:border-black cursor-pointer"
+              >
+                <option value="">Select volume...</option>
+                <option value="50000">$50K - $100K</option>
+                <option value="200000">$100K - $500K</option>
+                <option value="750000">$500K - $1M</option>
+                <option value="2500000">$1M - $5M</option>
+                <option value="7500000">$5M - $10M</option>
+                <option value="15000000">$10M+</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block font-semibold mb-2">Primary Payment Method:</label>
+              <select
+                id="simPaymentMethod"
+                className="w-full p-4 border-2 border-gray-300 focus:border-black cursor-pointer"
+              >
+                <option value="">Select payment method...</option>
+                <option value="cards">Credit/Debit Cards</option>
+                <option value="crypto">Cryptocurrency</option>
+              </select>
             </div>
           </div>
-        </section>
+
+          <button
+            onClick={calculateCosts}
+            className="w-full bg-black text-white py-5 text-xl font-semibold hover:bg-gray-800 transition-colors cursor-pointer"
+          >
+            Calculate My Costs
+          </button>
+
+          <AnimatePresence>
+            {costResult && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="mt-8"
+              >
+                <h4 className="text-center text-2xl font-bold mb-6">
+                  Your Estimated Processing Costs
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-5 mb-8">
+                  <div className="bg-gray-50 p-5 text-center border border-gray-300">
+                    <div className="text-lg font-semibold">MDR</div>
+                    <div className="text-2xl font-bold">
+                      {costResult.mdr.toFixed(2)}%
+                    </div>
+                  </div>
+                  <div className="bg-gray-50 p-5 text-center border border-gray-300">
+                    <div className="text-lg font-semibold">Monthly Cost</div>
+                    <div className="text-2xl font-bold">
+                      ${costResult.monthly.toLocaleString()}
+                    </div>
+                  </div>
+                  <div className="bg-gray-50 p-5 text-center border border-gray-300">
+                    <div className="text-lg font-semibold">Setup</div>
+                    <div className="text-2xl font-bold">
+                      ${costResult.setup.toLocaleString()}
+                    </div>
+                  </div>
+                  <div className="bg-gray-50 p-5 text-center border border-gray-300">
+                    <div className="text-lg font-semibold">Reserve</div>
+                    <div className="text-2xl font-bold">
+                      {costResult.reserve.toFixed(1)}%
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gray-50 p-6 border border-gray-300">
+                  <h5 className="font-semibold mb-4">
+                    Cost Factors for Your Industry:
+                  </h5>
+                  <ul className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    {costResult.factors.map((factor, index) => (
+                      <li key={index} className="flex items-center gap-2">
+                        <span>{factor.split(' ')[0]}</span>
+                        <span>{factor.substring(2)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </section>
     </div>
   )
 }
 
-export default IndustriesPage;   
+export default IndustriesPage

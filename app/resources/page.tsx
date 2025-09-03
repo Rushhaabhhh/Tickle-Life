@@ -1,49 +1,54 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { Search, Download, Play, Eye, Calendar, FileText, Video, BookOpen, Users, MessageCircle, ChevronDown } from 'lucide-react'
 
 const ResourceCenter = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: containerRef })
+  
   const [activeFilter, setActiveFilter] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const heroRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<(HTMLDivElement | null)[]>([])
 
-  // Animation effect on mount
-  useEffect(() => {
-    // Simulate GSAP timeline for hero animation
-    if (heroRef.current) {
-      heroRef.current.style.opacity = '0'
-      heroRef.current.style.transform = 'translateY(50px)'
-      
-      setTimeout(() => {
-        if (heroRef.current) {
-          heroRef.current.style.transition = 'all 1s ease-out'
-        }
-        if (heroRef.current) {
-          heroRef.current.style.opacity = '1'
-        }
-        if (heroRef.current) {
-          heroRef.current.style.transform = 'translateY(0)'
-        }
-      }, 100)
-    }
+  const chartOpacity = useTransform(scrollYProgress, [0, 0.3], [0.3, 1])
+  const chartScale = useTransform(scrollYProgress, [0, 0.3], [0.8, 1])
 
-    // Stagger card animations
-    cardsRef.current.forEach((card, index) => {
-      if (card) {
-        card.style.opacity = '0'
-        card.style.transform = 'translateY(30px)'
-        
-        setTimeout(() => {
-          card.style.transition = 'all 0.6s ease-out'
-          card.style.opacity = '1'
-          card.style.transform = 'translateY(0)'
-        }, 200 + index * 100)
-      }
-    })
-  }, [])
+  // Animated chart background component
+  const AnimatedChart = () => (
+    <motion.svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 800 400"
+      className="absolute inset-0 opacity-20"
+      style={{ opacity: chartOpacity, scale: chartScale }}
+    >
+      <motion.path
+        d="M0,350 Q100,300 200,250 T400,200 T600,150 T800,100"
+        stroke="currentColor"
+        strokeWidth="2"
+        fill="none"
+        className="text-gray-400"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 2, ease: "easeInOut" }}
+      />
+      <motion.path
+        d="M0,380 Q150,330 300,280 T600,230 T800,180"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        fill="none"
+        className="text-gray-300"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 2.5, delay: 0.3, ease: "easeInOut" }}
+      />
+      <circle cx="700" cy="120" r="80" fill="none" stroke="currentColor" strokeWidth="1" className="text-gray-200" opacity="0.5" />
+    </motion.svg>
+  )
 
   const resources = [
     {
@@ -129,17 +134,6 @@ const ResourceCenter = () => {
 
   const filterContent = (type: React.SetStateAction<string>) => {
     setActiveFilter(type)
-    // Animate filter change
-    cardsRef.current.forEach(card => {
-      if (card) {
-        card.style.transform = 'scale(0.95)'
-        card.style.opacity = '0.7'
-        setTimeout(() => {
-          card.style.transform = 'scale(1)'
-          card.style.opacity = '1'
-        }, 200)
-      }
-    })
   }
 
   const loadMoreContent = () => {
@@ -152,11 +146,11 @@ const ResourceCenter = () => {
 
   const getTypeColor = (type: string) => {
     const colors = {
-      'Blog': 'bg-blue-500',
-      'Whitepaper': 'bg-purple-500',
-      'Guide': 'bg-green-500',
-      'Webinar': 'bg-red-500',
-      'Case Study': 'bg-yellow-500'
+      'Blog': 'bg-black',
+      'Whitepaper': 'bg-gray-800',
+      'Guide': 'bg-gray-700',
+      'Webinar': 'bg-black',
+      'Case Study': 'bg-gray-600'
     }
     return colors[type as keyof typeof colors] || 'bg-gray-500'
   }
@@ -173,27 +167,89 @@ const ResourceCenter = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[linear-gradient(135deg,#667eea_0%,#764ba2_100%)]">
-      <div 
-        ref={heroRef}
-        className="mx-5 md:mx-10 pt-10 pb-6"
-      >
-        <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-16 text-center border border-white/20 shadow-2xl">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
-            Resource Center
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-            Take your knowledge to the next level — compliance, onboarding, and payments for high-risk verticals
-          </p>
+    <div ref={containerRef} className="min-h-screen bg-white text-black relative overflow-x-hidden">
+
+      {/* Navigation Sidebar */}
+      <div className="fixed left-20 top-1/2 transform -translate-y-1/2 z-20">
+        <div className="flex flex-col items-center space-y-8 pl-4">
+          {["RESOURCES", "FILTER", "CONTACT"].map((item) => (
+            <div
+              key={item}
+              className="writing-mode-vertical text-md tracking-wider text-gray-600 rotate-180 cursor-pointer hover:text-gray-900"
+              style={{ writingMode: 'vertical-rl' }}
+            >
+              {item}
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Main Content Container */}
-      <div className="mx-5 md:mx-10 mb-10">
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
-          {/* Filter Section */}
-          <div className="bg-gradient-to-r from-slate-50 to-slate-100 p-6 md:p-10 border-b border-slate-200">
-            <div className="flex flex-wrap gap-4 mb-6 justify-center md:justify-start">
+      {/* Hero Section */}
+      <section className="min-h-screen flex flex-col items-center justify-center relative pt-20">
+        <div
+          className="border p-8 max-w-7xl w-full mx-4 flex flex-col items-center"
+          style={{ borderColor: "rgba(100, 100, 100, 0.3)" }}
+        >
+          <AnimatedChart />
+
+          <motion.div
+            className="relative z-10 w-full max-w-5xl text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.5 }}
+          >
+            <motion.h1
+              className="mx-auto leading-tight mb-12 max-w-full"
+              style={{ fontFamily: "'OC Mikola', sans-serif", fontSize: "clamp(2rem, 12vw, 7rem)" }}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1.5, delay: 1 }}
+            >
+              <span style={{ whiteSpace: 'nowrap' }}>Resource </span><br />
+              <span style={{ whiteSpace: 'nowrap' }}>Center</span>
+            </motion.h1>
+          </motion.div>
+        </div>
+
+        <div
+          className="border p-8 max-w-7xl w-full mx-4 mt-8 flex flex-col items-end"
+          style={{ borderColor: "rgba(100, 100, 100, 0.3)" }}
+        >
+          <motion.div
+            className="relative z-10 w-full max-w-xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.5 }}
+          >
+            <motion.p
+              className="text-lg md:text-lg max-w-xl leading-relaxed text-gray-700 text-right w-full p-4"
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 1, delay: 2.2 }}
+            >
+              Take your knowledge to the next level —<br/>
+              compliance, onboarding, and payments for high-risk verticals.
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Filter Section */}
+      <section className="flex items-center justify-center relative px-8">
+        <div
+          className="border p-8 max-w-7xl w-full mx-4 mt-8 flex flex-col items-center"
+          style={{ borderColor: "rgba(100, 100, 100, 0.3)" }}
+        >
+          <AnimatedChart />
+
+          <div className="max-w-7xl mx-auto w-full relative z-10">
+            <motion.div
+              className="flex flex-wrap gap-4 mb-8 justify-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
               {[
                 { key: 'all', label: 'All Resources' },
                 { key: 'product', label: 'By Product' },
@@ -203,125 +259,165 @@ const ResourceCenter = () => {
                 <button
                   key={filter.key}
                   onClick={() => filterContent(filter.key)}
-                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer ${
+                  className={`px-6 py-3 border transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer ${
                     activeFilter === filter.key
-                      ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/30'
-                      : 'bg-white text-slate-600 border-2 border-slate-200 hover:bg-indigo-500 hover:text-white hover:border-indigo-500'
+                      ? 'bg-black text-white border-black'
+                      : 'bg-white text-black border-gray-300 hover:bg-black hover:text-white hover:border-black'
                   }`}
                 >
                   {filter.label}
                 </button>
               ))}
-            </div>
+            </motion.div>
             
-            <div className="relative max-w-md mx-auto md:mx-0 text-black">
+            <div className="relative max-w-md mx-auto">
               <input
                 type="text"
                 placeholder="Find guides, compliance checklists, onboarding resources…"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-6 pr-12 py-4 border-2 border-slate-200 rounded-full focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 transition-all duration-300"
+                className="w-full pl-6 pr-12 py-4 border-2 border-gray-300 focus:border-black focus:outline-none transition-all duration-300"
               />
-              <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
+              <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Featured Content */}
-          <div className="p-6 md:p-10">
-            <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden group transition-transform duration-500 hover:scale-[1.02]">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full transform translate-x-16 -translate-y-16"></div>
-              <div className="relative z-10">
+      {/* Featured Content */}
+      <section className="relative bg-white overflow-x-hidden justify-center px-8 flex flex-col items-center">
+        <div
+          className="border p-8 max-w-7xl w-full mt-8 flex flex-col items-center"
+          style={{ borderColor: "rgba(100, 100, 100, 0.3)" }}
+        >
+          <div className="max-w-[1440px] mx-auto px-3 py-20">
+            <div className="flex flex-col items-center mb-8">
+              <motion.div
+                className="bg-black text-white p-12 border border-gray-300 relative group transition-transform duration-500 hover:scale-[1.02] w-full"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
+                viewport={{ once: true }}
+              >
+                <div className="absolute left-1 top-1 w-3 h-3 border-t-2 border-l-2 border-gray-400" />
+                <div className="absolute right-1 top-1 w-3 h-3 border-t-2 border-r-2 border-gray-400" />
+                <div className="absolute left-1 bottom-1 w-3 h-3 border-b-2 border-l-2 border-gray-400" />
+                <div className="absolute right-1 bottom-1 w-3 h-3 border-b-2 border-r-2 border-gray-400" />
+                
                 <h3 className="text-2xl md:text-4xl font-bold mb-4">
                   Future of Regulated iGaming Payments
                 </h3>
                 <p className="text-lg md:text-xl mb-8 opacity-90 max-w-2xl">
                   Comprehensive analysis of emerging payment technologies, regulatory frameworks, and compliance strategies for the evolving iGaming landscape.
                 </p>
-                <button className="inline-flex items-center gap-2 bg-white text-indigo-600 px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl group cursor-pointer">
+                <button className="inline-flex items-center gap-2 bg-white text-black px-8 py-4 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl group cursor-pointer">
                   <Download className="w-5 h-5" />
                   Download Whitepaper
                 </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Content Sections */}
-          <div className="p-6 md:p-10">
-            {/* Resources Grid */}
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold mb-8 text-slate-800 relative">
-                Latest Resources
-                <div className="absolute bottom-0 left-0 w-16 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
-              </h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {filteredResources.map((resource, index) => {
-                  const IconComponent = resource.icon
-                  return (
-                    <div
-                      key={resource.id}
-                      ref={el => { cardsRef.current[index] = el }}
-                      className="bg-slate-50 rounded-2xl p-6 transition-all duration-500 hover:bg-white hover:shadow-xl hover:-translate-y-2 border border-slate-100 group relative overflow-hidden"
-                    >
-                      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-                      
-                      <div className="flex justify-between items-start mb-4">
-                        <span className={`${getTypeColor(resource.type)} text-white px-3 py-1 rounded-full text-sm font-medium`}>
-                          {resource.type}
-                        </span>
-                        <div className="flex items-center gap-1 text-slate-400 text-sm">
-                          <Calendar className="w-4 h-4" />
-                          {resource.date}
-                        </div>
-                      </div>
-                      
-                      <h3 className="text-xl font-semibold mb-3 text-slate-800 group-hover:text-indigo-600 transition-colors duration-300">
-                        {resource.title}
-                      </h3>
-                      
-                      <p className="text-slate-600 mb-6 leading-relaxed">
-                        {resource.description}
-                      </p>
-                      
-                      <button className="inline-flex items-center gap-2 bg-indigo-500 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-indigo-600 hover:scale-105 group-hover:shadow-lg cursor-pointer">
-                        <IconComponent className="w-4 h-4" />
-                        {getActionText(resource.type)}
-                      </button>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-
-            {/* Load More Section */}
-            <div className="text-center">
-              <button
-                onClick={loadMoreContent}
-                disabled={isLoading}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-10 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-              >
-                {isLoading ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                    Loading...
-                  </>
-                ) : (
-                  <>
-                    <ChevronDown className="w-5 h-5" />
-                    Load More Resources
-                  </>
-                )}
-              </button>
+              </motion.div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Resources Grid */}
+      <section className="flex items-center justify-center relative px-8">
+        <div
+          className="border p-8 max-w-7xl w-full flex flex-col items-center"
+          style={{ borderColor: "rgba(100, 100, 100, 0.3)" }}
+        >
+          <AnimatedChart />
+
+          <motion.div
+            className="text-center relative z-10 max-w-6xl mx-auto mb-12"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1.5 }}
+            viewport={{ once: true, margin: "-200px" }}
+          >
+            <motion.h2
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[0.8] tracking-tight mb-16"
+              initial={{ scale: 0.8, y: 100 }}
+              whileInView={{ scale: 1, y: 0 }}
+              transition={{ duration: 1.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+              viewport={{ once: true, margin: "-200px" }}
+            >
+              LATEST RESOURCES
+            </motion.h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-6xl relative z-10">
+            {filteredResources.map((resource, index) => {
+              const IconComponent = resource.icon
+              return (
+                <motion.div
+                  key={resource.id}
+                  ref={el => { cardsRef.current[index] = el }}
+                  className="bg-gray-50 border border-gray-300 p-6 transition-all duration-500 hover:bg-white hover:shadow-xl hover:-translate-y-2 group relative overflow-hidden"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="absolute left-1 top-1 w-3 h-3 border-t-2 border-l-2 border-gray-400 pointer-events-none" />
+                  <div className="absolute right-1 top-1 w-3 h-3 border-t-2 border-r-2 border-gray-400 pointer-events-none" />
+                  <div className="absolute left-1 bottom-1 w-3 h-3 border-b-2 border-l-2 border-gray-400 pointer-events-none" />
+                  <div className="absolute right-1 bottom-1 w-3 h-3 border-b-2 border-r-2 border-gray-400 pointer-events-none" />
+                  
+                  <div className="flex justify-between items-start mb-4">
+                    <span className={`${getTypeColor(resource.type)} text-white px-3 py-1 text-sm font-medium`}>
+                      {resource.type}
+                    </span>
+                    <div className="flex items-center gap-1 text-gray-400 text-sm">
+                      <Calendar className="w-4 h-4" />
+                      {resource.date}
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-xl font-semibold mb-3 text-black group-hover:text-gray-600 transition-colors duration-300">
+                    {resource.title}
+                  </h3>
+                  
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    {resource.description}
+                  </p>
+                  
+                  <button className="inline-flex items-center gap-2 bg-black text-white px-6 py-3 font-medium transition-all duration-300 hover:bg-gray-800 hover:scale-105 cursor-pointer">
+                    <IconComponent className="w-4 h-4" />
+                    {getActionText(resource.type)}
+                  </button>
+                </motion.div>
+              )
+            })}
+          </div>
+
+          <div className="text-center mt-12 relative z-10">
+            <button
+              onClick={loadMoreContent}
+              disabled={isLoading}
+              className="inline-flex items-center gap-2 bg-black text-white px-10 py-4 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+            >
+              {isLoading ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                  Loading...
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="w-5 h-5" />
+                  Load More Resources
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+      </section>
 
       {/* Fixed Action Buttons */}
       <div className="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
         <button
           onClick={() => alert('Compliance expert chat would open here')}
-          className="w-14 h-14 bg-emerald-500 text-white rounded-full shadow-xl hover:bg-emerald-600 transition-all duration-300 hover:scale-110 flex items-center justify-center group"
+          className="w-14 h-14 bg-black text-white shadow-xl hover:bg-gray-800 transition-all duration-300 hover:scale-110 flex items-center justify-center group"
           title="Ask a Compliance Expert"
         >
           <MessageCircle className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
@@ -329,7 +425,7 @@ const ResourceCenter = () => {
         
         <button
           onClick={() => alert('Request consultation would open here')}
-          className="bg-red-600 text-white px-6 py-3 rounded-full font-semibold shadow-xl hover:bg-red-700 transition-all duration-300 hover:scale-105 whitespace-nowrap"
+          className="bg-gray-800 text-white px-6 py-3 font-semibold shadow-xl hover:bg-black transition-all duration-300 hover:scale-105 whitespace-nowrap"
         >
           Request Consultation
         </button>
