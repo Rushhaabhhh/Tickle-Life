@@ -36,10 +36,7 @@ const IndustriesPage: React.FC = () => {
   const [eligibilityResult, setEligibilityResult] = useState<EligibilityResult | null>(null)
   const [costResult, setCostResult] = useState<CostResult | null>(null)
   const [activeModal, setActiveModal] = useState<string>('')
-  
-  const heroRef = useRef<HTMLElement>(null)
-  const tilesRef = useRef<HTMLDivElement>(null)
-  const outcomeRef = useRef<HTMLElement>(null)
+
 
   const chartOpacity = useTransform(scrollYProgress, [0, 0.3], [0.3, 1])
   const chartScale = useTransform(scrollYProgress, [0, 0.3], [0.8, 1])
@@ -201,10 +198,6 @@ const IndustriesPage: React.FC = () => {
     })
   }
 
-  const getTypeColor = (type: string) => {
-    return 'bg-black'
-  }
-
   return (
     <div ref={containerRef} className="min-h-screen bg-white text-black relative overflow-x-hidden">
 
@@ -245,7 +238,7 @@ const IndustriesPage: React.FC = () => {
               transition={{ duration: 1.5, delay: 1 }}
             >
               <span style={{ whiteSpace: 'nowrap' }}>Tailored payment solutions </span><br />
-              <span style={{ whiteSpace: 'nowrap' }}>for your industry's </span><br />
+              <span style={{ whiteSpace: 'nowrap' }}>for your industry&apos;s </span><br />
               <span style={{ whiteSpace: 'nowrap' }}>compliance and growth</span>
             </motion.h1>
           </motion.div>
@@ -321,7 +314,7 @@ const IndustriesPage: React.FC = () => {
                 <h3 className="text-2xl font-bold mb-4">{data.title}</h3>
                 
                 <div className="flex flex-wrap justify-center gap-2 mb-5">
-                  {data.badges.map((badge, badgeIndex) => (
+                  {data.badges.map((badge) => (
                     <span
                       key={badge}
                       className="bg-black text-white px-3 py-1 text-sm font-semibold"

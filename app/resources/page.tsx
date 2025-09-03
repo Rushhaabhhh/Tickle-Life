@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react'
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import React, { useState, useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { Search, Download, Play, Eye, Calendar, FileText, Video, BookOpen, Users, MessageCircle, ChevronDown } from 'lucide-react'
 
 const ResourceCenter = () => {
@@ -11,7 +11,6 @@ const ResourceCenter = () => {
   const [activeFilter, setActiveFilter] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const heroRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<(HTMLDivElement | null)[]>([])
 
   const chartOpacity = useTransform(scrollYProgress, [0, 0.3], [0.3, 1])

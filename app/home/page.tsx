@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 const PSPHomepage = () => {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -188,7 +188,7 @@ const PSPHomepage = () => {
               transition={{ duration: 1, delay: 2.2 }}
             >
               Not everyone is eligible — see if you fit.<br/>
-              Get approved where others can't.
+              Get approved where others can&apos;t.
             </motion.p>
           </motion.div>
         </div>

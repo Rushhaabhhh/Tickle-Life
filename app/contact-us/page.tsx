@@ -157,7 +157,7 @@ export default function ContactPage() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1, delay: 2.2 }}
             >
-              If you've completed your eligibility check and qualify,<br/>
+              If you&apos;ve completed your eligibility check and qualify,<br/>
               our compliance team will get in touch fast.
             </motion.p>
           </motion.div>
@@ -408,7 +408,7 @@ export default function ContactPage() {
                 style={{ letterSpacing: "-0.03em", lineHeight: "1.05" }}
               >
                 Need Help?<br />
-                We're Here<br />
+                We&apos;re Here<br />
                 For You
               </h2>
             </div>
