@@ -3,7 +3,6 @@ import { Mail } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
-import Heart from './Heart'
 
 const navItems = [
   { title: 'Simulator', href: '/' },
@@ -31,7 +30,7 @@ export default function FullscreenMenu() {
         <button
           aria-label="Toggle menu"
           onClick={() => setOpen(true)}
-          className="text-white text-3xl font-bold cursor-pointer transition-transform duration-300 hover:scale-110 outline-bg-black focus:outline-none hover:text-[#b2ff2b]"
+          className="text-black text-3xl font-bold cursor-pointer transition-transform duration-300 hover:scale-120 outline-bg-black focus:outline-none"
           style={{ transform: open ? 'rotate(90deg)' : 'rotate(0deg)' }}
         >
           ☰
@@ -77,7 +76,7 @@ export default function FullscreenMenu() {
           <div className="flex-1 flex flex-row">
             {/* Navigation */}
             <div className="flex flex-col justify-center pl-[8vw] pt-0" style={{height: '100%'}}>
-              {navItems.map(({ title, href }, idx) => (
+              {navItems.map(({ title, href }) => (
                 <div key={href} className="flex flex-row items-center mb-8">
                   {pathname === href &&
                     <span className="text-[#b2ff2b] text-5xl mr-4 -ml-6">&#8250;</span> 

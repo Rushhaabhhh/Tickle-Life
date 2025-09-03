@@ -11,15 +11,6 @@ interface PaymentMethod {
   cost?: number; // Optional cost property
 }
 
-interface Geography {
-  multiplier: number;
-  name: string;
-}
-
-interface Industry {
-  modifier: number;
-  name: string;
-}
 
 interface Breakdown {
   [key: string]: number; 
