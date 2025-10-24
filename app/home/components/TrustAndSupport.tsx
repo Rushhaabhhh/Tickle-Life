@@ -66,7 +66,7 @@ const TrustAndSupport: React.FC<RealSupportProps> = ({ setShowQualificationModal
             transition={{ duration: 1, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <p className="text-lg text-gray-700 mb-6">Still Unsure? See if we're a fit</p>
+            <p className="text-lg text-gray-700 mb-6">Still Unsure? See if we&apos;re a fit</p>
             <button
               onClick={() => setShowQualificationModal(true)}
               className="bg-black text-white px-10 py-3 rounded-full text-lg font-semibold transition-transform hover:-translate-y-1 cursor-pointer"

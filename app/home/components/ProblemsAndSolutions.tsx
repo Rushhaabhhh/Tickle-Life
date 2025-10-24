@@ -53,7 +53,7 @@ const ProblemsAndSolutions: React.FC = () => {
             >
               <div className="space-y-4">
                 <h3 className="text-2xl font-bold text-red-600">Problem {idx + 1}: {item.title}</h3>
-                <p className="text-xl font-semibold italic">"{item.problem}"</p>
+                <p className="text-xl font-semibold italic">&ldquo;{item.problem}&rdquo;</p>
                 <p className="text-gray-700">{item.description}</p>
               </div>
               <div className="bg-green-50 p-8 rounded-lg border-l-4 border-green-500">

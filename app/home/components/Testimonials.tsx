@@ -46,7 +46,7 @@ const Testimonials: React.FC = () => {
               viewport={{ once: true }}
             >
               <div className="text-sm font-semibold text-gray-600 mb-4">{testimonial.industry}</div>
-              <p className="text-gray-700 mb-6 italic">"{testimonial.text}"</p>
+              <p className="text-gray-700 mb-6 italic">&ldquo;{testimonial.text}&rdquo;</p>
               <div className="font-semibold text-black">{testimonial.author}</div>
             </motion.div>
           ))}
