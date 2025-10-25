@@ -1,436 +1,220 @@
 'use client'
 
-import React, { useState, useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { Search, Download, Play, Eye, Calendar, FileText, Video, BookOpen, Users, MessageCircle, ChevronDown } from 'lucide-react'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { Search, Download, FileText, Users } from 'lucide-react'
 
-const ResourceCenter = () => {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: containerRef })
-  
-  const [activeFilter, setActiveFilter] = useState('all')
+const filterCategories = {
+  product: ['Cards', 'APMs', 'Crypto', 'Fraud', 'Routing'],
+  industry: ['iGaming', 'Forex', 'Adult', 'Wellness', 'Crypto'],
+  contentType: ['Blog', 'Checklist', 'Case Study', 'Compliance PDF', 'Webinar']
+}
+
+const featuredResources = [
+  {
+    title: "Why your onboarding keeps getting delayed in LatAm—and what to fix",
+    image: "/placeholder-latam.jpg"
+  },
+  {
+    title: "Playbook: How we got a Forex client live in GCC in 5 days",
+    image: "/placeholder-forex.jpg"
+  },
+  {
+    title: "Checklist: Documents that trigger red flags in high-risk onboarding",
+    image: "/placeholder-checklist.jpg"
+  }
+]
+
+const blogs = [
+  { title: "Why 'High-Risk' Isn't a Dirty Word", filter: 'Recent' },
+  { title: "The Real Cost of Frozen Funds", filter: 'iGaming' },
+  { title: "Banking Blind Spots: What PSPs Still Don't Get About iGaming", filter: 'Forex' }
+]
+
+const complianceDocs = [
+  { title: "Merchant Onboarding Checklist (2025 Edition)", filter: 'iGaming' },
+  { title: "Cross-Border Payment Rules: A Quick Reference", filter: 'Forex' },
+  { title: "KYC & AML Essentials for High-Risk Merchants", filter: 'Adult' }
+]
+
+const successStories = [
+  { title: "How a Forex Platform Cut MDR by 40% With Local Banking Rails", filter: 'Forex' },
+  { title: "From 12 Declines to 97% Approvals: A Tier-1 iGaming Case", filter: 'iGaming' },
+  { title: "Rebuilding Trust After a PayPal Freeze: The Merchant Comeback Story", filter: 'Adult' }
+]
+
+export default function ResourceSection() {
   const [searchTerm, setSearchTerm] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([])
-
-  const chartOpacity = useTransform(scrollYProgress, [0, 0.3], [0.3, 1])
-  const chartScale = useTransform(scrollYProgress, [0, 0.3], [0.8, 1])
-
-  // Animated chart background component
-  const AnimatedChart = () => (
-    <motion.svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 800 400"
-      className="absolute inset-0 opacity-20"
-      style={{ opacity: chartOpacity, scale: chartScale }}
-    >
-      <motion.path
-        d="M0,350 Q100,300 200,250 T400,200 T600,150 T800,100"
-        stroke="currentColor"
-        strokeWidth="2"
-        fill="none"
-        className="text-gray-400"
-        initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 2, ease: "easeInOut" }}
-      />
-      <motion.path
-        d="M0,380 Q150,330 300,280 T600,230 T800,180"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        fill="none"
-        className="text-gray-300"
-        initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 2.5, delay: 0.3, ease: "easeInOut" }}
-      />
-      <circle cx="700" cy="120" r="80" fill="none" stroke="currentColor" strokeWidth="1" className="text-gray-200" opacity="0.5" />
-    </motion.svg>
-  )
-
-  const resources = [
-    {
-      id: 1,
-      type: 'Blog',
-      title: 'KYC Automation in High-Risk Industries',
-      description: 'Explore how automated KYC processes are revolutionizing compliance workflows for cryptocurrency exchanges and online gaming platforms.',
-      date: 'Jan 15, 2025',
-      category: 'product',
-      icon: FileText
-    },
-    {
-      id: 2,
-      type: 'Blog',
-      title: 'PCI DSS 4.0: What\'s New for Payment Processors',
-      description: 'Breaking down the latest PCI DSS requirements and their impact on payment processing for regulated verticals.',
-      date: 'Jan 12, 2025',
-      category: 'industry',
-      icon: FileText
-    },
-    {
-      id: 3,
-      type: 'Whitepaper',
-      title: 'AML Compliance Checklist for Crypto Exchanges',
-      description: 'Complete 50-point checklist covering transaction monitoring, suspicious activity reporting, and regulatory filing requirements.',
-      date: 'Dec 2024',
-      category: 'content-type',
-      icon: Download
-    },
-    {
-      id: 4,
-      type: 'Guide',
-      title: 'GDPR Implementation for Fintech',
-      description: 'Step-by-step guide to achieving GDPR compliance while maintaining operational efficiency in financial services.',
-      date: 'Dec 2024',
-      category: 'product',
-      icon: BookOpen
-    },
-    {
-      id: 5,
-      type: 'Webinar',
-      title: 'Regulatory Landscape 2025: What\'s Ahead',
-      description: 'Join leading compliance experts as they discuss upcoming regulatory changes affecting payment processors and high-risk merchants.',
-      date: 'Live Jan 25',
-      category: 'content-type',
-      icon: Video
-    },
-    {
-      id: 6,
-      type: 'Webinar',
-      title: 'Risk Assessment Strategies',
-      description: 'Learn advanced risk scoring methodologies and fraud prevention techniques from industry veterans.',
-      date: 'On-Demand',
-      category: 'industry',
-      icon: Play
-    },
-    {
-      id: 7,
-      type: 'Case Study',
-      title: 'iGaming Platform: 40% Faster Onboarding',
-      description: 'How a leading European iGaming operator reduced customer onboarding time while improving compliance scores by 95%.',
-      date: 'Jan 2025',
-      category: 'product',
-      icon: Users
-    },
-    {
-      id: 8,
-      type: 'Case Study',
-      title: 'Crypto Exchange: Zero Compliance Violations',
-      description: 'Discover how automated monitoring helped a major exchange maintain perfect regulatory compliance across 15 jurisdictions.',
-      date: 'Dec 2024',
-      category: 'industry',
-      icon: Eye
-    }
-  ]
-
-  const filteredResources = resources.filter(resource => {
-    const matchesFilter = activeFilter === 'all' || resource.category === activeFilter
-    const matchesSearch = resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         resource.description.toLowerCase().includes(searchTerm.toLowerCase())
-    return matchesFilter && matchesSearch
-  })
-
-  const filterContent = (type: React.SetStateAction<string>) => {
-    setActiveFilter(type)
-  }
-
-  const loadMoreContent = () => {
-    setIsLoading(true)
-    setTimeout(() => {
-      setIsLoading(false)
-      alert('More resources would be loaded here')
-    }, 1000)
-  }
-
-  const getTypeColor = (type: string) => {
-    const colors = {
-      'Blog': 'bg-black',
-      'Whitepaper': 'bg-gray-800',
-      'Guide': 'bg-gray-700',
-      'Webinar': 'bg-black',
-      'Case Study': 'bg-gray-600'
-    }
-    return colors[type as keyof typeof colors] || 'bg-gray-500'
-  }
-
-  const getActionText = (type: string) => {
-    const actions = {
-      'Blog': 'Read More',
-      'Whitepaper': 'Download',
-      'Guide': 'Download',
-      'Webinar': 'Register Now',
-      'Case Study': 'View Story'
-    }
-    return actions[type as keyof typeof actions] || 'View'
-  }
+  const [activeProductFilter, setActiveProductFilter] = useState<string | null>(null)
+  const [activeIndustryFilter, setActiveIndustryFilter] = useState<string | null>(null)
+  const [activeContentFilter, setActiveContentFilter] = useState<string | null>(null)
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-white text-black relative overflow-x-hidden">
-
-      {/* Navigation Sidebar */}
-      <div className="fixed left-20 top-1/2 transform -translate-y-1/2 z-20">
-        <div className="flex flex-col items-center space-y-8 pl-4">
-          {["RESOURCES", "FILTER", "CONTACT"].map((item) => (
-            <div
-              key={item}
-              className="writing-mode-vertical text-md tracking-wider text-gray-600 rotate-180 cursor-pointer hover:text-gray-900"
-              style={{ writingMode: 'vertical-rl' }}
-            >
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center relative pt-20">
-        <div
-          className="border p-8 max-w-7xl w-full mx-4 flex flex-col items-center"
-          style={{ borderColor: "rgba(100, 100, 100, 0.3)" }}
+    <section className="bg-white py-24 px-4 md:px-8 min-h-screen">
+      <div className="max-w-7xl mx-auto">
+        
+        {/* Hero */}
+        <motion.header
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <AnimatedChart />
+          <h1 className="text-5xl md:text-7xl font-light text-gray-900 leading-tight mb-6 tracking-tight">
+            Resource Center
+          </h1>
+          <p className="text-xl text-gray-500 font-light max-w-3xl mx-auto">
+            For those who actually run things. No fluff, no theory—just real guidance.
+          </p>
+        </motion.header>
 
-          <motion.div
-            className="relative z-10 w-full max-w-5xl text-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5, delay: 0.5 }}
-          >
-            <motion.h1
-              className="mx-auto leading-tight mb-12 max-w-full"
-              style={{ fontFamily: "'OC Mikola', sans-serif", fontSize: "clamp(2rem, 12vw, 7rem)" }}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1.5, delay: 1 }}
-            >
-              <span style={{ whiteSpace: 'nowrap' }}>Resource </span><br />
-              <span style={{ whiteSpace: 'nowrap' }}>Center</span>
-            </motion.h1>
-          </motion.div>
-        </div>
-
-        <div
-          className="border p-8 max-w-7xl w-full mx-4 mt-8 flex flex-col items-end"
-          style={{ borderColor: "rgba(100, 100, 100, 0.3)" }}
+        {/* Filter Labels */}
+        <motion.div
+          className="mb-12 space-y-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
         >
-          <motion.div
-            className="relative z-10 w-full max-w-xl"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5, delay: 0.5 }}
-          >
-            <motion.p
-              className="text-lg md:text-lg max-w-xl leading-relaxed text-gray-700 text-right w-full p-4"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1, delay: 2.2 }}
-            >
-              Take your knowledge to the next level —<br/>
-              compliance, onboarding, and payments for high-risk verticals.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
+          <FilterRow label="Product" items={filterCategories.product} active={activeProductFilter} setActive={setActiveProductFilter} />
+          <FilterRow label="Industry" items={filterCategories.industry} active={activeIndustryFilter} setActive={setActiveIndustryFilter} />
+          <FilterRow label="Content Type" items={filterCategories.contentType} active={activeContentFilter} setActive={setActiveContentFilter} />
+        </motion.div>
 
-      {/* Filter Section */}
-      <section className="flex items-center justify-center relative px-8">
-        <div
-          className="border p-8 max-w-7xl w-full mx-4 mt-8 flex flex-col items-center"
-          style={{ borderColor: "rgba(100, 100, 100, 0.3)" }}
+        {/* Search Bar */}
+        <motion.div
+          className="relative max-w-2xl mx-auto mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true }}
         >
-          <AnimatedChart />
+          <input
+            type="text"
+            placeholder="Find onboarding docs, compliance walkthroughs, or geo-level approval guides…"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full pl-6 pr-14 py-4 border text-gray-800 border-gray-200 rounded-xl focus:border-gray-900 focus:outline-none transition-all duration-300 text-base font-light"
+          />
+          <Search className="absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+        </motion.div>
 
-          <div className="max-w-7xl mx-auto w-full relative z-10">
-            <motion.div
-              className="flex flex-wrap gap-4 mb-8 justify-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              {[
-                { key: 'all', label: 'All Resources' },
-                { key: 'product', label: 'By Product' },
-                { key: 'industry', label: 'By Industry' },
-                { key: 'content-type', label: 'Content Type' }
-              ].map(filter => (
-                <button
-                  key={filter.key}
-                  onClick={() => filterContent(filter.key)}
-                  className={`px-6 py-3 border transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer ${
-                    activeFilter === filter.key
-                      ? 'bg-black text-white border-black'
-                      : 'bg-white text-black border-gray-300 hover:bg-black hover:text-white hover:border-black'
-                  }`}
-                >
-                  {filter.label}
-                </button>
-              ))}
-            </motion.div>
-            
-            <div className="relative max-w-md mx-auto">
-              <input
-                type="text"
-                placeholder="Find guides, compliance checklists, onboarding resources…"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-6 pr-12 py-4 border-2 border-gray-300 focus:border-black focus:outline-none transition-all duration-300"
-              />
-              <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Content */}
-      <section className="relative bg-white overflow-x-hidden justify-center px-8 flex flex-col items-center">
-        <div
-          className="border p-8 max-w-7xl w-full mt-8 flex flex-col items-center"
-          style={{ borderColor: "rgba(100, 100, 100, 0.3)" }}
+        {/* Featured Content */}
+        <motion.section
+          className="mb-24"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
         >
-          <div className="max-w-[1440px] mx-auto px-3 py-20">
-            <div className="flex flex-col items-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-10 text-center">Featured Resources</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {featuredResources.map((resource, idx) => (
               <motion.div
-                className="bg-black text-white p-12 border border-gray-300 relative group transition-transform duration-500 hover:scale-[1.02] w-full"
-                initial={{ opacity: 0, y: 50 }}
+                key={idx}
+                className="bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg hover:scale-102 transition-all duration-500 group cursor-pointer"
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="absolute left-1 top-1 w-3 h-3 border-t-2 border-l-2 border-gray-400" />
-                <div className="absolute right-1 top-1 w-3 h-3 border-t-2 border-r-2 border-gray-400" />
-                <div className="absolute left-1 bottom-1 w-3 h-3 border-b-2 border-l-2 border-gray-400" />
-                <div className="absolute right-1 bottom-1 w-3 h-3 border-b-2 border-r-2 border-gray-400" />
-                
-                <h3 className="text-2xl md:text-4xl font-bold mb-4">
-                  Future of Regulated iGaming Payments
-                </h3>
-                <p className="text-lg md:text-xl mb-8 opacity-90 max-w-2xl">
-                  Comprehensive analysis of emerging payment technologies, regulatory frameworks, and compliance strategies for the evolving iGaming landscape.
-                </p>
-                <button className="inline-flex items-center gap-2 bg-white text-black px-8 py-4 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl group cursor-pointer">
-                  <Download className="w-5 h-5" />
-                  Download Whitepaper
-                </button>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Resources Grid */}
-      <section className="flex items-center justify-center relative px-8">
-        <div
-          className="border p-8 max-w-7xl w-full flex flex-col items-center"
-          style={{ borderColor: "rgba(100, 100, 100, 0.3)" }}
-        >
-          <AnimatedChart />
-
-          <motion.div
-            className="text-center relative z-10 max-w-6xl mx-auto mb-12"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1.5 }}
-            viewport={{ once: true, margin: "-200px" }}
-          >
-            <motion.h2
-              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[0.8] tracking-tight mb-16"
-              initial={{ scale: 0.8, y: 100 }}
-              whileInView={{ scale: 1, y: 0 }}
-              transition={{ duration: 1.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-              viewport={{ once: true, margin: "-200px" }}
-            >
-              LATEST RESOURCES
-            </motion.h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-6xl relative z-10">
-            {filteredResources.map((resource, index) => {
-              const IconComponent = resource.icon
-              return (
-                <motion.div
-                  key={resource.id}
-                  ref={el => { cardsRef.current[index] = el }}
-                  className="bg-gray-50 border border-gray-300 p-6 transition-all duration-500 hover:bg-white hover:shadow-xl hover:-translate-y-2 group relative overflow-hidden"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="absolute left-1 top-1 w-3 h-3 border-t-2 border-l-2 border-gray-400 pointer-events-none" />
-                  <div className="absolute right-1 top-1 w-3 h-3 border-t-2 border-r-2 border-gray-400 pointer-events-none" />
-                  <div className="absolute left-1 bottom-1 w-3 h-3 border-b-2 border-l-2 border-gray-400 pointer-events-none" />
-                  <div className="absolute right-1 bottom-1 w-3 h-3 border-b-2 border-r-2 border-gray-400 pointer-events-none" />
-                  
-                  <div className="flex justify-between items-start mb-4">
-                    <span className={`${getTypeColor(resource.type)} text-white px-3 py-1 text-sm font-medium`}>
-                      {resource.type}
-                    </span>
-                    <div className="flex items-center gap-1 text-gray-400 text-sm">
-                      <Calendar className="w-4 h-4" />
-                      {resource.date}
-                    </div>
-                  </div>
-                  
-                  <h3 className="text-xl font-semibold mb-3 text-black group-hover:text-gray-600 transition-colors duration-300">
+                <div className="h-48 bg-gray-200 flex items-center justify-center">
+                  <span className="text-gray-400 text-sm">Image Placeholder</span>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-medium text-gray-900 group-hover:text-gray-600 transition-colors">
                     {resource.title}
                   </h3>
-                  
-                  <p className="text-gray-600 mb-6 leading-relaxed">
-                    {resource.description}
-                  </p>
-                  
-                  <button className="inline-flex items-center gap-2 bg-black text-white px-6 py-3 font-medium transition-all duration-300 hover:bg-gray-800 hover:scale-105 cursor-pointer">
-                    <IconComponent className="w-4 h-4" />
-                    {getActionText(resource.type)}
-                  </button>
-                </motion.div>
-              )
-            })}
+                  <div className="mt-4 text-sm text-gray-900 transition-colors">
+                    Read More
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
+        </motion.section>
 
-          <div className="text-center mt-12 relative z-10">
-            <button
-              onClick={loadMoreContent}
-              disabled={isLoading}
-              className="inline-flex items-center gap-2 bg-black text-white px-10 py-4 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-            >
-              {isLoading ? (
-                <>
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                  Loading...
-                </>
-              ) : (
-                <>
-                  <ChevronDown className="w-5 h-5" />
-                  Load More Resources
-                </>
-              )}
-            </button>
-          </div>
-        </div>
-      </section>
+        {/* Blogs Section */}
+        <ContentSection title="Blogs" items={blogs} icon={FileText} align="left" />
 
-      {/* Fixed Action Buttons */}
-      <div className="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
-        <button
-          onClick={() => alert('Compliance expert chat would open here')}
-          className="w-14 h-14 bg-black text-white shadow-xl hover:bg-gray-800 transition-all duration-300 hover:scale-110 flex items-center justify-center group"
-          title="Ask a Compliance Expert"
-        >
-          <MessageCircle className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
-        </button>
-        
-        <button
-          onClick={() => alert('Request consultation would open here')}
-          className="bg-gray-800 text-white px-6 py-3 font-semibold shadow-xl hover:bg-black transition-all duration-300 hover:scale-105 whitespace-nowrap"
-        >
-          Request Consultation
-        </button>
+        {/* Compliance Docs Section */}
+        <ContentSection title="Compliance Docs" items={complianceDocs} icon={Download} align="right" />
+
+        {/* Success Stories Section */}
+        <ContentSection title="Success Stories" items={successStories} icon={Users} align="left" />
+
+      </div>
+    </section>
+  )
+}
+
+type FilterRowProps = {
+  label: string
+  items: string[]
+  active: string | null
+  setActive: (v: string | null) => void
+}
+
+function FilterRow({ label, items, active, setActive }: FilterRowProps) {
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      <span className="text-sm font-medium text-gray-400 uppercase tracking-widest min-w-[100px]">{label}</span>
+      <div className="flex flex-wrap gap-2">
+        {items.map(item => (
+          <button
+            key={item}
+            onClick={() => setActive(active === item ? null : item)}
+            className={`px-4 py-2 rounded-full text-sm font-light transition-all duration-300 cursor-pointer ${
+              active === item
+                ? 'bg-black text-white'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-900 hover:text-white'
+            }`}
+          >
+            {item}
+          </button>
+        ))}
       </div>
     </div>
   )
 }
 
-export default ResourceCenter
+type ContentSectionProps = {
+  title: string
+  items: { title: string; filter: string }[]
+  icon: React.ComponentType<{ className?: string }>
+  align: 'left' | 'right'
+}
+
+function ContentSection({ title, items, icon: Icon, align }: ContentSectionProps) {
+  return (
+    <motion.section
+      className={`mb-24 ${align === 'right' ? 'text-right' : 'text-left'}`}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
+      <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-10">{title}</h2>
+      <div className="space-y-6">
+        {items.map((item, idx) => (
+          <motion.div
+            key={idx}
+            className={`bg-white border border-gray-200 rounded-xl p-6 hover:border-gray-900 hover:shadow-md transition-all cursor-pointer duration-300 flex items-center justify-between ${
+              align === 'right' ? 'flex-row-reverse' : ''
+            }`}
+            initial={{ opacity: 0, x: align === 'right' ? 20 : -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: idx * 0.1 }}
+            viewport={{ once: true }}
+          >
+            <div className={align === 'right' ? 'text-right' : ''}>
+              <h3 className="text-lg font-medium text-gray-900 mb-1">{item.title}</h3>
+              <span className="text-sm text-gray-400">{item.filter}</span>
+            </div>
+            <Icon className="w-6 h-6 text-gray-400" />
+          </motion.div>
+        ))}
+      </div>
+    </motion.section>
+  )
+}
