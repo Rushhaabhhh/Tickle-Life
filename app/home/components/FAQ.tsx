@@ -47,7 +47,7 @@ const FAQ: React.FC = () => {
             FAQ
           </h2>
           <p className="text-lg text-gray-400 font-light">
-            Got questions? We've got answers.
+            Got questions? We&apos;ve got answers.
           </p>
         </motion.div>
 

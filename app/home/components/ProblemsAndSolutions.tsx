@@ -95,7 +95,7 @@ const ProblemsAndSolutions: React.FC = () => {
                     </h3>
                     
                     <p className="text-lg text-gray-900 font-light italic leading-relaxed">
-                      "{item.problem}"
+                      &quot;{item.problem}&quot;
                     </p>
                     
                     <p className="text-gray-500 text-sm leading-relaxed">
