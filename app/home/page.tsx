@@ -41,7 +41,7 @@ const PSPHomepage = () => {
       
       <ProblemsAndSolutions />
       
-      <FeaturesReality scrollToCalculator={scrollToCalculator} />
+      <FeaturesReality />
       
       <Testimonials />
       

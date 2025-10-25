@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const FAQ_DATA = [
   {
@@ -31,43 +31,90 @@ const FAQ_DATA = [
 ]
 
 const FAQ: React.FC = () => {
-  const [showFAQ, setShowFAQ] = useState<number | null>(null)
+  const [openQuestion, setOpenQuestion] = useState<number | null>(null)
 
   return (
-    <section id="faq" className="py-20 px-8 bg-gray-50">
+    <section id="faq" className="py-24 px-8 bg-gray-50">
       <div className="max-w-4xl mx-auto">
-        <motion.h2
-          className="text-4xl font-bold text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
         >
-          FAQ
-        </motion.h2>
+          <h2 className="text-5xl md:text-6xl font-light mb-4 tracking-tight text-gray-900">
+            FAQ
+          </h2>
+          <p className="text-lg text-gray-400 font-light">
+            Got questions? We've got answers.
+          </p>
+        </motion.div>
 
-        <div className="space-y-4">
+        {/* Questions List */}
+        <div className="space-y-2">
           {FAQ_DATA.map((faq, idx) => (
             <motion.div
               key={idx}
-              className="bg-white rounded-lg shadow-sm"
+              className="bg-white border border-gray-100 rounded-xl overflow-hidden transition-all duration-500 hover:shadow-md"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              transition={{
+                duration: 0.5,
+                delay: idx * 0.08,
+                ease: [0.22, 1, 0.36, 1]
+              }}
               viewport={{ once: true }}
             >
+              {/* Question */}
               <button
-                onClick={() => setShowFAQ(showFAQ === idx ? null : idx)}
-                className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 cursor-pointer"
+                onClick={() => setOpenQuestion(openQuestion === idx ? null : idx)}
+                className="w-full p-6 text-left flex justify-between items-center group"
               >
-                <span className="font-semibold text-lg">{faq.question}</span>
-                <span className="text-2xl">{showFAQ === idx ? '−' : '+'}</span>
+                <span className="font-light text-base text-gray-900 pr-4 transition-colors duration-300 group-hover:text-gray-600">
+                  {faq.question}
+                </span>
+                <motion.div
+                  className="w-8 h-8 rounded-full bg-gray-50 group-hover:bg-gray-900 flex items-center justify-center flex-shrink-0 transition-colors duration-500"
+                  animate={{ rotate: openQuestion === idx ? 90 : 0 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <svg 
+                    className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors duration-500" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </motion.div>
               </button>
-              {showFAQ === idx && (
-                <div className="px-6 pb-6">
-                  <p className="text-gray-700">{faq.answer}</p>
-                </div>
-              )}
+
+              {/* Answer - Revealed when question is clicked */}
+              <AnimatePresence>
+                {openQuestion === idx && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="overflow-hidden"
+                  >
+                    <motion.div
+                      className="px-6 pb-6 pt-0"
+                      initial={{ y: -10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -10, opacity: 0 }}
+                      transition={{ duration: 0.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <div className="h-px bg-gradient-to-r from-gray-200 via-gray-100 to-transparent mb-5" />
+                      <p className="text-sm text-gray-500 font-light leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           ))}
         </div>

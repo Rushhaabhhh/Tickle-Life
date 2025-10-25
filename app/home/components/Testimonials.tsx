@@ -1,7 +1,7 @@
 'use client'
 
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const TESTIMONIALS = [
   {
@@ -22,35 +22,102 @@ const TESTIMONIALS = [
 ]
 
 const Testimonials: React.FC = () => {
+  const [activeTab, setActiveTab] = useState(0)
+
   return (
-    <section className="py-20 px-8">
+    <section className="py-24 px-8 bg-white">
       <div className="max-w-6xl mx-auto">
         <motion.h2
-          className="text-4xl font-bold text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-5xl md:text-6xl font-light text-center mb-8 tracking-tight text-gray-900"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true }}
+        >
+          Let&apos;s get real
+        </motion.h2>
+
+        <motion.p
+          className="text-xl text-center text-gray-500 mb-16 font-light"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
         >
           Hear it straight from our clients.
-        </motion.h2>
+        </motion.p>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* Industry Tabs */}
+        <motion.div
+          className="flex justify-center gap-4 mb-12 flex-wrap"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true }}
+        >
           {TESTIMONIALS.map((testimonial, idx) => (
-            <motion.div
+            <button
               key={idx}
-              className="bg-white p-8 rounded-lg shadow-lg border-l-4 border-gray-800"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: idx * 0.1 }}
-              viewport={{ once: true }}
+              onClick={() => setActiveTab(idx)}
+              className={`px-6 py-3 text-sm font-light tracking-wide transition-all duration-500 border rounded-full cursor-pointer ${
+                activeTab === idx
+                  ? 'bg-gray-900 text-white border-gray-900'
+                  : 'bg-white text-gray-600 border-gray-300 hover:border-gray-900'
+              }`}
             >
-              <div className="text-sm font-semibold text-gray-600 mb-4">{testimonial.industry}</div>
-              <p className="text-gray-700 mb-6 italic">&ldquo;{testimonial.text}&rdquo;</p>
-              <div className="font-semibold text-black">{testimonial.author}</div>
-            </motion.div>
+              {testimonial.industry}
+            </button>
           ))}
+        </motion.div>
+
+        {/* Testimonial Content */}
+        <div className="relative min-h-[300px] flex items-center justify-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              className="max-w-4xl mx-auto text-center px-8"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -30 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            >
+
+              {/* Testimonial Text */}
+              <p className="text-2xl md:text-3xl text-gray-900 font-light leading-relaxed mb-8 italic">
+                {TESTIMONIALS[activeTab].text}
+              </p>
+
+              {/* Author */}
+              <div className="space-y-1">
+                <p className="text-base text-gray-900 font-medium">
+                  {TESTIMONIALS[activeTab].author}
+                </p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
+
+        {/* Navigation Dots */}
+        <motion.div
+          className="flex justify-center gap-2 mt-12"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          {TESTIMONIALS.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setActiveTab(idx)}
+              className={`w-2 h-2 rounded-full transition-all duration-500 cursor-pointer ${
+                activeTab === idx
+                  ? 'bg-gray-900 w-8'
+                  : 'bg-gray-300 hover:bg-gray-400'
+              }`}
+              aria-label={`Go to testimonial ${idx + 1}`}
+            />
+          ))}
+        </motion.div>
       </div>
     </section>
   )

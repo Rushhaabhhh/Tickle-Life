@@ -58,7 +58,7 @@ const Hero: React.FC<HeroProps> = ({ scrollToCalculator, chartOpacity, chartScal
           </motion.p>
           <motion.button
             onClick={scrollToCalculator}
-            className="bg-black text-white px-12 py-4 rounded-full text-lg font-semibold transition-transform transform hover:-translate-y-1 shadow-lg cursor-pointer"
+            className="bg-gray-900 text-white px-10 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer"
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 2.5 }}

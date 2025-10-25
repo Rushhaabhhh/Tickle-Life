@@ -69,8 +69,8 @@ const TrustAndSupport: React.FC<RealSupportProps> = ({ setShowQualificationModal
             <p className="text-lg text-gray-700 mb-6">Still Unsure? See if we&apos;re a fit</p>
             <button
               onClick={() => setShowQualificationModal(true)}
-              className="bg-black text-white px-10 py-3 rounded-full text-lg font-semibold transition-transform hover:-translate-y-1 cursor-pointer"
-            >
+              className="bg-gray-900 text-white px-10 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer"
+              >
               Check Fit →
             </button>
           </motion.div>
