@@ -1,72 +1,9 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowRight, Lock, Shield, Check, Zap } from 'lucide-react'
 import IndustriesExpandingVertical from './components/IndustriesCard'
 
-const industriesData = [
-  {
-    id: 'igaming',
-    title: 'iGaming',
-    description: 'Bonuses are the heartbeat of iGaming - but for most processors, sudden transaction spikes look like red flags. Our fraud filters are trained on high-risk data from your industry, so they know the difference between a regular promo surge and actual fraud.',
-    benefits: [
-      'Regulated EU and LatAm approvals',
-      'License‑based onboarding logic'
-    ],
-    icon: '🎰'
-  },
-  {
-    id: 'forex',
-    title: 'Forex & Trading',
-    description: 'Traders move fast — your payments can\'t wait. Global processing adds too many steps: conversions, transfers, compliance delays. Our coverage includes partners in 22 jurisdictions, so your transactions settle locally — everywhere.',
-    benefits: [
-      'Fast onboarding for KYC‑compliant platforms',
-      '90%+ approval in UAE and India'
-    ],
-    icon: '📈'
-  },
-  {
-    id: 'adult',
-    title: 'Adult',
-    description: 'We know the space — we\'ve been here. Even today we are treated like a liability. PSPs freeze accounts at the first sign of trouble. But we don\'t back down when the going gets tough. We stick around and keep your business going. Our rails are built for stability and discretion, so your business runs smooth and stays respected.',
-    benefits: [
-      'Partner banks with content‑friendly compliance',
-      '3D Secure and crypto off‑ramp support'
-    ],
-    icon: '🔞'
-  },
-  {
-    id: 'health',
-    title: 'Health & Wellness',
-    description: 'Wellness and alternative health payments get flagged for the wrong reasons. We run real-time compliance checks on every transaction to keep your operations clean, trusted, and fully above board.',
-    benefits: [
-      'Telemedicine, lab testing, diagnostics',
-      'Approved in US, UK and GCC'
-    ],
-    icon: '💊'
-  },
-  {
-    id: 'crypto',
-    title: 'Crypto On/Off Ramps',
-    description: 'Crypto doesn\'t need "all or nothing" processing. We built a modular structure that lets you run cards, APMs, and on/off ramps independently — each with its own rate. Add what you need to your stack and pay only for what you use.',
-    benefits: [
-      'Custodial and non‑custodial flows',
-      'Stablecoin rails and global settlement options'
-    ],
-    icon: '🪙'
-  },
-  {
-    id: 'education',
-    title: 'Education, Info, Subscription',
-    description: 'Cross-border tuition shouldn\'t take weeks. Most processors route education payments through endless intermediaries, each adding cost, delay, and risk. That\'s why we partnered with banks in 22 jurisdictions to move funds locally, so payments land faster, cleaner, and with full compliance visibility.',
-    benefits: [
-      'Recurring billing logic',
-      'High approval in mid‑risk zones'
-    ],
-    icon: '🎓'
-  }
-]
 
 const features = [
   {
@@ -88,7 +25,6 @@ const features = [
 ]
 
 export default function IndustriesSection() {
-  const [expandedId, setExpandedId] = useState<string | null>(null)
 
   return (
     <section className="bg-white min-h-screen">
