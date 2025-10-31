@@ -29,59 +29,82 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Footer Links */}
+      {/* Footer Content */}
       <div className="container mx-auto px-4 py-12">
-        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8">
-          <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Careers</a>
-          <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Privacy Policy</a>
-          <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Terms of Service</a>
-          <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Support Center</a>
-          <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Agent Login</a>
+        {/* Real Sections */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 text-gray-300">
+          {/* Column 1: Real Headings */}
+          <div className="space-y-2">
+            <span className="font-bold text-gray-400 text-lg">Real </span><span className="font-bold text-white text-lg">Support</span><br/>
+            <span className="font-bold text-gray-400 text-lg">Real </span><span className="font-bold text-white text-lg">Compliance</span><br/>
+            <span className="font-bold tex,t-gray-400 text-lg">Real </span><span className="font-bold text-white text-lg">Coverage</span>
+          </div>
+
+          {/* Column 2: First Set of Points */}
+          <div>
+            <ul className="space-y-2 text-sm">
+              <li>27+ licensed partner banks</li>
+              <li>PCI DSS compliant</li>
+              <li>Registered with FinCEN (U.S.) and FINTRAC (Canada)</li>
+            </ul>
+          </div>
+
+          {/* Column 3: Second Set of Points */}
+          <div>
+            <ul className="space-y-2 text-sm">
+              <li>Licensed across 22 jurisdictions</li>
+              <li>Crypto + card + APM stack coverage</li>
+              <li>Industry awards (if applicable)</li>
+            </ul>
+          </div>
         </div>
 
+        {/* Bottom Section */}
         <div className="border-t border-gray-700 pt-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Company Info & Social Links */}
+            {/* Contact Info */}
             <div>
-              <h3 className="font-semibold text-lg mb-2">Your Company Inc.</h3>
-              <p className="text-gray-400 text-sm">&copy; 2024 Your Company Inc. All Rights Reserved.</p>
+              <h3 className="font-semibold text-lg mb-2">Contact Us :</h3>
+              <p className="text-gray-400 text-sm">
+                <a
+                  href="mailto:ticklecharge@tickle.life"
+                  className="hover:underline hover:text-white transition-colors duration-300"
+                >
+                  ticklecharge@tickle.life
+                </a>
+              </p>
               <div className="flex space-x-4 mt-6">
-                <a href="#" aria-label="LinkedIn" className="text-gray-400 hover:text-white transition-colors duration-300">
+                <a
+                  href="#"
+                  aria-label="LinkedIn"
+                  className="text-gray-400 hover:text-white transition-colors duration-300"
+                >
                   <Linkedin className="w-6 h-6" />
                 </a>
-                <a href="#" aria-label="Twitter" className="text-gray-400 hover:text-white transition-colors duration-300">
+                <a
+                  href="#"
+                  aria-label="Twitter"
+                  className="text-gray-400 hover:text-white transition-colors duration-300"
+                >
                   <Twitter className="w-6 h-6" />
                 </a>
-                <a href="#" aria-label="Facebook" className="text-gray-400 hover:text-white transition-colors duration-300">
+                <a
+                  href="#"
+                  aria-label="Facebook"
+                  className="text-gray-400 hover:text-white transition-colors duration-300"
+                >
                   <Facebook className="w-6 h-6" />
                 </a>
               </div>
             </div>
 
-            {/* Registered Offices */}
+            {/* Office Address */}
             <div className="md:col-span-2">
-              <h3 className="font-semibold text-lg mb-2">Registered Offices</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm text-gray-400">
-                <div>
-                  <p className="font-medium text-white mb-1">North America</p>
-                  <p>123 Innovation Drive, Suite 100<br />Palo Alto, CA 94304, USA</p>
-                </div>
-                <div>
-                  <p className="font-medium text-white mb-1">Europe</p>
-                  <p>789 Global Avenue, Floor 5<br />Dublin 2, D02 F8X, Ireland</p>
-                </div>
-                <div>
-                  <p className="font-medium text-white mb-1">Asia-Pacific</p>
-                  <p>456 Tech Park, Tower B<br />Singapore 188953</p>
-                </div>
+              <div>
+                <p className="font-bold text-white mb-1">North America</p>
+                <p>830 Bryant Street, San Francisco, CA 94103</p>
               </div>
             </div>
-          </div>
-
-          {/* Licensing & Regulatory Info */}
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500 text-xs">
-            <p>Your Company Inc. is licensed and regulated by the Financial Conduct Authority under registration number 900507.</p>
-            <p className="mt-2">Services are provided in accordance with the Payment Services Regulations 2017. All trademarks and brand names belong to their respective owners.</p>
           </div>
         </div>
       </div>

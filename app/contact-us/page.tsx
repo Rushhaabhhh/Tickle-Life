@@ -12,7 +12,7 @@ const tabs = [
 
 type TabKey = typeof tabs[number]['key']
 
-// Trust icons/points
+// ✅ Trust icons/points
 function TrustList() {
   const trustItems = [
     { icon: <FileBadge2 size={18} className="text-green-600" />, text: "Free compliance and risk review with every inquiry." },
@@ -22,9 +22,9 @@ function TrustList() {
     { icon: <ShieldCheck size={18} className="text-green-600" />, text: "PCI DSS Level 1 certified and licensed in 22+ jurisdictions." }
   ]
   return (
-    <ul className="list-none pl-0 space-y-3 mt-4">
+    <ul className="list-none pl-0 space-y-3 mt-6">
       {trustItems.map(({ icon, text }) => (
-        <li key={text} className="flex items-center gap-3 text-gray-800 text-base font-light">
+        <li key={text} className="flex items-center gap-3 text-gray-700 text-base font-light">
           {icon}
           <span>{text}</span>
         </li>
@@ -33,6 +33,7 @@ function TrustList() {
   )
 }
 
+// ✅ Reusable Input Field
 type FieldProps = {
   label: string
   name: string
@@ -54,13 +55,8 @@ function FormField({ label, ...props }: FieldProps) {
   )
 }
 
-type MerchantFormProps = {
-  onDone: () => void
-  loading: boolean
-  setLoading: (v: boolean) => void
-}
-
-function MerchantForm({ onDone, loading, setLoading }: MerchantFormProps) {
+// ✅ Merchant Form
+function MerchantForm({ onDone, loading, setLoading }: { onDone: () => void; loading: boolean; setLoading: (v: boolean) => void }) {
   const [form, setForm] = useState({
     name: '', email: '', company: '', industry: '', website: '', region: ''
   })
@@ -92,13 +88,8 @@ function MerchantForm({ onDone, loading, setLoading }: MerchantFormProps) {
   )
 }
 
-type AgentFormProps = {
-  onDone: () => void
-  loading: boolean
-  setLoading: (v: boolean) => void
-}
-
-function AgentForm({ onDone, loading, setLoading }: AgentFormProps) {
+// ✅ Agent Form
+function AgentForm({ onDone, loading, setLoading }: { onDone: () => void; loading: boolean; setLoading: (v: boolean) => void }) {
   const [form, setForm] = useState({
     name: '', email: '', agency: '', website: '', regions: '', types: '', sourcing: ''
   })
@@ -131,13 +122,8 @@ function AgentForm({ onDone, loading, setLoading }: AgentFormProps) {
   )
 }
 
-type PartnerFormProps = {
-  onDone: () => void
-  loading: boolean
-  setLoading: (v: boolean) => void
-}
-
-function PartnerForm({ onDone, loading, setLoading }: PartnerFormProps) {
+// ✅ Partner Form
+function PartnerForm({ onDone, loading, setLoading }: { onDone: () => void; loading: boolean; setLoading: (v: boolean) => void }) {
   const [form, setForm] = useState({
     name: '', email: '', org: '', orgtype: '', website: '', licenses: ''
   })
@@ -196,15 +182,15 @@ export default function ContactSection() {
     <section className="bg-white py-24 px-4 md:px-8 min-h-screen">
       <div className="max-w-7xl mx-auto">
         <motion.header
-          className="text-center mb-16"
+          className="text-left mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <h1 className="text-[2.5rem] md:text-[3.5rem] font-light text-gray-900 leading-tight mb-3">
+          <h1 className="text-[2.5rem] md:text-[3.5rem] font-light text-gray-900 leading-tight mb-3 text-center">
             Contact Us
           </h1>
-          <p className="text-lg text-gray-500 font-light max-w-2xl mx-auto">
+          <p className="text-lg text-gray-500 font-light max-w-2xl">
             Ready to move forward? Let&apos;s talk.<br /><br />
             If you&apos;ve already run the simulator and know you qualify, drop your details here.<br />
             Our compliance team reviews each submission manually—most get a response in 24 hours.
@@ -213,77 +199,11 @@ export default function ContactSection() {
           </p>
         </motion.header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
-          {/* FORM COLUMN */}
+        {/* Grid Layout: Text Left / Form Right */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 items-start">
+          {/* LEFT COLUMN - Text, Trust, Why Choose */}
           <section>
-            {/* Tabs */}
-            <div className="flex gap-3 mb-8">
-              {tabs.map(t => (
-                <button key={t.key}
-                  onClick={() => { setTab(t.key); setSubmitted(false) }}
-                  className={`px-6 py-3 rounded-full font-medium transition-all text-sm duration-300 cursor-pointer
-                  ${tab === t.key ? "bg-black text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-900 hover:text-white"}`}>
-                  {t.label}
-                </button>
-              ))}
-            </div>
-            {/* Animation switcher */}
-            <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm min-h-[370px] flex flex-col justify-center">
-              <AnimatePresence mode="wait">
-                {!submitted && !loading && tab === 'merchant' && (
-                  <motion.div
-                    key={tab}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <MerchantForm onDone={() => setSubmitted(true)} loading={loading} setLoading={setLoading} />
-                  </motion.div>
-                )}
-                {!submitted && !loading && tab === 'agent' && (
-                  <motion.div
-                    key={tab}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <AgentForm onDone={() => setSubmitted(true)} loading={loading} setLoading={setLoading} />
-                  </motion.div>
-                )}
-                {!submitted && !loading && tab === 'partner' && (
-                  <motion.div
-                    key={tab}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <PartnerForm onDone={() => setSubmitted(true)} loading={loading} setLoading={setLoading} />
-                  </motion.div>
-                )}
-                {(submitted || loading) && (
-                  <motion.div
-                    key="done"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex flex-col items-center justify-center min-h-[300px]"
-                  >
-                    <p className="text-2xl text-gray-900 font-medium mb-4">Great! You&apos;re on your way.</p>
-                    <p className="text-gray-500">If you&apos;re qualified, we&apos;ll reach out to you within 24 hours.</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-            <TrustList />
-          </section>
-
-          {/* INFO COLUMN */}
-          <section className="flex flex-col justify-center">
-            <h2 className="text-2xl md:text-4xl font-bold mb-4 text-gray-600">
+            <h2 className="text-2xl md:text-4xl font-bold mb-10 text-gray-600">
               Why Choose Our Platform
             </h2>
             <div className="space-y-8">
@@ -297,8 +217,78 @@ export default function ContactSection() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-1">Privacy First</h3>
-                <p className="text-gray-600 text-base">We never sell or share your data. Real people only, no bots.</p>
+                <p className="text-gray-600 text-base mb-20">We never sell or share your data. Real people only, no bots.</p>
               </div>
+            </div>
+            <TrustList />
+          </section>
+
+          {/* RIGHT COLUMN - Forms */}
+          <section>
+            {/* Tabs */}
+            <div className="flex gap-3 mb-8">
+              {tabs.map(t => (
+                <button
+                  key={t.key}
+                  onClick={() => { setTab(t.key); setSubmitted(false) }}
+                  className={`px-6 py-3 rounded-full font-medium transition-all text-sm duration-300 cursor-pointer
+                  ${tab === t.key ? "bg-black text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-900 hover:text-white"}`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Animated Form Switcher */}
+            <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm min-h-[370px] flex flex-col justify-center">
+              <AnimatePresence mode="wait">
+                {!submitted && !loading && tab === 'merchant' && (
+                  <motion.div
+                    key={tab}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <MerchantForm onDone={() => setSubmitted(true)} loading={loading} setLoading={setLoading} />
+                  </motion.div>
+                )}
+                {!submitted && !loading && tab === 'agent' && (
+                  <motion.div
+                    key={tab}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <AgentForm onDone={() => setSubmitted(true)} loading={loading} setLoading={setLoading} />
+                  </motion.div>
+                )}
+                {!submitted && !loading && tab === 'partner' && (
+                  <motion.div
+                    key={tab}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <PartnerForm onDone={() => setSubmitted(true)} loading={loading} setLoading={setLoading} />
+                  </motion.div>
+                )}
+                {(submitted || loading) && (
+                  <motion.div
+                    key="done"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.6 }}
+                    className="flex flex-col items-center justify-center min-h-[300px]"
+                  >
+                    <p className="text-2xl text-gray-900 font-medium mb-4">Great! You&apos;re on your way.</p>
+                    <p className="text-gray-500">If you&apos;re qualified, we&apos;ll reach out to you within 24 hours.</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </section>
         </div>

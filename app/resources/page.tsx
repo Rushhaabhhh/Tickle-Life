@@ -2,7 +2,9 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Search, Download, FileText, Users } from 'lucide-react'
+import { Search, Download, FileText, Users, ChevronDown } from 'lucide-react'
+
+
 
 const filterCategories = {
   product: ['Cards', 'APMs', 'Crypto', 'Fraud', 'Routing'],
@@ -68,17 +70,53 @@ export default function ResourceSection() {
           </p>
         </motion.header>
 
-        {/* Filter Labels */}
+        {/* Filter Bar */}
         <motion.div
-          className="mb-12 space-y-6"
+          className="mb-16 w-full flex flex-col md:flex-row md:items-end md:justify-between gap-6 bg-gray-50 border border-gray-200 rounded-2xl p-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <FilterRow label="Product" items={filterCategories.product} active={activeProductFilter} setActive={setActiveProductFilter} />
-          <FilterRow label="Industry" items={filterCategories.industry} active={activeIndustryFilter} setActive={setActiveIndustryFilter} />
-          <FilterRow label="Content Type" items={filterCategories.contentType} active={activeContentFilter} setActive={setActiveContentFilter} />
+          <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6">
+            <DropdownFilter
+              label="Product"
+              items={filterCategories.product}
+              active={activeProductFilter}
+              setActive={setActiveProductFilter}
+            />
+            <DropdownFilter
+              label="Industry"
+              items={filterCategories.industry}
+              active={activeIndustryFilter}
+              setActive={setActiveIndustryFilter}
+            />
+            <DropdownFilter
+              label="Content Type"
+              items={filterCategories.contentType}
+              active={activeContentFilter}
+              setActive={setActiveContentFilter}
+            />
+          </div>
+
+          <div className="flex items-center gap-3 mt-2 md:mt-0">
+            <button
+              className="px-5 py-3 bg-black text-white text-sm rounded-xl hover:bg-gray-800 transition-all duration-300 cursor-pointer"
+              onClick={() => console.log('Apply Filters')}
+            >
+              Apply Filters
+            </button>
+            <button
+              className="px-5 py-3 bg-gray-200 text-gray-800 text-sm rounded-xl hover:bg-gray-300 transition-all duration-300 cursor-pointer"
+              onClick={() => {
+                setActiveProductFilter(null)
+                setActiveIndustryFilter(null)
+                setActiveContentFilter(null)
+              }}
+            >
+              Clear Filters
+            </button>
+          </div>
         </motion.div>
 
         {/* Search Bar */}
@@ -148,31 +186,31 @@ export default function ResourceSection() {
   )
 }
 
-type FilterRowProps = {
+type DropdownFilterProps = {
   label: string
   items: string[]
   active: string | null
   setActive: (v: string | null) => void
 }
 
-function FilterRow({ label, items, active, setActive }: FilterRowProps) {
+function DropdownFilter({ label, items, active, setActive }: DropdownFilterProps) {
   return (
-    <div className="flex flex-wrap items-center gap-3">
-      <span className="text-sm font-medium text-gray-400 uppercase tracking-widest min-w-[100px]">{label}</span>
-      <div className="flex flex-wrap gap-2">
-        {items.map(item => (
-          <button
-            key={item}
-            onClick={() => setActive(active === item ? null : item)}
-            className={`px-4 py-2 rounded-full text-sm font-light transition-all duration-300 cursor-pointer ${
-              active === item
-                ? 'bg-black text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-900 hover:text-white'
-            }`}
-          >
-            {item}
-          </button>
-        ))}
+    <div className="flex flex-col relative">
+      <label className="text-sm font-medium text-gray-500 uppercase tracking-widest mb-2">
+        {label}
+      </label>
+      <div className="relative">
+        <select
+          value={active ?? ''}
+          onChange={(e) => setActive(e.target.value || null)}
+          className="w-full appearance-none border border-gray-200 rounded-xl px-4 py-3 pr-10 text-gray-800 text-sm bg-white focus:border-gray-900 focus:outline-none transition-all cursor-pointer"
+        >
+          <option value="">Select {label}</option>
+          {items.map(item => (
+            <option key={item} value={item}>{item}</option>
+          ))}
+        </select>
+        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
       </div>
     </div>
   )

@@ -24,7 +24,7 @@ export default function AboutSection() {
           >
             Built by high-risk<br />
             For high-risk<br />
-            <span className="text-gray-600">powered by fintech brains</span>
+            <span className="text-gray-600">powered by fintech</span>
           </motion.h1>
         </div>
       </motion.header>
