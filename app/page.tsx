@@ -1,14 +1,22 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calculator } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface CalculationResult {
   blendedRate: number;
-  moneyYouKeepPercent: number;
   totalVolume: number;
   numberOfTransactions: number;
+  moneyYouKeepAmount: number;
+}
+
+interface CountryAPI {
+  cca2?: string;
+  ccn3?: string;
+  name: {
+    common: string;
+  };
 }
 
 const industries = [
@@ -16,17 +24,6 @@ const industries = [
   { key: 'adult', name: 'Adult' },
   { key: 'forex', name: 'Forex' },
 ];
-
-const countries = [
-  { key: 'us', name: 'United States' },
-  { key: 'uk', name: 'United Kingdom' },
-  { key: 'ca', name: 'Canada' },
-];
-
-// Fee constants from your Excel math for Visa/Mastercard and other cards (using example Amex values)
-const VISA_MASTER_RATE = 0.0376; // 3.76%
-const OTHER_CARD_RATE = 0.0401;  // 4.01%
-const PER_TRANSACTION_FEE = 0.4; // fixed fee per transaction
 
 export default function PaymentCalculatorPage() {
   const [formData, setFormData] = useState({
@@ -40,6 +37,43 @@ export default function PaymentCalculatorPage() {
 
   const [results, setResults] = useState<CalculationResult | null>(null);
   const [, setShowCTA] = useState(false);
+  
+  const [countries, setCountries] = useState<{ key: string; name: string }[]>([]);
+  const [loadingCountries, setLoadingCountries] = useState(true);
+
+  useEffect(() => {
+    
+    async function fetchCountries() {
+      setLoadingCountries(true);
+      try {
+        const response = await fetch('https://restcountries.com/v3.1/all?fields=cca2,name');
+        const data = await response.json();
+        if (!Array.isArray(data)) {
+          throw new Error('Unexpected API response format');
+        }
+    
+        const mapped = (data as CountryAPI[])
+          .map((country) => ({
+            key: country.cca2?.toLowerCase() ?? country.ccn3 ?? '',
+            name: country.name.common,
+          }))
+          .sort((a, b) => a.name.localeCompare(b.name));
+    
+        setCountries(mapped);
+      } catch (error) {
+        console.error('Failed to fetch countries', error);
+        setCountries([]);
+      } finally {
+        setLoadingCountries(false);
+      }
+    }    
+    fetchCountries();
+  }, []);
+
+  // Fee constants (from your Excel sheet)
+  const VISA_MASTER_RATE = 0.0376; // 3.76%
+  const OTHER_CARD_RATE = 0.0401;  // 4.01%
+  const PER_TRANSACTION_FEE = 0.4; // fixed fee per transaction
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -66,29 +100,24 @@ export default function PaymentCalculatorPage() {
       return;
     }
 
-    // Calculate number of transactions
     const numberOfTransactions = totalVolume / avgTicket;
 
-    // Interchange charges
     const interchangeVisaMaster = visaMasterVolume * VISA_MASTER_RATE;
     const interchangeOtherCards = otherCardsVolume * OTHER_CARD_RATE;
 
-    // Transaction charges based on inferred tx count
     const txnCharges = numberOfTransactions * PER_TRANSACTION_FEE;
 
     const totalFees = interchangeVisaMaster + interchangeOtherCards + txnCharges;
 
-    // Calculate blended rate (total fees / total volume)
     const blendedRate = totalFees / totalVolume;
 
-    // Money you keep (%)
-    const moneyYouKeepPercent = 1 - blendedRate;
+    const moneyYouKeepAmount = totalVolume * (1 - blendedRate);
 
     setResults({
       blendedRate,
-      moneyYouKeepPercent,
       totalVolume,
       numberOfTransactions,
+      moneyYouKeepAmount,
     });
 
     setTimeout(() => setShowCTA(true), 1000);
@@ -207,16 +236,17 @@ export default function PaymentCalculatorPage() {
             </div>
 
             <div className="md:col-span-1">
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Country of Registration <span className="text-red-700">*</span>
-            </label>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Country of Registration <span className="text-red-700">*</span>
+              </label>
               <select
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700"
                 required
                 value={formData.country}
                 onChange={(e) => handleInputChange('country', e.target.value)}
+                disabled={loadingCountries}
               >
-                <option value="">Select country</option>
+                <option value="">{loadingCountries ? 'Loading countries...' : 'Select country'}</option>
                 {countries.map((country) => (
                   <option key={country.key} value={country.key}>
                     {country.name}
@@ -257,7 +287,7 @@ export default function PaymentCalculatorPage() {
               <p className="text-xl text-gray-700 mb-2">
                 Money You Keep:
                 <span className="text-green-600 font-semibold ml-2">
-                  {formatPercentage(results.moneyYouKeepPercent)}
+                  {formatCurrency(results.moneyYouKeepAmount ?? 0)}
                 </span>
               </p>
               <p className="text-gray-600 text-sm">
