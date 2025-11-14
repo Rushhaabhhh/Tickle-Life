@@ -23,6 +23,7 @@ const industries = [
   { key: 'igaming', name: 'iGaming' },
   { key: 'adult', name: 'Adult' },
   { key: 'forex', name: 'Forex' },
+  { key: 'others', name: 'Others' },
 ];
 
 export default function PaymentCalculatorPage() {
@@ -37,7 +38,7 @@ export default function PaymentCalculatorPage() {
 
   const [results, setResults] = useState<CalculationResult | null>(null);
   const [, setShowCTA] = useState(false);
-  
+  const [otherIndustry, setOtherIndustry] = useState('');
   const [countries, setCountries] = useState<{ key: string; name: string }[]>([]);
   const [loadingCountries, setLoadingCountries] = useState(true);
 
@@ -233,6 +234,20 @@ export default function PaymentCalculatorPage() {
                   </option>
                 ))}
               </select>
+              {formData.industry === 'others' && (
+                <div className="mt-3">
+                  <label className="block text-sm text-gray-700 mb-2">
+                    Please specify your industry
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full p-3 border border-gray-300 text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    value={otherIndustry}
+                    onChange={(e) => setOtherIndustry(e.target.value)}
+                    placeholder="Enter your industry"
+                  />
+                </div>
+              )}
             </div>
 
             <div className="md:col-span-1">
@@ -270,7 +285,7 @@ export default function PaymentCalculatorPage() {
           </motion.button>
 
           <p className="mt-6 text-md text-gray-600 italic max-w-lg mx-auto text-center">
-            These rates are estimates for low-risk businesses. If your business involves higher risk, please reach out and we will provide a tailored rate based on your risk level and overall business needs.
+            These figures are tentative estimates. The final calculation will depend on your specific business case and overall requirements.
           </p>
         </motion.div>
 
