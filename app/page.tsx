@@ -285,7 +285,7 @@ export default function PaymentCalculatorPage() {
           </motion.button>
 
           <p className="mt-6 text-md text-gray-600 italic max-w-lg mx-auto text-center">
-            These figures are tentative estimates. The final calculation will depend on your specific business case and overall requirements.
+            These rates are estimates for low-risk businesses. If your business involves higher risk, please reach out and we will provide a tailored rate based on your risk level and overall business needs.
           </p>
         </motion.div>
 
