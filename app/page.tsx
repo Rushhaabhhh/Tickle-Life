@@ -43,7 +43,6 @@ export default function PaymentCalculatorPage() {
   const [loadingCountries, setLoadingCountries] = useState(true);
 
   useEffect(() => {
-    
     async function fetchCountries() {
       setLoadingCountries(true);
       try {
@@ -52,14 +51,14 @@ export default function PaymentCalculatorPage() {
         if (!Array.isArray(data)) {
           throw new Error('Unexpected API response format');
         }
-    
+
         const mapped = (data as CountryAPI[])
           .map((country) => ({
             key: country.cca2?.toLowerCase() ?? country.ccn3 ?? '',
             name: country.name.common,
           }))
           .sort((a, b) => a.name.localeCompare(b.name));
-    
+
         setCountries(mapped);
       } catch (error) {
         console.error('Failed to fetch countries', error);
@@ -67,17 +66,17 @@ export default function PaymentCalculatorPage() {
       } finally {
         setLoadingCountries(false);
       }
-    }    
+    }
     fetchCountries();
   }, []);
 
   // Fee constants (from your Excel sheet)
   const VISA_MASTER_RATE = 0.0376; // 3.76%
-  const OTHER_CARD_RATE = 0.0401;  // 4.01%
+  const OTHER_CARD_RATE = 0.0401; // 4.01%
   const PER_TRANSACTION_FEE = 0.4; // fixed fee per transaction
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const calculateCosts = () => {
@@ -86,12 +85,7 @@ export default function PaymentCalculatorPage() {
     const visaMasterVolume = parseFloat(formData.visaMasterVolume || '0');
     const otherCardsVolume = parseFloat(formData.otherCardsVolume || '0');
 
-    if (
-      !totalVolume ||
-      !avgTicket ||
-      !formData.industry ||
-      !formData.country
-    ) {
+    if (!totalVolume || !avgTicket || !formData.industry || !formData.country) {
       alert('Please fill in Total Volume, Average Ticket Size, Industry, and Country.');
       return;
     }
@@ -162,113 +156,167 @@ export default function PaymentCalculatorPage() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="bg-white rounded-2xl shadow-xl p-8 mb-8"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Total Monthly Volume (USD) <span className="text-red-700">*</span>
-              </label>
+          {/* Total Monthly Volume Slider */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Total Monthly Volume (USD) <span className="text-red-700">*</span>
+            </label>
+
+            <div className="flex items-center gap-5 bg-gray-100 p-3 rounded-xl shadow-inner">
               <input
-                type="number"
-                placeholder="e.g., 100000"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700"
-                value={formData.totalVolume}
+                type="range"
+                min={0}
+                max={100000000}
+                step={1000}
+                className="flex-grow h-2 rounded-lg appearance-none cursor-pointer bg-blue-200 accent-blue-600"
+                value={Number(formData.totalVolume) || 0}
                 onChange={(e) => handleInputChange('totalVolume', e.target.value)}
-                required
               />
+              <motion.div
+                key={formData.totalVolume}
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+                className="min-w-[110px] text-right text-blue-700 font-semibold select-none"
+              >
+                {Number(formData.totalVolume).toLocaleString('en-US')} USD
+              </motion.div>
             </div>
+          </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Average Ticket Size (USD) <span className="text-red-700">*</span>
-              </label>
+          {/* Average Ticket Size Slider */}
+          <div className="mt-6">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Average Ticket Size (USD) <span className="text-red-700">*</span>
+            </label>
+
+            <div className="flex items-center gap-5 bg-gray-100 p-3 rounded-xl shadow-inner">
               <input
-                type="number"
-                placeholder="e.g., 100"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700"
-                value={formData.avgTicket}
+                type="range"
+                min={0}
+                max={10000}
+                step={10}
+                className="flex-grow h-2 rounded-lg appearance-none cursor-pointer bg-indigo-200 accent-indigo-600"
+                value={Number(formData.avgTicket) || 0}
                 onChange={(e) => handleInputChange('avgTicket', e.target.value)}
-                required
               />
+              <motion.div
+                key={formData.avgTicket}
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+                className="min-w-[110px] text-right text-indigo-700 font-semibold select-none"
+              >
+                {Number(formData.avgTicket).toLocaleString('en-US')}
+              </motion.div>
             </div>
+          </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Visa/Mastercard Volume (USD)
-              </label>
+          {/* Visa/Mastercard Volume Slider */}
+          <div className="mt-6">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Visa/Mastercard Volume (USD)
+            </label>
+            <div className="flex items-center gap-5 bg-gray-100 p-3 rounded-xl shadow-inner">
               <input
-                type="number"
-                placeholder="e.g., 70000"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700"
-                value={formData.visaMasterVolume}
+                type="range"
+                min={0}
+                max={100000000}
+                step={1000}
+                className="flex-grow h-2 rounded-lg appearance-none cursor-pointer bg-blue-200 accent-blue-600"
+                value={Number(formData.visaMasterVolume) || 0}
                 onChange={(e) => handleInputChange('visaMasterVolume', e.target.value)}
               />
+              <motion.div
+                key={formData.visaMasterVolume}
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+                className="min-w-[110px] text-right text-blue-700 font-semibold select-none"
+              >
+                {Number(formData.visaMasterVolume).toLocaleString('en-US')} USD
+              </motion.div>
             </div>
+          </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Other Cards Volume (USD)
-              </label>
+          {/* Other Cards Volume Slider */}
+          <div className="mt-6">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Other Cards Volume (USD)
+            </label>
+            <div className="flex items-center gap-5 bg-gray-100 p-3 rounded-xl shadow-inner">
               <input
-                type="number"
-                placeholder="e.g., 30000"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700"
-                value={formData.otherCardsVolume}
+                type="range"
+                min={0}
+                max={100000000}
+                step={1000}
+                className="flex-grow h-2 rounded-lg appearance-none cursor-pointer bg-indigo-200 accent-indigo-600"
+                value={Number(formData.otherCardsVolume) || 0}
                 onChange={(e) => handleInputChange('otherCardsVolume', e.target.value)}
               />
-            </div>
-
-            <div className="md:col-span-1">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Industry <span className="text-red-700">*</span>
-              </label>
-              <select
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700"
-                required
-                value={formData.industry}
-                onChange={(e) => handleInputChange('industry', e.target.value)}
+              <motion.div
+                key={formData.otherCardsVolume}
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+                className="min-w-[110px] text-right text-indigo-700 font-semibold select-none"
               >
-                <option value="">Select industry</option>
-                {industries.map((industry) => (
-                  <option key={industry.key} value={industry.key}>
-                    {industry.name}
-                  </option>
-                ))}
-              </select>
-              {formData.industry === 'others' && (
-                <div className="mt-3">
-                  <label className="block text-sm text-gray-700 mb-2">
-                    Please specify your industry
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full p-3 border border-gray-300 text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    value={otherIndustry}
-                    onChange={(e) => setOtherIndustry(e.target.value)}
-                    placeholder="Enter your industry"
-                  />
-                </div>
-              )}
+                {Number(formData.otherCardsVolume).toLocaleString('en-US')} USD
+              </motion.div>
             </div>
+          </div>
 
-            <div className="md:col-span-1">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Country of Registration <span className="text-red-700">*</span>
-              </label>
-              <select
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700"
-                required
-                value={formData.country}
-                onChange={(e) => handleInputChange('country', e.target.value)}
-                disabled={loadingCountries}
-              >
-                <option value="">{loadingCountries ? 'Loading countries...' : 'Select country'}</option>
-                {countries.map((country) => (
-                  <option key={country.key} value={country.key}>
-                    {country.name}
-                  </option>
-                ))}
-              </select>
-            </div>
+          {/* Industry */}
+          <div className="mt-6 md:col-span-1">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Industry <span className="text-red-700">*</span>
+            </label>
+            <select
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700"
+              required
+              value={formData.industry}
+              onChange={(e) => handleInputChange('industry', e.target.value)}
+            >
+              <option value="">Select industry</option>
+              {industries.map((industry) => (
+                <option key={industry.key} value={industry.key}>
+                  {industry.name}
+                </option>
+              ))}
+            </select>
+            {formData.industry === 'others' && (
+              <div className="mt-3">
+                <label className="block text-sm text-gray-700 mb-2">Please specify your industry</label>
+                <input
+                  type="text"
+                  className="w-full p-3 border border-gray-300 text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  value={otherIndustry}
+                  onChange={(e) => setOtherIndustry(e.target.value)}
+                  placeholder="Enter your industry"
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Country of Registration */}
+          <div className="mt-6 md:col-span-1">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Country of Registration <span className="text-red-700">*</span>
+            </label>
+            <select
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700"
+              required
+              value={formData.country}
+              onChange={(e) => handleInputChange('country', e.target.value)}
+              disabled={loadingCountries}
+            >
+              <option value="">{loadingCountries ? 'Loading countries...' : 'Select country'}</option>
+              {countries.map((country) => (
+                <option key={country.key} value={country.key}>
+                  {country.name}
+                </option>
+              ))}
+            </select>
           </div>
 
           <motion.button
@@ -301,9 +349,7 @@ export default function PaymentCalculatorPage() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Your Cost Estimate</h2>
               <p className="text-xl text-gray-700 mb-2">
                 Money You Keep:
-                <span className="text-green-600 font-semibold ml-2">
-                  {formatCurrency(results.moneyYouKeepAmount ?? 0)}
-                </span>
+                <span className="text-green-600 font-semibold ml-2">{formatCurrency(results.moneyYouKeepAmount ?? 0)}</span>
               </p>
               <p className="text-gray-600 text-sm">
                 Based on a total monthly volume of {formatCurrency(results.totalVolume)} and blended processing fee rate of {formatPercentage(results.blendedRate)}.
