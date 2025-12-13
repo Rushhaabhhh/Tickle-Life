@@ -28,7 +28,7 @@ const PSPHomepage = () => {
   }
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-white text-black relative overflow-x-hidden">
+    <div ref={containerRef} className="min-h-screen bg-transparent text-black relative overflow-x-hidden">
       <Hero 
         scrollToCalculator={scrollToCalculator} 
         chartOpacity={chartOpacity} 

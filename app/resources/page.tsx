@@ -52,7 +52,7 @@ export default function ResourceSection() {
   const [activeContentFilter, setActiveContentFilter] = useState<string | null>(null)
 
   return (
-    <section className="bg-white py-24 px-4 md:px-8 min-h-screen">
+    <section className="bg-transparent py-24 px-4 md:px-8 min-h-screen">
       <div className="max-w-7xl mx-auto">
         
         {/* Hero */}
@@ -72,7 +72,7 @@ export default function ResourceSection() {
 
         {/* Filter Bar */}
         <motion.div
-          className="mb-16 w-full flex flex-col md:flex-row md:items-end md:justify-between gap-6 bg-gray-50 border border-gray-200 rounded-2xl p-6"
+          className="mb-16 w-full flex flex-col md:flex-row md:items-end md:justify-between gap-6 bg-transparent border border-gray-200 rounded-2xl p-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
