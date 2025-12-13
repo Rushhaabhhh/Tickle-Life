@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Calculator } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+
 
 interface CalculationResult {
   blendedRate: number;
@@ -26,14 +27,6 @@ const industries = [
   { key: 'others', name: 'Others' },
 ];
 
-// Create a context to communicate with parent layout
-const ExplosionContext = React.createContext<{
-  triggerExplosion: (val: boolean) => void;
-} | null>(null);
-
-export function useExplosion() {
-  return useContext(ExplosionContext);
-}
 
 export default function PaymentCalculatorPage() {
   const [formData, setFormData] = useState({
@@ -46,7 +39,7 @@ export default function PaymentCalculatorPage() {
   });
 
   const [results, setResults] = useState<CalculationResult | null>(null);
-  const [, setShowCTA] = useState(false);
+  const [,setShowCTA] = useState(false);
   const [otherIndustry, setOtherIndustry] = useState('');
   const [countries, setCountries] = useState<{ key: string; name: string }[]>([]);
   const [loadingCountries, setLoadingCountries] = useState(true);

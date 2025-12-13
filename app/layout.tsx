@@ -15,7 +15,7 @@ import { usePathname } from "next/navigation";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [triggerExplosion, setTriggerExplosion] = useState(false);
-const [active,setActive]= useState(false);
+const [active]= useState(false);
 const handleExplosion = () => {
     // Toggle or trigger the explosion
     setTriggerExplosion((prev) => !prev); 
