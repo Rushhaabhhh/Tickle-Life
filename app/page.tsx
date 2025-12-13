@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Calculator } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -26,6 +26,15 @@ const industries = [
   { key: 'others', name: 'Others' },
 ];
 
+// Create a context to communicate with parent layout
+const ExplosionContext = React.createContext<{
+  triggerExplosion: (val: boolean) => void;
+} | null>(null);
+
+export function useExplosion() {
+  return useContext(ExplosionContext);
+}
+
 export default function PaymentCalculatorPage() {
   const [formData, setFormData] = useState({
     totalVolume: '',
@@ -41,6 +50,10 @@ export default function PaymentCalculatorPage() {
   const [otherIndustry, setOtherIndustry] = useState('');
   const [countries, setCountries] = useState<{ key: string; name: string }[]>([]);
   const [loadingCountries, setLoadingCountries] = useState(true);
+  const [scrollTriggered, setScrollTriggered] = useState(false);
+
+  // Ref to track the calculator section
+  const calculatorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     async function fetchCountries() {
@@ -70,10 +83,28 @@ export default function PaymentCalculatorPage() {
     fetchCountries();
   }, []);
 
-  // Fee constants (from your Excel sheet)
-  const VISA_MASTER_RATE = 0.0376; // 3.76%
-  const OTHER_CARD_RATE = 0.0401; // 4.01%
-  const PER_TRANSACTION_FEE = 0.4; // fixed fee per transaction
+  // Scroll trigger for explosion animation
+  useEffect(() => {
+    const handleScroll = () => {
+      if (calculatorRef.current && !scrollTriggered) {
+        const rect = calculatorRef.current.getBoundingClientRect();
+        // Trigger explosion when calculator comes into view (viewport)
+        if (rect.top < window.innerHeight * 0.7) {
+          setScrollTriggered(true);
+          // Dispatch custom event to parent/layout to trigger explosion
+          window.dispatchEvent(new CustomEvent('triggerScrollExplosion'));
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrollTriggered]);
+
+  // Fee constants
+  const VISA_MASTER_RATE = 0.0376;
+  const OTHER_CARD_RATE = 0.0401;
+  const PER_TRANSACTION_FEE = 0.4;
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -96,16 +127,11 @@ export default function PaymentCalculatorPage() {
     }
 
     const numberOfTransactions = totalVolume / avgTicket;
-
     const interchangeVisaMaster = visaMasterVolume * VISA_MASTER_RATE;
     const interchangeOtherCards = otherCardsVolume * OTHER_CARD_RATE;
-
     const txnCharges = numberOfTransactions * PER_TRANSACTION_FEE;
-
     const totalFees = interchangeVisaMaster + interchangeOtherCards + txnCharges;
-
     const blendedRate = totalFees / totalVolume;
-
     const moneyYouKeepAmount = totalVolume * (1 - blendedRate);
 
     setResults({
@@ -133,7 +159,7 @@ export default function PaymentCalculatorPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-40 px-4">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto" ref={calculatorRef}>
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
