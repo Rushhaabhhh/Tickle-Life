@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import React, { useMemo, useRef } from 'react'
-import { useTexture } from '@react-three/drei'
+import { useScroll, useTexture } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 
 const CurvedPlaneShader = {
@@ -16,8 +16,7 @@ const CurvedPlaneShader = {
     uniform float fadeStrengthX;
     uniform float fadeStrengthY;
     uniform float uScroll;
-    uniform float uExplosion;
-    uniform float uFadeYStart;   // <-- ADDED
+    uniform float uFadeYStart;
 
     varying vec2 vUv;
 
@@ -30,12 +29,12 @@ const CurvedPlaneShader = {
       float fadeX = fadeInX * fadeOutX;
 
       float fadeY = smoothstep(uFadeYStart, 0.0 - fadeStrengthY, vUv.y);
-
       float baseFade = fadeX * fadeY;
-      vec3 fadedColor = color.rgb * baseFade;
 
-      float blackout = smoothstep(0.65, 0.9, uScroll);
-      vec3 finalColor = mix(fadedColor, vec3(0.0), blackout);
+      // Fade out based on scroll > 50%
+      float scrollFade = smoothstep(0.5, 1.0, uScroll);
+
+      vec3 finalColor = mix(baseFade * color.rgb, vec3(0.0), scrollFade);
 
       gl_FragColor = vec4(finalColor, 1.0);
     }
@@ -56,7 +55,7 @@ const CurvedPlane = ({
   fadeDuration = 0.8,
   ...props
 }) => {
-  
+  const scroller = useScroll();
   const fadeYStart = useRef(1.0);
   const texture = useTexture(textureUrl);
   const materialRef = useRef();
@@ -90,8 +89,7 @@ const CurvedPlane = ({
         fadeStrengthX: { value: fadeStrengthX },
         fadeStrengthY: { value: fadeStrengthY },
         uScroll: { value: 0 },
-        uExplosion: { value: 0 },
-        uFadeYStart: { value: 1.0 },   // <-- FIXED
+        uFadeYStart: { value: 1.0 },
       },
       vertexShader: CurvedPlaneShader.vertexShader,
       fragmentShader: CurvedPlaneShader.fragmentShader,
@@ -104,7 +102,7 @@ const CurvedPlane = ({
   useFrame((_, delta) => {
     if (!materialRef.current) return;
 
-    const target = (triggerExplosion || trigger) ? 0.0 : 1.0;
+    const target =1.0-scroller.offset;
     const smoothing = 1 - Math.exp(-delta / fadeDuration);
 
     fadeYStart.current += (target - fadeYStart.current) * smoothing;

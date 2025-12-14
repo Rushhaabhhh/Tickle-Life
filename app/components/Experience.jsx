@@ -6,24 +6,17 @@
   import { useEffect, useMemo, useRef,useState } from "react";
   import { extend, useFrame, useThree } from "@react-three/fiber";
 import DustParticles from "./Dust";
-import { BlendFunction, Resizer, KernelSize,GlitchMode} from "postprocessing";
-import {Clump2} from "./HeartFacGsap";
-import CubeWithEquirectMap from "./CubeTex";
+import Clump2 from "./Clump";
 import GridTop from "./GridFloor";
 import gsap  from "gsap";
-import HeartFac from "./HeartFac";
 import Mat from "./MatPodium";
 import CurvedPlane from "./FadingCylinder";
 import FuturisticRing from "./FutureRing";
 import Bitcoin from "./Bitcoin";
 import WaveShape from "./Wave";
 import OrbitCoin from "./OrbitCoin";
-import { ShaderPass } from "three/examples/jsm/Addons.js";
-import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
-
-import { Pencil } from "./Pencil";
-import { Pencil2 } from "./Pencil2";
 import { Fluid } from "@whatisjery/react-fluid-distortion";
+import HeartScroll from "./HeartScroll";
 
 
 
@@ -35,6 +28,7 @@ import { Fluid } from "@whatisjery/react-fluid-distortion";
 
 
   export const Experience = ({ triggerExplosion,active,onHeartClick }) => {
+    const scroll = useScroll();
     document.querySelector('#scroll').style.color='white';
     const list = ['heading1', 'heading2', 'rates', 'scroll'];
   useEffect(() => {
@@ -93,7 +87,8 @@ useEffect(() => {
   
   return (
     <>
-   
+     
+  
   
         {/* <OrbitControls  enableZoom={false}/> */}
    
@@ -109,7 +104,7 @@ useEffect(() => {
  
         <Ground2 triggerExplosion={triggerExplosion} trigger={trigger}/>        
       <DustParticles />
-      <FuturisticRing position={[0,-8.68,0]}  glowIntensity={0.5} color={'#D7B750'} haloSpread={0} rippleCount={0.1} rippleSpeed={active ? 0.1 : 0.6} visible={trigger?false:true} triggerExplosion={triggerExplosion}/>
+      <FuturisticRing position={[0,-8.68,0]}  glowIntensity={0.5} color={'#D7B750'} haloSpread={0} rippleCount={0.1} rippleSpeed={active ? 0.1 : 0.6} visible={scroll.offset > 0.5?false:true} triggerExplosion={triggerExplosion}/>
       <CurvedPlane 
       triggerExplosion={triggerExplosion}
       trigger={trigger}
@@ -134,16 +129,15 @@ useEffect(() => {
        
         <Mat scale={8} position={[0,-8.3,0]} trigger={trigger} triggerExplosion={triggerExplosion}/>
         <Float floatIntensity={0.5} rotationIntensity={0.25}>
-
-        <HeartFac position={[0,2.5,0]} scale={2.1} rotation={[0,Math.PI,0]} triggerExplosion={triggerExplosion} active={active} 
+        <HeartScroll position={[0,2.5,0]} scale={2.1} rotation={[0,Math.PI,0]} triggerExplosion={triggerExplosion} active={active} 
          onClick={() => {
     trig();              // internal
     onHeartClick();      // parent state update
-  }} trigger={trigger} renderOrder={0}
-        />
-        <Clump2 position={[0,3.4,0]} scale={1.9} triggerExplosion={triggerExplosion} trigger={trigger}/>
+  }} trigger={trigger} renderOrder={0}/>
+       
        
         </Float>
+        <Clump2 position={[0,3.4,0]} scale={1.9}/>
      
       
        <EffectComposer multisampling={0}>  {/* multisampling 0 = faster */}

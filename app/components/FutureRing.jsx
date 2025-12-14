@@ -3,7 +3,7 @@
 import * as THREE from "three";
 import React, { useRef, useMemo, useEffect, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import gsap from "gsap";
+import { useScroll } from "@react-three/drei";
 
 const RippleShader = {
   uniforms: {
@@ -13,7 +13,7 @@ const RippleShader = {
     uHaloSpread: { value: 0.3 },
     uRippleSpeed: { value: 1.5 },
     uRippleCount: { value: 3.0 },
-    uOpacity: { value: 1.0 }
+    uOpacity: { value: 1.0 },
   },
 
   vertexShader: `
@@ -32,6 +32,7 @@ const RippleShader = {
     uniform float uRippleSpeed;
     uniform float uRippleCount;
     uniform float uOpacity;
+
     varying vec3 vPosition;
 
     void main() {
@@ -54,7 +55,7 @@ const RippleShader = {
 
       gl_FragColor = vec4(color, totalGlow * 0.9 * uOpacity);
     }
-  `
+  `,
 };
 
 const FuturisticRing = ({
@@ -66,14 +67,14 @@ const FuturisticRing = ({
   rippleSpeed = 1.5,
   rippleCount = 3.0,
   segments = 128,
-  scale,
   rotation = [Math.PI / 2, 0, 0],
-  trigger,
-  triggerExplosion,
   ...props
 }) => {
+  const scroll = useScroll();
+  const materialRef = useRef();
+  const fadeRef = useRef(0);
 
-  // ⭐ NEW: Safe SSR responsive scale
+  /* ---------- Responsive scale ---------- */
   const [responsiveScale, setResponsiveScale] = useState(9);
 
   useEffect(() => {
@@ -83,9 +84,7 @@ const FuturisticRing = ({
     else setResponsiveScale(9);
   }, []);
 
-  const materialRef = useRef();
-
-  // Create material once
+  /* ---------- Material ---------- */
   const material = useMemo(() => {
     return new THREE.ShaderMaterial({
       uniforms: THREE.UniformsUtils.clone(RippleShader.uniforms),
@@ -98,54 +97,42 @@ const FuturisticRing = ({
     });
   }, []);
 
-  // Update uniforms every time props change
+  /* ---------- Update uniforms ---------- */
   useEffect(() => {
-    if (!material) return;
-    material.uniforms.uColor.value = new THREE.Color(color);
+    material.uniforms.uColor.value.set(color);
     material.uniforms.uGlowIntensity.value = glowIntensity;
     material.uniforms.uHaloSpread.value = haloSpread;
     material.uniforms.uRippleSpeed.value = rippleSpeed;
     material.uniforms.uRippleCount.value = rippleCount;
   }, [color, glowIntensity, haloSpread, rippleSpeed, rippleCount, material]);
 
-  // Update time uniform per frame
+  /* ---------- Frame loop ---------- */
   useFrame((_, delta) => {
-    if (materialRef.current) {
-      materialRef.current.uniforms.uTime.value += delta;
-    }
-  });
-
-  // Fade in/out animation with GSAP
-  useEffect(() => {
     if (!materialRef.current) return;
 
-    const mesh = materialRef.current.__r3f.parent;
-    const mat = materialRef.current.uniforms;
+    // time
+    materialRef.current.uniforms.uTime.value += delta;
 
-    if (trigger || triggerExplosion) {
-      mesh.visible = true;
+    // fade starts after 50% scroll
+    const targetFade = THREE.MathUtils.clamp(
+      (scroll.offset - 0.2) * 2,
+      0,
+      1
+    );
 
-      gsap.to(mat.uOpacity, {
-        value: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        onComplete: () => (mesh.visible = false),
-      });
-    } else {
-      mesh.visible = true;
+    fadeRef.current = THREE.MathUtils.lerp(
+      fadeRef.current,
+      targetFade,
+      0.1
+    );
 
-      gsap.to(mat.uOpacity, {
-        value: 1,
-        duration: 0.6,
-        ease: "power2.inOut",
-      });
-    }
-  }, [trigger, triggerExplosion]);
+    materialRef.current.uniforms.uOpacity.value = 1 - fadeRef.current;
+  });
 
   return (
     <mesh rotation={rotation} scale={responsiveScale} {...props}>
       <ringGeometry args={[innerRadius, outerRadius, segments]} />
-      <primitive object={material} ref={materialRef} attach="material" />
+      <primitive ref={materialRef} object={material} attach="material" />
     </mesh>
   );
 };

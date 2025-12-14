@@ -3,7 +3,7 @@ import { Mail } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
-
+import React from 'react';
 const navItems = [
   { title: 'Simulator', href: '/' },
   { title: 'Home', href: '/home' },
@@ -18,6 +18,7 @@ export default function FullscreenMenu() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
 
+
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
@@ -27,10 +28,22 @@ export default function FullscreenMenu() {
     <>
        {/* Top Navbar */}
        <nav className="fixed top-0 w-full z-50 flex justify-end p-6 bg-transparent">
+                <img
+        src="../images/logo.png"
+        alt="Logo"
+        style={{
+          position: "absolute",
+          top: "15%",
+          left: "5%",
+          width: "clamp(50px, 8vw, 70px)",
+          height: "auto",
+          zIndex: 11,
+        }}
+      />
         <button
           aria-label="Toggle menu"
-          onClick={() => setOpen(true)}
-          className="text-black text-3xl font-bold cursor-pointer transition-transform duration-300 hover:scale-120 outline-bg-black focus:outline-none"
+          onClick={() => setOpen(true) }
+          className="text-white text-3xl font-bold cursor-pointer transition-transform duration-300 hover:scale-120 outline-bg-black focus:outline-none"
           style={{ transform: open ? 'rotate(90deg)' : 'rotate(0deg)' }}
         >
           ☰
@@ -40,23 +53,7 @@ export default function FullscreenMenu() {
       {/* Overlay Fullscreen Menu */}
       <div className={`fixed inset-0 z-[100] transition-opacity duration-700
         ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-        {/* Video BG */}
-          {/* <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 z-10 w-full h-full bg-gray-950 object-cover"
-        >
-          <source src="/bg2.mp4" type="video/mp4" />
-        </video> */}
-        {/* <Image
-          src="/demo.jpeg"
-          alt="Background"
-          fill
-          className="w-full h-auto bg-gray-950 inset-0 z-10"
-          priority
-        /> */}
+       
         
         <div className="absolute inset-0 bg-gray-950 bg-opacity-20 z-0" />
 
