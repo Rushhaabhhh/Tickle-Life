@@ -79,7 +79,7 @@ export default function RootLayout({
               />
               <TabletForm
                 triggerExplosion={triggerExplosion}
-                trigger={undefined}
+                trigger={triggerExplosion}
                 formRef={undefined}
               />
             </>
