@@ -148,7 +148,7 @@ const Calculator: React.FC<CalculatorProps> = ({ setShowQualificationModal }) =>
             <AnimatePresence>
               {calculatorResult && (
                 <motion.div
-                  className="mt-8 p-8 rounded-2xl bg-gray-50 border border-gray-200"
+                  className="bg-transparent mt-8 p-8 rounded-2xl bg-gray-50 border border-gray-200"
                   initial={{ opacity: 0, height: 0, y: 20 }}
                   animate={{ opacity: 1, height: 'auto', y: 0 }}
                   exit={{ opacity: 0, height: 0, y: -20 }}

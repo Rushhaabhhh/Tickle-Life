@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { motion, MotionValue } from 'framer-motion'
-import AnimatedChart from './AnimatedChart'
+// import AnimatedChart from './AnimatedChart'
 
 interface HeroProps {
   scrollToCalculator: () => void
@@ -10,14 +10,14 @@ interface HeroProps {
   chartScale: MotionValue<number>
 }
 
-const Hero: React.FC<HeroProps> = ({ scrollToCalculator, chartOpacity, chartScale }) => {
+const Hero: React.FC<HeroProps> = ({ scrollToCalculator }) => {
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative pt-20">
       <div
         className="border p-8 max-w-7xl w-full mx-4 flex flex-col items-center"
         style={{ borderColor: "rgba(100, 100, 100, 0.3)" }}
       >
-        <AnimatedChart chartOpacity={chartOpacity} chartScale={chartScale} />
+        {/* <AnimatedChart chartOpacity={chartOpacity} chartScale={chartScale} /> */}
 
         <motion.div
           className="relative z-10 w-full max-w-6xl text-center"

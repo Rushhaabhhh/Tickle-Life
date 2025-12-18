@@ -26,7 +26,7 @@ const FEATURES = [
 
 const FeaturesReality: React.FC = () => {
   return (
-    <section className="bg-white py-24 px-8">
+    <section className="bg-transparent  py-24 px-8">
       <div className="max-w-7xl mx-auto">
         <motion.h2
           className="text-5xl md:text-6xl font-light text-center mb-6 tracking-tight text-gray-900"

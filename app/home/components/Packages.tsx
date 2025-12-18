@@ -52,7 +52,7 @@ interface PackagesProps {
 
 const Packages: React.FC<PackagesProps> = ({ setShowQualificationModal, scrollToCalculator }) => {
   return (
-    <section id="packages" className="py-24 px-8 bg-gray-50">
+    <section id="packages" className="bg-transparent py-24 px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         <motion.h2
           className="text-5xl md:text-6xl font-light text-center mb-8 tracking-tight text-gray-900"
@@ -117,7 +117,7 @@ const Packages: React.FC<PackagesProps> = ({ setShowQualificationModal, scrollTo
               </div>
 
               {/* Best For */}
-              <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+              <div className="mb-6 p-4 bg-transparent rounded-lg">
                 <p className="text-xs text-gray-500 font-light mb-1 uppercase tracking-wide">
                   Best for
                 </p>
