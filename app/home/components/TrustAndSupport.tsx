@@ -3,10 +3,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-interface RealSupportProps {
-  setShowQualificationModal: (show: boolean) => void
-}
-
 const STATS = [
   { number: '$50M+', label: 'Monthly Volume' },
   { number: 'Level 1', label: 'PCI DSS' },
@@ -15,7 +11,7 @@ const STATS = [
   { number: '26+', label: 'Banking Partners' }
 ]
 
-const TrustAndSupport: React.FC<RealSupportProps> = ({ setShowQualificationModal }) => {
+const TrustAndSupport: React.FC = () => {
   return (
     <>
       {/* Trust Elements Section */}
@@ -68,7 +64,9 @@ const TrustAndSupport: React.FC<RealSupportProps> = ({ setShowQualificationModal
           >
             <p className="text-lg text-gray-700 mb-6">Still Unsure? See if we&apos;re a fit</p>
             <button
-              onClick={() => setShowQualificationModal(true)}
+              onClick={() => {
+                window.location.href = '/resources'
+              }}
               className="bg-gray-900 text-white px-10 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer"
               >
               Check Fit →

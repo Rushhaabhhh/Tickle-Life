@@ -195,7 +195,7 @@ export default function ContactSection() {
             If you&apos;ve already run the simulator and know you qualify, drop your details here.<br />
             Our compliance team reviews each submission manually—most get a response in 24 hours.
             <br /><br />
-            Not ready yet? Check out our <a className="underline hover:text-gray-900" href="/resources">Resources</a> or <a className="underline hover:text-gray-900" href="/eligibility">Eligibility Widget</a> first →
+            Not ready yet? Check out our <a className="underline hover:text-gray-900" href="/resources">Resources</a> or <a className="underline hover:text-gray-900" href="/resources">Eligibility Widget</a> first →
           </p>
         </motion.header>
 

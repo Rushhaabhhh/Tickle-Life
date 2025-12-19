@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Plus, X, Shield, Bitcoin, LockKeyhole, Landmark } from 'lucide-react'
-import AnimatedChart from './components/AnimatedChart'
+// import AnimatedChart from './components/AnimatedChart'
 
 // Service Cards Data
 const serviceCards = [
@@ -109,7 +109,7 @@ export default function ServicesSection() {
             We solve your problem
           </motion.h1>
         </div>
-        <AnimatedChart />
+        {/* <AnimatedChart /> */}
       </motion.header>
 
       {/* Service Cards */}
@@ -270,7 +270,7 @@ export default function ServicesSection() {
 
       {/* Advanced Features */}
       <motion.section
-        className="max-w-7xl mx-auto py-24 px-8 md:px-16 bg-[#f9f9f9]"
+        className="max-w-7xl mx-auto py-24 px-8 md:px-16 bg-transparent"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}

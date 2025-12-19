@@ -35,7 +35,7 @@ const PSPHomepage = () => {
         chartScale={chartScale} 
       />
       
-      <TrustAndSupport setShowQualificationModal={setShowQualificationModal} />
+      <TrustAndSupport />
 
       <StorySection />
       
