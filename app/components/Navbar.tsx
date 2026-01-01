@@ -12,6 +12,7 @@ const navItems = [
   { title: 'Resources', href: '/resources' },
   { title: 'Contact Us', href: '/contact-us' },
   { title: 'About Us', href: '/about-us' },
+  { title: 'Partners', href: '/partners' },
 ]
 
 export default function FullscreenMenu() {
