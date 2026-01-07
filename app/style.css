@@ -28,13 +28,13 @@ html,body,#root{
     transition: 0.2s ease;
 }
 
-#main-canvas{
+Canvas,canvas{
     position: fixed!important;
     width:100%;
     height: 100%;
     top:0;
     left:0;
-    /* z-index: 3; */
+    z-index: -3;
 }
 
 #loading-canvas{
@@ -139,7 +139,6 @@ p{
         top:15%;
         left:50%;
         transform:translateX(-50%);
-        /* cursor: auto; */
       }
 .form.active{
     opacity: 1;

@@ -7,7 +7,6 @@ import "./coin.css";
 import React, { Suspense, useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { ScrollControls } from "@react-three/drei";
-import { usePathname } from "next/navigation";
 
 import Navbar from "./components/Navbar";
 import Experience from "./components/Experience.jsx";

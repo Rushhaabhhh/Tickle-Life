@@ -46,7 +46,7 @@ export default function AboutSection() {
 
       {/* Our Story - Centered Narrative (Rapyd-style history section) */}
       <motion.section
-        className="px-8 md:px-16 bg-gray-500"
+        className="px-8 md:px-16"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
