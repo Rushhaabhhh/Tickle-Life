@@ -8,7 +8,7 @@ export default function AboutSection() {
     <section className="bg-white">
       
       <motion.header
-        className="min-h-screen flex items-center px-8 md:px-16 py-24"
+        className="min-h-screen flex items-center bg-transparent px-8 md:px-16 py-24"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2 }}
@@ -46,7 +46,7 @@ export default function AboutSection() {
 
       {/* Our Story - Centered Narrative (Rapyd-style history section) */}
       <motion.section
-        className="px-8 md:px-16 bg-white"
+        className="px-8 md:px-16 bg-gray-500"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
