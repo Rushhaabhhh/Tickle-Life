@@ -1,13 +1,11 @@
 'use client'
 
 import React, { useState, useRef } from 'react'
-import { useScroll, useTransform } from 'framer-motion'
 import Hero from './components/Hero'
 import StorySection from './components/Story-Lines'
 import ProblemsAndSolutions from './components/ProblemsAndSolutions'
 import FeaturesReality from './components/FeaturesReality'
 import Testimonials from './components/Testimonials'
-import Calculator from './components/Calculator'
 import Packages from './components/Packages'
 import FAQ from './components/FAQ'
 import Modal from './components/Modal'
@@ -15,25 +13,13 @@ import TrustAndSupport from './components/TrustAndSupport'
 
 const PSPHomepage = () => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: containerRef })
   
   const [showQualificationModal, setShowQualificationModal] = useState(false)
   const [showComplianceModal, setShowComplianceModal] = useState(false)
 
-  const chartOpacity = useTransform(scrollYProgress, [0, 0.3], [0.3, 1])
-  const chartScale = useTransform(scrollYProgress, [0, 0.3], [0.8, 1])
-
-  const scrollToCalculator = () => {
-    document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' })
-  }
-
   return (
     <div ref={containerRef} className="min-h-screen bg-transparent text-black relative overflow-x-hidden">
-      <Hero 
-        scrollToCalculator={scrollToCalculator} 
-        chartOpacity={chartOpacity} 
-        chartScale={chartScale} 
-      />
+      <Hero />
       
       <TrustAndSupport />
 
@@ -44,14 +30,9 @@ const PSPHomepage = () => {
       <FeaturesReality />
       
       <Testimonials />
-      
-      <Calculator setShowQualificationModal={setShowQualificationModal} />
-      
-      <Packages 
-        setShowQualificationModal={setShowQualificationModal}
-        scrollToCalculator={scrollToCalculator}
-      />
-      
+
+      <Packages />
+
       <FAQ />
 
       {/* Qualification Modal */}

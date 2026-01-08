@@ -55,11 +55,11 @@ const ProblemsAndSolutions: React.FC = () => {
           3 Problems our clients brought to us
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {PROBLEMS.map((item, idx) => (
             <motion.div
               key={idx}
-              className="relative h-[440px] perspective-1000"
+              className="relative perspective-1000 w-full"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ 
@@ -72,7 +72,7 @@ const ProblemsAndSolutions: React.FC = () => {
               onMouseLeave={() => handleMouseLeave(idx)}
             >
               <motion.div
-                className="relative w-full h-full cursor-pointer"
+                className="relative w-full h-[28rem] md:h-[32rem] cursor-pointer"
                 style={{ transformStyle: 'preserve-3d' }}
                 animate={{ rotateY: flippedCards.has(idx) ? 180 : 0 }}
                 transition={{ 
@@ -82,71 +82,110 @@ const ProblemsAndSolutions: React.FC = () => {
               >
                 {/* Front Face - Problem */}
                 <div
-                  className="absolute w-full h-full bg-white rounded-2xl shadow-sm hover:shadow-xl p-10 flex flex-col justify-between border border-gray-200 transition-shadow duration-500"
+                  className="absolute w-full h-full bg-white rounded-2xl shadow-lg border border-gray-200 flex flex-col p-6 md:p-8 overflow-hidden"
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden'
                   }}
                 >
-                  <div className="space-y-6">
-                    
-                    <h3 className="text-2xl font-medium text-gray-900 leading-tight">
+                  {/* Title */}
+                  <div className="mb-6 flex-shrink-0">
+                    <h3 className="text-xl md:text-2xl font-semibold text-gray-900 leading-tight tracking-tight line-clamp-2">
                       {item.title}
                     </h3>
-                    
-                    <p className="text-lg text-gray-900 font-light italic leading-relaxed">
-                      &quot;{item.problem}&quot;
+                  </div>
+
+                  {/* Problem Quote */}
+                  <div className="mb-6 flex-shrink-0">
+                    <p className="text-lg md:text-xl text-gray-900 font-light italic leading-relaxed line-clamp-2">
+                      "{item.problem}"
                     </p>
-                    
-                    <p className="text-gray-500 text-sm leading-relaxed">
+                  </div>
+
+                  {/* Description */}
+                  <div className="mb-8 flex-1 min-h-0">
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed h-full overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent max-h-full">
                       {item.description}
                     </p>
                   </div>
-                  
-                  <div className="flex items-center justify-center pt-6 border-t border-gray-100">
-                    <span className="text-xs text-gray-400 tracking-wide">Hover to reveal solution</span>
+
+                  {/* Hover CTA */}
+                  <div className="flex-shrink-0 border-t border-gray-200 pt-6">
+                    <div className="flex items-center justify-center">
+                      <span className="text-xs md:text-sm font-medium text-gray-500 tracking-wide bg-gray-50 px-4 py-2 rounded-full">
+                        Hover to reveal solution →
+                      </span>
+                    </div>
                   </div>
                 </div>
 
                 {/* Back Face - Solution */}
                 <div
-                  className="absolute w-full h-full bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-2xl shadow-xl p-10 flex flex-col justify-between"
+                  className="absolute w-full h-full bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-2xl shadow-2xl flex flex-col p-6 md:p-8 border-2 border-gray-800/50 overflow-hidden"
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
                     transform: 'rotateY(180deg)'
                   }}
                 >
-                  <div className="space-y-6">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-medium tracking-widest text-gray-400 uppercase">
+                  {/* Solution Header */}
+                  <div className="mb-6 flex-shrink-0">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-xs font-bold tracking-widest text-gray-300 uppercase bg-white/10 px-3 py-1 rounded-full">
                         Our Fix
                       </span>
-                      
                     </div>
-                    
-                    <h4 className="text-2xl font-medium text-white leading-tight">
+                    <h4 className="text-xl md:text-2xl font-semibold text-white leading-tight tracking-tight line-clamp-2">
                       {item.solution}
                     </h4>
-                    
-                    <p className="text-gray-300 text-base leading-relaxed font-light">
+                  </div>
+
+                  {/* Solution Description */}
+                  <div className="mb-8 flex-1 min-h-0">
+                    <p className="text-sm md:text-base text-gray-200 leading-relaxed h-full overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent/30 max-h-full">
                       {item.fix}
                     </p>
                   </div>
-                  
-                  <div className="flex items-center justify-center pt-6 border-t border-white/10">
-                    <span className="text-xs text-slate-300 tracking-wide">Hover away to see problem</span>
+
+                  {/* Hover CTA */}
+                  <div className="flex-shrink-0 border-t border-white/20 pt-6">
+                    <div className="flex items-center justify-center">
+                      <span className="text-xs md:text-sm font-medium text-gray-300 tracking-wide bg-white/10 px-4 py-2 rounded-full border border-white/20">
+                        Hover away to see problem ←
+                      </span>
+                    </div>
                   </div>
                 </div>
               </motion.div>
             </motion.div>
-          ))}
+          ))
+        }
         </div>
       </div>
 
       <style jsx>{`
         .perspective-1000 {
-          perspective: 1000px;
+          perspective: 1200px;
+        }
+        .scrollbar-thin {
+          scrollbar-width: thin;
+        }
+        .scrollbar-thin::-webkit-scrollbar {
+          width: 4px;
+          height: 4px;
+        }
+        .scrollbar-thin::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+          background-color: currentColor;
+          border-radius: 9999px;
+        }
+        .line-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
       `}</style>
     </section>

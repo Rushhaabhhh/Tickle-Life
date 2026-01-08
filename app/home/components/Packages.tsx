@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 
 const PACKAGES = [
   {
@@ -45,12 +46,9 @@ const PACKAGES = [
   }
 ]
 
-interface PackagesProps {
-  setShowQualificationModal: (show: boolean) => void
-  scrollToCalculator: () => void
-}
+const Packages = () => {
+  const router = useRouter()
 
-const Packages: React.FC<PackagesProps> = ({ setShowQualificationModal, scrollToCalculator }) => {
   return (
     <section id="packages" className="bg-transparent py-24 px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
@@ -88,7 +86,6 @@ const Packages: React.FC<PackagesProps> = ({ setShowQualificationModal, scrollTo
               }}
               viewport={{ once: true }}
             >
-              {/* Header */}
               <div className="mb-8 pt-2">
                 <h3 className="text-2xl font-medium text-gray-900 mb-2 tracking-tight">
                   {pkg.title}
@@ -98,10 +95,8 @@ const Packages: React.FC<PackagesProps> = ({ setShowQualificationModal, scrollTo
                 </p>
               </div>
 
-              {/* Divider */}
               <div className="h-px bg-gradient-to-r from-gray-200 via-gray-300 to-transparent mb-8" />
 
-              {/* Benefits */}
               <div className="mb-8">
                 <h4 className="text-xs font-medium text-gray-400 uppercase tracking-widest mb-4">
                   What you get
@@ -116,7 +111,6 @@ const Packages: React.FC<PackagesProps> = ({ setShowQualificationModal, scrollTo
                 </ul>
               </div>
 
-              {/* Best For */}
               <div className="mb-6 p-4 bg-transparent rounded-lg">
                 <p className="text-xs text-gray-500 font-light mb-1 uppercase tracking-wide">
                   Best for
@@ -126,16 +120,14 @@ const Packages: React.FC<PackagesProps> = ({ setShowQualificationModal, scrollTo
                 </p>
               </div>
 
-              {/* Savings */}
               <div className="mb-8">
                 <p className="text-sm font-medium text-gray-900">
                   {pkg.savings}
                 </p>
               </div>
 
-              {/* CTA Button */}
               <button
-                onClick={() => setShowQualificationModal(true)}
+                onClick={() => router.push('/')}
                 className="w-full py-4 rounded-xl font-medium transition-all duration-400 text-sm tracking-wide bg-white text-gray-900 border-2 border-gray-900 hover:bg-gray-900 hover:text-white hover:scale-105 cursor-pointer"
               >
                 {pkg.cta}
@@ -144,7 +136,6 @@ const Packages: React.FC<PackagesProps> = ({ setShowQualificationModal, scrollTo
           ))}
         </div>
 
-        {/* Calculator CTA */}
         <motion.div
           className="text-center"
           initial={{ opacity: 0, y: 30 }}
@@ -153,7 +144,7 @@ const Packages: React.FC<PackagesProps> = ({ setShowQualificationModal, scrollTo
           viewport={{ once: true }}
         >
           <button
-            onClick={scrollToCalculator}
+            onClick={() => router.push('/')}
             className="bg-gray-900 text-white px-10 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer"
           >
             Try our calculator to see what you could be paying →

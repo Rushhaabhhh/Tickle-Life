@@ -1,24 +1,18 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { motion, MotionValue } from 'framer-motion'
-// import AnimatedChart from './AnimatedChart'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
-interface HeroProps {
-  scrollToCalculator: () => void
-  chartOpacity: MotionValue<number>
-  chartScale: MotionValue<number>
-}
+const Hero: React.FC = () => {
+  const router = useRouter();
 
-const Hero: React.FC<HeroProps> = ({ scrollToCalculator }) => {
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative pt-20">
       <div
         className="border p-8 max-w-7xl w-full mx-4 flex flex-col items-center"
         style={{ borderColor: "rgba(100, 100, 100, 0.3)" }}
       >
-        {/* <AnimatedChart chartOpacity={chartOpacity} chartScale={chartScale} /> */}
-
         <motion.div
           className="relative z-10 w-full max-w-6xl text-center"
           initial={{ opacity: 0 }}
@@ -27,13 +21,13 @@ const Hero: React.FC<HeroProps> = ({ scrollToCalculator }) => {
         >
           <motion.h1
             className="mx-auto leading-tight mb-12 max-w-full"
-            style={{ fontFamily: "'OC Mikola', sans-serif", fontSize: "clamp(1.5rem, 8vw, 4.5rem)"}}
+            style={{ fontFamily: "'OC Mikola', sans-serif", fontSize: "clamp(1.5rem, 8vw, 4.5rem)" }}
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.5, delay: 1 }}
           >
-            While you&apos;re stuck paying <span className="text-red-600">4.5%</span>, our clients average <span className="text-green-600">2.1%</span>.<br />
-            &apos;Cause we don&apos;t punish risk — we understand it.
+            While you're stuck paying <span className="text-red-600">4.5%</span>, our clients average <span className="text-green-600">2.1%</span>.<br />
+            'Cause we don't punish risk — we understand it.
           </motion.h1>
         </motion.div>
       </div>
@@ -57,7 +51,7 @@ const Hero: React.FC<HeroProps> = ({ scrollToCalculator }) => {
             Try our calculator to see what you could be paying.
           </motion.p>
           <motion.button
-            onClick={scrollToCalculator}
+            onClick={() => router.push('/')}
             className="bg-gray-900 text-white px-10 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer"
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -68,7 +62,7 @@ const Hero: React.FC<HeroProps> = ({ scrollToCalculator }) => {
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
