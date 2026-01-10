@@ -26,8 +26,8 @@ const Hero: React.FC = () => {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.5, delay: 1 }}
           >
-            While you're stuck paying <span className="text-red-600">4.5%</span>, our clients average <span className="text-green-600">2.1%</span>.<br />
-            'Cause we don't punish risk — we understand it.
+            While you&apos;re stuck paying <span className="text-red-600">4.5%</span>, our clients average <span className="text-green-600">2.1%</span>.<br />
+            &apos;Cause we don&apos;t punish risk — we understand it.
           </motion.h1>
         </motion.div>
       </div>

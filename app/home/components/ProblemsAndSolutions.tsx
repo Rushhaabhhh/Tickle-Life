@@ -98,7 +98,7 @@ const ProblemsAndSolutions: React.FC = () => {
                   {/* Problem Quote */}
                   <div className="mb-6 flex-shrink-0">
                     <p className="text-lg md:text-xl text-gray-900 font-light italic leading-relaxed line-clamp-2">
-                      "{item.problem}"
+                      &quot;{item.problem}&quot;
                     </p>
                   </div>
 

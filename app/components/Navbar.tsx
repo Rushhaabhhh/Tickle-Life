@@ -7,12 +7,12 @@ import React from 'react';
 const navItems = [
   { title: 'Simulator', href: '/' },
   { title: 'Home', href: '/home' },
-  { title: 'Industry', href: '/industry' },
   { title: 'Services', href: '/services' },
+  { title: 'Industries', href: '/industry' },
   { title: 'Resources', href: '/resources' },
-  { title: 'Contact Us', href: '/contact-us' },
   { title: 'About Us', href: '/about-us' },
   { title: 'Partners', href: '/partners' },
+  { title: 'Contact Us', href: '/contact-us' },
 ]
 
 export default function FullscreenMenu() {
