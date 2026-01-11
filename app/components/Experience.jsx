@@ -51,11 +51,12 @@ function trig(){
   
 // load animation
 useEffect(() => {
-  if (!isLoaded) return; // ⛔ WAIT until loader is gone
-
+  camera.lookAt(2, -3, 3);
   const tl = gsap.timeline({ defaults: { ease: "power2.out" } })
-
+  if (!isLoaded) return; // ⛔ WAIT until loader is gone
   tl.set(camera.position, { x: 25, y: 30, z: -58 })
+
+
 
   tl.to(camera.position, {
     x: 40,

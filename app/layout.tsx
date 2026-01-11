@@ -15,20 +15,24 @@ import LoadingScreen from "./components/LoadingScreen";
 import HeroText from "./components/HeroText";
 import TabletForm from "./components/TabletForm";
 import DollarCursor from "./components/DollarCursor";
+import { usePathname } from "next/navigation";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const [pathname, setPathname] = useState<string | null>(null);
+  // const [pathname, setPathname] = useState<string | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [triggerExplosion, setTriggerExplosion] = useState(false);
   const [active] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Mount client-side state safely
-  useEffect(() => {
+const pathname = usePathname();
+
+  
+ useEffect(() => {
+  if(!isLoaded){
+
     setMounted(true);
-    const path = window.location.pathname;
-    setPathname(path);
-  }, []);
+  }
+}, []);
 
   const handleExplosion = () => {
     setTriggerExplosion((prev) => !prev);
@@ -49,7 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body
-        className="flex flex-col min-h-screen font-inter bg-gray-100"
+        className="flex flex-col font-inter bg-gray-100"
         style={{ cursor: cursorStyle }}
         suppressHydrationWarning={true}
       >
@@ -58,12 +62,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <DollarCursor />
         <Navbar />
         <main className="flex-grow">
-          <DollarCursor />
+          
 
-          <div className="w-full h-screen">
+          <div className={pathname === "/" ? "w-full h-screen" : ""}>
+
             <Canvas
               shadows
-              camera={{ position: [40, -2, 3], fov: 50 }}
+              camera={{ position: [25, 30, -58], fov: 50 }}
               dpr={[1, 1.5]}
             >
               <Suspense fallback={null}>
