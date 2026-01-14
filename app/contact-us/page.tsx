@@ -12,14 +12,14 @@ const tabs = [
 
 type TabKey = typeof tabs[number]['key']
 
-// ✅ Trust icons/points
+// Trust icons/points - UI Elements use Charcoal bg, Aqua accents, Gray labels
 function TrustList() {
   const trustItems = [
-    { icon: <FileBadge2 size={18} className="text-green-600" />, text: "Free compliance and risk review with every inquiry." },
-    { icon: <UserCheck size={18} className="text-green-600" />, text: "Real people, no bots — every submission is reviewed manually." },
-    { icon: <EyeOff size={18} className="text-green-600" />, text: "Your data stays private — never shared or sold." },
-    { icon: <Globe size={18} className="text-green-600" />, text: "Registered with FinCEN (U.S.) and FINTRAC (Canada)." },
-    { icon: <ShieldCheck size={18} className="text-green-600" />, text: "PCI DSS Level 1 certified and licensed in 22+ jurisdictions." }
+    { icon: <FileBadge2 size={18} className="text-[#72CFCA]" />, text: "Free compliance and risk review with every inquiry." },
+    { icon: <UserCheck size={18} className="text-[#72CFCA]" />, text: "Real people, no bots — every submission is reviewed manually." },
+    { icon: <EyeOff size={18} className="text-[#72CFCA]" />, text: "Your data stays private — never shared or sold." },
+    { icon: <Globe size={18} className="text-[#72CFCA]" />, text: "Registered with FinCEN (U.S.) and FINTRAC (Canada)." },
+    { icon: <ShieldCheck size={18} className="text-[#72CFCA]" />, text: "PCI DSS Level 1 certified and licensed in 22+ jurisdictions." }
   ]
   return (
     <ul className="list-none pl-0 space-y-3 mt-6">
@@ -33,7 +33,7 @@ function TrustList() {
   )
 }
 
-// ✅ Reusable Input Field
+// Reusable Input Field - Labels Gray, Cards Charcoal
 type FieldProps = {
   label: string
   name: string
@@ -49,13 +49,14 @@ function FormField({ label, ...props }: FieldProps) {
       <label className="block text-xs font-medium text-gray-400 uppercase tracking-widest mb-2">{label}</label>
       <input
         className="w-full px-4 py-3 border border-gray-200 rounded-lg text-base font-light text-gray-900 bg-white focus:border-black focus:outline-none transition-all duration-300"
+        style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}
         {...props}
       />
     </div>
   )
 }
 
-// ✅ Merchant Form
+// Merchant Form
 function MerchantForm({ onDone, loading, setLoading }: { onDone: () => void; loading: boolean; setLoading: (v: boolean) => void }) {
   const [form, setForm] = useState({
     name: '', email: '', company: '', industry: '', website: '', region: ''
@@ -78,17 +79,18 @@ function MerchantForm({ onDone, loading, setLoading }: { onDone: () => void; loa
       <FormField label="Industry*" name="industry" value={form.industry} onChange={handleChange} />
       <FormField label="Company Website*" name="website" value={form.website} onChange={handleChange} />
       <FormField label="Operating Region*" name="region" value={form.region} onChange={handleChange} />
-      {error && <div className="text-red-500 text-sm">{error}</div>}
+      {error && <div className="text-[#D7B750] text-sm" style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}>{error}</div>}
       <button type="submit" disabled={loading}
-        className={`w-full py-4 mt-2 rounded-xl font-medium text-base transition-all cursor-pointer
-        ${loading ? 'cursor-not-allowed bg-gray-400 text-white' : 'bg-black text-white hover:bg-gray-900 hover:scale-[1.02]'}`}>
+        className={`w-full py-4 mt-2 rounded-xl font-medium text-base transition-all cursor-pointer ${loading ? 'cursor-not-allowed bg-[#9AA0A6] text-white' : 'bg-[#3F9396] text-white hover:bg-[#D7B750] hover:scale-[1.02]'} border border-[#72CFCA]`}
+        style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}
+      >
         {loading ? 'Submitting...' : 'Submit'}
       </button>
     </form>
   )
 }
 
-// ✅ Agent Form
+// Agent Form
 function AgentForm({ onDone, loading, setLoading }: { onDone: () => void; loading: boolean; setLoading: (v: boolean) => void }) {
   const [form, setForm] = useState({
     name: '', email: '', agency: '', website: '', regions: '', types: '', sourcing: ''
@@ -112,17 +114,18 @@ function AgentForm({ onDone, loading, setLoading }: { onDone: () => void; loadin
       <FormField label="Regions You Operate In*" name="regions" value={form.regions} onChange={handleChange} />
       <FormField label="Merchant Types You Usually Work With*" name="types" value={form.types} onChange={handleChange} />
       <FormField label="How Do You Usually Source Leads?*" name="sourcing" value={form.sourcing} onChange={handleChange} />
-      {error && <div className="text-red-500 text-sm">{error}</div>}
+      {error && <div className="text-[#D7B750] text-sm" style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}>{error}</div>}
       <button type="submit" disabled={loading}
-        className={`w-full py-4 mt-2 rounded-xl font-medium text-base transition-all cursor-pointer
-        ${loading ? 'cursor-not-allowed bg-gray-400 text-white' : 'bg-black text-white hover:bg-gray-900 hover:scale-[1.02]'}`}>
+        className={`w-full py-4 mt-2 rounded-xl font-medium text-base transition-all cursor-pointer ${loading ? 'cursor-not-allowed  text-white' : 'bg-[#3F9396] text-white hover:bg-[#D7B750] hover:scale-[1.02]'} border border-[#72CFCA]`}
+        style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}
+      >
         {loading ? 'Submitting...' : 'Submit'}
       </button>
     </form>
   )
 }
 
-// ✅ Partner Form
+// Partner Form
 function PartnerForm({ onDone, loading, setLoading }: { onDone: () => void; loading: boolean; setLoading: (v: boolean) => void }) {
   const [form, setForm] = useState({
     name: '', email: '', org: '', orgtype: '', website: '', licenses: ''
@@ -145,12 +148,13 @@ function PartnerForm({ onDone, loading, setLoading }: { onDone: () => void; load
       <FormField label="Work Email*" type="email" name="email" value={form.email} onChange={handleChange} />
       <FormField label="Organization Name*" name="org" value={form.org} onChange={handleChange} />
       <div>
-        <label className="block text-xs font-medium text-gray-400 uppercase tracking-widest mb-2">Organization Type*</label>
+        <label className="block text-xs font-medium text-gray-400 uppercase tracking-widest mb-2" style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}>Organization Type*</label>
         <select
           name="orgtype"
           value={form.orgtype}
           onChange={handleSelectChange}
           className="w-full px-4 py-3 border border-gray-200 rounded-lg text-base font-light text-gray-900 bg-white focus:border-black focus:outline-none transition-all duration-300"
+          style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}
           required
         >
           <option value="">Select type</option>
@@ -164,10 +168,11 @@ function PartnerForm({ onDone, loading, setLoading }: { onDone: () => void; load
       </div>
       <FormField label="Website*" name="website" value={form.website} onChange={handleChange} />
       <FormField label="Licenses*" name="licenses" value={form.licenses} onChange={handleChange} />
-      {error && <div className="text-red-500 text-sm">{error}</div>}
+      {error && <div className="text-[#D7B750] text-sm" style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}>{error}</div>}
       <button type="submit" disabled={loading}
-        className={`w-full py-4 mt-2 rounded-xl font-medium text-base transition-all cursor-pointer
-        ${loading ? 'cursor-not-allowed bg-gray-400 text-white' : 'bg-black text-white hover:bg-gray-900 hover:scale-[1.02]'}`}>
+        className={`w-full py-4 mt-2 rounded-xl font-medium text-base transition-all cursor-pointer ${loading ? 'cursor-not-allowed bg-[#9AA0A6] text-white' : 'bg-[#3F9396] text-white hover:bg-[#D7B750] hover:scale-[1.02]'} border border-[#72CFCA]`}
+        style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}
+      >
         {loading ? 'Submitting...' : 'Submit'}
       </button>
     </form>
@@ -187,15 +192,15 @@ export default function ContactSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <h1 className="text-[2.5rem] md:text-[3.5rem] font-light text-gray-900 leading-tight mb-3 text-center">
+          <h1 className="text-[2.5rem] md:text-[3.5rem] font-light text-[#3F9396] leading-tight mb-3 text-center" style={{ fontFamily: '"Bebas Neue", system-ui, -apple-system, sans-serif' }}>
             Contact Us
           </h1>
-          <p className="text-lg text-gray-500 font-light max-w-2xl">
+          <p className="text-lg text-[#0C0C0C] font-light max-w-2xl" style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}>
             Ready to move forward? Let&apos;s talk.<br /><br />
             If you&apos;ve already run the simulator and know you qualify, drop your details here.<br />
             Our compliance team reviews each submission manually—most get a response in 24 hours.
             <br /><br />
-            Not ready yet? Check out our <a className="underline hover:text-gray-900" href="/resources">Resources</a> or <a className="underline hover:text-gray-900" href="/resources">Eligibility Widget</a> first →
+            Not ready yet? Check out our <a className="underline hover:text-[#3F9396] text-[#D7B750]" href="/resources" style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}>Resources</a> or <a className="underline hover:text-[#3F9396] text-[#D7B750]" href="/resources" style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}>Eligibility Widget</a> first →
           </p>
         </motion.header>
 
@@ -203,27 +208,27 @@ export default function ContactSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 items-start">
           {/* LEFT COLUMN - Text, Trust, Why Choose */}
           <section>
-            <h2 className="text-2xl md:text-4xl font-bold mb-10 text-gray-600">
+            <h2 className="text-2xl md:text-4xl font-bold mb-10 text-[#3F9396]" style={{ fontFamily: '"Bebas Neue", system-ui, -apple-system, sans-serif' }}>
               Why Choose Our Platform
             </h2>
             <div className="space-y-8">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">Free compliance and risk review</h3>
-                <p className="text-gray-600 text-base">Every inquiry is double-checked by specialists for accuracy and speed.</p>
+                <h3 className="text-lg font-semibold text-[#0C0C0C] mb-1" style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}>Free compliance and risk review</h3>
+                <p className="text-[#0C0C0C] text-base" style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}>Every inquiry is double-checked by specialists for accuracy and speed.</p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">Registered & Certified</h3>
-                <p className="text-gray-600 text-base">FinCEN, FINTRAC, PCI DSS Level 1—plus licensed in 22+ global jurisdictions.</p>
+                <h3 className="text-lg font-semibold text-[#0C0C0C] mb-1" style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}>Registered & Certified</h3>
+                <p className="text-[#0C0C0C] text-base" style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}>FinCEN, FINTRAC, PCI DSS Level 1—plus licensed in 22+ global jurisdictions.</p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">Privacy First</h3>
-                <p className="text-gray-600 text-base mb-20">We never sell or share your data. Real people only, no bots.</p>
+                <h3 className="text-lg font-semibold text-[#0C0C0C] mb-1" style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}>Privacy First</h3>
+                <p className="text-[#0C0C0C] text-base mb-20" style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}>We never sell or share your data. Real people only, no bots.</p>
               </div>
             </div>
             <TrustList />
           </section>
 
-          {/* RIGHT COLUMN - Forms */}
+          {/* RIGHT COLUMN - Forms - Card style */}
           <section>
             {/* Tabs */}
             <div className="flex gap-3 mb-8">
@@ -232,7 +237,7 @@ export default function ContactSection() {
                   key={t.key}
                   onClick={() => { setTab(t.key); setSubmitted(false) }}
                   className={`px-6 py-3 rounded-full font-medium transition-all text-sm duration-300 cursor-pointer
-                  ${tab === t.key ? "bg-black text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-900 hover:text-white"}`}
+                  ${tab === t.key ? "bg-[#3F9396] text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-900 hover:text-white"}`}
                 >
                   {t.label}
                 </button>

@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import React from 'react';
 const navItems = [
-  { title: 'Simulator', href: '/' },
+  { title: 'Calculator', href: '/' },
   { title: 'Home', href: '/home' },
   { title: 'Services', href: '/services' },
   { title: 'Industries', href: '/industry' },
@@ -44,7 +44,7 @@ export default function FullscreenMenu() {
         <button
           aria-label="Toggle menu"
           onClick={() => setOpen(true) }
-          className="text-white text-3xl font-bold cursor-pointer transition-transform duration-300 hover:scale-120 outline-bg-black focus:outline-none"
+          className="text-[#2B1E17] text-3xl font-bold cursor-pointer transition-transform duration-300 hover:scale-120 outline-bg-black focus:outline-none"
           style={{ transform: open ? 'rotate(90deg)' : 'rotate(0deg)' }}
         >
           ☰

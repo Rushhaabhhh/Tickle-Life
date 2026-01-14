@@ -28,8 +28,8 @@ export default function AboutSection() {
               lineHeight: 1,
               letterSpacing: '-0.03em',
               textTransform: 'uppercase',
-              color: '#000',
-              fontFamily: 'system-ui, -apple-system, sans-serif',
+              color: '#3F9396',
+              fontFamily: '"Bebas Neue", system-ui, -apple-system, sans-serif',
             }}
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -39,12 +39,12 @@ export default function AboutSection() {
             <br />
             For high-risk
             <br />
-            <span style={{ color: '#6b7280' }}>powered by fintech</span>
+            <span style={{ color: '#D7B750' }}>powered by fintech.</span>
           </motion.h1>
         </div>
       </motion.header>
 
-      {/* Our Story - Centered Narrative (Rapyd-style history section) */}
+      {/* Our Story - Centered Narrative */}
       <motion.section
         className="px-8 md:px-16"
         initial={{ opacity: 0, y: 40 }}
@@ -54,7 +54,11 @@ export default function AboutSection() {
       >
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold uppercase text-black mb-12"
+            style={{
+              fontFamily: '"Bebas Neue", system-ui, -apple-system, sans-serif',
+              color: '#3F9396',
+            }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold uppercase mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -64,43 +68,47 @@ export default function AboutSection() {
           </motion.h2>
 
           <motion.div
-            className="space-y-8 text-xl md:text-2xl leading-relaxed text-gray-800"
+            className="space-y-8 text-xl md:text-2xl leading-relaxed"
+            style={{
+              color: '#0C0C0C', // Black for body text on light bg
+              fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif',
+            }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <p className="font-bold text-black">
+            <p className="font-bold">
               Just because it was legal didn&apos;t make it easy.
             </p>
 
-            <p className="text-gray-700">
+            <p>
               We started in sexual wellness to help people learn, connect, and grow.
               But no matter how compliant we were, banks still labeled us as
               &apos;high-risk&apos;. Every &quot;solution&quot; we used broke down when
               we tried to scale. Until finally, we did it ourselves.
             </p>
 
-            <p className="text-gray-700">
+            <p>
               So we built TickleCharge — a payment solution for high-risk, by
               high-risk. Based on stability, backed by compliance, and designed to
               grow with you — not against you.
             </p>
 
-            <p className="text-gray-700">
+            <p>
               We stand between you and the bank, taking on the risks they don&apos;t.
               The chargebacks, the compliance checks, the endless risk reviews —
               we handle it before it ever reaches you.
             </p>
 
-            <p className="text-black font-semibold text-2xl md:text-3xl">
+            <p className="text-2xl md:text-3xl font-semibold">
               And you just move your money the way you want.
             </p>
           </motion.div>
         </div>
       </motion.section>
 
-      {/* Our Team - Hero-style, centered, bold big title */}
+      {/* Our Team */}
       <motion.section
         className="py-24 md:py-32 px-8 md:px-16"
         initial={{ opacity: 0, y: 40 }}
@@ -110,7 +118,11 @@ export default function AboutSection() {
       >
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
-            className="text-5xl md:text-5xl lg:text-6xl font-bold uppercase text-black mb-12"
+            style={{
+              fontFamily: '"Bebas Neue", system-ui, -apple-system, sans-serif',
+              color: '#3F9396', // Teal for headings
+            }}
+            className="text-5xl md:text-5xl lg:text-6xl font-bold uppercase mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -121,19 +133,23 @@ export default function AboutSection() {
 
           <motion.div
             className="space-y-8 text-xl md:text-2xl leading-relaxed"
+            style={{
+              color: '#0C0C0C', // Black for body text on light bg
+              fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif',
+            }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <p className="font-bold text-black text-2xl md:text-3xl">
+            <p className="font-bold text-2xl md:text-3xl">
               High-risk First. Fintech Now.
             </p>
-            <p className="text-gray-800">
+            <p>
               We&apos;re a small team of people who&apos;ve lived the high-risk grind —
               and built the systems we wish existed back then.
             </p>
-            <p className="text-gray-700">
+            <p>
               Now we bring together industry experience, fintech engineering, and
               compliance to keep global payments moving.
             </p>
@@ -141,7 +157,7 @@ export default function AboutSection() {
         </div>
       </motion.section>
 
-      {/* Careers - Bold, bigger header + CTA buttons */}
+      {/* Careers */}
       <motion.section
         className="py-24 md:py-32 px-8 md:px-16"
         initial={{ opacity: 0, y: 40 }}
@@ -151,7 +167,11 @@ export default function AboutSection() {
       >
         <div className="max-w-5xl mx-auto">
           <motion.h2
-            className="text-4xl md:text-5xl lg:text-5xl font-bold text-black mb-8 leading-tight"
+            style={{
+              fontFamily: '"Bebas Neue", system-ui, -apple-system, sans-serif',
+              color: '#3F9396', // Teal for headings
+            }}
+            className="text-4xl md:text-5xl lg:text-5xl font-bold leading-tight mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -161,7 +181,11 @@ export default function AboutSection() {
           </motion.h2>
 
           <motion.p
-            className="text-2xl md:text-3xl text-gray-800 leading-relaxed mb-12 font-medium"
+            className="text-2xl md:text-3xl leading-relaxed mb-12 font-medium"
+            style={{
+              color: '#0C0C0C', // Black for body text on light bg
+              fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif',
+            }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -182,14 +206,21 @@ export default function AboutSection() {
           >
             <a
               href="/careers"
-              className="inline-flex items-center gap-2 bg-black text-white px-8 py-4 rounded-xl font-bold text-base uppercase hover:bg-gray-800 transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 bg-[#3F9396] text-white px-8 py-4 rounded-xl font-bold text-base uppercase hover:bg-[#D7B750] transition-all duration-300 hover:scale-105"
+              style={{ 
+                fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif',
+                borderColor: '#72CFCA' 
+              }}
             >
               See Open Roles
               <ArrowRight className="w-5 h-5" />
             </a>
             <a
               href="/contact-us"
-              className="inline-flex items-center gap-2 bg-white text-black border-2 border-black px-8 py-4 rounded-xl font-bold text-base uppercase hover:bg-black transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 bg-white text-[#3F9396] border-2 border-[#3F9396] px-8 py-4 rounded-xl font-bold text-base uppercase hover:bg-[#3F9396] hover:text-white transition-all duration-300 hover:scale-105 hover:border-[#D7B750]"
+              style={{ 
+                fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif',
+              }}
             >
               Contact Compliance
               <ArrowRight className="w-5 h-5" />
