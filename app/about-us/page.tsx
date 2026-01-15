@@ -28,8 +28,8 @@ export default function AboutSection() {
               lineHeight: 1,
               letterSpacing: '-0.03em',
               textTransform: 'uppercase',
-              color: '#3F9396',
-              fontFamily: '"Bebas Neue", system-ui, -apple-system, sans-serif',
+              color: '#16f98a',
+              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif',
             }}
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -39,12 +39,11 @@ export default function AboutSection() {
             <br />
             For high-risk
             <br />
-            <span style={{ color: '#D7B750' }}>powered by fintech.</span>
+            <span style={{ color: '#134338' }}>powered by fintech.</span>
           </motion.h1>
         </div>
       </motion.header>
 
-      {/* Our Story - Centered Narrative */}
       <motion.section
         className="px-8 md:px-16"
         initial={{ opacity: 0, y: 40 }}
@@ -55,8 +54,8 @@ export default function AboutSection() {
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
             style={{
-              fontFamily: '"Bebas Neue", system-ui, -apple-system, sans-serif',
-              color: '#3F9396',
+              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif',
+              color: '#16f98a',
             }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold uppercase mb-12"
             initial={{ opacity: 0, y: 20 }}
@@ -70,8 +69,8 @@ export default function AboutSection() {
           <motion.div
             className="space-y-8 text-xl md:text-2xl leading-relaxed"
             style={{
-              color: '#0C0C0C', // Black for body text on light bg
-              fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif',
+              color: '#134338',
+              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif',
             }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -108,7 +107,6 @@ export default function AboutSection() {
         </div>
       </motion.section>
 
-      {/* Our Team */}
       <motion.section
         className="py-24 md:py-32 px-8 md:px-16"
         initial={{ opacity: 0, y: 40 }}
@@ -119,8 +117,8 @@ export default function AboutSection() {
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
             style={{
-              fontFamily: '"Bebas Neue", system-ui, -apple-system, sans-serif',
-              color: '#3F9396', // Teal for headings
+              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif',
+              color: '#16f98a',
             }}
             className="text-5xl md:text-5xl lg:text-6xl font-bold uppercase mb-12"
             initial={{ opacity: 0, y: 20 }}
@@ -134,8 +132,8 @@ export default function AboutSection() {
           <motion.div
             className="space-y-8 text-xl md:text-2xl leading-relaxed"
             style={{
-              color: '#0C0C0C', // Black for body text on light bg
-              fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif',
+              color: '#134338',
+              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif',
             }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -157,7 +155,6 @@ export default function AboutSection() {
         </div>
       </motion.section>
 
-      {/* Careers */}
       <motion.section
         className="py-24 md:py-32 px-8 md:px-16"
         initial={{ opacity: 0, y: 40 }}
@@ -168,8 +165,8 @@ export default function AboutSection() {
         <div className="max-w-5xl mx-auto">
           <motion.h2
             style={{
-              fontFamily: '"Bebas Neue", system-ui, -apple-system, sans-serif',
-              color: '#3F9396', // Teal for headings
+              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif',
+              color: '#16f98a',
             }}
             className="text-4xl md:text-5xl lg:text-5xl font-bold leading-tight mb-8"
             initial={{ opacity: 0, y: 20 }}
@@ -183,8 +180,8 @@ export default function AboutSection() {
           <motion.p
             className="text-2xl md:text-3xl leading-relaxed mb-12 font-medium"
             style={{
-              color: '#0C0C0C', // Black for body text on light bg
-              fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif',
+              color: '#134338',
+              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif',
             }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -206,10 +203,9 @@ export default function AboutSection() {
           >
             <a
               href="/careers"
-              className="inline-flex items-center gap-2 bg-[#3F9396] text-white px-8 py-4 rounded-xl font-bold text-base uppercase hover:bg-[#D7B750] transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 bg-[#16f98a] text-[#134338] px-8 py-4 rounded-xl font-bold text-base uppercase hover:bg-[#ffffff] hover:text-[#16f98a] hover:border-[#16f98a] transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-[#16f98a]"
               style={{ 
-                fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif',
-                borderColor: '#72CFCA' 
+                fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
               }}
             >
               See Open Roles
@@ -217,9 +213,9 @@ export default function AboutSection() {
             </a>
             <a
               href="/contact-us"
-              className="inline-flex items-center gap-2 bg-white text-[#3F9396] border-2 border-[#3F9396] px-8 py-4 rounded-xl font-bold text-base uppercase hover:bg-[#3F9396] hover:text-white transition-all duration-300 hover:scale-105 hover:border-[#D7B750]"
+              className="inline-flex items-center gap-2 bg-[#134338] text-[#ffffff] border-2 border-[#134338] px-8 py-4 rounded-xl font-bold text-base uppercase hover:bg-[#16f98a] hover:text-[#134338] hover:border-[#16f98a] transition-all duration-300 hover:scale-105"
               style={{ 
-                fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif',
+                fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
               }}
             >
               Contact Compliance

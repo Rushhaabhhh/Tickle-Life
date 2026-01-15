@@ -4,8 +4,6 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Search, Download, FileText, Users, ChevronDown } from 'lucide-react'
 
-
-
 const filterCategories = {
   product: ['Cards', 'APMs', 'Crypto', 'Fraud', 'Routing'],
   industry: ['iGaming', 'Forex', 'Adult', 'Wellness', 'Crypto'],
@@ -54,25 +52,28 @@ export default function ResourceSection() {
   return (
     <section className="bg-transparent py-24 px-4 md:px-8 min-h-screen">
       <div className="max-w-7xl mx-auto">
-        
-        {/* Hero */}
         <motion.header
           className="text-center mb-20"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h1 className="text-5xl md:text-7xl font-light text-gray-900 leading-tight mb-6 tracking-tight">
+          <h1 className="text-5xl md:text-7xl font-light leading-tight mb-6 tracking-tight" style={{ 
+            color: '#b2f100',
+            fontFamily: '"Saira", system-ui, -apple-system, sans-serif'
+          }}>
             Resource Center
           </h1>
-          <p className="text-xl text-gray-500 font-light max-w-3xl mx-auto">
+          <p className="text-xl font-light max-w-3xl mx-auto" style={{ 
+            color: '#083032',
+            fontFamily: '"Saira", system-ui, -apple-system, sans-serif'
+          }}>
             For those who actually run things. No fluff, no theory—just real guidance.
           </p>
         </motion.header>
 
-        {/* Filter Bar */}
         <motion.div
-          className="mb-16 w-full flex flex-col md:flex-row md:items-end md:justify-between gap-6 bg-transparent border border-gray-200 rounded-2xl p-6"
+          className="mb-16 w-full flex flex-col md:flex-row md:items-end md:justify-between gap-6 bg-transparent border border-[#b2f100] rounded-2xl p-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
@@ -101,13 +102,15 @@ export default function ResourceSection() {
 
           <div className="flex items-center gap-3 mt-2 md:mt-0">
             <button
-              className="px-5 py-3 bg-black text-white text-sm rounded-xl hover:bg-gray-800 transition-all duration-300 cursor-pointer"
+              className="px-5 py-3 bg-[#083032] text-[#ffffff] text-sm rounded-xl hover:bg-[#b2f100] hover:text-[#083032] transition-all duration-300 cursor-pointer border border-[#b2f100]"
+              style={{ fontFamily: '"Saira", system-ui, -apple-system, sans-serif' }}
               onClick={() => console.log('Apply Filters')}
             >
               Apply Filters
             </button>
             <button
-              className="px-5 py-3 bg-gray-200 text-gray-800 text-sm rounded-xl hover:bg-gray-300 transition-all duration-300 cursor-pointer"
+              className="px-5 py-3 bg-white text-[#083032] text-sm rounded-xl hover:bg-[#b2f100] hover:text-[#ffffff] transition-all duration-300 cursor-pointer border border-[#b2f100]"
+              style={{ fontFamily: '"Saira", system-ui, -apple-system, sans-serif' }}
               onClick={() => {
                 setActiveProductFilter(null)
                 setActiveIndustryFilter(null)
@@ -119,7 +122,6 @@ export default function ResourceSection() {
           </div>
         </motion.div>
 
-        {/* Search Bar */}
         <motion.div
           className="relative max-w-2xl mx-auto mb-20"
           initial={{ opacity: 0, y: 20 }}
@@ -132,12 +134,12 @@ export default function ResourceSection() {
             placeholder="Find onboarding docs, compliance walkthroughs, or geo-level approval guides…"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-6 pr-14 py-4 border text-gray-800 border-gray-200 rounded-xl focus:border-gray-900 focus:outline-none transition-all duration-300 text-base font-light"
+            className="w-full pl-6 pr-14 py-4 border text-[#083032] border-[#b2f100] rounded-xl focus:border-[#b2f100] focus:outline-none transition-all duration-300 text-base font-light bg-white"
+            style={{ fontFamily: '"Saira", system-ui, -apple-system, sans-serif' }}
           />
-          <Search className="absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <Search className="absolute right-5 top-1/2 transform -translate-y-1/2 w-5 h-5" style={{ color: '#b2f100' }} />
         </motion.div>
 
-        {/* Featured Content */}
         <motion.section
           className="mb-24"
           initial={{ opacity: 0, y: 40 }}
@@ -145,25 +147,29 @@ export default function ResourceSection() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-10 text-center">Featured Resources</h2>
+          <h2 className="text-3xl md:text-4xl font-light mb-10 text-center" style={{ 
+            color: '#b2f100',
+            fontFamily: '"Saira", system-ui, -apple-system, sans-serif'
+          }}>Featured Resources</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredResources.map((resource, idx) => (
               <motion.div
                 key={idx}
-                className="bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg hover:scale-102 transition-all duration-500 group cursor-pointer"
+                className="bg-white border border-[#b2f100] rounded-2xl overflow-hidden hover:shadow-lg hover:scale-102 transition-all duration-500 group cursor-pointer"
+                style={{ fontFamily: '"Saira", system-ui, -apple-system, sans-serif' }}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="h-48 bg-gray-200 flex items-center justify-center">
-                  <span className="text-gray-400 text-sm">Image Placeholder</span>
+                <div className="h-48 bg-gradient-to-br from-[#f8fff5] to-[#e8ffe0] flex items-center justify-center">
+                  <span className="text-[#083032]/70 text-sm">Image Placeholder</span>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-lg font-medium text-gray-900 group-hover:text-gray-600 transition-colors">
+                  <h3 className="text-lg font-medium group-hover:text-[#083032] transition-colors" style={{ color: '#b2f100' }}>
                     {resource.title}
                   </h3>
-                  <div className="mt-4 text-sm text-gray-900 transition-colors">
+                  <div className="mt-4 text-sm" style={{ color: '#083032' }}>
                     Read More
                   </div>
                 </div>
@@ -172,15 +178,9 @@ export default function ResourceSection() {
           </div>
         </motion.section>
 
-        {/* Blogs Section */}
         <ContentSection title="Blogs" items={blogs} icon={FileText} align="left" />
-
-        {/* Compliance Docs Section */}
         <ContentSection title="Compliance Docs" items={complianceDocs} icon={Download} align="right" />
-
-        {/* Success Stories Section */}
         <ContentSection title="Success Stories" items={successStories} icon={Users} align="left" />
-
       </div>
     </section>
   )
@@ -196,21 +196,25 @@ type DropdownFilterProps = {
 function DropdownFilter({ label, items, active, setActive }: DropdownFilterProps) {
   return (
     <div className="flex flex-col relative">
-      <label className="text-sm font-medium text-gray-500 uppercase tracking-widest mb-2">
+      <label className="text-sm font-medium uppercase tracking-widest mb-2" style={{ 
+        color: '#083032',
+        fontFamily: '"Saira", system-ui, -apple-system, sans-serif'
+      }}>
         {label}
       </label>
       <div className="relative">
         <select
           value={active ?? ''}
           onChange={(e) => setActive(e.target.value || null)}
-          className="w-full appearance-none border border-gray-200 rounded-xl px-4 py-3 pr-10 text-gray-800 text-sm bg-white focus:border-gray-900 focus:outline-none transition-all cursor-pointer"
+          className="w-full appearance-none border border-[#b2f100] rounded-xl px-4 py-3 pr-10 text-[#083032] text-sm bg-white focus:border-[#b2f100] focus:outline-none transition-all cursor-pointer"
+          style={{ fontFamily: '"Saira", system-ui, -apple-system, sans-serif' }}
         >
           <option value="">Select {label}</option>
           {items.map(item => (
             <option key={item} value={item}>{item}</option>
           ))}
         </select>
-        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
+        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 pointer-events-none" style={{ color: '#b2f100' }} />
       </div>
     </div>
   )
@@ -232,24 +236,28 @@ function ContentSection({ title, items, icon: Icon, align }: ContentSectionProps
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-10">{title}</h2>
+      <h2 className="text-3xl md:text-4xl font-light mb-10" style={{ 
+        color: '#b2f100',
+        fontFamily: '"Saira", system-ui, -apple-system, sans-serif'
+      }}>{title}</h2>
       <div className="space-y-6">
         {items.map((item, idx) => (
           <motion.div
             key={idx}
-            className={`bg-white border border-gray-200 rounded-xl p-6 hover:border-gray-900 hover:shadow-md transition-all cursor-pointer duration-300 flex items-center justify-between ${
+            className={`bg-white border border-[#b2f100] rounded-xl p-6 hover:border-[#b2f100]/80 hover:shadow-md transition-all cursor-pointer duration-300 flex items-center justify-between ${
               align === 'right' ? 'flex-row-reverse' : ''
             }`}
+            style={{ fontFamily: '"Saira", system-ui, -apple-system, sans-serif' }}
             initial={{ opacity: 0, x: align === 'right' ? 20 : -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: idx * 0.1 }}
             viewport={{ once: true }}
           >
             <div className={align === 'right' ? 'text-right' : ''}>
-              <h3 className="text-lg font-medium text-gray-900 mb-1">{item.title}</h3>
-              <span className="text-sm text-gray-400">{item.filter}</span>
+              <h3 className="text-lg font-medium mb-1" style={{ color: '#b2f100' }}>{item.title}</h3>
+              <span className="text-sm" style={{ color: '#083032' }}>{item.filter}</span>
             </div>
-            <Icon className="w-6 h-6 text-gray-400" />
+            <Icon className="w-6 h-6" style={{ color: '#b2f100' }} />
           </motion.div>
         ))}
       </div>
