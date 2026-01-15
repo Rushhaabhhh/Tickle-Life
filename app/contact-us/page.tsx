@@ -328,8 +328,8 @@ export default function ContactSection() {
                     className="flex flex-col items-center justify-center min-h-[300px] text-center"
                     style={{ color: '#2B1E17' }}
                   >
-                    <p className="text-2xl font-medium mb-4" style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}>Great! You're on your way.</p>
-                    <p style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif', color: '#4A3A2E' }}>If you're qualified, we'll reach out to you within 24 hours.</p>
+                    <p className="text-2xl font-medium mb-4" style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif' }}>Great! You&apos;re on your way.</p>
+                    <p style={{ fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif', color: '#4A3A2E' }}>If you&apos;re qualified, we&apos;ll reach out to you within 24 hours.</p>
                   </motion.div>
                 )}
               </AnimatePresence>

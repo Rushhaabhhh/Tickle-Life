@@ -50,7 +50,7 @@ const FAQ: React.FC = () => {
             FAQ
           </h2>
           <p className="text-lg" style={{ color: '#4A3A2E' }}>
-            Got questions? We've got answers.
+            Got questions? We&apos;ve got answers.
           </p>
         </motion.div>
 

@@ -85,7 +85,7 @@ const TrustAndSupport: React.FC = () => {
               className="text-lg mb-6 font-light leading-relaxed"
               style={{ color: '#4A3A2E' }}
             >
-              Still Unsure? See if we're a fit
+              Still Unsure? See if we&apos;re a fit
             </p>
             <button
               onClick={() => {

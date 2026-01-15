@@ -213,7 +213,7 @@ export default function PartnersPage() {
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            That's why we grow through middlemen who already make things move.
+            That&apos;s why we grow through middlemen who already make things move.
           </motion.p>
 
           <motion.div
@@ -356,7 +356,7 @@ export default function PartnersPage() {
             color: '#134338',
             fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
           }}>
-            Referrals, ISOs, PayFacs — however you operate, there's a model that
+            Referrals, ISOs, PayFacs — however you operate, there&apos;s a model that
             lets you plug into our rails without rebuilding your stack.
           </p>
 
@@ -465,7 +465,7 @@ export default function PartnersPage() {
               color: '#16f98a',
               fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
             }}>
-              Here's the deal
+              Here&apos;s the deal
             </h2>
             <p className="text-xl max-w-2xl" style={{ 
               color: '#134338',
@@ -588,7 +588,7 @@ export default function PartnersPage() {
             color: '#134338',
             fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
           }}>
-            Name your niche, regions, and merchant types. We'll take it from
+            Name your niche, regions, and merchant types. We&apos;ll take it from
             there.
           </p>
 

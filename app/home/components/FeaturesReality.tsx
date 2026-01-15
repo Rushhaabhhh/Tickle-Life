@@ -46,7 +46,7 @@ const FeaturesReality: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
         >
-          'Cause we keep it real
+          &apos;Cause we keep it real
         </motion.p>
 
         <motion.div

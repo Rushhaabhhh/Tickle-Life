@@ -97,7 +97,7 @@ const ProblemsAndSolutions: React.FC = () => {
 
                   <div className="mb-6 flex-shrink-0">
                     <p className="text-lg md:text-xl font-light italic leading-relaxed line-clamp-2" style={{ color: '#2B1E17' }}>
-                      "{item.problem}"
+                      &quot;{item.problem}&quot;
                     </p>
                   </div>
 

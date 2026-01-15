@@ -4,7 +4,7 @@ import "./globals.css";
 import "./style.css";
 import "./coin.css";
 
-import React, { Suspense, useState, useEffect } from "react";
+import React, { Suspense, useState, useEffect, useCallback } from "react";
 import { Canvas } from "@react-three/fiber";
 import { ScrollControls } from "@react-three/drei";
 
@@ -18,25 +18,23 @@ import DollarCursor from "./components/DollarCursor";
 import { usePathname } from "next/navigation";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // const [pathname, setPathname] = useState<string | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [triggerExplosion, setTriggerExplosion] = useState(false);
   const [active] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-const pathname = usePathname();
+  const pathname = usePathname();
 
-  
- useEffect(() => {
-  if(!isLoaded){
+  // ✅ FIXED: Added isLoaded to dependency array
+  useEffect(() => {
+    if (!isLoaded) {
+      setMounted(true);
+    }
+  }, [isLoaded]); // ✅ Added missing dependency
 
-    setMounted(true);
-  }
-}, []);
-
-  const handleExplosion = () => {
+  const handleExplosion = useCallback(() => {
     setTriggerExplosion((prev) => !prev);
-  };
+  }, []);
 
   if (!mounted) {
     return (
@@ -62,10 +60,7 @@ const pathname = usePathname();
         <DollarCursor />
         <Navbar />
         <main className="flex-grow">
-          
-
           <div className={pathname === "/" ? "w-full h-screen" : ""}>
-
             <Canvas
               shadows
               camera={{ position: [25, 30, -58], fov: 50 }}
