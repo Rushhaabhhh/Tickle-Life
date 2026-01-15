@@ -34,7 +34,7 @@ const FAQ: React.FC = () => {
   const [openQuestion, setOpenQuestion] = useState<number | null>(null)
 
   return (
-    <section id="faq" className="bg-transparent py-24 px-8 bg-gray-50">
+    <section id="faq" className=" py-24 px-8 font-['IBM_Plex_Sans']">
       <div className="max-w-4xl mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -43,20 +43,22 @@ const FAQ: React.FC = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl md:text-6xl font-light mb-4 tracking-tight text-gray-900">
+          <h2 
+            className="text-5xl md:text-6xl font-light mb-4 tracking-tight font-['Bebas_Neue']"
+            style={{ color: '#2B1E17' }}
+          >
             FAQ
           </h2>
-          <p className="text-lg text-gray-400 font-light">
-            Got questions? We&apos;ve got answers.
+          <p className="text-lg" style={{ color: '#4A3A2E' }}>
+            Got questions? We've got answers.
           </p>
         </motion.div>
 
-        {/* Questions List */}
         <div className="space-y-2">
           {FAQ_DATA.map((faq, idx) => (
             <motion.div
               key={idx}
-              className="bg-white border border-gray-100 rounded-xl overflow-hidden transition-all duration-500 hover:shadow-md"
+              className="bg-white border border-[#4A3A2E]/20 rounded-xl overflow-hidden transition-all duration-500 hover:shadow-md hover:border-[#C9A24D]/30"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -66,21 +68,23 @@ const FAQ: React.FC = () => {
               }}
               viewport={{ once: true }}
             >
-              {/* Question */}
               <button
                 onClick={() => setOpenQuestion(openQuestion === idx ? null : idx)}
-                className="w-full p-6 text-left flex justify-between items-center group"
+                className="w-full p-6 text-left flex justify-between items-center group font-['IBM_Plex_Sans']"
               >
-                <span className="font-light text-base text-gray-900 pr-4 transition-colors duration-300 group-hover:text-gray-600">
+                <span 
+                  className="font-light text-base pr-4 transition-colors duration-300 group-hover:text-[#2B1E17]"
+                  style={{ color: '#4A3A2E' }}
+                >
                   {faq.question}
                 </span>
                 <motion.div
-                  className="w-8 h-8 rounded-full bg-gray-50 group-hover:bg-gray-900 flex items-center justify-center flex-shrink-0 transition-colors duration-500"
+                  className="w-8 h-8 rounded-full bg-[#F8F6F3] group-hover:bg-[#2B1E17] flex items-center justify-center flex-shrink-0 transition-colors duration-500"
                   animate={{ rotate: openQuestion === idx ? 90 : 0 }}
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <svg 
-                    className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors duration-500" 
+                    className="w-4 h-4 text-[#4A3A2E] group-hover:text-white transition-colors duration-500" 
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"
@@ -90,7 +94,6 @@ const FAQ: React.FC = () => {
                 </motion.div>
               </button>
 
-              {/* Answer - Revealed when question is clicked */}
               <AnimatePresence>
                 {openQuestion === idx && (
                   <motion.div
@@ -101,14 +104,14 @@ const FAQ: React.FC = () => {
                     className="overflow-hidden"
                   >
                     <motion.div
-                      className="px-6 pb-6 pt-0"
+                      className="px-6 pb-6 pt-0 font-['IBM_Plex_Sans']"
                       initial={{ y: -10, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -10, opacity: 0 }}
                       transition={{ duration: 0.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
                     >
-                      <div className="h-px bg-gradient-to-r from-gray-200 via-gray-100 to-transparent mb-5" />
-                      <p className="text-sm text-gray-500 font-light leading-relaxed">
+                      <div className="h-px bg-gradient-to-r from-[#4A3A2E]/30 via-transparent to-transparent mb-5" />
+                      <p className="text-sm leading-relaxed" style={{ color: '#4A3A2E' }}>
                         {faq.answer}
                       </p>
                     </motion.div>

@@ -12,11 +12,11 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 backdrop-blur z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl p-8 max-w-md w-full max-h-[80vh] overflow-y-auto relative">
+    <div className="fixed inset-0 backdrop-blur-sm z-50 flex items-center justify-center p-4 font-['IBM_Plex_Sans']">
+      <div className="bg-white rounded-2xl p-8 max-w-md w-full max-h-[80vh] overflow-y-auto relative border-2 border-[#4A3A2E]/20 shadow-2xl">
         <button
           onClick={onClose}
-          className="absolute top-4 right-6 text-2xl text-gray-500 hover:text-gray-700 cursor-pointer"
+          className="absolute top-4 right-6 text-2xl text-[#4A3A2E] hover:text-[#2B1E17] cursor-pointer font-bold transition-colors"
         >
           ×
         </button>

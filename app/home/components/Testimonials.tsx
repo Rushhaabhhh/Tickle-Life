@@ -25,20 +25,22 @@ const Testimonials: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0)
 
   return (
-    <section className="py-24 px-8 bg-white">
+    <section className="py-24 px-8 font-['IBM_Plex_Sans']">
       <div className="max-w-6xl mx-auto">
         <motion.h2
-          className="text-5xl md:text-6xl font-light text-center mb-8 tracking-tight text-gray-900"
+          className="text-5xl md:text-6xl font-light text-center mb-8 tracking-tight font-['Bebas_Neue']"
+          style={{ color: '#2B1E17' }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
         >
-          Let&apos;s get real
+          Let's get real
         </motion.h2>
 
         <motion.p
-          className="text-xl text-center text-gray-500 mb-16 font-light"
+          className="text-xl text-center mb-16 font-light"
+          style={{ color: '#4A3A2E' }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
@@ -47,7 +49,6 @@ const Testimonials: React.FC = () => {
           Hear it straight from our clients.
         </motion.p>
 
-        {/* Industry Tabs */}
         <motion.div
           className="flex justify-center gap-4 mb-12 flex-wrap"
           initial={{ opacity: 0, y: 20 }}
@@ -59,10 +60,10 @@ const Testimonials: React.FC = () => {
             <button
               key={idx}
               onClick={() => setActiveTab(idx)}
-              className={`px-6 py-3 text-sm font-light tracking-wide transition-all duration-500 border rounded-full cursor-pointer ${
+              className={`px-6 py-3 text-sm font-light tracking-wide transition-all duration-500 border rounded-full cursor-pointer font-['IBM_Plex_Sans'] ${
                 activeTab === idx
-                  ? 'bg-gray-900 text-white border-gray-900'
-                  : 'bg-white text-gray-600 border-gray-300 hover:border-gray-900'
+                  ? 'bg-[#2B1E17] text-white border-[#2B1E17]'
+                  : 'bg-white text-[#4A3A2E] border-[#4A3A2E]/30 hover:border-[#2B1E17]'
               }`}
             >
               {testimonial.industry}
@@ -70,26 +71,22 @@ const Testimonials: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Testimonial Content */}
         <div className="relative min-h-[300px] flex items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              className="max-w-4xl mx-auto text-center px-8"
+              className="max-w-4xl mx-auto text-center px-8 font-['IBM_Plex_Sans']"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-
-              {/* Testimonial Text */}
-              <p className="text-2xl md:text-3xl text-gray-900 font-light leading-relaxed mb-8 italic">
+              <p className="text-2xl md:text-3xl font-light leading-relaxed mb-8 italic" style={{ color: '#2B1E17' }}>
                 {TESTIMONIALS[activeTab].text}
               </p>
 
-              {/* Author */}
               <div className="space-y-1">
-                <p className="text-base text-gray-900 font-medium">
+                <p className="text-base font-medium" style={{ color: '#2B1E17' }}>
                   {TESTIMONIALS[activeTab].author}
                 </p>
               </div>
@@ -97,7 +94,6 @@ const Testimonials: React.FC = () => {
           </AnimatePresence>
         </div>
 
-        {/* Navigation Dots */}
         <motion.div
           className="flex justify-center gap-2 mt-12"
           initial={{ opacity: 0 }}
@@ -111,8 +107,8 @@ const Testimonials: React.FC = () => {
               onClick={() => setActiveTab(idx)}
               className={`w-2 h-2 rounded-full transition-all duration-500 cursor-pointer ${
                 activeTab === idx
-                  ? 'bg-gray-900 w-8'
-                  : 'bg-gray-300 hover:bg-gray-400'
+                  ? 'bg-[#2B1E17] w-8'
+                  : 'bg-[#4A3A2E]/30 hover:bg-[#4A3A2E]/50'
               }`}
               aria-label={`Go to testimonial ${idx + 1}`}
             />

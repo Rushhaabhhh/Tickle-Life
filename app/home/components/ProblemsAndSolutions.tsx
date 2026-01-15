@@ -43,10 +43,11 @@ const ProblemsAndSolutions: React.FC = () => {
   }
 
   return (
-    <section className="py-24 px-8 bg-white">
+    <section className="py-24 px-8 bg-white font-['IBM_Plex_Sans']">
       <div className="max-w-7xl mx-auto">
         <motion.h2
-          className="text-5xl md:text-6xl font-light text-center mb-20 tracking-tight text-gray-900"
+          className="text-5xl md:text-6xl font-light text-center mb-20 tracking-tight font-['Bebas_Neue']"
+          style={{ color: '#2B1E17' }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -59,7 +60,7 @@ const ProblemsAndSolutions: React.FC = () => {
           {PROBLEMS.map((item, idx) => (
             <motion.div
               key={idx}
-              className="relative perspective-1000 w-full"
+              className="relative perspective-1000 w-full font-['IBM_Plex_Sans']"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ 
@@ -82,37 +83,33 @@ const ProblemsAndSolutions: React.FC = () => {
               >
                 {/* Front Face - Problem */}
                 <div
-                  className="absolute w-full h-full bg-white rounded-2xl shadow-lg border border-gray-200 flex flex-col p-6 md:p-8 overflow-hidden"
+                  className="absolute w-full h-full bg-white rounded-2xl shadow-lg border-2 border-[#4A3A2E]/20 flex flex-col p-6 md:p-8 overflow-hidden"
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden'
                   }}
                 >
-                  {/* Title */}
                   <div className="mb-6 flex-shrink-0">
-                    <h3 className="text-xl md:text-2xl font-semibold text-gray-900 leading-tight tracking-tight line-clamp-2">
+                    <h3 className="text-xl md:text-2xl font-semibold leading-tight tracking-tight line-clamp-2 font-['Bebas_Neue']" style={{ color: '#2B1E17' }}>
                       {item.title}
                     </h3>
                   </div>
 
-                  {/* Problem Quote */}
                   <div className="mb-6 flex-shrink-0">
-                    <p className="text-lg md:text-xl text-gray-900 font-light italic leading-relaxed line-clamp-2">
-                      &quot;{item.problem}&quot;
+                    <p className="text-lg md:text-xl font-light italic leading-relaxed line-clamp-2" style={{ color: '#2B1E17' }}>
+                      "{item.problem}"
                     </p>
                   </div>
 
-                  {/* Description */}
                   <div className="mb-8 flex-1 min-h-0">
-                    <p className="text-sm md:text-base text-gray-600 leading-relaxed h-full overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent max-h-full">
+                    <p className="text-sm md:text-base leading-relaxed h-full overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-[#4A3A2E]/30 scrollbar-track-transparent max-h-full" style={{ color: '#4A3A2E' }}>
                       {item.description}
                     </p>
                   </div>
 
-                  {/* Hover CTA */}
-                  <div className="flex-shrink-0 border-t border-gray-200 pt-6">
+                  <div className="flex-shrink-0 border-t border-[#4A3A2E]/20 pt-6">
                     <div className="flex items-center justify-center">
-                      <span className="text-xs md:text-sm font-medium text-gray-500 tracking-wide bg-gray-50 px-4 py-2 rounded-full">
+                      <span className="text-xs md:text-sm font-medium tracking-wide bg-[#F8F6F3] px-4 py-2 rounded-full border border-[#4A3A2E]/20" style={{ color: '#4A3A2E' }}>
                         Hover to reveal solution →
                       </span>
                     </div>
@@ -121,36 +118,33 @@ const ProblemsAndSolutions: React.FC = () => {
 
                 {/* Back Face - Solution */}
                 <div
-                  className="absolute w-full h-full bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-2xl shadow-2xl flex flex-col p-6 md:p-8 border-2 border-gray-800/50 overflow-hidden"
+                  className="absolute w-full h-full bg-gradient-to-br from-[#2B1E17] via-[#4A3A2E] to-[#2B1E17] rounded-2xl shadow-2xl flex flex-col p-6 md:p-8 border-2 border-[#C9A24D]/30 overflow-hidden"
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
                     transform: 'rotateY(180deg)'
                   }}
                 >
-                  {/* Solution Header */}
                   <div className="mb-6 flex-shrink-0">
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-xs font-bold tracking-widest text-gray-300 uppercase bg-white/10 px-3 py-1 rounded-full">
+                      <span className="text-xs font-bold tracking-widest uppercase bg-[#C9A24D]/20 px-3 py-1 rounded-full border border-[#C9A24D]/30">
                         Our Fix
                       </span>
                     </div>
-                    <h4 className="text-xl md:text-2xl font-semibold text-white leading-tight tracking-tight line-clamp-2">
+                    <h4 className="text-xl md:text-2xl font-semibold leading-tight tracking-tight line-clamp-2 font-['Bebas_Neue']" style={{ color: '#C9A24D' }}>
                       {item.solution}
                     </h4>
                   </div>
 
-                  {/* Solution Description */}
                   <div className="mb-8 flex-1 min-h-0">
-                    <p className="text-sm md:text-base text-gray-200 leading-relaxed h-full overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent/30 max-h-full">
+                    <p className="text-sm md:text-base leading-relaxed h-full overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-[#C9A24D]/50 scrollbar-track-transparent/30 max-h-full" style={{ color: '#F8F6F3' }}>
                       {item.fix}
                     </p>
                   </div>
 
-                  {/* Hover CTA */}
-                  <div className="flex-shrink-0 border-t border-white/20 pt-6">
+                  <div className="flex-shrink-0 border-t border-[#C9A24D]/30 pt-6">
                     <div className="flex items-center justify-center">
-                      <span className="text-xs md:text-sm font-medium text-gray-300 tracking-wide bg-white/10 px-4 py-2 rounded-full border border-white/20">
+                      <span className="text-xs md:text-sm font-medium tracking-wide bg-[#C9A24D]/20 px-4 py-2 rounded-full border border-[#C9A24D]/30" style={{ color: '#C9A24D' }}>
                         Hover away to see problem ←
                       </span>
                     </div>
@@ -158,36 +152,35 @@ const ProblemsAndSolutions: React.FC = () => {
                 </div>
               </motion.div>
             </motion.div>
-          ))
-        }
+          ))}
         </div>
-      </div>
 
-      <style jsx>{`
-        .perspective-1000 {
-          perspective: 1200px;
-        }
-        .scrollbar-thin {
-          scrollbar-width: thin;
-        }
-        .scrollbar-thin::-webkit-scrollbar {
-          width: 4px;
-          height: 4px;
-        }
-        .scrollbar-thin::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .scrollbar-thin::-webkit-scrollbar-thumb {
-          background-color: currentColor;
-          border-radius: 9999px;
-        }
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
+        <style jsx>{`
+          .perspective-1000 {
+            perspective: 1200px;
+          }
+          .scrollbar-thin {
+            scrollbar-width: thin;
+          }
+          .scrollbar-thin::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+          }
+          .scrollbar-thin::-webkit-scrollbar-track {
+            background: transparent;
+          }
+          .scrollbar-thin::-webkit-scrollbar-thumb {
+            background-color: currentColor;
+            border-radius: 9999px;
+          }
+          .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+        `}</style>
+      </div>
     </section>
   )
 }

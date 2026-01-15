@@ -50,10 +50,11 @@ const Packages = () => {
   const router = useRouter()
 
   return (
-    <section id="packages" className="bg-transparent py-24 px-8 bg-gray-50">
+    <section id="packages" className=" py-24 px-8 font-['IBM_Plex_Sans']">
       <div className="max-w-7xl mx-auto">
         <motion.h2
-          className="text-5xl md:text-6xl font-light text-center mb-8 tracking-tight text-gray-900"
+          className="text-5xl md:text-6xl font-light text-center mb-8 tracking-tight font-['Bebas_Neue']"
+          style={{ color: '#2B1E17' }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -63,7 +64,8 @@ const Packages = () => {
         </motion.h2>
 
         <motion.p
-          className="text-xl text-center text-gray-500 mb-16 font-light"
+          className="text-xl text-center mb-16 font-light"
+          style={{ color: '#4A3A2E' }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
@@ -76,7 +78,7 @@ const Packages = () => {
           {PACKAGES.map((pkg, idx) => (
             <motion.div
               key={idx}
-              className="bg-white rounded-2xl p-8 border border-gray-200 transition-all duration-500 relative overflow-hidden hover:border-gray-400 hover:shadow-2xl group"
+              className="bg-white rounded-2xl p-8 border border-[#4A3A2E]/20 transition-all duration-500 relative overflow-hidden hover:border-[#C9A24D]/30 hover:shadow-2xl group font-['IBM_Plex_Sans']"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ 
@@ -87,48 +89,48 @@ const Packages = () => {
               viewport={{ once: true }}
             >
               <div className="mb-8 pt-2">
-                <h3 className="text-2xl font-medium text-gray-900 mb-2 tracking-tight">
+                <h3 className="text-2xl font-medium tracking-tight font-['Bebas_Neue'] mb-2" style={{ color: '#2B1E17' }}>
                   {pkg.title}
                 </h3>
-                <p className="text-sm text-gray-500 font-light leading-relaxed">
+                <p className="text-sm leading-relaxed" style={{ color: '#4A3A2E' }}>
                   {pkg.subtitle}
                 </p>
               </div>
 
-              <div className="h-px bg-gradient-to-r from-gray-200 via-gray-300 to-transparent mb-8" />
+              <div className="h-px bg-gradient-to-r from-[#4A3A2E]/30 via-[#4A3A2E]/10 to-transparent mb-8" />
 
               <div className="mb-8">
-                <h4 className="text-xs font-medium text-gray-400 uppercase tracking-widest mb-4">
+                <h4 className="text-xs font-medium uppercase tracking-widest mb-4" style={{ color: '#4A3A2E' }}>
                   What you get
                 </h4>
                 <ul className="space-y-3">
                   {pkg.benefits.map((benefit, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm text-gray-700 font-light leading-relaxed">
-                      <span className="w-1 h-1 rounded-full bg-gray-900 mt-2 flex-shrink-0" />
+                    <li key={i} className="flex items-start gap-3 text-sm leading-relaxed" style={{ color: '#4A3A2E' }}>
+                      <span className="w-1 h-1 rounded-full bg-[#2B1E17] mt-2 flex-shrink-0" />
                       {benefit}
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="mb-6 p-4 bg-transparent rounded-lg">
-                <p className="text-xs text-gray-500 font-light mb-1 uppercase tracking-wide">
+              <div className="mb-6 p-4  rounded-lg">
+                <p className="text-xs font-light mb-1 uppercase tracking-wide" style={{ color: '#4A3A2E' }}>
                   Best for
                 </p>
-                <p className="text-sm text-gray-900 font-light leading-relaxed">
+                <p className="text-sm font-light leading-relaxed" style={{ color: '#2B1E17' }}>
                   {pkg.bestFor}
                 </p>
               </div>
 
               <div className="mb-8">
-                <p className="text-sm font-medium text-gray-900">
+                <p className="text-sm font-medium" style={{ color: '#2B1E17' }}>
                   {pkg.savings}
                 </p>
               </div>
 
               <button
                 onClick={() => router.push('/')}
-                className="w-full py-4 rounded-xl font-medium transition-all duration-400 text-sm tracking-wide bg-white text-gray-900 border-2 border-gray-900 hover:bg-gray-900 hover:text-white hover:scale-105 cursor-pointer"
+                className="w-full py-4 rounded-xl font-medium transition-all duration-400 text-sm tracking-wide bg-white text-[#2B1E17] border-2 border-[#2B1E17] hover:bg-[#2B1E17] hover:text-white hover:scale-105 cursor-pointer font-['IBM_Plex_Sans']"
               >
                 {pkg.cta}
               </button>
@@ -145,7 +147,7 @@ const Packages = () => {
         >
           <button
             onClick={() => router.push('/')}
-            className="bg-gray-900 text-white px-10 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer"
+            className="bg-[#2B1E17] text-white px-10 py-4 rounded-full text-base font-medium hover:bg-[#4A3A2E] transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer font-['IBM_Plex_Sans']"
           >
             Try our calculator to see what you could be paying →
           </button>
