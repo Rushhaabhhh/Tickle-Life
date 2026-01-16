@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.5, delay: 1 }}
           >
-            You're probably overpaying for payments.
+            You&apos;re probably overpaying for payments.
           </motion.h1>
         </motion.div>
       </div>

@@ -223,7 +223,7 @@ function DropdownFilter({ label, items, active, setActive }: DropdownFilterProps
 type ContentSectionProps = {
   title: string
   items: { title: string; filter: string }[]
-  icon: React.ComponentType<{ className?: string }>
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>
   align: 'left' | 'right'
 }
 
