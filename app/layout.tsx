@@ -25,12 +25,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   const pathname = usePathname();
 
-  // ✅ FIXED: Added isLoaded to dependency array
   useEffect(() => {
     if (!isLoaded) {
       setMounted(true);
     }
-  }, [isLoaded]); // ✅ Added missing dependency
+  }, [isLoaded]);
 
   const handleExplosion = useCallback(() => {
     setTriggerExplosion((prev) => !prev);

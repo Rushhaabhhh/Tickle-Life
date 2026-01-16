@@ -28,8 +28,11 @@ export default function AboutSection() {
               lineHeight: 1,
               letterSpacing: '-0.03em',
               textTransform: 'uppercase',
-              color: '#16f98a',
-              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif',
+              background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              fontFamily: 'var(--font-heading)',
             }}
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -39,7 +42,12 @@ export default function AboutSection() {
             <br />
             For high-risk
             <br />
-            <span style={{ color: '#134338' }}>powered by fintech.</span>
+            <span style={{ 
+              background: 'linear-gradient(135deg, #2B1E17 0%, #3d2b1f 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}>powered by fintech.</span>
           </motion.h1>
         </div>
       </motion.header>
@@ -54,8 +62,11 @@ export default function AboutSection() {
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
             style={{
-              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif',
-              color: '#16f98a',
+              fontFamily: 'var(--font-heading)',
+              background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
             }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold uppercase mb-12"
             initial={{ opacity: 0, y: 20 }}
@@ -69,8 +80,8 @@ export default function AboutSection() {
           <motion.div
             className="space-y-8 text-xl md:text-2xl leading-relaxed"
             style={{
-              color: '#134338',
-              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif',
+              color: '#2B1E17',
+              fontFamily: 'var(--font-body)',
             }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -117,8 +128,11 @@ export default function AboutSection() {
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
             style={{
-              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif',
-              color: '#16f98a',
+              fontFamily: 'var(--font-heading)',
+              background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
             }}
             className="text-5xl md:text-5xl lg:text-6xl font-bold uppercase mb-12"
             initial={{ opacity: 0, y: 20 }}
@@ -132,8 +146,8 @@ export default function AboutSection() {
           <motion.div
             className="space-y-8 text-xl md:text-2xl leading-relaxed"
             style={{
-              color: '#134338',
-              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif',
+              color: '#2B1E17',
+              fontFamily: 'var(--font-body)',
             }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -165,8 +179,11 @@ export default function AboutSection() {
         <div className="max-w-5xl mx-auto">
           <motion.h2
             style={{
-              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif',
-              color: '#16f98a',
+              fontFamily: 'var(--font-heading)',
+              background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
             }}
             className="text-4xl md:text-5xl lg:text-5xl font-bold leading-tight mb-8"
             initial={{ opacity: 0, y: 20 }}
@@ -180,8 +197,8 @@ export default function AboutSection() {
           <motion.p
             className="text-2xl md:text-3xl leading-relaxed mb-12 font-medium"
             style={{
-              color: '#134338',
-              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif',
+              color: '#2B1E17',
+              fontFamily: 'var(--font-body)',
             }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -203,9 +220,24 @@ export default function AboutSection() {
           >
             <a
               href="/careers"
-              className="inline-flex items-center gap-2 bg-[#16f98a] text-[#134338] px-8 py-4 rounded-xl font-bold text-base uppercase hover:bg-[#ffffff] hover:text-[#16f98a] hover:border-[#16f98a] transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-[#16f98a]"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-base uppercase transition-all duration-300 hover:scale-105 border-2"
               style={{ 
-                fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
+                fontFamily: 'var(--font-heading)',
+                background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
+                color: '#ffffff',
+                borderColor: 'transparent',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(255,255,255,0.2)'
+                e.currentTarget.style.backdropFilter = 'blur(10px)'
+                e.currentTarget.style.color = '#2B1E17'
+                e.currentTarget.style.borderColor = '#2B1E17'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)'
+                e.currentTarget.style.backdropFilter = 'none'
+                e.currentTarget.style.color = '#ffffff'
+                e.currentTarget.style.borderColor = 'transparent'
               }}
             >
               See Open Roles
@@ -213,9 +245,25 @@ export default function AboutSection() {
             </a>
             <a
               href="/contact-us"
-              className="inline-flex items-center gap-2 bg-[#134338] text-[#ffffff] border-2 border-[#134338] px-8 py-4 rounded-xl font-bold text-base uppercase hover:bg-[#16f98a] hover:text-[#134338] hover:border-[#16f98a] transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-base uppercase transition-all duration-300 hover:scale-105 border-2"
               style={{ 
-                fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
+                fontFamily: 'var(--font-heading)',
+                background: 'rgba(255,255,255,0.2)',
+                backdropFilter: 'blur(10px)',
+                color: '#2B1E17',
+                borderColor: '#2B1E17',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)'
+                e.currentTarget.style.backdropFilter = 'none'
+                e.currentTarget.style.color = '#ffffff'
+                e.currentTarget.style.borderColor = 'transparent'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(255,255,255,0.2)'
+                e.currentTarget.style.backdropFilter = 'blur(10px)'
+                e.currentTarget.style.color = '#2B1E17'
+                e.currentTarget.style.borderColor = '#2B1E17'
               }}
             >
               Contact Compliance

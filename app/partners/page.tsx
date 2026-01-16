@@ -121,8 +121,8 @@ export default function PartnersPage() {
           <motion.h1
             className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase leading-tight mb-8"
             style={{ 
-              color: '#16f98a',
-              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
+              color: '#2B1E17',
+              fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif'
             }}
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -130,16 +130,16 @@ export default function PartnersPage() {
           >
             They say cut out
             <br />
-            <span className="text-6xl md:text-8xl text-[#16f98a] lg:text-9xl">the middleman.</span>
+            <span className="text-6xl md:text-8xl text-[#2B1E17] lg:text-9xl">the middleman.</span>
             <br />
-            <span className="text-4xl md:text-5xl text-[#16f98a] lg:text-6xl font-normal">We know better.</span>
+            <span className="text-4xl md:text-5xl text-[#2B1E17] lg:text-6xl font-normal">We know better.</span>
           </motion.h1>
 
           <motion.p
             className="text-2xl md:text-3xl mb-12 leading-relaxed max-w-3xl mx-auto"
             style={{ 
-              color: '#134338',
-              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
+              color: '#2B1E17',
+              fontFamily: 'Inter, system-ui, -apple-system, sans-serif'
             }}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -155,11 +155,11 @@ export default function PartnersPage() {
           >
             <a
               href="#contact-form"
-              className="inline-flex items-center gap-3 bg-[#ffffff] text-[#134338] px-10 py-6 rounded-full font-bold text-xl uppercase hover:bg-[#16f98a] hover:text-[#ffffff] transition-all duration-300 hover:scale-105 shadow-2xl border border-[#16f98a]"
-              style={{ fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif' }}
+              className="inline-flex items-center gap-3 bg-[#2B1E17] text-white px-10 py-6 rounded-full font-bold text-xl uppercase hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#2B1E17]/80 transition-all duration-300 hover:scale-105 shadow-2xl border border-[#2B1E17]"
+              style={{ fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' }}
             >
               Become a partner
-              <ArrowRight className="w-6 h-6" style={{ color: '#134338' }} />
+              <ArrowRight className="w-6 h-6" />
             </a>
           </motion.div>
         </div>
@@ -177,8 +177,8 @@ export default function PartnersPage() {
           <motion.h2
             className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase mb-12"
             style={{ 
-              color: '#16f98a',
-              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
+              color: '#2B1E17',
+              fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif'
             }}
             initial={{ y: 40, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -191,8 +191,8 @@ export default function PartnersPage() {
           <motion.p
             className="text-2xl md:text-3xl mb-16 max-w-3xl mx-auto leading-relaxed"
             style={{ 
-              color: '#134338',
-              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
+              color: '#2B1E17',
+              fontFamily: 'Inter, system-ui, -apple-system, sans-serif'
             }}
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -205,8 +205,8 @@ export default function PartnersPage() {
           <motion.p
             className="text-xl md:text-2xl mb-20 max-w-2xl mx-auto leading-relaxed"
             style={{ 
-              color: '#134338',
-              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
+              color: '#2B1E17',
+              fontFamily: 'Inter, system-ui, -apple-system, sans-serif'
             }}
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -217,22 +217,22 @@ export default function PartnersPage() {
           </motion.p>
 
           <motion.div
-            className="bg-[#134338] text-[#ffffff] p-12 rounded-3xl max-w-4xl mx-auto"
+            className="bg-[#2B1E17] text-white p-12 rounded-3xl max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             viewport={{ once: true }}
           >
             <h3 className="text-3xl md:text-5xl font-bold uppercase mb-6" style={{ 
-              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif' 
+              fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' 
             }}>Find your fit</h3>
             <a
               href="#partners"
-              className="inline-flex items-center gap-3 bg-[#ffffff] text-[#134338] px-10 py-5 rounded-full font-bold text-xl uppercase hover:bg-[#16f98a] hover:text-[#ffffff] transition-all duration-300 hover:scale-105"
-              style={{ fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif' }}
+              className="inline-flex items-center gap-3 bg-white text-[#2B1E17] px-10 py-5 rounded-full font-bold text-xl uppercase hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#2B1E17]/80 hover:text-white transition-all duration-300 hover:scale-105"
+              style={{ fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' }}
             >
               Explore partner types
-              <ArrowRight className="w-6 h-6" style={{ color: '#134338' }} />
+              <ArrowRight className="w-6 h-6" />
             </a>
           </motion.div>
         </div>
@@ -258,27 +258,27 @@ export default function PartnersPage() {
               viewport={{ once: true }}
             >
               <div className="md:w-1/2 space-y-8 text-center md:text-left" style={{ 
-                fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif' 
+                fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' 
               }}>
-                <div className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: '#16f98a' }}>
+                <div className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: '#2B1E17' }}>
                   {partner.title}
                 </div>
                 
-                <h3 className="text-4xl md:text-5xl font-bold uppercase mb-6 leading-tight" style={{ color: '#16f98a' }}>
+                <h3 className="text-4xl md:text-5xl font-bold uppercase mb-6 leading-tight" style={{ color: '#2B1E17' }}>
                   {partner.subtitle}
                 </h3>
                 
-                <p className="text-xl leading-relaxed mb-12" style={{ color: '#134338' }}>
+                <p className="text-xl leading-relaxed mb-12" style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
                   {partner.description}
                 </p>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                   <div className="space-y-4">
-                    <h4 className="text-2xl font-bold uppercase tracking-wide" style={{ color: '#16f98a' }}>You bring:</h4>
-                    <ul className="space-y-3 text-lg" style={{ color: '#134338' }}>
+                    <h4 className="text-2xl font-bold uppercase tracking-wide" style={{ color: '#2B1E17' }}>You bring:</h4>
+                    <ul className="space-y-3 text-lg" style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
                       {partner.you_bring.map((item, i) => (
                         <li key={i} className="flex items-start gap-3">
-                          <span className="text-[#16f98a] font-bold text-xl mt-0.5">→</span>
+                          <span className="text-[#2B1E17] font-bold text-xl mt-0.5">→</span>
                           <span>{item}</span>
                         </li>
                       ))}
@@ -286,11 +286,11 @@ export default function PartnersPage() {
                   </div>
                   
                   <div className="space-y-4">
-                    <h4 className="text-2xl font-bold uppercase tracking-wide" style={{ color: '#16f98a' }}>You get:</h4>
-                    <ul className="space-y-3 text-lg" style={{ color: '#134338' }}>
+                    <h4 className="text-2xl font-bold uppercase tracking-wide" style={{ color: '#2B1E17' }}>You get:</h4>
+                    <ul className="space-y-3 text-lg" style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
                       {partner.you_get.map((item, i) => (
                         <li key={i} className="flex items-start gap-3">
-                          <span className="text-[#16f98a] font-bold text-xl mt-0.5">→</span>
+                          <span className="text-[#2B1E17] font-bold text-xl mt-0.5">→</span>
                           <span>{item}</span>
                         </li>
                       ))}
@@ -308,8 +308,8 @@ export default function PartnersPage() {
                   >
                     <a
                       href="#contact-form"
-                      className="inline-flex items-center gap-3 bg-[#134338] text-[#ffffff] px-10 py-5 rounded-full font-bold text-xl uppercase hover:bg-[#16f98a] transition-all duration-300 hover:scale-105"
-                      style={{ fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif' }}
+                      className="inline-flex items-center gap-3 bg-[#2B1E17] text-white px-10 py-5 rounded-full font-bold text-xl uppercase hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#2B1E17]/80 transition-all duration-300 hover:scale-105"
+                      style={{ fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' }}
                     >
                       Partner with us
                       <ArrowRight className="w-6 h-6" />
@@ -319,13 +319,13 @@ export default function PartnersPage() {
               </div>
 
               <div className="md:w-1/2">
-                <div className="bg-gradient-to-br from-[#f8fff5] to-[#e8ffe0] h-96 rounded-3xl flex items-center justify-center p-12 border border-[#16f98a]">
+                <div className="bg-gradient-to-br from-[#f8f6f4] to-[#f0ede9] h-96 rounded-3xl flex items-center justify-center p-12 border border-[#2B1E17]">
                   <div className="text-center" style={{ 
-                    color: '#134338',
-                    fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif' 
+                    color: '#2B1E17',
+                    fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' 
                   }}>
-                    <div className="w-32 h-32 bg-[#ffffff]/30 rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                      <Network className="w-16 h-16" style={{ color: '#16f98a' }} />
+                    <div className="w-32 h-32 bg-white/30 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                      <Network className="w-16 h-16" style={{ color: '#2B1E17' }} />
                     </div>
                     <h4 className="text-2xl font-bold mb-2">{partner.title}</h4>
                     <p className="text-lg">Visual representation</p>
@@ -347,14 +347,14 @@ export default function PartnersPage() {
       >
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold uppercase mb-6" style={{ 
-            color: '#16f98a',
-            fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
+            color: '#2B1E17',
+            fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif'
           }}>
             Find Your Fit
           </h2>
           <p className="text-xl mb-16 max-w-2xl" style={{ 
-            color: '#134338',
-            fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
+            color: '#2B1E17',
+            fontFamily: 'Inter, system-ui, -apple-system, sans-serif'
           }}>
             Referrals, ISOs, PayFacs — however you operate, there&apos;s a model that
             lets you plug into our rails without rebuilding your stack.
@@ -369,7 +369,7 @@ export default function PartnersPage() {
                     ? 'md:[&>*:nth-child(1)]:order-2 md:[&>*:nth-child(2)]:order-1'
                     : ''
                 }`}
-                style={{ fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif' }}
+                style={{ fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' }}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7 }}
@@ -377,21 +377,21 @@ export default function PartnersPage() {
               >
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-3xl md:text-4xl font-bold mb-2" style={{ color: '#16f98a' }}>
+                    <h3 className="text-3xl md:text-4xl font-bold mb-2" style={{ color: '#2B1E17' }}>
                       {partner.title}
                     </h3>
-                    <p className="text-lg font-semibold" style={{ color: '#134338' }}>
+                    <p className="text-lg font-semibold" style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
                       {partner.subtitle}
                     </p>
                   </div>
 
-                  <p className="text-lg leading-relaxed" style={{ color: '#134338' }}>
+                  <p className="text-lg leading-relaxed" style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
                     {partner.description}
                   </p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-6">
                     <div className="space-y-3">
-                      <h4 className="font-bold uppercase text-sm tracking-wide" style={{ color: '#16f98a' }}>
+                      <h4 className="font-bold uppercase text-sm tracking-wide" style={{ color: '#2B1E17' }}>
                         You bring
                       </h4>
                       <ul className="space-y-2">
@@ -399,7 +399,7 @@ export default function PartnersPage() {
                           <li
                             key={item}
                             className="text-sm leading-relaxed"
-                            style={{ color: '#134338' }}
+                            style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
                           >
                             • {item}
                           </li>
@@ -407,7 +407,7 @@ export default function PartnersPage() {
                       </ul>
                     </div>
                     <div className="space-y-3">
-                      <h4 className="font-bold uppercase text-sm tracking-wide" style={{ color: '#16f98a' }}>
+                      <h4 className="font-bold uppercase text-sm tracking-wide" style={{ color: '#2B1E17' }}>
                         You get
                       </h4>
                       <ul className="space-y-2">
@@ -415,7 +415,7 @@ export default function PartnersPage() {
                           <li
                             key={item}
                             className="text-sm leading-relaxed"
-                            style={{ color: '#134338' }}
+                            style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
                           >
                             • {item}
                           </li>
@@ -425,8 +425,8 @@ export default function PartnersPage() {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-[#f8fff5] to-[#e8ffe0] h-64 rounded-lg flex items-center justify-center border border-[#16f98a]">
-                  <span style={{ color: '#134338' }}>{partner.title} visual</span>
+                <div className="bg-gradient-to-br from-[#f8f6f4] to-[#f0ede9] h-64 rounded-lg flex items-center justify-center border border-[#2B1E17]">
+                  <span style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>{partner.title} visual</span>
                 </div>
               </motion.div>
             ))}
@@ -441,8 +441,8 @@ export default function PartnersPage() {
           >
             <a
               href="#contact-form"
-              className="inline-flex items-center gap-2 bg-[#134338] text-[#ffffff] px-8 py-4 rounded-xl font-bold text-base uppercase hover:bg-[#16f98a] transition-all duration-300 hover:scale-105"
-              style={{ fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif' }}
+              className="inline-flex items-center gap-2 bg-[#2B1E17] text-white px-8 py-4 rounded-xl font-bold text-base uppercase hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#2B1E17]/80 transition-all duration-300 hover:scale-105"
+              style={{ fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' }}
             >
               Partner with us
               <ArrowRight className="w-5 h-5" />
@@ -462,14 +462,14 @@ export default function PartnersPage() {
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
             <h2 className="text-4xl md:text-5xl font-bold uppercase mb-6" style={{ 
-              color: '#16f98a',
-              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
+              color: '#2B1E17',
+              fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif'
             }}>
               Here&apos;s the deal
             </h2>
             <p className="text-xl max-w-2xl" style={{ 
-              color: '#134338',
-              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
+              color: '#2B1E17',
+              fontFamily: 'Inter, system-ui, -apple-system, sans-serif'
             }}>
               Because in high-risk, strong partners mean smoother payouts. This
               is what your merchants get.
@@ -482,20 +482,20 @@ export default function PartnersPage() {
               return (
                 <motion.div
                   key={feature.title}
-                  className="bg-white p-8 rounded-xl border border-[#16f98a] hover:border-[#16f98a]/80 transition-all duration-300 hover:shadow-md"
-                  style={{ fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif' }}
+                  className="bg-white p-8 rounded-xl border border-[#2B1E17] hover:border-[#2B1E17]/80 transition-all duration-300 hover:shadow-md"
+                  style={{ fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' }}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.05 }}
                   viewport={{ once: true }}
                 >
                   <div className="mb-4">
-                    <Icon className="w-10 h-10" style={{ color: '#16f98a' }} />
+                    <Icon className="w-10 h-10" style={{ color: '#2B1E17' }} />
                   </div>
-                  <h3 className="font-bold text-lg mb-2" style={{ color: '#16f98a' }}>
+                  <h3 className="font-bold text-lg mb-2" style={{ color: '#2B1E17' }}>
                     {feature.title}
                   </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#134338' }}>
+                  <p className="text-sm leading-relaxed" style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
                     {feature.description}
                   </p>
                 </motion.div>
@@ -515,20 +515,20 @@ export default function PartnersPage() {
       >
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div style={{ 
-            fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif' 
+            fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' 
           }}>
-            <h2 className="text-4xl md:text-5xl font-bold uppercase mb-6" style={{ color: '#16f98a' }}>
+            <h2 className="text-4xl md:text-5xl font-bold uppercase mb-6" style={{ color: '#2B1E17' }}>
               See it in action
             </h2>
-            <p className="text-lg leading-relaxed" style={{ color: '#134338' }}>
+            <p className="text-lg leading-relaxed" style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
               Walk through how high-risk merchants plug into our rails, how
               partners get paid, and what it looks like when everything just
               works.
             </p>
           </div>
-          <div className="bg-gradient-to-br from-[#f8fff5] to-[#e8ffe0] aspect-video rounded-xl flex items-center justify-center border border-[#16f98a]">
-            <span className="text-[#134338]/70 text-sm uppercase tracking-[0.2em]" style={{ 
-              fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif' 
+          <div className="bg-gradient-to-br from-[#f8f6f4] to-[#f0ede9] aspect-video rounded-xl flex items-center justify-center border border-[#2B1E17]">
+            <span className="text-[#2B1E17]/70 text-sm uppercase tracking-[0.2em]" style={{ 
+              fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' 
             }}>
               Explainer video placeholder
             </span>
@@ -538,7 +538,7 @@ export default function PartnersPage() {
 
       {/* CTA BANNER */}
       <motion.section
-        className="py-20 px-8 md:px-16 bg-[#134338] text-[#ffffff]"
+        className="py-20 px-8 md:px-16 bg-[#2B1E17] text-white"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -546,12 +546,12 @@ export default function PartnersPage() {
       >
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold uppercase mb-6" style={{ 
-            fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif' 
+            fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' 
           }}>
             Ready for a win-win?
           </h2>
           <p className="text-xl mb-3 max-w-2xl mx-auto" style={{ 
-            fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif' 
+            fontFamily: 'Inter, system-ui, -apple-system, sans-serif' 
           }}>
             Expand into new markets and create new revenue opportunities when
             you partner with us. Submit the form below to meet with a
@@ -559,11 +559,11 @@ export default function PartnersPage() {
           </p>
           <a
             href="#contact-form"
-            className="inline-flex items-center gap-2 bg-[#ffffff] text-[#134338] px-8 py-4 rounded-xl font-bold text-base uppercase hover:bg-[#16f98a] hover:text-[#ffffff] transition-all duration-300 hover:scale-105"
-            style={{ fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif' }}
+            className="inline-flex items-center gap-2 bg-white text-[#2B1E17] px-8 py-4 rounded-xl font-bold text-base uppercase hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#2B1E17]/80 hover:text-white transition-all duration-300 hover:scale-105"
+            style={{ fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' }}
           >
             Get started
-            <ArrowRight className="w-5 h-5" style={{ color: '#134338' }} />
+            <ArrowRight className="w-5 h-5" />
           </a>
         </div>
       </motion.section>
@@ -579,114 +579,114 @@ export default function PartnersPage() {
       >
         <div className="max-w-2xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold uppercase mb-6" style={{ 
-            color: '#16f98a',
-            fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
+            color: '#2B1E17',
+            fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif'
           }}>
             Partner with us
           </h2>
           <p className="text-lg mb-12" style={{ 
-            color: '#134338',
-            fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif'
+            color: '#2B1E17',
+            fontFamily: 'Inter, system-ui, -apple-system, sans-serif'
           }}>
             Name your niche, regions, and merchant types. We&apos;ll take it from
             there.
           </p>
 
           <form className="space-y-6" style={{ 
-            fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif' 
+            fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' 
           }}>
             <div>
-              <label className="block text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#134338' }}>
-                Name <span style={{ color: '#16f98a' }}>*</span>
+              <label className="block text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#2B1E17' }}>
+                Name <span style={{ color: '#2B1E17' }}>*</span>
               </label>
               <input
                 type="text"
                 name="name"
                 required
-                className="w-full px-6 py-3 border border-[#16f98a] rounded-lg focus:outline-none focus:border-[#16f98a] transition-colors bg-white"
+                className="w-full px-6 py-3 border border-[#2B1E17] rounded-lg focus:outline-none focus:border-[#2B1E17] transition-colors bg-white"
                 placeholder="Your name"
-                style={{ color: '#134338' }}
+                style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#134338' }}>
-                Work email <span style={{ color: '#16f98a' }}>*</span>
+              <label className="block text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#2B1E17' }}>
+                Work email <span style={{ color: '#2B1E17' }}>*</span>
               </label>
               <input
                 type="email"
                 name="email"
                 required
-                className="w-full px-6 py-3 border border-[#16f98a] rounded-lg focus:outline-none focus:border-[#16f98a] transition-colors bg-white"
+                className="w-full px-6 py-3 border border-[#2B1E17] rounded-lg focus:outline-none focus:border-[#2B1E17] transition-colors bg-white"
                 placeholder="you@company.com"
-                style={{ color: '#134338' }}
+                style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#134338' }}>
-                Company / agency name <span style={{ color: '#16f98a' }}>*</span>
+              <label className="block text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#2B1E17' }}>
+                Company / agency name <span style={{ color: '#2B1E17' }}>*</span>
               </label>
               <input
                 type="text"
                 name="company"
                 required
-                className="w-full px-6 py-3 border border-[#16f98a] rounded-lg focus:outline-none focus:border-[#16f98a] transition-colors bg-white"
+                className="w-full px-6 py-3 border border-[#2B1E17] rounded-lg focus:outline-none focus:border-[#2B1E17] transition-colors bg-white"
                 placeholder="Your company"
-                style={{ color: '#134338' }}
+                style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#134338' }}>
+              <label className="block text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#2B1E17' }}>
                 Website or LinkedIn profile
               </label>
               <input
                 type="text"
                 name="website"
-                className="w-full px-6 py-3 border border-[#16f98a] rounded-lg focus:outline-none focus:border-[#16f98a] transition-colors bg-white"
+                className="w-full px-6 py-3 border border-[#2B1E17] rounded-lg focus:outline-none focus:border-[#2B1E17] transition-colors bg-white"
                 placeholder="https://..."
-                style={{ color: '#134338' }}
+                style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#134338' }}>
-                Regions you operate in <span style={{ color: '#16f98a' }}>*</span>
+              <label className="block text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#2B1E17' }}>
+                Regions you operate in <span style={{ color: '#2B1E17' }}>*</span>
               </label>
               <input
                 type="text"
                 name="regions"
                 required
-                className="w-full px-6 py-3 border border-[#16f98a] rounded-lg focus:outline-none focus:border-[#16f98a] transition-colors bg-white"
+                className="w-full px-6 py-3 border border-[#2B1E17] rounded-lg focus:outline-none focus:border-[#2B1E17] transition-colors bg-white"
                 placeholder="e.g., Europe, APAC, North America"
-                style={{ color: '#134338' }}
+                style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#134338' }}>
+              <label className="block text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#2B1E17' }}>
                 Merchant types you usually work with{' '}
-                <span style={{ color: '#16f98a' }}>*</span>
+                <span style={{ color: '#2B1E17' }}>*</span>
               </label>
               <input
                 type="text"
                 name="merchant_types"
                 required
-                className="w-full px-6 py-3 border border-[#16f98a] rounded-lg focus:outline-none focus:border-[#16f98a] transition-colors bg-white"
+                className="w-full px-6 py-3 border border-[#2B1E17] rounded-lg focus:outline-none focus:border-[#2B1E17] transition-colors bg-white"
                 placeholder="e.g., iGaming, Forex, Crypto"
-                style={{ color: '#134338' }}
+                style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#134338' }}>
+              <label className="block text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#2B1E17' }}>
                 How do you usually source leads?
               </label>
               <select
                 name="lead_source"
-                className="w-full px-6 py-3 border border-[#16f98a] rounded-lg focus:outline-none focus:border-[#16f98a] transition-colors bg-white"
-                style={{ color: '#134338' }}
+                className="w-full px-6 py-3 border border-[#2B1E17] rounded-lg focus:outline-none focus:border-[#2B1E17] transition-colors bg-white"
+                style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
               >
                 <option value="">Select an option</option>
                 <option value="referrals">Referrals</option>
@@ -699,29 +699,29 @@ export default function PartnersPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#134338' }}>
+              <label className="block text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#2B1E17' }}>
                 Additional information
               </label>
               <textarea
                 name="message"
                 rows={4}
-                className="w-full px-6 py-3 border border-[#16f98a] rounded-lg focus:outline-none focus:border-[#16f98a] transition-colors bg-white"
+                className="w-full px-6 py-3 border border-[#2B1E17] rounded-lg focus:outline-none focus:border-[#2B1E17] transition-colors bg-white"
                 placeholder="Share anything else we should know about your portfolio, licenses, or goals..."
-                style={{ color: '#134338' }}
+                style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
               />
             </div>
 
             <motion.button
               type="submit"
-              className="w-full bg-[#134338] text-[#ffffff] py-4 rounded-xl font-bold text-base uppercase hover:bg-[#16f98a] transition-all duration-300"
-              style={{ fontFamily: '"Myriad Variable Concept", system-ui, -apple-system, sans-serif' }}
+              className="w-full bg-[#2B1E17] text-white py-4 rounded-xl font-bold text-base uppercase hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#2B1E17]/80 transition-all duration-300"
+              style={{ fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               Submit
             </motion.button>
 
-            <p className="text-xs text-center" style={{ color: '#134338' }}>
+            <p className="text-xs text-center" style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
               A partnerships specialist will review your details and reach out
               within one business day.
             </p>

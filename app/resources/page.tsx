@@ -59,21 +59,21 @@ export default function ResourceSection() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <h1 className="text-5xl md:text-7xl font-light leading-tight mb-6 tracking-tight" style={{ 
-            color: '#b2f100',
-            fontFamily: '"Saira", system-ui, -apple-system, sans-serif'
+            color: '#2B1E17',
+            fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif'
           }}>
             Resource Center
           </h1>
           <p className="text-xl font-light max-w-3xl mx-auto" style={{ 
-            color: '#083032',
-            fontFamily: '"Saira", system-ui, -apple-system, sans-serif'
+            color: '#2B1E17',
+            fontFamily: 'Inter, system-ui, -apple-system, sans-serif'
           }}>
             For those who actually run things. No fluff, no theory—just real guidance.
           </p>
         </motion.header>
 
         <motion.div
-          className="mb-16 w-full flex flex-col md:flex-row md:items-end md:justify-between gap-6 bg-transparent border border-[#b2f100] rounded-2xl p-6"
+          className="mb-16 w-full flex flex-col md:flex-row md:items-end md:justify-between gap-6 bg-transparent border border-[#2B1E17] rounded-2xl p-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
@@ -102,15 +102,15 @@ export default function ResourceSection() {
 
           <div className="flex items-center gap-3 mt-2 md:mt-0">
             <button
-              className="px-5 py-3 bg-[#083032] text-[#ffffff] text-sm rounded-xl hover:bg-[#b2f100] hover:text-[#083032] transition-all duration-300 cursor-pointer border border-[#b2f100]"
-              style={{ fontFamily: '"Saira", system-ui, -apple-system, sans-serif' }}
+              className="px-5 py-3 bg-[#2B1E17] text-white text-sm rounded-xl hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#2B1E17]/80 transition-all duration-300 cursor-pointer border border-[#2B1E17]"
+              style={{ fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' }}
               onClick={() => console.log('Apply Filters')}
             >
               Apply Filters
             </button>
             <button
-              className="px-5 py-3 bg-white text-[#083032] text-sm rounded-xl hover:bg-[#b2f100] hover:text-[#ffffff] transition-all duration-300 cursor-pointer border border-[#b2f100]"
-              style={{ fontFamily: '"Saira", system-ui, -apple-system, sans-serif' }}
+              className="px-5 py-3 bg-white text-[#2B1E17] text-sm rounded-xl hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#2B1E17]/80 hover:text-white transition-all duration-300 cursor-pointer border border-[#2B1E17]"
+              style={{ fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' }}
               onClick={() => {
                 setActiveProductFilter(null)
                 setActiveIndustryFilter(null)
@@ -134,10 +134,10 @@ export default function ResourceSection() {
             placeholder="Find onboarding docs, compliance walkthroughs, or geo-level approval guides…"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-6 pr-14 py-4 border text-[#083032] border-[#b2f100] rounded-xl focus:border-[#b2f100] focus:outline-none transition-all duration-300 text-base font-light bg-white"
-            style={{ fontFamily: '"Saira", system-ui, -apple-system, sans-serif' }}
+            className="w-full pl-6 pr-14 py-4 border text-[#2B1E17] border-[#2B1E17] rounded-xl focus:border-[#2B1E17] focus:outline-none transition-all duration-300 text-base font-light bg-white"
+            style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
           />
-          <Search className="absolute right-5 top-1/2 transform -translate-y-1/2 w-5 h-5" style={{ color: '#b2f100' }} />
+          <Search className="absolute right-5 top-1/2 transform -translate-y-1/2 w-5 h-5" style={{ color: '#2B1E17' }} />
         </motion.div>
 
         <motion.section
@@ -148,28 +148,28 @@ export default function ResourceSection() {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-light mb-10 text-center" style={{ 
-            color: '#b2f100',
-            fontFamily: '"Saira", system-ui, -apple-system, sans-serif'
+            color: '#2B1E17',
+            fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif'
           }}>Featured Resources</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredResources.map((resource, idx) => (
               <motion.div
                 key={idx}
-                className="bg-white border border-[#b2f100] rounded-2xl overflow-hidden hover:shadow-lg hover:scale-102 transition-all duration-500 group cursor-pointer"
-                style={{ fontFamily: '"Saira", system-ui, -apple-system, sans-serif' }}
+                className="bg-white border border-[#2B1E17] rounded-2xl overflow-hidden hover:shadow-lg hover:scale-102 transition-all duration-500 group cursor-pointer"
+                style={{ fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' }}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="h-48 bg-gradient-to-br from-[#f8fff5] to-[#e8ffe0] flex items-center justify-center">
-                  <span className="text-[#083032]/70 text-sm">Image Placeholder</span>
+                <div className="h-48 bg-gradient-to-br from-[#f8f6f4] to-[#f0ede9] flex items-center justify-center">
+                  <span className="text-[#2B1E17]/70 text-sm">Image Placeholder</span>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-lg font-medium group-hover:text-[#083032] transition-colors" style={{ color: '#b2f100' }}>
+                  <h3 className="text-lg font-medium group-hover:text-[#2B1E17] transition-colors" style={{ color: '#2B1E17' }}>
                     {resource.title}
                   </h3>
-                  <div className="mt-4 text-sm" style={{ color: '#083032' }}>
+                  <div className="mt-4 text-sm" style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
                     Read More
                   </div>
                 </div>
@@ -197,8 +197,8 @@ function DropdownFilter({ label, items, active, setActive }: DropdownFilterProps
   return (
     <div className="flex flex-col relative">
       <label className="text-sm font-medium uppercase tracking-widest mb-2" style={{ 
-        color: '#083032',
-        fontFamily: '"Saira", system-ui, -apple-system, sans-serif'
+        color: '#2B1E17',
+        fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif'
       }}>
         {label}
       </label>
@@ -206,15 +206,15 @@ function DropdownFilter({ label, items, active, setActive }: DropdownFilterProps
         <select
           value={active ?? ''}
           onChange={(e) => setActive(e.target.value || null)}
-          className="w-full appearance-none border border-[#b2f100] rounded-xl px-4 py-3 pr-10 text-[#083032] text-sm bg-white focus:border-[#b2f100] focus:outline-none transition-all cursor-pointer"
-          style={{ fontFamily: '"Saira", system-ui, -apple-system, sans-serif' }}
+          className="w-full appearance-none border border-[#2B1E17] rounded-xl px-4 py-3 pr-10 text-[#2B1E17] text-sm bg-white focus:border-[#2B1E17] focus:outline-none transition-all cursor-pointer"
+          style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
         >
           <option value="">Select {label}</option>
           {items.map(item => (
             <option key={item} value={item}>{item}</option>
           ))}
         </select>
-        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 pointer-events-none" style={{ color: '#b2f100' }} />
+        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 pointer-events-none" style={{ color: '#2B1E17' }} />
       </div>
     </div>
   )
@@ -237,27 +237,27 @@ function ContentSection({ title, items, icon: Icon, align }: ContentSectionProps
       viewport={{ once: true }}
     >
       <h2 className="text-3xl md:text-4xl font-light mb-10" style={{ 
-        color: '#b2f100',
-        fontFamily: '"Saira", system-ui, -apple-system, sans-serif'
+        color: '#2B1E17',
+        fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif'
       }}>{title}</h2>
       <div className="space-y-6">
         {items.map((item, idx) => (
           <motion.div
             key={idx}
-            className={`bg-white border border-[#b2f100] rounded-xl p-6 hover:border-[#b2f100]/80 hover:shadow-md transition-all cursor-pointer duration-300 flex items-center justify-between ${
+            className={`bg-white border border-[#2B1E17] rounded-xl p-6 hover:border-[#2B1E17]/80 hover:shadow-md transition-all cursor-pointer duration-300 flex items-center justify-between ${
               align === 'right' ? 'flex-row-reverse' : ''
             }`}
-            style={{ fontFamily: '"Saira", system-ui, -apple-system, sans-serif' }}
+            style={{ fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' }}
             initial={{ opacity: 0, x: align === 'right' ? 20 : -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: idx * 0.1 }}
             viewport={{ once: true }}
           >
             <div className={align === 'right' ? 'text-right' : ''}>
-              <h3 className="text-lg font-medium mb-1" style={{ color: '#b2f100' }}>{item.title}</h3>
-              <span className="text-sm" style={{ color: '#083032' }}>{item.filter}</span>
+              <h3 className="text-lg font-medium mb-1" style={{ color: '#2B1E17' }}>{item.title}</h3>
+              <span className="text-sm" style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>{item.filter}</span>
             </div>
-            <Icon className="w-6 h-6" style={{ color: '#b2f100' }} />
+            <Icon className="w-6 h-6" style={{ color: '#2B1E17' }} />
           </motion.div>
         ))}
       </div>
