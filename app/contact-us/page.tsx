@@ -2,28 +2,56 @@
 
 import { useState, ChangeEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ShieldCheck, Globe, EyeOff, UserCheck, FileBadge2 } from 'lucide-react'
+import {
+  ShieldCheck,
+  Globe,
+  EyeOff,
+  UserCheck,
+  FileBadge2
+} from 'lucide-react'
 
+// Tabs
 const tabs = [
   { label: 'For Merchants', key: 'merchant' },
   { label: 'For Agents', key: 'agent' },
   { label: 'For Partners', key: 'partner' }
 ] as const
 
-type TabKey = typeof tabs[number]['key']
+type TabKey = (typeof tabs)[number]['key']
 
+// Trust-list
 function TrustList() {
   const trustItems = [
-    { icon: <FileBadge2 size={18} className="text-[#2B1E17]" />, text: "Free compliance and risk review with every inquiry." },
-    { icon: <UserCheck size={18} className="text-[#2B1E17]" />, text: "Real people, no bots — every submission is reviewed manually." },
-    { icon: <EyeOff size={18} className="text-[#2B1E17]" />, text: "Your data stays private — never shared or sold." },
-    { icon: <Globe size={18} className="text-[#2B1E17]" />, text: "Registered with FinCEN (U.S.) and FINTRAC (Canada)." },
-    { icon: <ShieldCheck size={18} className="text-[#2B1E17]" />, text: "PCI DSS Level 1 certified and licensed in 22+ jurisdictions." }
+    {
+      icon: <FileBadge2 size={18} className="text-[#2B1E17]" />,
+      text: 'Free compliance and risk review with every inquiry.'
+    },
+    {
+      icon: <UserCheck size={18} className="text-[#2B1E17]" />,
+      text: 'Real people, no bots — every submission is reviewed manually.'
+    },
+    {
+      icon: <EyeOff size={18} className="text-[#2B1E17]" />,
+      text: 'Your data stays private — never shared or sold.'
+    },
+    {
+      icon: <Globe size={18} className="text-[#2B1E17]" />,
+      text: 'Registered with FinCEN (U.S.) and FINTRAC (Canada).'
+    },
+    {
+      icon: <ShieldCheck size={18} className="text-[#2B1E17]" />,
+      text: 'PCI DSS Level 1 certified and licensed in 22+ jurisdictions.'
+    }
   ]
+
   return (
-    <ul className="list-none pl-0 space-y-3 mt-6">
+    <ul className="mt-6 space-y-3 list-none pl-0">
       {trustItems.map(({ icon, text }) => (
-        <li key={text} className="flex items-center gap-3 text-[#2B1E17] text-base font-light" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
+        <li
+          key={text}
+          className="flex items-center gap-3 text-base font-light text-[#2B1E17]"
+          style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
+        >
           {icon}
           <span>{text}</span>
         </li>
@@ -32,53 +60,92 @@ function TrustList() {
   )
 }
 
+// Form Field Component
 type FieldProps = {
   label: string
   name: string
   value: string
   type?: string
   placeholder?: string
-  onChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
+  onChange: (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void
 }
 
 function FormField({ label, ...props }: FieldProps) {
   return (
     <div>
-      <label className="block text-xs font-medium text-[#2B1E17] uppercase tracking-widest mb-2" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>{label}</label>
+      <label
+        className="mb-2 block text-xs font-medium uppercase tracking-widest text-[#2B1E17]"
+        style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
+      >
+        {label}
+      </label>
+
       <input
-        className="w-full px-4 py-3 border-2 rounded-lg text-base font-light text-[#2B1E17] bg-white focus:outline-none transition-all duration-300"
-        style={{ 
+        {...props}
+        className="w-full rounded-lg border-2 px-4 py-3 text-base font-light text-[#2B1E17] transition-all duration-300 focus:outline-none"
+        style={{
           fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
           borderColor: '#2B1E17',
           background: 'rgba(255,255,255,0.2)',
           backdropFilter: 'blur(10px)'
         }}
         onFocus={(e) => {
-          e.currentTarget.style.borderColor = '#2B1E17'
-          e.currentTarget.style.boxShadow = '0 0 0 3px rgba(43, 30, 23, 0.1)'
+          e.currentTarget.style.boxShadow =
+            '0 0 0 3px rgba(43, 30, 23, 0.1)'
         }}
         onBlur={(e) => {
           e.currentTarget.style.boxShadow = 'none'
         }}
-        {...props}
       />
     </div>
   )
 }
 
-function MerchantForm({ onDone, loading, setLoading }: { onDone: () => void; loading: boolean; setLoading: (v: boolean) => void }) {
+// Merchant Form
+function MerchantForm({
+  onDone,
+  loading,
+  setLoading
+}: {
+  onDone: () => void
+  loading: boolean
+  setLoading: (v: boolean) => void
+}) {
   const [formData, setFormData] = useState({
-    name: '', email: '', company: '', industry: '', website: '', region: ''
+    name: '',
+    email: '',
+    company: '',
+    industry: '',
+    website: '',
+    region: ''
   })
   const [error, setError] = useState<string | null>(null)
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
-    setFormData(f => ({ ...f, [e.target.name]: e.target.value }))
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) =>
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
+
   const handleSubmit = () => {
     setError(null)
-    if (Object.values(formData).some(x => !x)) { setError("All fields required."); return }
+
+    if (Object.values(formData).some((v) => !v)) {
+      setError('All fields required.')
+      return
+    }
+
     setLoading(true)
-    setTimeout(() => { setLoading(false); onDone() }, 1400)
+    setTimeout(() => {
+      setLoading(false)
+      onDone()
+    }, 1400)
   }
+
   return (
     <div className="space-y-5">
       <FormField label="Name*" name="name" value={formData.name} onChange={handleChange} />
@@ -87,182 +154,258 @@ function MerchantForm({ onDone, loading, setLoading }: { onDone: () => void; loa
       <FormField label="Industry*" name="industry" value={formData.industry} onChange={handleChange} />
       <FormField label="Company Website*" name="website" value={formData.website} onChange={handleChange} />
       <FormField label="Operating Region*" name="region" value={formData.region} onChange={handleChange} />
-      {error && <div className="text-[#2B1E17] text-sm font-semibold" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>{error}</div>}
-      <button 
-        onClick={handleSubmit}
-        disabled={loading}
-        className={`w-full py-4 mt-2 rounded-xl font-bold text-base transition-all duration-300 ${loading ? 'cursor-not-allowed opacity-70' : 'hover:scale-105'}`}
-        style={{ 
-          fontFamily: '"Ardela Edge", "Bebas Neue", system-ui, sans-serif',
-          background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
-          color: '#ffffff',
-          border: '2px solid transparent'
-        }}
-        onMouseEnter={(e) => {
-          if (!loading) {
-            e.currentTarget.style.background = 'rgba(255,255,255,0.2)'
-            e.currentTarget.style.backdropFilter = 'blur(10px)'
-            e.currentTarget.style.color = '#2B1E17'
-            e.currentTarget.style.borderColor = '#2B1E17'
-          }
-        }}
-        onMouseLeave={(e) => {
-          if (!loading) {
-            e.currentTarget.style.background = 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)'
-            e.currentTarget.style.backdropFilter = 'none'
-            e.currentTarget.style.color = '#ffffff'
-            e.currentTarget.style.borderColor = 'transparent'
-          }
-        }}
-      >
-        {loading ? 'Submitting...' : 'Submit'}
-      </button>
+
+      {error && (
+        <div
+          className="text-sm font-semibold text-[#2B1E17]"
+          style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
+        >
+          {error}
+        </div>
+      )}
+
+      <SubmitButton loading={loading} onClick={handleSubmit} />
     </div>
   )
 }
 
-function AgentForm({ onDone, loading, setLoading }: { onDone: () => void; loading: boolean; setLoading: (v: boolean) => void }) {
+// Agent Form
+function AgentForm({
+  onDone,
+  loading,
+  setLoading
+}: {
+  onDone: () => void
+  loading: boolean
+  setLoading: (v: boolean) => void
+}) {
   const [formData, setFormData] = useState({
-    name: '', email: '', agency: '', website: '', regions: '', types: '', sourcing: ''
+    name: '',
+    email: '',
+    agency: '',
+    website: '',
+    regions: '',
+    types: '',
+    sourcing: ''
   })
+
   const [error, setError] = useState<string | null>(null)
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
-    setFormData(f => ({ ...f, [e.target.name]: e.target.value }))
-  const handleSubmit = () => {
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) =>
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
+
+  const handleSubmit = async (e?: { preventDefault: () => void }) => {
+    e?.preventDefault()
     setError(null)
-    if (Object.values(formData).some(x => !x)) { setError("All fields required."); return }
     setLoading(true)
-    setTimeout(() => { setLoading(false); onDone() }, 1400)
+
+    try {
+      await fetch(
+        'https://script.google.com/macros/s/AKfycbyl4O8HJnUw9ZUu1h3it90mt9tVPzRr6GKA7aynq35jeXbs4Vj8fMA196xFBQ1v9M1SwQ/exec',
+        {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        }
+      )
+
+      setFormData({
+        name: '',
+        email: '',
+        agency: '',
+        website: '',
+        regions: '',
+        types: '',
+        sourcing: ''
+      })
+
+      onDone()
+    } catch {
+      setError('Submission failed. Please try again.')
+    } finally {
+      setLoading(false)
+    }
   }
+
   return (
     <div className="space-y-5">
-      <FormField label="Name*" name="name" value={formData.name} onChange={handleChange} />
-      <FormField label="Work Email*" type="email" name="email" value={formData.email} onChange={handleChange} />
-      <FormField label="Company / Agency Name*" name="agency" value={formData.agency} onChange={handleChange} />
-      <FormField label="Website or LinkedIn Profile*" name="website" value={formData.website} onChange={handleChange} />
-      <FormField label="Regions You Operate In*" name="regions" value={formData.regions} onChange={handleChange} />
-      <FormField label="Merchant Types You Usually Work With*" name="types" value={formData.types} onChange={handleChange} />
-      <FormField label="How Do You Usually Source Leads?*" name="sourcing" value={formData.sourcing} onChange={handleChange} />
-      {error && <div className="text-[#2B1E17] text-sm font-semibold" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>{error}</div>}
-      <button 
-        onClick={handleSubmit}
-        disabled={loading}
-        className={`w-full py-4 mt-2 rounded-xl font-bold text-base transition-all duration-300 ${loading ? 'cursor-not-allowed opacity-70' : 'hover:scale-105'}`}
-        style={{ 
-          fontFamily: '"Ardela Edge", "Bebas Neue", system-ui, sans-serif',
-          background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
-          color: '#ffffff',
-          border: '2px solid transparent'
-        }}
-        onMouseEnter={(e) => {
-          if (!loading) {
-            e.currentTarget.style.background = 'rgba(255,255,255,0.2)'
-            e.currentTarget.style.backdropFilter = 'blur(10px)'
-            e.currentTarget.style.color = '#2B1E17'
-            e.currentTarget.style.borderColor = '#2B1E17'
-          }
-        }}
-        onMouseLeave={(e) => {
-          if (!loading) {
-            e.currentTarget.style.background = 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)'
-            e.currentTarget.style.backdropFilter = 'none'
-            e.currentTarget.style.color = '#ffffff'
-            e.currentTarget.style.borderColor = 'transparent'
-          }
-        }}
-      >
-        {loading ? 'Submitting...' : 'Submit'}
-      </button>
+      <FormField label="Name" name="name" value={formData.name} onChange={handleChange} />
+      <FormField label="Work Email" type="email" name="email" value={formData.email} onChange={handleChange} />
+      <FormField label="Company / Agency Name" name="agency" value={formData.agency} onChange={handleChange} />
+      <FormField label="Website or LinkedIn Profile" name="website" value={formData.website} onChange={handleChange} />
+      <FormField label="Operating Regions" name="regions" value={formData.regions} onChange={handleChange} />
+      <FormField label="Merchant Types You Work With" name="types" value={formData.types} onChange={handleChange} />
+      <FormField label="How Do You Source Leads?" name="sourcing" value={formData.sourcing} onChange={handleChange} />
+
+      {error && (
+        <div
+          className="text-sm font-semibold text-[#2B1E17]"
+          style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
+        >
+          {error}
+        </div>
+      )}
+
+      <SubmitButton loading={loading} onClick={() => handleSubmit()} />
     </div>
   )
 }
 
-function PartnerForm({ onDone, loading, setLoading }: { onDone: () => void; loading: boolean; setLoading: (v: boolean) => void }) {
+// Partner Form
+function PartnerForm({
+  onDone,
+  loading,
+  setLoading
+}: {
+  onDone: () => void
+  loading: boolean
+  setLoading: (v: boolean) => void
+}) {
   const [formData, setFormData] = useState({
-    name: '', email: '', org: '', orgtype: '', website: '', licenses: ''
+    name: '',
+    email: '',
+    org: '',
+    orgtype: '',
+    website: '',
+    licenses: ''
   })
+
   const [error, setError] = useState<string | null>(null)
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
-    setFormData(f => ({ ...f, [e.target.name]: e.target.value }))
-  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) =>
-    setFormData(f => ({ ...f, orgtype: e.target.value }))
-  const handleSubmit = () => {
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) =>
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
+
+  const handleSubmit = async () => {
     setError(null)
-    if (Object.values(formData).some(x => !x)) { setError("All fields required."); return }
+
+    if (Object.values(formData).some((v) => !v)) {
+      setError('All fields required.')
+      return
+    }
+
     setLoading(true)
-    setTimeout(() => { setLoading(false); onDone() }, 1400)
+    setTimeout(() => {
+      setLoading(false)
+      onDone()
+    }, 1400)
   }
+
   return (
     <div className="space-y-5">
       <FormField label="Name*" name="name" value={formData.name} onChange={handleChange} />
       <FormField label="Work Email*" type="email" name="email" value={formData.email} onChange={handleChange} />
       <FormField label="Organization Name*" name="org" value={formData.org} onChange={handleChange} />
       <div>
-        <label className="block text-xs font-medium text-[#2B1E17] uppercase tracking-widest mb-2" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>Organization Type*</label>
+        <label
+          className="mb-2 block text-xs font-medium uppercase tracking-widest text-[#2B1E17]"
+          style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
+        >
+          Organization Type*
+        </label>
+
         <select
           name="orgtype"
           value={formData.orgtype}
-          onChange={handleSelectChange}
-          className="w-full px-4 py-3 border-2 rounded-lg text-base font-light text-[#2B1E17] bg-white focus:outline-none transition-all duration-300"
-          style={{ 
+          onChange={(e) =>
+            setFormData((prev) => ({
+              ...prev,
+              orgtype: e.target.value
+            }))
+          }
+          className="w-full rounded-lg border-2 px-4 py-3 text-base font-light text-[#2B1E17] transition-all duration-300 focus:outline-none"
+          style={{
             fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
             borderColor: '#2B1E17',
             background: 'rgba(255,255,255,0.2)',
             backdropFilter: 'blur(10px)'
           }}
-          onFocus={(e) => {
-            e.currentTarget.style.borderColor = '#2B1E17'
-            e.currentTarget.style.boxShadow = '0 0 0 3px rgba(43, 30, 23, 0.1)'
-          }}
-          onBlur={(e) => {
-            e.currentTarget.style.boxShadow = 'none'
-          }}
-          required
         >
           <option value="">Select type</option>
           <option value="bank">Bank</option>
           <option value="iso">ISO</option>
           <option value="processor">Processor</option>
-          <option value="tech">Tech</option>
+          <option value="tech">Technology</option>
           <option value="compliance">Compliance</option>
           <option value="other">Other</option>
         </select>
       </div>
+
       <FormField label="Website*" name="website" value={formData.website} onChange={handleChange} />
       <FormField label="Licenses*" name="licenses" value={formData.licenses} onChange={handleChange} />
-      {error && <div className="text-[#2B1E17] text-sm font-semibold" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>{error}</div>}
-      <button 
-        onClick={handleSubmit}
-        disabled={loading}
-        className={`w-full py-4 mt-2 rounded-xl font-bold text-base transition-all duration-300 ${loading ? 'cursor-not-allowed opacity-70' : 'hover:scale-105'}`}
-        style={{ 
-          fontFamily: '"Ardela Edge", "Bebas Neue", system-ui, sans-serif',
-          background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
-          color: '#ffffff',
-          border: '2px solid transparent'
-        }}
-        onMouseEnter={(e) => {
-          if (!loading) {
-            e.currentTarget.style.background = 'rgba(255,255,255,0.2)'
-            e.currentTarget.style.backdropFilter = 'blur(10px)'
-            e.currentTarget.style.color = '#2B1E17'
-            e.currentTarget.style.borderColor = '#2B1E17'
-          }
-        }}
-        onMouseLeave={(e) => {
-          if (!loading) {
-            e.currentTarget.style.background = 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)'
-            e.currentTarget.style.backdropFilter = 'none'
-            e.currentTarget.style.color = '#ffffff'
-            e.currentTarget.style.borderColor = 'transparent'
-          }
-        }}
-      >
-        {loading ? 'Submitting...' : 'Submit'}
-      </button>
+
+      {error && (
+        <div
+          className="text-sm font-semibold text-[#2B1E17]"
+          style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
+        >
+          {error}
+        </div>
+      )}
+
+      <SubmitButton loading={loading} onClick={() => handleSubmit()} />
     </div>
   )
 }
+
+// Submit Button
+function SubmitButton({
+  loading,
+  onClick
+}: {
+  loading: boolean
+  onClick: () => void
+}) {
+  return (
+    <button
+      onClick={onClick}
+      disabled={loading}
+      className={`mt-2 w-full rounded-xl py-4 text-base font-bold transition-all duration-300 ${
+        loading ? 'cursor-not-allowed opacity-70' : 'hover:scale-105'
+      }`}
+      style={{
+        fontFamily: '"Ardela Edge", "Bebas Neue", system-ui, sans-serif',
+        background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
+        color: '#ffffff',
+        border: '2px solid transparent'
+      }}
+      onMouseEnter={(e) => {
+        if (!loading) {
+          e.currentTarget.style.background = 'rgba(255,255,255,0.2)'
+          e.currentTarget.style.backdropFilter = 'blur(10px)'
+          e.currentTarget.style.color = '#2B1E17'
+          e.currentTarget.style.borderColor = '#2B1E17'
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (!loading) {
+          e.currentTarget.style.background =
+            'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)'
+          e.currentTarget.style.color = '#ffffff'
+          e.currentTarget.style.borderColor = 'transparent'
+        }
+      }}
+    >
+      {loading ? 'Submitting...' : 'Submit'}
+    </button>
+  )
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              Contact Section                                */
+/* -------------------------------------------------------------------------- */
 
 export default function ContactSection() {
   const [tab, setTab] = useState<TabKey>('merchant')
