@@ -38,7 +38,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   if (!mounted) {
     return (
       <html lang="en">
-        <body className="flex flex-col min-h-screen font-inter bg-gray-100">
+        <head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        </head>
+        <body className="flex flex-col min-h-screen inter-400 bg-gray-100">
           {!isLoaded && <LoadingScreen onFinish={() => setIsLoaded(true)} />}
         </body>
       </html>
@@ -49,8 +53,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body
-        className="flex flex-col font-inter bg-gray-100"
+        className="flex flex-col inter-400 bg-gray-100"
         style={{ cursor: cursorStyle }}
         suppressHydrationWarning={true}
       >

@@ -97,7 +97,6 @@ export default function ServicesSection() {
             className="text-5xl md:text-7xl font-extrabold uppercase leading-tight tracking-tight"
             style={{ 
               color: '#2B1E17',
-              fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif'
             }}
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
