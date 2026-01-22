@@ -1,25 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-@import url('https://db.onlinewebfonts.com/c/07899d51f46805ce07de796bfd8c3831?family=ArdelaEdgeX01-ExtraBold');
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --font-heading: 'Ardela Edge', system-ui, sans-serif;
-  --font-body: 'Inter', system-ui, sans-serif;
+  --font-inter: Inter, system-ui, sans-serif;  /* Primary Inter */
+  --font-sans: var(--font-inter);  /* All sans uses Inter */
 }
-Canvas{
-  /* width: 100vw; */
-  height: 100vh!important;
-  /* position: fixed;
-  top:0;
-  z-index: 10000; */
-  
+
+Canvas {
+  height: 100vh !important;
 }
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-body);
+  --font-sans: var(--font-inter);  /* Inter for all sans utilities */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -32,13 +27,15 @@ Canvas{
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-body);
+  font-family: var(--font-inter);
 }
-.bg-white{
-  background: transparent!important;
+
+.bg-white {
+  background: transparent !important;
 }
-.bg-gray-950{
-  background: rgba(255,255,255,0.2)!important;
-  backdrop-filter: blur(10px)!important;
-  transition:0.3s ease!important;
+
+.bg-gray-950 {
+  background: rgba(255,255,255,0.2) !important;
+  backdrop-filter: blur(10px) !important;
+  transition: 0.3s ease !important;
 }
