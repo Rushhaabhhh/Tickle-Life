@@ -22,18 +22,7 @@ export default function AboutSection() {
           }}
         >
           <motion.h1
-            style={{
-              fontSize: '5rem',
-              fontWeight: 800,
-              lineHeight: 1,
-              letterSpacing: '-0.03em',
-              textTransform: 'uppercase',
-              background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              fontFamily: 'var(--font-heading)',
-            }}
+            className="inter-800 text-5xl leading-none tracking-[-0.03em] uppercase bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent"
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
@@ -42,12 +31,9 @@ export default function AboutSection() {
             <br />
             For high-risk
             <br />
-            <span style={{ 
-              background: 'linear-gradient(135deg, #2B1E17 0%, #3d2b1f 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}>powered by fintech.</span>
+            <span className="bg-gradient-to-r from-[#2B1E17] to-[#3d2b1f] bg-clip-text text-transparent">
+              powered by fintech.
+            </span>
           </motion.h1>
         </div>
       </motion.header>
@@ -61,14 +47,7 @@ export default function AboutSection() {
       >
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
-            style={{
-              fontFamily: 'var(--font-heading)',
-              background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold uppercase mb-12"
+            className="inter-800 text-4xl md:text-5xl lg:text-6xl uppercase mb-12 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -78,24 +57,21 @@ export default function AboutSection() {
           </motion.h2>
 
           <motion.div
-            className="space-y-8 text-xl md:text-2xl leading-relaxed"
-            style={{
-              color: '#2B1E17',
-              fontFamily: 'var(--font-body)',
-            }}
+            className="inter-300 space-y-8 text-xl md:text-2xl leading-relaxed"
+            style={{ color: '#2B1E17' }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <p className="font-bold">
-              Just because it was legal didn&apos;t make it easy.
+            <p className="inter-600">
+              Just because it was legal didn't make it easy.
             </p>
 
             <p>
               We started in sexual wellness to help people learn, connect, and grow.
               But no matter how compliant we were, banks still labeled us as
-              &apos;high-risk&apos;. Every &quot;solution&quot; we used broke down when
+              'high-risk'. Every "solution" we used broke down when
               we tried to scale. Until finally, we did it ourselves.
             </p>
 
@@ -106,12 +82,12 @@ export default function AboutSection() {
             </p>
 
             <p>
-              We stand between you and the bank, taking on the risks they don&apos;t.
+              We stand between you and the bank, taking on the risks they don't.
               The chargebacks, the compliance checks, the endless risk reviews —
               we handle it before it ever reaches you.
             </p>
 
-            <p className="text-2xl md:text-3xl font-semibold">
+            <p className="inter-600 text-2xl md:text-3xl">
               And you just move your money the way you want.
             </p>
           </motion.div>
@@ -127,14 +103,7 @@ export default function AboutSection() {
       >
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
-            style={{
-              fontFamily: 'var(--font-heading)',
-              background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-            className="text-5xl md:text-5xl lg:text-6xl font-bold uppercase mb-12"
+            className="inter-800 text-5xl md:text-5xl lg:text-6xl uppercase mb-12 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -144,21 +113,18 @@ export default function AboutSection() {
           </motion.h2>
 
           <motion.div
-            className="space-y-8 text-xl md:text-2xl leading-relaxed"
-            style={{
-              color: '#2B1E17',
-              fontFamily: 'var(--font-body)',
-            }}
+            className="inter-300 space-y-8 text-xl md:text-2xl leading-relaxed"
+            style={{ color: '#2B1E17' }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <p className="font-bold text-2xl md:text-3xl">
+            <p className="inter-600 text-2xl md:text-3xl">
               High-risk First. Fintech Now.
             </p>
             <p>
-              We&apos;re a small team of people who&apos;ve lived the high-risk grind —
+              We're a small team of people who've lived the high-risk grind —
               and built the systems we wish existed back then.
             </p>
             <p>
@@ -178,37 +144,27 @@ export default function AboutSection() {
       >
         <div className="max-w-5xl mx-auto">
           <motion.h2
-            style={{
-              fontFamily: 'var(--font-heading)',
-              background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-            className="text-4xl md:text-5xl lg:text-5xl font-bold leading-tight mb-8"
+            className="inter-800 text-4xl md:text-5xl lg:text-5xl leading-tight mb-8 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            We&apos;re growing. It&apos;s a good time to join.
+            We're growing. It's a good time to join.
           </motion.h2>
 
           <motion.p
-            className="text-2xl md:text-3xl leading-relaxed mb-12 font-medium"
-            style={{
-              color: '#2B1E17',
-              fontFamily: 'var(--font-body)',
-            }}
+            className="inter-500 text-2xl md:text-3xl leading-relaxed mb-12"
+            style={{ color: '#2B1E17' }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            We&apos;re hiring across product, onboarding, compliance, and partnerships.
+            We're hiring across product, onboarding, compliance, and partnerships.
             <br />
-            Or if you&apos;re a regulator, lawyer, or license-holder and want to
-            collaborate – we&apos;d love to hear from you.
+            Or if you're a regulator, lawyer, or license-holder and want to
+            collaborate – we'd love to hear from you.
           </motion.p>
 
           <motion.div
@@ -220,54 +176,45 @@ export default function AboutSection() {
           >
             <a
               href="/careers"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-base uppercase transition-all duration-300 hover:scale-105 border-2"
-              style={{ 
-                fontFamily: 'var(--font-heading)',
-                background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
-                color: '#ffffff',
-                borderColor: 'transparent',
-              }}
+              className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 hover:scale-105 border-2 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] text-white border-transparent"
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.2)'
-                e.currentTarget.style.backdropFilter = 'blur(10px)'
-                e.currentTarget.style.color = '#2B1E17'
-                e.currentTarget.style.borderColor = '#2B1E17'
+                const target = e.currentTarget
+                target.style.background = 'rgba(255,255,255,0.2)'
+                target.style.backdropFilter = 'blur(10px)'
+                target.style.color = '#2B1E17'
+                target.style.borderColor = '#2B1E17'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)'
-                e.currentTarget.style.backdropFilter = 'none'
-                e.currentTarget.style.color = '#ffffff'
-                e.currentTarget.style.borderColor = 'transparent'
+                const target = e.currentTarget
+                target.style.background = 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)'
+                target.style.backdropFilter = 'none'
+                target.style.color = '#ffffff'
+                target.style.borderColor = 'transparent'
               }}
             >
               See Open Roles
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="/contact-us"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-base uppercase transition-all duration-300 hover:scale-105 border-2"
-              style={{ 
-                fontFamily: 'var(--font-heading)',
-                background: 'rgba(255,255,255,0.2)',
-                backdropFilter: 'blur(10px)',
-                color: '#2B1E17',
-                borderColor: '#2B1E17',
-              }}
+              className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 hover:scale-105 border-2 bg-white/20 backdrop-blur-xl text-[#2B1E17] border-[#2B1E17]"
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)'
-                e.currentTarget.style.backdropFilter = 'none'
-                e.currentTarget.style.color = '#ffffff'
-                e.currentTarget.style.borderColor = 'transparent'
+                const target = e.currentTarget
+                target.style.background = 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)'
+                target.style.backdropFilter = 'none'
+                target.style.color = '#ffffff'
+                target.style.borderColor = 'transparent'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.2)'
-                e.currentTarget.style.backdropFilter = 'blur(10px)'
-                e.currentTarget.style.color = '#2B1E17'
-                e.currentTarget.style.borderColor = '#2B1E17'
+                const target = e.currentTarget
+                target.style.background = 'rgba(255,255,255,0.2)'
+                target.style.backdropFilter = 'blur(10px)'
+                target.style.color = '#2B1E17'
+                target.style.borderColor = '#2B1E17'
               }}
             >
               Contact Compliance
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>
         </div>

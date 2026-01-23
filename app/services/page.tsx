@@ -94,10 +94,7 @@ export default function ServicesSection() {
       >
         <div className="max-w-7xl w-full">
           <motion.h1
-            className="text-5xl md:text-7xl font-extrabold uppercase leading-tight tracking-tight"
-            style={{ 
-              color: '#2B1E17',
-            }}
+            className="ardela-800 text-5xl md:text-7xl leading-tight tracking-tight text-[#2B1E17]"
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -119,8 +116,7 @@ export default function ServicesSection() {
           return (
             <motion.div
               key={card.id}
-              className="relative w-full h-[360px] rounded-2xl border border-[#2B1E17] overflow-hidden shadow-sm group"
-              style={{ fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' }}
+              className="inter-400 relative w-full h-[360px] rounded-2xl border border-[#2B1E17] overflow-hidden shadow-sm group"
               onClick={() => setExpandedCard(expanded ? null : card.id)}
               onMouseEnter={() => setExpandedCard(card.id)}
               onMouseLeave={() => setExpandedCard(null)}
@@ -138,18 +134,18 @@ export default function ServicesSection() {
                 animate={{ y: expanded ? "-80%" : "0%" }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
               >
-                <h3 className="text-3xl font-bold uppercase select-none" style={{ 
-                  color: '#2B1E17',
-                  fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif',
+                <h3 className="inter-800 text-3xl uppercase select-none text-[#2B1E17]" style={{ 
                   textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
-                }}>{card.title}</h3>
+                }}>
+                  {card.title}
+                </h3>
               </motion.div>
 
               <AnimatePresence>
                 {expanded && (
                   <motion.div
                     key="content"
-                    className="absolute inset-0 p-10 flex flex-col justify-center shadow-2xl rounded-2xl z-20"
+                    className="inter-400 absolute inset-0 p-10 flex flex-col justify-center shadow-2xl rounded-2xl z-20"
                     style={{ 
                       background: 'linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,246,244,0.95) 100%)',
                       backdropFilter: 'blur(20px)',
@@ -160,9 +156,7 @@ export default function ServicesSection() {
                     exit={{ opacity: 0, y: 80 }}
                     transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
                   >
-                    <p className="text-lg leading-relaxed text-[#2B1E17] select-text" style={{ 
-                      fontFamily: 'Inter, system-ui, -apple-system, sans-serif' 
-                    }}>
+                    <p className="inter-300 text-lg leading-relaxed text-[#2B1E17] select-text">
                       {card.description}
                     </p>
                   </motion.div>
@@ -190,19 +184,13 @@ export default function ServicesSection() {
         viewport={{ once: true }}
       >
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl md:text-6xl font-bold uppercase mb-16 text-center" style={{ 
-            color: '#2B1E17',
-            fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif'
-          }}>
+          <h2 className="inter-800 text-4xl md:text-6xl uppercase mb-16 text-center text-[#2B1E17]">
             Build Your Stack
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-2xl font-bold mb-6" style={{ 
-                color: '#2B1E17',
-                fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' 
-              }}>Supported Payment Modes</h3>
+              <h3 className="inter-800 text-2xl mb-6 text-[#2B1E17]">Supported Payment Modes</h3>
 
               <div className="space-y-4">
                 {supportedPaymentModes.map((mode) => (
@@ -210,14 +198,13 @@ export default function ServicesSection() {
                     key={mode.id}
                     draggable={!mode.default}
                     onDragStart={() => !mode.default && handleDragStart(mode.id)}
-                    className={`border border-[#2B1E17] rounded-xl p-6 select-none transition-colors duration-300 bg-white hover:shadow-lg ${mode.default ? 'border-4' : 'hover:border-4 hover:bg-[#2B1E17]/5 cursor-move'}`}
-                    style={{ fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' }}
+                    className={`inter-400 border border-[#2B1E17] rounded-xl p-6 select-none transition-colors duration-300 bg-white hover:shadow-lg ${mode.default ? 'border-4' : 'hover:border-4 hover:bg-[#2B1E17]/5 cursor-move'}`}
                     whileHover={!mode.default ? { scale: 1.03 } : {}}
                     whileTap={!mode.default ? { scale: 0.97 } : {}}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-lg font-semibold" style={{ color: '#2B1E17' }}>{mode.name}</span>
-                      {!mode.default && <Plus className="w-5 h-5" style={{ color: '#2B1E17' }} />}
+                      <span className="inter-600 text-lg text-[#2B1E17]">{mode.name}</span>
+                      {!mode.default && <Plus className="w-5 h-5 text-[#2B1E17]" />}
                     </div>
                   </motion.div>
                 ))}
@@ -227,16 +214,12 @@ export default function ServicesSection() {
             <div
               onDragOver={handleDragOver}
               onDrop={handleDrop}
-              className="min-h-[400px] border-2 border-dashed rounded-xl p-6 transition-all duration-300 border-[#2B1E17] bg-gradient-to-b from-[#f8f6f4]/50 to-white hover:shadow-xl"
-              style={{ fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' }}
+              className="inter-400 min-h-[400px] border-2 border-dashed rounded-xl p-6 transition-all duration-300 border-[#2B1E17] bg-gradient-to-b from-[#f8f6f4]/50 to-white hover:shadow-xl"
             >
-              <h3 className="text-2xl font-bold mb-6" style={{ 
-                color: '#2B1E17',
-                fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' 
-              }}>Your Custom Stack</h3>
+              <h3 className="inter-800 text-2xl mb-6 text-[#2B1E17]">Your Custom Stack</h3>
 
               {customStack.length === 0 ? (
-                <p className="text-center" style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
+                <p className="inter-300 text-center text-[#2B1E17]">
                   Add something to your custom stack to generate your modular pricing savings!
                 </p>
               ) : (
@@ -246,13 +229,13 @@ export default function ServicesSection() {
                     .map((item) => (
                       <li
                         key={item.id}
-                        className="flex items-center justify-between rounded-lg px-4 py-3 shadow-sm"
+                        className="flex items-center justify-between rounded-lg px-4 py-3 shadow-sm inter-400"
                         style={{ 
-                          backgroundColor: item.default ? '#2B1E17' : '#2B1E17',
-                          color: item.default ? '#ffffff' : '#ffffff'
+                          backgroundColor: '#2B1E17',
+                          color: '#ffffff'
                         }}
                       >
-                        <span className="font-semibold">{item.name}</span>
+                        <span className="inter-600 font-semibold">{item.name}</span>
                         {!item.default && (
                           <button
                             onClick={() => removeFromStack(item.id)}
@@ -266,12 +249,12 @@ export default function ServicesSection() {
                 </ul>
               )}
 
-              <div className="mt-8 pt-6 border-t-2" style={{ borderColor: '#2B1E17' }}>
-                <div className="flex items-center text-xl font-bold" style={{ color: '#2B1E17' }}>
+              <div className="mt-8 pt-6 border-t-2 border-[#2B1E17]">
+                <div className="inter-600 flex items-center text-xl text-[#2B1E17]">
                   <span>Total Modular Savings:</span>
-                  <span className="text-2xl" style={{ color: '#2B1E17' }}>{totalDiscount}%</span>
+                  <span className="inter-800 text-2xl text-[#2B1E17]">{totalDiscount}%</span>
                 </div>
-                <p className="mt-2 text-sm" style={{ color: '#2B1E17', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
+                <p className="inter-300 mt-2 text-sm text-[#2B1E17]">
                   Each module adds 10% to your overall processing costs
                 </p>
               </div>
@@ -287,10 +270,7 @@ export default function ServicesSection() {
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-4xl md:text-5xl font-bold uppercase mb-16 text-center" style={{ 
-          color: '#2B1E17',
-          fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif'
-        }}>
+        <h2 className="inter-800 text-4xl md:text-5xl uppercase mb-16 text-center text-[#2B1E17]">
           Advanced Features
         </h2>
 
@@ -298,21 +278,14 @@ export default function ServicesSection() {
           {advancedFeatures.map((feature, i) => (
             <motion.div
               key={i}
-              className="bg-white p-10 border border-[#2B1E17] text-center rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-transform duration-300 cursor-default select-none"
-              style={{ fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' }}
+              className="inter-400 bg-white p-10 border border-[#2B1E17] text-center rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-transform duration-300 cursor-default select-none"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-semibold mb-4" style={{ 
-                color: '#2B1E17',
-                fontFamily: '"Ardela Edge", Inter, system-ui, -apple-system, sans-serif' 
-              }}>{feature.title}</h3>
-              <p className="leading-relaxed" style={{ 
-                color: '#2B1E17', 
-                fontFamily: 'Inter, system-ui, -apple-system, sans-serif' 
-              }}>{feature.description}</p>
+              <h3 className="inter-800 text-2xl mb-4 text-[#2B1E17]">{feature.title}</h3>
+              <p className="inter-300 leading-relaxed text-[#2B1E17]">{feature.description}</p>
             </motion.div>
           ))}
         </div>
