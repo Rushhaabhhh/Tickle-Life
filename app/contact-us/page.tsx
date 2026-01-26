@@ -401,8 +401,8 @@ export default function ContactSection() {
             Contact Us
           </h1>
           <p className="inter-300 text-lg max-w-2xl mx-auto" style={{ color: '#2B1E17' }}>
-            Ready to move forward? Let's talk.<br /><br />
-            If you've already run the simulator and know you qualify, drop your details here.<br />
+            Ready to move forward? Let&apos;s talk.<br /><br />
+            If you&apos;ve already run the simulator and know you qualify, drop your details here.<br />
             Our compliance team reviews each submission manually—most get a response in 24 hours.
             <br /><br />
             Not ready yet? Check out our{' '}
@@ -540,8 +540,8 @@ export default function ContactSection() {
                     className="flex flex-col items-center justify-center min-h-[300px] text-center"
                     style={{ color: '#2B1E17' }}
                   >
-                    <p className="inter-500 text-2xl mb-4">Great! You're on your way.</p>
-                    <p className="inter-300 opacity-80">If you're qualified, we'll reach out to you within 24 hours.</p>
+                    <p className="inter-500 text-2xl mb-4">Great! You&apos;re on your way.</p>
+                    <p className="inter-300 opacity-80">If you&apos;re qualified, we&apos;ll reach out to you within 24 hours.</p>
                   </motion.div>
                 )}
               </AnimatePresence>
