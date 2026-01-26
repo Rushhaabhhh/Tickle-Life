@@ -2,13 +2,7 @@
 
 import { useState, ChangeEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import {
-  ShieldCheck,
-  Globe,
-  EyeOff,
-  UserCheck,
-  FileBadge2
-} from 'lucide-react'
+import { ShieldCheck, Globe, EyeOff, UserCheck, FileBadge2 } from 'lucide-react'
 
 // Tabs
 const tabs = [
@@ -49,8 +43,7 @@ function TrustList() {
       {trustItems.map(({ icon, text }) => (
         <li
           key={text}
-          className="flex items-center gap-3 text-base font-light text-[#2B1E17]"
-          style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
+          className="inter-300 flex items-center gap-3 text-base text-[#2B1E17]"
         >
           {icon}
           <span>{text}</span>
@@ -76,17 +69,15 @@ function FormField({ label, ...props }: FieldProps) {
   return (
     <div>
       <label
-        className="mb-2 block text-xs font-medium uppercase tracking-widest text-[#2B1E17]"
-        style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
+        className="inter-600 mb-2 block text-xs uppercase tracking-widest text-[#2B1E17]"
       >
         {label}
       </label>
 
       <input
         {...props}
-        className="w-full rounded-lg border-2 px-4 py-3 text-base font-light text-[#2B1E17] transition-all duration-300 focus:outline-none"
+        className="inter-300 w-full rounded-lg border-2 px-4 py-3 text-base text-[#2B1E17] transition-all duration-300 focus:outline-none"
         style={{
-          fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
           borderColor: '#2B1E17',
           background: 'rgba(255,255,255,0.2)',
           backdropFilter: 'blur(10px)'
@@ -156,10 +147,7 @@ function MerchantForm({
       <FormField label="Operating Region*" name="region" value={formData.region} onChange={handleChange} />
 
       {error && (
-        <div
-          className="text-sm font-semibold text-[#2B1E17]"
-          style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
-        >
+        <div className="inter-600 text-sm text-[#2B1E17]">
           {error}
         </div>
       )}
@@ -205,17 +193,18 @@ function AgentForm({
     setLoading(true)
 
     try {
-      await fetch(
-        'https://script.google.com/macros/s/AKfycbyl4O8HJnUw9ZUu1h3it90mt9tVPzRr6GKA7aynq35jeXbs4Vj8fMA196xFBQ1v9M1SwQ/exec',
-        {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData)
-        }
-      )
+      const response = await fetch(process.env.AGENT_FORM_ENDPOINT!, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok')
+      }
 
       setFormData({
         name: '',
@@ -246,10 +235,7 @@ function AgentForm({
       <FormField label="How Do You Source Leads?" name="sourcing" value={formData.sourcing} onChange={handleChange} />
 
       {error && (
-        <div
-          className="text-sm font-semibold text-[#2B1E17]"
-          style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
-        >
+        <div className="inter-600 text-sm text-[#2B1E17]">
           {error}
         </div>
       )}
@@ -309,10 +295,7 @@ function PartnerForm({
       <FormField label="Work Email*" type="email" name="email" value={formData.email} onChange={handleChange} />
       <FormField label="Organization Name*" name="org" value={formData.org} onChange={handleChange} />
       <div>
-        <label
-          className="mb-2 block text-xs font-medium uppercase tracking-widest text-[#2B1E17]"
-          style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
-        >
+        <label className="inter-600 mb-2 block text-xs uppercase tracking-widest text-[#2B1E17]">
           Organization Type*
         </label>
 
@@ -325,9 +308,8 @@ function PartnerForm({
               orgtype: e.target.value
             }))
           }
-          className="w-full rounded-lg border-2 px-4 py-3 text-base font-light text-[#2B1E17] transition-all duration-300 focus:outline-none"
+          className="inter-300 w-full rounded-lg border-2 px-4 py-3 text-base text-[#2B1E17] transition-all duration-300 focus:outline-none"
           style={{
-            fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
             borderColor: '#2B1E17',
             background: 'rgba(255,255,255,0.2)',
             backdropFilter: 'blur(10px)'
@@ -347,10 +329,7 @@ function PartnerForm({
       <FormField label="Licenses*" name="licenses" value={formData.licenses} onChange={handleChange} />
 
       {error && (
-        <div
-          className="text-sm font-semibold text-[#2B1E17]"
-          style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
-        >
+        <div className="inter-600 text-sm text-[#2B1E17]">
           {error}
         </div>
       )}
@@ -372,11 +351,10 @@ function SubmitButton({
     <button
       onClick={onClick}
       disabled={loading}
-      className={`mt-2 w-full rounded-xl py-4 text-base font-bold transition-all duration-300 ${
+      className={`inter-700 mt-2 w-full rounded-xl py-4 cursor-pointer text-base transition-all duration-300 ${
         loading ? 'cursor-not-allowed opacity-70' : 'hover:scale-105'
       }`}
       style={{
-        fontFamily: '"Ardela Edge", "Bebas Neue", system-ui, sans-serif',
         background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
         color: '#ffffff',
         border: '2px solid transparent'
@@ -395,6 +373,7 @@ function SubmitButton({
             'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)'
           e.currentTarget.style.color = '#ffffff'
           e.currentTarget.style.borderColor = 'transparent'
+          e.currentTarget.style.backdropFilter = 'none'
         }
       }}
     >
@@ -403,14 +382,12 @@ function SubmitButton({
   )
 }
 
-/* -------------------------------------------------------------------------- */
-/*                              Contact Section                                */
-/* -------------------------------------------------------------------------- */
-
+// Main Contact Section
 export default function ContactSection() {
   const [tab, setTab] = useState<TabKey>('merchant')
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  
   return (
     <section className="bg-white py-24 px-4 md:px-8 min-h-screen">
       <div className="max-w-7xl mx-auto">
@@ -420,85 +397,61 @@ export default function ContactSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <h1 className="text-5xl leading-tight mb-3 text-center" style={{ 
-            background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            fontFamily: '"Ardela Edge", "Bebas Neue", system-ui, sans-serif' 
-          }}>
+          <h1 className="inter-800 text-5xl leading-tight mb-3 text-center bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent">
             Contact Us
           </h1>
-          <p className="text-lg font-light max-w-2xl mx-auto" style={{ 
-            color: '#2B1E17',
-            fontFamily: 'Inter, system-ui, -apple-system, sans-serif' 
-          }}>
-            Ready to move forward? Let&apos;s talk.<br /><br />
-            If you&apos;ve already run the simulator and know you qualify, drop your details here.<br />
+          <p className="inter-300 text-lg max-w-2xl mx-auto" style={{ color: '#2B1E17' }}>
+            Ready to move forward? Let's talk.<br /><br />
+            If you've already run the simulator and know you qualify, drop your details here.<br />
             Our compliance team reviews each submission manually—most get a response in 24 hours.
             <br /><br />
-            Not ready yet? Check out our <a className="underline hover:no-underline transition-all" href="/resources" style={{ 
-              background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-              fontWeight: 600
-            }}>Resources</a> or <a className="underline hover:no-underline transition-all" href="/resources" style={{ 
-              background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-              fontWeight: 600
-            }}>Eligibility Widget</a> first →
+            Not ready yet? Check out our{' '}
+            <a 
+              className="inter-600 underline hover:no-underline transition-all bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent" 
+              href="/resources"
+            >
+              Resources
+            </a>{' '}
+            or{' '}
+            <a 
+              className="inter-600 underline hover:no-underline transition-all bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent" 
+              href="/resources"
+            >
+              Eligibility Widget
+            </a>{' '}
+            first →
           </p>
         </motion.header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 items-start">
           <section>
-            <h2 className="text-2xl md:text-4xl font-bold mb-10" style={{ 
-              background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              fontFamily: '"Ardela Edge", "Bebas Neue", system-ui, sans-serif' 
-            }}>
+            <h2 className="inter-800 text-2xl md:text-4xl mb-10 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent">
               Why Choose Our Platform
             </h2>
             <div className="space-y-8">
               <div>
-                <h3 className="text-lg font-semibold mb-1" style={{ 
-                  color: '#2B1E17',
-                  fontFamily: 'Inter, system-ui, -apple-system, sans-serif' 
-                }}>Free compliance and risk review</h3>
-                <p className="text-base" style={{ 
-                  color: '#2B1E17',
-                  fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-                  opacity: 0.8
-                }}>Every inquiry is double-checked by specialists for accuracy and speed.</p>
+                <h3 className="inter-600 text-lg mb-1" style={{ color: '#2B1E17' }}>
+                  Free compliance and risk review
+                </h3>
+                <p className="inter-300 text-base" style={{ color: '#2B1E17', opacity: 0.8 }}>
+                  Every inquiry is double-checked by specialists for accuracy and speed.
+                </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-1" style={{ 
-                  color: '#2B1E17',
-                  fontFamily: 'Inter, system-ui, -apple-system, sans-serif' 
-                }}>Registered & Certified</h3>
-                <p className="text-base" style={{ 
-                  color: '#2B1E17',
-                  fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-                  opacity: 0.8
-                }}>FinCEN, FINTRAC, PCI DSS Level 1—plus licensed in 22+ global jurisdictions.</p>
+                <h3 className="inter-600 text-lg mb-1" style={{ color: '#2B1E17' }}>
+                  Registered & Certified
+                </h3>
+                <p className="inter-300 text-base" style={{ color: '#2B1E17', opacity: 0.8 }}>
+                  FinCEN, FINTRAC, PCI DSS Level 1—plus licensed in 22+ global jurisdictions.
+                </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-1" style={{ 
-                  color: '#2B1E17',
-                  fontFamily: 'Inter, system-ui, -apple-system, sans-serif' 
-                }}>Privacy First</h3>
-                <p className="text-base mb-20" style={{ 
-                  color: '#2B1E17',
-                  fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-                  opacity: 0.8
-                }}>We never sell or share your data. Real people only, no bots.</p>
+                <h3 className="inter-600 text-lg mb-1" style={{ color: '#2B1E17' }}>
+                  Privacy First
+                </h3>
+                <p className="inter-300 text-base mb-20" style={{ color: '#2B1E17', opacity: 0.8 }}>
+                  We never sell or share your data. Real people only, no bots.
+                </p>
               </div>
             </div>
             <TrustList />
@@ -510,9 +463,8 @@ export default function ContactSection() {
                 <button
                   key={t.key}
                   onClick={() => { setTab(t.key); setSubmitted(false) }}
-                  className={`px-6 py-3 rounded-full font-medium transition-all text-sm duration-300 cursor-pointer flex-1 ${tab === t.key ? "" : "border-2"}`}
+                  className={`inter-500 px-6 py-3 rounded-full transition-all text-sm duration-300 cursor-pointer flex-1 ${tab === t.key ? "" : "border-2"}`}
                   style={{ 
-                    fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
                     ...(tab === t.key ? {
                       background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
                       color: '#ffffff'
@@ -543,11 +495,7 @@ export default function ContactSection() {
               ))}
             </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-sm min-h-[370px] flex flex-col justify-center border-2" style={{
-              borderColor: '#2B1E17',
-              background: 'rgba(255,255,255,0.2)',
-              backdropFilter: 'blur(10px)'
-            }}>
+            <div className="p-8 rounded-2xl shadow-sm min-h-[370px] flex flex-col justify-center border-2 bg-white/20 backdrop-blur-xl border-[#2B1E17]">
               <AnimatePresence mode="wait">
                 {!submitted && !loading && tab === 'merchant' && (
                   <motion.div
@@ -592,8 +540,8 @@ export default function ContactSection() {
                     className="flex flex-col items-center justify-center min-h-[300px] text-center"
                     style={{ color: '#2B1E17' }}
                   >
-                    <p className="text-2xl font-medium mb-4" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>Great! You&apos;re on your way.</p>
-                    <p style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', color: '#2B1E17', opacity: 0.8 }}>If you&apos;re qualified, we&apos;ll reach out to you within 24 hours.</p>
+                    <p className="inter-500 text-2xl mb-4">Great! You're on your way.</p>
+                    <p className="inter-300 opacity-80">If you're qualified, we'll reach out to you within 24 hours.</p>
                   </motion.div>
                 )}
               </AnimatePresence>

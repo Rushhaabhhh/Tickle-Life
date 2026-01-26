@@ -65,13 +65,13 @@ export default function AboutSection() {
             viewport={{ once: true }}
           >
             <p className="inter-600">
-              Just because it was legal didn't make it easy.
+              Just because it was legal didn&apos;t make it easy.
             </p>
 
             <p>
               We started in sexual wellness to help people learn, connect, and grow.
               But no matter how compliant we were, banks still labeled us as
-              'high-risk'. Every "solution" we used broke down when
+              &apos;high-risk&apos;. Every &quot;solution&quot; we used broke down when
               we tried to scale. Until finally, we did it ourselves.
             </p>
 
@@ -82,7 +82,7 @@ export default function AboutSection() {
             </p>
 
             <p>
-              We stand between you and the bank, taking on the risks they don't.
+              We stand between you and the bank, taking on the risks they don&apos;t.
               The chargebacks, the compliance checks, the endless risk reviews —
               we handle it before it ever reaches you.
             </p>
@@ -124,7 +124,7 @@ export default function AboutSection() {
               High-risk First. Fintech Now.
             </p>
             <p>
-              We're a small team of people who've lived the high-risk grind —
+              We&apos;re a small team of people who&apos;ve lived the high-risk grind —
               and built the systems we wish existed back then.
             </p>
             <p>
@@ -150,7 +150,7 @@ export default function AboutSection() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            We're growing. It's a good time to join.
+            We&apos;re growing. It&apos;s a good time to join.
           </motion.h2>
 
           <motion.p
@@ -161,10 +161,10 @@ export default function AboutSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            We're hiring across product, onboarding, compliance, and partnerships.
+            We&apos;re hiring across product, onboarding, compliance, and partnerships.
             <br />
-            Or if you're a regulator, lawyer, or license-holder and want to
-            collaborate – we'd love to hear from you.
+            Or if you&apos;re a regulator, lawyer, or license-holder and want to
+            collaborate – we&apos;d love to hear from you.
           </motion.p>
 
           <motion.div
