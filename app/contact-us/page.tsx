@@ -94,15 +94,39 @@ function FormField({ label, ...props }: FieldProps) {
   )
 }
 
+// Generic Form Submission Handler
+async function submitForm(formData: Record<string, string>, endpoint: string) {
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+
+    return { success: true }
+  } catch {
+    return { success: false, error: 'Submission failed. Please try again.' }
+  }
+}
+
 // Merchant Form
 function MerchantForm({
   onDone,
   loading,
-  setLoading
+  setLoading,
+  setError
 }: {
   onDone: () => void
   loading: boolean
   setLoading: (v: boolean) => void
+  setError: (error: string | null) => void
 }) {
   const [formData, setFormData] = useState({
     name: '',
@@ -112,72 +136,6 @@ function MerchantForm({
     website: '',
     region: ''
   })
-  const [error, setError] = useState<string | null>(null)
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) =>
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }))
-
-  const handleSubmit = () => {
-    setError(null)
-
-    if (Object.values(formData).some((v) => !v)) {
-      setError('All fields required.')
-      return
-    }
-
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-      onDone()
-    }, 1400)
-  }
-
-  return (
-    <div className="space-y-5">
-      <FormField label="Name*" name="name" value={formData.name} onChange={handleChange} />
-      <FormField label="Work Email*" type="email" name="email" value={formData.email} onChange={handleChange} />
-      <FormField label="Company*" name="company" value={formData.company} onChange={handleChange} />
-      <FormField label="Industry*" name="industry" value={formData.industry} onChange={handleChange} />
-      <FormField label="Company Website*" name="website" value={formData.website} onChange={handleChange} />
-      <FormField label="Operating Region*" name="region" value={formData.region} onChange={handleChange} />
-
-      {error && (
-        <div className="inter-600 text-sm text-[#2B1E17]">
-          {error}
-        </div>
-      )}
-
-      <SubmitButton loading={loading} onClick={handleSubmit} />
-    </div>
-  )
-}
-
-// Agent Form
-function AgentForm({
-  onDone,
-  loading,
-  setLoading
-}: {
-  onDone: () => void
-  loading: boolean
-  setLoading: (v: boolean) => void
-}) {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    agency: '',
-    website: '',
-    regions: '',
-    types: '',
-    sourcing: ''
-  })
-
-  const [error, setError] = useState<string | null>(null)
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -192,20 +150,77 @@ function AgentForm({
     setError(null)
     setLoading(true)
 
-    try {
-      const response = await fetch(process.env.AGENT_FORM_ENDPOINT!, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+    const result = await submitForm(formData, process.env.MERCHANT_FORM_ENDPOINT!)
+
+    if (result.success) {
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        industry: '',
+        website: '',
+        region: ''
       })
+      onDone()
+    } else {
+      setError(result.error || 'Submission failed. Please try again.')
+    }
+    setLoading(false)
+  }
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok')
-      }
+  return (
+    <div className="space-y-5">
+      <FormField label="Name*" name="name" value={formData.name} onChange={handleChange} />
+      <FormField label="Work Email*" type="email" name="email" value={formData.email} onChange={handleChange} />
+      <FormField label="Company*" name="company" value={formData.company} onChange={handleChange} />
+      <FormField label="Industry*" name="industry" value={formData.industry} onChange={handleChange} />
+      <FormField label="Company Website*" name="website" value={formData.website} onChange={handleChange} />
+      <FormField label="Operating Region*" name="region" value={formData.region} onChange={handleChange} />
 
+      {/** Error will be passed from parent */}
+      <SubmitButton loading={loading} onClick={() => handleSubmit()} />
+    </div>
+  )
+}
+
+// Agent Form (Updated to use generic handler)
+function AgentForm({
+  onDone,
+  loading,
+  setLoading,
+  setError
+}: {
+  onDone: () => void
+  loading: boolean
+  setLoading: (v: boolean) => void
+  setError: (error: string | null) => void
+}) {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    agency: '',
+    website: '',
+    regions: '',
+    types: '',
+    sourcing: ''
+  })
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) =>
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
+
+  const handleSubmit = async (e?: { preventDefault: () => void }) => {
+    e?.preventDefault()
+    setError(null)
+    setLoading(true)
+
+    const result = await submitForm(formData, process.env.AGENT_FORM_ENDPOINT!)
+
+    if (result.success) {
       setFormData({
         name: '',
         email: '',
@@ -215,13 +230,11 @@ function AgentForm({
         types: '',
         sourcing: ''
       })
-
       onDone()
-    } catch {
-      setError('Submission failed. Please try again.')
-    } finally {
-      setLoading(false)
+    } else {
+      setError(result.error || 'Submission failed. Please try again.')
     }
+    setLoading(false)
   }
 
   return (
@@ -234,12 +247,7 @@ function AgentForm({
       <FormField label="Merchant Types You Work With" name="types" value={formData.types} onChange={handleChange} />
       <FormField label="How Do You Source Leads?" name="sourcing" value={formData.sourcing} onChange={handleChange} />
 
-      {error && (
-        <div className="inter-600 text-sm text-[#2B1E17]">
-          {error}
-        </div>
-      )}
-
+      {/** Error will be passed from parent */}
       <SubmitButton loading={loading} onClick={() => handleSubmit()} />
     </div>
   )
@@ -249,11 +257,13 @@ function AgentForm({
 function PartnerForm({
   onDone,
   loading,
-  setLoading
+  setLoading,
+  setError
 }: {
   onDone: () => void
   loading: boolean
   setLoading: (v: boolean) => void
+  setError: (error: string | null) => void
 }) {
   const [formData, setFormData] = useState({
     name: '',
@@ -264,8 +274,6 @@ function PartnerForm({
     licenses: ''
   })
 
-  const [error, setError] = useState<string | null>(null)
-
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) =>
@@ -274,19 +282,27 @@ function PartnerForm({
       [e.target.name]: e.target.value
     }))
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e?: { preventDefault: () => void }) => {
+    e?.preventDefault()
     setError(null)
-
-    if (Object.values(formData).some((v) => !v)) {
-      setError('All fields required.')
-      return
-    }
-
     setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
+
+    const result = await submitForm(formData, process.env.PARTNER_FORM_ENDPOINT!)
+
+    if (result.success) {
+      setFormData({
+        name: '',
+        email: '',
+        org: '',
+        orgtype: '',
+        website: '',
+        licenses: ''
+      })
       onDone()
-    }, 1400)
+    } else {
+      setError(result.error || 'Submission failed. Please try again.')
+    }
+    setLoading(false)
   }
 
   return (
@@ -328,12 +344,7 @@ function PartnerForm({
       <FormField label="Website*" name="website" value={formData.website} onChange={handleChange} />
       <FormField label="Licenses*" name="licenses" value={formData.licenses} onChange={handleChange} />
 
-      {error && (
-        <div className="inter-600 text-sm text-[#2B1E17]">
-          {error}
-        </div>
-      )}
-
+      {/** Error will be passed from parent */}
       <SubmitButton loading={loading} onClick={() => handleSubmit()} />
     </div>
   )
@@ -387,6 +398,7 @@ export default function ContactSection() {
   const [tab, setTab] = useState<TabKey>('merchant')
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   
   return (
     <section className="bg-white py-24 px-4 md:px-8 min-h-screen">
@@ -462,7 +474,11 @@ export default function ContactSection() {
               {tabs.map(t => (
                 <button
                   key={t.key}
-                  onClick={() => { setTab(t.key); setSubmitted(false) }}
+                  onClick={() => { 
+                    setTab(t.key); 
+                    setSubmitted(false);
+                    setError(null);
+                  }}
                   className={`inter-500 px-6 py-3 rounded-full transition-all text-sm duration-300 cursor-pointer flex-1 ${tab === t.key ? "" : "border-2"}`}
                   style={{ 
                     ...(tab === t.key ? {
@@ -499,35 +515,50 @@ export default function ContactSection() {
               <AnimatePresence mode="wait">
                 {!submitted && !loading && tab === 'merchant' && (
                   <motion.div
-                    key={tab}
+                    key="merchant"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <MerchantForm onDone={() => setSubmitted(true)} loading={loading} setLoading={setLoading} />
+                    <MerchantForm 
+                      onDone={() => setSubmitted(true)} 
+                      loading={loading} 
+                      setLoading={setLoading}
+                      setError={setError}
+                    />
                   </motion.div>
                 )}
                 {!submitted && !loading && tab === 'agent' && (
                   <motion.div
-                    key={tab}
+                    key="agent"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <AgentForm onDone={() => setSubmitted(true)} loading={loading} setLoading={setLoading} />
+                    <AgentForm 
+                      onDone={() => setSubmitted(true)} 
+                      loading={loading} 
+                      setLoading={setLoading}
+                      setError={setError}
+                    />
                   </motion.div>
                 )}
                 {!submitted && !loading && tab === 'partner' && (
                   <motion.div
-                    key={tab}
+                    key="partner"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <PartnerForm onDone={() => setSubmitted(true)} loading={loading} setLoading={setLoading} />
+                    <PartnerForm 
+                      onDone={() => setSubmitted(true)} 
+                      loading={loading} 
+                      setLoading={setLoading}
+                      setError={setError}
+                    />
                   </motion.div>
                 )}
                 {(submitted || loading) && (
@@ -545,6 +576,11 @@ export default function ContactSection() {
                   </motion.div>
                 )}
               </AnimatePresence>
+              {error && !submitted && !loading && (
+                <div className="inter-600 text-sm text-[#2B1E17] mt-4">
+                  {error}
+                </div>
+              )}
             </div>
           </section>
         </div>

@@ -50,7 +50,7 @@ const TrustAndSupport: React.FC = () => {
       </section>
 
       {/* Real Support Section */}
-      <div className="max-w-7xl mx-auto w-full relative z-10 px-8 py-20 font-['IBM_Plex_Sans']">
+      <div className="max-w-9xl mx-auto w-full relative z-10 px-8 py-20 font-['IBM_Plex_Sans']">
         <motion.h2
           className="text-center font-bold tracking-tight leading-tight font-['Bebas_Neue']"
           style={{
@@ -62,9 +62,9 @@ const TrustAndSupport: React.FC = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <span style={{ color: '#C9A24D' }}>Real</span> Support.{" "}
-          <span style={{ color: '#C9A24D' }}>Real</span> Compliance.{" "}
-          <span style={{ color: '#C9A24D' }}>Real</span> Coverage.
+          <span style={{ color: '#4A3A2E' }}>Real</span> Support.{" "}
+          <span style={{ color: '#4A3A2E' }}>Real</span> Compliance.{" "}
+          <span style={{ color: '#4A3A2E' }}>Real</span> Coverage.
         </motion.h2>
       </div>
 

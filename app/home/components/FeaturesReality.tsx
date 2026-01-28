@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 const FEATURES = [
   {
     heading: "Features",
-    subheading: "What we offer",
+    subheading: "What you get",
     points: [
       "Smart transaction routing",
       "Multicurrency settlement",
@@ -15,7 +15,7 @@ const FEATURES = [
   },
   {
     heading: "Technical Reality",
-    subheading: "How it actually works",
+    subheading: "Cause we keep it real",
     points: [
       "2 weeks integration time",
       "48 hour testing",
@@ -38,16 +38,6 @@ const FeaturesReality: React.FC = () => {
         >
           Features & Reality
         </motion.h2>
-        <motion.p
-          className="text-xl text-center font-light mb-20"
-          style={{ color: '#4A3A2E' }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
-        >
-          &apos;Cause we keep it real
-        </motion.p>
 
         <motion.div
           className="border rounded-3xl p-12 md:p-16 max-w-6xl w-full mx-auto"

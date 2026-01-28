@@ -60,19 +60,8 @@ const Packages = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
         >
-          Choose your path
+          Choose your path to better processing
         </motion.h2>
-
-        <motion.p
-          className="text-xl text-center mb-16 font-light"
-          style={{ color: '#4A3A2E' }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
-        >
-          Better processing starts here
-        </motion.p>
 
         <div className="grid md:grid-cols-3 gap-6 mb-16">
           {PACKAGES.map((pkg, idx) => (
