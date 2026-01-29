@@ -95,9 +95,9 @@ function FormField({ label, ...props }: FieldProps) {
 }
 
 // Generic Form Submission Handler
-async function submitForm(formData: Record<string, string>, endpoint: string) {
+async function submitForm(formData: Record<string, string>) {
   try {
-    const response = await fetch(endpoint, {
+    const response = await fetch(process.env.NEXT_PUBLIC_SPREADSHEET_FORM_ENDPOINT!, {
       method: 'POST',
       mode: 'no-cors',
       headers: {
@@ -150,7 +150,7 @@ function MerchantForm({
     setError(null)
     setLoading(true)
 
-    const result = await submitForm(formData, process.env.MERCHANT_FORM_ENDPOINT!)
+    const result = await submitForm(formData)
 
     if (result.success) {
       setFormData({
@@ -218,7 +218,7 @@ function AgentForm({
     setError(null)
     setLoading(true)
 
-    const result = await submitForm(formData, process.env.AGENT_FORM_ENDPOINT!)
+    const result = await submitForm(formData)
 
     if (result.success) {
       setFormData({
@@ -287,7 +287,7 @@ function PartnerForm({
     setError(null)
     setLoading(true)
 
-    const result = await submitForm(formData, process.env.PARTNER_FORM_ENDPOINT!)
+    const result = await submitForm(formData)
 
     if (result.success) {
       setFormData({
