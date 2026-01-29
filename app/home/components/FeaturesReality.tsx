@@ -26,10 +26,10 @@ const FEATURES = [
 
 const FeaturesReality: React.FC = () => {
   return (
-    <section className="py-24 px-8 font-['IBM_Plex_Sans']">
+    <section className="py-24 px-8 inter-400">
       <div className="max-w-7xl mx-auto">
         <motion.h2
-          className="text-5xl md:text-6xl font-light text-center mb-6 tracking-tight font-['Bebas_Neue']"
+          className="text-5xl md:text-6xl font-light text-center mb-6 tracking-tight"
           style={{ color: '#2B1E17' }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ const FeaturesReality: React.FC = () => {
             {FEATURES.map((feature, idx) => (
               <motion.div
                 key={idx}
-                className="space-y-8 font-['IBM_Plex_Sans']"
+                className="space-y-8 inter-400"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{
@@ -62,10 +62,10 @@ const FeaturesReality: React.FC = () => {
                 viewport={{ once: true }}
               >
                 <div className="space-y-3">
-                  <h3 className="text-3xl font-light tracking-tight font-['Bebas_Neue']" style={{ color: '#2B1E17' }}>
+                  <h3 className="text-3xl font-light tracking-tight inter-400" style={{ color: '#2B1E17' }}>
                     {feature.heading}
                   </h3>
-                  <p className="text-base uppercase text-xs tracking-wide" style={{ color: '#4A3A2E' }}>
+                  <p className="text-base uppercase text-xs tracking-wide inter-400" style={{ color: '#4A3A2E' }}>
                     {feature.subheading}
                   </p>
                 </div>
@@ -76,7 +76,7 @@ const FeaturesReality: React.FC = () => {
                   {feature.points.map((point, pointIdx) => (
                     <motion.li
                       key={pointIdx}
-                      className="flex items-start gap-4"
+                      className="flex items-start gap-4 inter-400"
                       style={{ color: '#4A3A2E' }}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
@@ -88,7 +88,7 @@ const FeaturesReality: React.FC = () => {
                       viewport={{ once: true }}
                     >
                       <span className="w-1 h-1 rounded-full bg-[#2B1E17] mt-2.5 flex-shrink-0" />
-                      <span className="text-base leading-relaxed font-light">
+                      <span className="text-base leading-relaxed inter-400">
                         {point}
                       </span>
                     </motion.li>

@@ -8,30 +8,22 @@ const words = FULL_TEXT.split(/(\s+)/);
 const ScrollHighlightText: React.FC<{ activeIndex: number }> = ({ activeIndex }) => {
   return (
     <motion.p
-      className="max-w-5xl mx-auto text-left px-4 md:px-8 leading-relaxed font-['IBM_Plex_Sans'] font-medium"
-      style={{ fontSize: '3.8rem', lineHeight: 1.3, willChange: "color, transform" }}
+      className="max-w-5xl mx-auto text-left px-4 md:px-8 leading-relaxed inter-500"
+      style={{ fontSize: '3.8rem', lineHeight: 1.3 }}
     >
-      {words.map((word, idx) => {
-        if (/^\s+$/.test(word)) {
-          return <span key={idx}>{word}</span>;
-        }
-        const isActiveOrBefore = idx <= activeIndex;
-
-        return (
+      {words.map((word, idx) =>
+        /^\s+$/.test(word) ? (
+          <span key={idx}>{word}</span>
+        ) : (
           <motion.span
             key={idx}
-            initial={{ color: '#4A3A2E' }}
-            animate={{
-              color: isActiveOrBefore ? '#2B1E17' : '#4A3A2E',
-              scale: isActiveOrBefore ? 1.05 : 1,
-            }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            style={{ display: "inline-block", marginRight: '3px', cursor: 'default' }}
+            animate={{ color: idx <= activeIndex ? '#2B1E17' : '#4A3A2E' }}
+            transition={{ duration: 0.25 }}
           >
             {word}
           </motion.span>
-        );
-      })}
+        )
+      )}
     </motion.p>
   );
 };
@@ -61,10 +53,7 @@ const StorySection: React.FC = () => {
   }, []);
 
   return (
-    <section
-      ref={containerRef}
-      className="relative bg-white py-40 min-h-[90vh] flex items-center justify-center font-['IBM_Plex_Sans']"
-    >
+    <section ref={containerRef} className="relative bg-white py-40 min-h-[90vh] flex items-center justify-center inter-400">
       <ScrollHighlightText activeIndex={activeIndex} />
     </section>
   );

@@ -25,10 +25,10 @@ const Testimonials: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0)
 
   return (
-    <section className="py-24 px-8 font-['IBM_Plex_Sans']">
+    <section className="py-24 px-8 inter-400">
       <div className="max-w-6xl mx-auto">
         <motion.h2
-          className="text-5xl md:text-6xl font-light text-center mb-8 tracking-tight font-['Bebas_Neue']"
+          className="text-5xl md:text-6xl font-light text-center mb-8 tracking-tight inter-400"
           style={{ color: '#2B1E17' }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -60,7 +60,7 @@ const Testimonials: React.FC = () => {
             <button
               key={idx}
               onClick={() => setActiveTab(idx)}
-              className={`px-6 py-3 text-sm font-light tracking-wide transition-all duration-500 border rounded-full cursor-pointer font-['IBM_Plex_Sans'] ${
+              className={`px-6 py-3 text-sm font-light tracking-wide transition-all duration-500 border rounded-full cursor-pointer inter-400 ${
                 activeTab === idx
                   ? 'bg-[#2B1E17] text-white border-[#2B1E17]'
                   : 'bg-white text-[#4A3A2E] border-[#4A3A2E]/30 hover:border-[#2B1E17]'
@@ -75,7 +75,7 @@ const Testimonials: React.FC = () => {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              className="max-w-4xl mx-auto text-center px-8 font-['IBM_Plex_Sans']"
+              className="max-w-4xl mx-auto text-center px-8 inter-400"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}

@@ -43,10 +43,10 @@ const ProblemsAndSolutions: React.FC = () => {
   }
 
   return (
-    <section className="py-24 px-8 bg-white font-['IBM_Plex_Sans']">
+    <section className="py-24 px-8 bg-white inter-400">
       <div className="max-w-7xl mx-auto">
         <motion.h2
-          className="text-5xl md:text-6xl font-light text-center mb-20 tracking-tight font-['Bebas_Neue']"
+          className="text-5xl md:text-6xl text-center mb-20 tracking-tight inter-500"
           style={{ color: '#2B1E17' }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -60,7 +60,7 @@ const ProblemsAndSolutions: React.FC = () => {
           {PROBLEMS.map((item, idx) => (
             <motion.div
               key={idx}
-              className="relative perspective-1000 w-full font-['IBM_Plex_Sans']"
+              className="relative perspective-1000 w-full inter-200"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ 
@@ -90,13 +90,13 @@ const ProblemsAndSolutions: React.FC = () => {
                   }}
                 >
                   <div className="mb-6 flex-shrink-0">
-                    <h3 className="text-xl md:text-2xl font-semibold leading-tight tracking-tight line-clamp-2 font-['Bebas_Neue']" style={{ color: '#2B1E17' }}>
+                    <h3 className="text-xl md:text-2xl leading-tight tracking-tight line-clamp-2 inter-400" style={{ color: '#2B1E17' }}>
                       {item.title}
                     </h3>
                   </div>
 
                   <div className="mb-6 flex-shrink-0">
-                    <p className="text-lg md:text-xl font-light italic leading-relaxed line-clamp-2" style={{ color: '#2B1E17' }}>
+                    <p className="text-lg md:text-xl italic leading-relaxed line-clamp-2" style={{ color: '#2B1E17' }}>
                       &quot;{item.problem}&quot;
                     </p>
                   </div>
@@ -109,7 +109,7 @@ const ProblemsAndSolutions: React.FC = () => {
 
                   <div className="flex-shrink-0 border-t border-[#4A3A2E]/20 pt-6">
                     <div className="flex items-center justify-center">
-                      <span className="text-xs md:text-sm font-medium tracking-wide bg-[#F8F6F3] px-4 py-2 rounded-full border border-[#4A3A2E]/20" style={{ color: '#4A3A2E' }}>
+                      <span className="text-xs md:text-sm tracking-wide bg-[#F8F6F3] px-4 py-2 rounded-full border border-[#4A3A2E]/20" style={{ color: '#4A3A2E' }}>
                         Hover to reveal solution →
                       </span>
                     </div>
@@ -127,11 +127,11 @@ const ProblemsAndSolutions: React.FC = () => {
                 >
                   <div className="mb-6 flex-shrink-0">
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-xs font-bold tracking-widest uppercase bg-[#C9A24D]/20 px-3 py-1 rounded-full border border-[#C9A24D]/30">
+                      <span className="text-xs tracking-widest uppercase bg-[#C9A24D]/20 px-3 py-1 rounded-full border border-[#C9A24D]/30">
                         Our Fix
                       </span>
                     </div>
-                    <h4 className="text-xl md:text-2xl font-semibold leading-tight tracking-tight line-clamp-2 font-['Bebas_Neue']" style={{ color: '#C9A24D' }}>
+                    <h4 className="text-xl md:text-2xl leading-tight tracking-tight line-clamp-2 inter-400" style={{ color: '#C9A24D' }}>
                       {item.solution}
                     </h4>
                   </div>
@@ -144,7 +144,7 @@ const ProblemsAndSolutions: React.FC = () => {
 
                   <div className="flex-shrink-0 border-t border-[#C9A24D]/30 pt-6">
                     <div className="flex items-center justify-center">
-                      <span className="text-xs md:text-sm font-medium tracking-wide bg-[#C9A24D]/20 px-4 py-2 rounded-full border border-[#C9A24D]/30" style={{ color: '#C9A24D' }}>
+                      <span className="text-xs md:text-sm tracking-wide bg-[#C9A24D]/20 px-4 py-2 rounded-full border border-[#C9A24D]/30" style={{ color: '#C9A24D' }}>
                         Hover away to see problem ←
                       </span>
                     </div>

@@ -34,7 +34,7 @@ const FAQ: React.FC = () => {
   const [openQuestion, setOpenQuestion] = useState<number | null>(null)
 
   return (
-    <section id="faq" className=" py-24 px-8 font-['IBM_Plex_Sans']">
+    <section id="faq" className="py-24 px-8 inter-400">
       <div className="max-w-4xl mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -43,13 +43,10 @@ const FAQ: React.FC = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
         >
-          <h2 
-            className="text-5xl md:text-6xl font-light mb-4 tracking-tight font-['Bebas_Neue']"
-            style={{ color: '#2B1E17' }}
-          >
+          <h2 className="text-5xl md:text-6xl mb-4 tracking-tight" style={{ color: '#2B1E17' }}>
             FAQ
           </h2>
-          <p className="text-lg" style={{ color: '#4A3A2E' }}>
+          <p className="text-lg inter-400" style={{ color: '#4A3A2E' }}>
             Got questions? We&apos;ve got answers.
           </p>
         </motion.div>
@@ -58,28 +55,20 @@ const FAQ: React.FC = () => {
           {FAQ_DATA.map((faq, idx) => (
             <motion.div
               key={idx}
-              className="bg-white border border-[#4A3A2E]/20 rounded-xl overflow-hidden transition-all duration-500 hover:shadow-md hover:border-[#C9A24D]/30"
+              className="bg-white border border-[#4A3A2E]/20 rounded-xl overflow-hidden hover:shadow-md transition-all"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.5,
-                delay: idx * 0.08,
-                ease: [0.22, 1, 0.36, 1]
-              }}
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
               viewport={{ once: true }}
             >
               <button
                 onClick={() => setOpenQuestion(openQuestion === idx ? null : idx)}
-                className="w-full p-6 text-left flex justify-between items-center group font-['IBM_Plex_Sans']"
+                className="w-full p-6 flex justify-between items-center text-left inter-400 cursor-pointer"
               >
-                <span 
-                  className="font-light text-base pr-4 transition-colors duration-300 group-hover:text-[#2B1E17]"
-                  style={{ color: '#4A3A2E' }}
-                >
+                <span className="text-base inter-500" style={{ color: '#4A3A2E' }}>
                   {faq.question}
                 </span>
                 <motion.div
-                  className="w-8 h-8 rounded-full bg-[#F8F6F3] group-hover:bg-[#2B1E17] flex items-center justify-center flex-shrink-0 transition-colors duration-500"
                   animate={{ rotate: openQuestion === idx ? 90 : 0 }}
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 >
@@ -97,24 +86,17 @@ const FAQ: React.FC = () => {
               <AnimatePresence>
                 {openQuestion === idx && (
                   <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.4 }}
                     className="overflow-hidden"
                   >
-                    <motion.div
-                      className="px-6 pb-6 pt-0 font-['IBM_Plex_Sans']"
-                      initial={{ y: -10, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={{ y: -10, opacity: 0 }}
-                      transition={{ duration: 0.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      <div className="h-px bg-gradient-to-r from-[#4A3A2E]/30 via-transparent to-transparent mb-5" />
-                      <p className="text-sm leading-relaxed" style={{ color: '#4A3A2E' }}>
+                    <div className="px-6 pb-6">
+                      <p className="text-sm leading-relaxed inter-300" style={{ color: '#4A3A2E' }}>
                         {faq.answer}
                       </p>
-                    </motion.div>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>

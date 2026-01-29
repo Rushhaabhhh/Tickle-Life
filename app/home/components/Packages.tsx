@@ -50,10 +50,10 @@ const Packages = () => {
   const router = useRouter()
 
   return (
-    <section id="packages" className=" py-24 px-8 font-['IBM_Plex_Sans']">
+    <section id="packages" className="py-24 px-8 inter-400">
       <div className="max-w-7xl mx-auto">
         <motion.h2
-          className="text-5xl md:text-6xl font-light text-center mb-8 tracking-tight font-['Bebas_Neue']"
+          className="text-5xl md:text-6xl font-light text-center mb-8 tracking-tight "
           style={{ color: '#2B1E17' }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -67,18 +67,14 @@ const Packages = () => {
           {PACKAGES.map((pkg, idx) => (
             <motion.div
               key={idx}
-              className="bg-white rounded-2xl p-8 border border-[#4A3A2E]/20 transition-all duration-500 relative overflow-hidden hover:border-[#C9A24D]/30 hover:shadow-2xl group font-['IBM_Plex_Sans']"
+              className="bg-white rounded-2xl p-8 border border-[#4A3A2E]/20 transition-all duration-500 relative overflow-hidden hover:border-[#C9A24D]/30 hover:shadow-2xl group inter-400"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.7, 
-                delay: idx * 0.15,
-                ease: [0.22, 1, 0.36, 1] 
-              }}
+              transition={{ duration: 0.7, delay: idx * 0.15, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true }}
             >
               <div className="mb-8 pt-2">
-                <h3 className="text-2xl font-medium tracking-tight font-['Bebas_Neue'] mb-2" style={{ color: '#2B1E17' }}>
+                <h3 className="text-2xl font-medium tracking-tight inter-700 mb-2" style={{ color: '#2B1E17' }}>
                   {pkg.title}
                 </h3>
                 <p className="text-sm leading-relaxed" style={{ color: '#4A3A2E' }}>
@@ -102,7 +98,7 @@ const Packages = () => {
                 </ul>
               </div>
 
-              <div className="mb-6 p-4  rounded-lg">
+              <div className="mb-6 p-4 rounded-lg">
                 <p className="text-xs font-light mb-1 uppercase tracking-wide" style={{ color: '#4A3A2E' }}>
                   Best for
                 </p>
@@ -119,7 +115,7 @@ const Packages = () => {
 
               <button
                 onClick={() => router.push('/')}
-                className="w-full py-4 rounded-xl font-medium transition-all duration-400 text-sm tracking-wide bg-white text-[#2B1E17] border-2 border-[#2B1E17] hover:bg-[#2B1E17] hover:text-white hover:scale-105 cursor-pointer font-['IBM_Plex_Sans']"
+                className="w-full py-4 rounded-xl inter-500 transition-all duration-400 text-sm tracking-wide bg-white text-[#2B1E17] border-2 border-[#2B1E17] hover:bg-[#2B1E17] hover:text-white hover:scale-105 cursor-pointer"
               >
                 {pkg.cta}
               </button>
@@ -136,7 +132,7 @@ const Packages = () => {
         >
           <button
             onClick={() => router.push('/')}
-            className="bg-[#2B1E17] text-white px-10 py-4 rounded-full text-base font-medium hover:bg-[#4A3A2E] transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer font-['IBM_Plex_Sans']"
+            className="bg-[#2B1E17] text-white px-10 py-4 rounded-full text-base inter-500 hover:bg-[#4A3A2E] transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer"
           >
             Try our calculator to see what you could be paying →
           </button>
