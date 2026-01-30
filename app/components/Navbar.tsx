@@ -1,6 +1,7 @@
 'use client'
 import { Mail } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import React from 'react';
@@ -29,9 +30,11 @@ export default function FullscreenMenu() {
     <>
        {/* Top Navbar */}
        <nav className="fixed top-0 w-full z-50 flex justify-end p-6 bg-transparent">
-                <img
-        src="../images/logo.png"
+                <Image
+        src="/images/logo.png"
         alt="Logo"
+        width={70}
+        height={70}
         style={{
           position: "absolute",
           top: "15%",
@@ -60,11 +63,11 @@ export default function FullscreenMenu() {
 
         <div className="relative z-10 flex flex-col h-full">
 
-          <div className="w-full flex justify-end items-center pt-8 pr-12 gap-8 text-white text-base tracking-wide">
+          <div className="w-full flex justify-end items-center pt-8 pr-12 gap-8 text-[#6F4E37] text-base tracking-wide">
             <button
               aria-label="Close menu"
               onClick={() => setOpen(false)}
-              className="text-xl sm:text-2xl font-semibold tracking-widest cursor-pointer hover:scale-110 transition-colors duration-300 outline-none hover:text-[#b2ff2b]"
+              className="text-xl sm:text-2xl font-semibold tracking-widestcursor-pointer hover:scale-110 transition-colors duration-300 outline-none hover:text-[#2B1E17]"
               style={{letterSpacing: '0.2em'}}
             >
               CLOSE
@@ -77,16 +80,16 @@ export default function FullscreenMenu() {
               {navItems.map(({ title, href }) => (
                 <div key={href} className="flex flex-row items-center mb-8">
                   {pathname === href &&
-                    <span className="text-[#b2ff2b] text-5xl mr-4 -ml-6">&#8250;</span> 
+                    <span className="text-[#2B1E17] text-5xl mr-4 -ml-6">&#8250;</span> 
                   }
                   <Link
                     href={href}
                     onClick={() => setOpen(false)}
                     className={`
                       ${pathname === href
-                        ? 'text-[#b2ff2b]'
-                        : 'text-white'}
-                      hover:text-[#b2ff2b] transition-colors
+                        ? 'text-[#2B1E17]'
+                        : 'text-[#6F4E37]'}
+                      hover:text-[#2B1E17] transition-colors
                       font-sans
                       font-bold
                       tracking-tight
@@ -118,7 +121,7 @@ export default function FullscreenMenu() {
             {/* Side Content: Description Block */}
             <div className="flex-1 hidden md:flex items-center justify-center">
               <div className="ml-150 w-full max-w-sm text-left pr-10">
-                <div className="text-white text-[1.3vw] font-sans opacity-95 leading-snug tracking-tight"
+                <div className="text-[#6F4E37] text-[1.3vw] font-sans opacity-95 leading-snug tracking-tight"
                   style={{textShadow: '0 1px 8px rgba(0,0,0,0.13)'}}>
                   The trusted PSP for regulated,<br/>
                   high-risk merchants<br/>
@@ -130,7 +133,7 @@ export default function FullscreenMenu() {
                     href="https://www.ticklecharge.com" 
                     target="_blank" 
                     rel="noreferrer"
-                    className="uppercase text-[0.9vw] font-semibold text-white opacity-80 tracking-widest border-b border-white/40 hover:text-[#b2ff2b] cursor-pointer"
+                    className="uppercase text-[0.9vw] font-semibold text-[#6F4E37] opacity-80 tracking-widest border-b border-[#6F4E37]/40 hover:text-[#2B1E17] cursor-pointer"
                     style={{ letterSpacing: '0.12em' }}
                   >
                     TICKLE LIFE &nbsp; &#8250;

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import Hero from './components/Hero'
 import StorySection from './components/StorySection'
 import ProblemsAndSolutions from './components/ProblemsAndSolutions'
