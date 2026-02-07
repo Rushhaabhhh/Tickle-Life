@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-const FULL_TEXT = `We built a legit business - but banks couldn't take the risk. It wasn't about the numbers; our industry was just too misunderstood. So we built the infrastructure ourselves — the financial heartbeat that kept us going when everything else flatlined. Now we use that same expertise to keep others flowing. Because if you're building a serious business, you deserve a partner that takes you seriously.`;
+const FULL_TEXT = `We built a legitimate business, but banks couldn't take the risk. It wasn't about the numbers. Our industry was simply misunderstood. So we built the infrastructure ourselves. The financial heartbeat that kept us alive when everything else flatlined. Now, we use that same expertise to keep others flowing. Because if you're building a serious business, You deserve a partner that takes you seriously.`;
 
 const words = FULL_TEXT.split(/(\s+)/);
 

@@ -22,11 +22,11 @@ function TrustList() {
     },
     {
       icon: <UserCheck size={18} className="text-[#2B1E17]" />,
-      text: 'Real people, no bots — every submission is reviewed manually.'
+      text: 'Real people, no bots - every submission is reviewed manually.'
     },
     {
       icon: <EyeOff size={18} className="text-[#2B1E17]" />,
-      text: 'Your data stays private — never shared or sold.'
+      text: 'Your data stays private - never shared or sold.'
     },
     {
       icon: <Globe size={18} className="text-[#2B1E17]" />,
@@ -183,7 +183,7 @@ function MerchantForm({
   )
 }
 
-// Agent Form (Updated to use generic handler)
+// Agent Form
 function AgentForm({
   onDone,
   loading,
@@ -415,7 +415,7 @@ export default function ContactSection() {
           <p className="inter-300 text-lg max-w-2xl mx-auto" style={{ color: '#2B1E17' }}>
             Ready to move forward? Let&apos;s talk.<br /><br />
             If you&apos;ve already run the simulator and know you qualify, drop your details here.<br />
-            Our compliance team reviews each submission manually—most get a response in 24 hours.
+            Our compliance team reviews each submission manually; most get a response in 24 hours.
             <br /><br />
             Not ready yet? Check out our{' '}
             <a 

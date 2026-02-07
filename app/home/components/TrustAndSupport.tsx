@@ -4,11 +4,11 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const STATS = [
-  { number: '$50M+', label: 'Monthly Volume' },
-  { number: 'Level 1', label: 'PCI DSS' },
-  { number: '21+', label: 'Jurisdictions' },
-  { number: '99.99%', label: 'Uptime SLA' },
-  { number: '26+', label: 'Banking Partners' }
+  { number: '$50M+', label: 'monthly volume processed' },
+  { number: 'Level 1', label: 'PCI DSS compliant' },
+  { number: '21+', label: 'jurisdictions supported' },
+  { number: '99.99%', label: 'uptime SLA' },
+  { number: '26+', label: 'banking partners' }
 ]
 
 const TrustAndSupport: React.FC = () => {
@@ -85,7 +85,7 @@ const TrustAndSupport: React.FC = () => {
               className="text-lg mb-6 font-light leading-relaxed"
               style={{ color: '#4A3A2E' }}
             >
-              Still Unsure? See if we&apos;re a fit
+              Still unsure? See if we&apos;re a fit →
             </p>
             <button
               onClick={() => {
@@ -93,7 +93,7 @@ const TrustAndSupport: React.FC = () => {
               }}
               className="bg-[#2B1E17] text-white px-10 py-4 rounded-full text-base font-medium hover:bg-[#4A3A2E] transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer inter-400 border-2 border-[#2B1E17] hover:border-[#4A3A2E]"
             >
-              Check Fit →
+              See if we&apos;re a fit →
             </button>
           </motion.div>
         </div>

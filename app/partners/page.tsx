@@ -19,23 +19,23 @@ export default function PartnersPage() {
       title: 'Referrals',
       subtitle: 'Your connections, our rails',
       description:
-        'Our strongest partnerships started with a trusted intro. If you already know merchants scaling in iGaming, Forex, or crypto, we\'ll take it from there — fast, compliant, and built to last.',
+        'Our strongest partnerships started with a trusted intro. If you already know merchants scaling in iGaming, Forex, or crypto, we\'ll take it from there, fast, compliant, and built to last.',
       you_bring: [
-        'Merchants that actually move volume — not trial leads.',
+        'Merchants that actually move volume, not trial leads.',
         'Basic compliance info upfront so we can fast-track qualification.',
         'Honest expectations and clear communication.',
       ],
       you_get: [
         'Commission on every approved merchant (recurring, not one-off).',
-        'Dedicated partner support — no bots, no ticket loops.',
-        'Access to insider insights on risk, approval rates, and new jurisdictions.',
+        'Dedicated partner support. No bots, no ticket loops.',
+        'Access to insider insights on risk, approval rates, and new jurisdictions before they go live.',
       ],
     },
     {
       title: 'ISOs',
       subtitle: 'Grow beyond your borders',
       description:
-        'You\'ve built the merchant relationships — now it\'s time to scale them further. We connect ISOs with acquiring partners and coverage in 20+ jurisdictions.',
+        'You\'ve built the merchant relationships. Now it\'s time to scale them further. We connect ISOs with acquiring partners and coverage in 20+ jurisdictions. , so your merchants can process locally, wherever they operate. No new stack. No new headaches. Just more reach.',
       you_bring: [
         'Merchant portfolios ready to expand internationally.',
         'Established onboarding and KYC processes.',
@@ -44,18 +44,18 @@ export default function PartnersPage() {
       you_get: [
         'Access to 20+ licensed jurisdictions and local banking partners.',
         'Consistent regional approvals and faster merchant onboarding.',
-        'Cross-border coverage without new integrations.',
+        'Cross-border coverage without new integrations or hidden hoops.',
       ],
     },
     {
       title: 'PayFacs',
       subtitle: 'You\'ve built the rails, we\'ll bring the traffic',
       description:
-        'You already run your own stack — onboarding, risk, the whole deal. We plug you into high-risk merchants who are pre-vetted and bank-ready.',
+        'You already run your own stack, onboarding, risk, the whole deal. You’re just waiting on clients. We plug you into high-risk merchants who are pre-vetted, bank-ready, and looking for reliable rails, so you stay focused on processing, not prospecting.',
       you_bring: [
         'Proven infrastructure & onboarding stack.',
         'Established merchant network.',
-        'Strong risk & compliance protocols.',
+        'High risk & compliance protocols.',
       ],
       you_get: [
         'Access to 20+ regulated jurisdictions.',
@@ -147,7 +147,7 @@ export default function PartnersPage() {
           >
             <a
               href="#contact-form"
-              className="inline-flex items-center gap-3 bg-[#2B1E17] text-white px-10 py-6 rounded-full inter-700 text-xl uppercase hover:bg-[#2B1E17]/80 transition-all duration-300 hover:scale-105 shadow-2xl border border-[#2B1E17]"
+              className="inline-flex items-center gap-3 bg-[#2B1E17] text-white px-10 py-6 rounded-full inter-700 text-xl uppercase hover:bg-[#2B1E17] transition-all duration-300 hover:scale-105 shadow-2xl border border-[#2B1E17]"
             >
               Become a partner
               <ArrowRight className="w-6 h-6" />
@@ -182,23 +182,26 @@ export default function PartnersPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            High-risk runs on trust. Connections close deals cold outreach never could.
+            High-risk runs on trust. Connections close deals; cold outreach never could. That’s why we grow through middlemen who already make things move.
           </motion.p>
 
           <motion.div
-            className="bg-[#2B1E17] text-white p-12 rounded-3xl max-w-4xl mx-auto"
+            className="bg-[#2B1E17] text-white py-6 px-8 rounded-full inter-700 uppercase transition-all duration-300 shadow-2xl max-w-xl mx-auto"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             viewport={{ once: true }}
           >
-            <h3 className="inter-900 text-3xl md:text-5xl uppercase mb-6">Find your fit</h3>
+            <h3 className="inter-900 text-2xl md:text-4xl uppercase mb-2">
+              Find your fit
+            </h3>
+
             <a
               href="#partners"
-              className="inline-flex items-center gap-3 bg-white text-[#2B1E17] px-10 py-5 rounded-full inter-700 text-xl uppercase hover:bg-[#2B1E17] hover:text-white transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-full inter-700 text-base uppercase transition-all duration-300 hover:scale-105"
             >
               Explore partner types
-              <ArrowRight className="w-6 h-6" />
+              <ArrowRight className="w-4 h-4" />
             </a>
           </motion.div>
         </div>

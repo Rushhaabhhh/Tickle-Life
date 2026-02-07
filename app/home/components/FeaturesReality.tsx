@@ -9,16 +9,16 @@ const FEATURES = [
     subheading: "What you get",
     points: [
       "Smart transaction routing",
-      "Multicurrency settlement",
+      "Multi-currency settlement",
       "Transparent reporting"
     ]
   },
   {
     heading: "Technical Reality",
-    subheading: "Cause we keep it real",
+    subheading: "No fluff. Just what works.",
     points: [
-      "2 weeks integration time",
-      "48 hour testing",
+      "2-week integration timeline",
+      "48-hour testing window",
       "End-to-end chargeback management"
     ]
   }

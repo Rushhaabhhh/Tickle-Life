@@ -6,24 +6,24 @@ import { motion } from 'framer-motion'
 const PROBLEMS = [
   {
     title: "Geographic Blocks",
-    problem: "Our Business is Global, but our payments don't reach far enough",
-    description: "We get approved in one region, then rejected everywhere else. Scaling across markets shouldn't mean rebuilding your payments stack every time.",
+    problem: "Our business is global, but our payments don't reach.",
+    description: "We get approved in one region, then rejected everywhere else. Scaling shouldn't mean rebuilding your entire payments stack.",
     solution: "Process locally, everywhere.",
-    fix: "We connect you to acquiring banks in 22 jurisdictions, so your UAE players use UAE banks and your Malta customers use local Maltese institutions."
+    fix: "We connect you to acquiring banks in 22 jurisdictions, allowing UAE players to pay via UAE banks and Malta customers to transact with local Maltese institutions."
   },
   {
     title: "One-Size-Fits-All Pricing",
     problem: "We're paying for services we don't even use.",
-    description: "Same rates, whether we process cards, crypto, or just one payment method. The pricing has nothing to do with what we actually use.",
+    description: "Same rates whether you process cards, crypto, or a single method. Pricing that has nothing to do with how you actually operate.",
     solution: "Only pay for what you use.",
-    fix: "Our modular pricing lets you start with cards, and add crypto or APM as you grow. Our pricing adjusts to your set up, not the other way around."
+    fix: "Our modular pricing lets you start with cards and add crypto or APMs as you grow. Your pricing adjusts to your setup, not the other way around."
   },
   {
     title: "Dumb Fraud Filters",
     problem: "Our biggest customers keep getting flagged as fraud.",
-    description: "Their systems can't even tell a loyal customer from a fraud. Any high-value transaction gets blocked.",
-    solution: "Smart filters trained with high-risk data.",
-    fix: "Our models know the difference between a whale and a fraud. Better accuracy, less lost revenue."
+    description: "Legacy systems can't tell loyal high-value users from real fraud. Every large transaction becomes a false alarm.",
+    solution: "Smart filters trained on high-risk data.",
+    fix: "Our models know the difference between a whale and a fraudster; better accuracy, fewer false declines, and more revenue kept."
   }
 ]
 

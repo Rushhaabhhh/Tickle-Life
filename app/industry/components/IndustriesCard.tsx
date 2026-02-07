@@ -8,10 +8,11 @@ const industriesData = [
   {
     id: 'igaming',
     title: 'iGaming',
-    description: 'Bonuses are the heartbeat of iGaming - but for most processors, sudden transaction spikes look like red flags. Our fraud filters are trained on high-risk data from your industry, so they know the difference between a regular promo surge and actual fraud.',
+    description: 'Bonuses are the heartbeat of iGaming, but most processors see promo spikes as red flags. Our fraud filters are trained on high-risk iGaming data, so they know the difference between a bonus surge and real fraud.',
     benefits: [
       'Regulated EU and LatAm approvals',
-      'License‑based onboarding logic'
+      'License-based onboarding logic',
+      'Smart risk scoring for bonus campaigns'
     ],
     icon: <span className="text-black text-4xl">🎰</span>
   },
@@ -19,10 +20,11 @@ const industriesData = [
     id: 'forex',
     title: 'Forex & Trading',
     description:
-      "Traders move fast — your payments can't wait. Global processing adds too many steps: conversions, transfers, compliance delays. Our coverage includes partners in 22 jurisdictions, so your transactions settle locally — everywhere.",
+      "Traders move fast; your payments can't lag behind. Global routing adds friction: conversions, transfers, compliance delays. We settle locally in 22 jurisdictions, keeping funds moving without unnecessary hops.",
     benefits: [
-      'Fast onboarding for KYC‑compliant platforms',
-      '90%+ approval in UAE and India'
+      'Fast onboarding for KYC-compliant platforms',
+      '90%+ approval rates in UAE and India',
+      'Local settlement, lower FX leakage'
     ],
     icon: <span className="text-gray-900 text-4xl">📈</span>
   },
@@ -30,10 +32,11 @@ const industriesData = [
     id: 'adult',
     title: 'Adult',
     description:
-      "We know the space — we've been here. Even today we are treated like a liability. PSPs freeze accounts at the first sign of trouble. But we don't back down when the going gets tough. We stick around and keep your business going. Our rails are built for stability and discretion, so your business runs smooth and stays respected.",
+      "We know the space; we've lived it. Adult businesses are still treated like liabilities. Most PSPs freeze accounts at the first sign of pressure. We don't. We stay when things get hard. Our rails are built for stability, discretion, and longevity, so your business runs smoothly and stays respected.",
     benefits: [
-      'Partner banks with content‑friendly compliance',
-      '3D Secure and crypto off‑ramp support'
+      'Partner banks with content-friendly compliance',
+      '3D Secure and crypto off-ramp support',
+      'Proven recurring billing logic'
     ],
     icon: <span className="text-gray-700 text-4xl">🔞</span>
   },
@@ -41,32 +44,35 @@ const industriesData = [
     id: 'health',
     title: 'Health & Wellness',
     description:
-      'Wellness and alternative health payments get flagged for the wrong reasons. We run real-time compliance checks on every transaction to keep your operations clean, trusted, and fully above board.',
+      'Alternative health and wellness payments get flagged for the wrong reasons. We run real-time compliance checks on every transaction to keep operations clean, trusted, and regulator-ready.',
     benefits: [
       'Telemedicine, lab testing, diagnostics',
-      'Approved in US, UK and GCC'
+      'Approved in US, UK, and GCC markets',
+      'Clear MCC and descriptor handling'
     ],
     icon: <span className="text-gray-700 text-4xl">💊</span>
   },
   {
     id: 'crypto',
-    title: 'Crypto On/Off Ramps',
+    title: 'Crypto On- & Off-Ramps',
     description:
-      'Crypto doesn\'t need "all or nothing" processing. We built a modular structure that lets you run cards, APMs, and on/off ramps independently — each with its own rate. Add what you need to your stack and pay only for what you use.',
+      'Crypto doesn\'t have to be all-or-nothing. Our modular setup lets you run cards, APMs, and on/off ramps independently, each with its own pricing and risk logic. Add what you need. Pay only for what you use.',
     benefits: [
-      'Custodial and non‑custodial flows',
-      'Stablecoin rails and global settlement options'
+      'Custodial and non-custodial flows',
+      'Stablecoin rails and global settlement',
+      'Seamless fiat-crypto transitions'
     ],
     icon: <span className="text-black text-4xl">🪙</span>
   },
   {
     id: 'education',
-    title: 'Education, Info, Subscription',
+    title: 'Education, Info & Subscriptions',
     description:
-      "Cross-border tuition shouldn't take weeks. Most processors route education payments through endless intermediaries, each adding cost, delay, and risk. That's why we partnered with banks in 22 jurisdictions to move funds locally, so payments land faster, cleaner, and with full compliance visibility.",
+      "Cross-border tuition and subscriptions shouldn't take weeks to settle. Most processors add layers of intermediaries. Each increasing cost, delay, and risk. We move funds locally across 22 jurisdictions for faster, cleaner settlement.",
     benefits: [
-      'Recurring billing logic',
-      'High approval in mid‑risk zones'
+      'Recurring billing & installment logic',
+      'High approval in mid-risk regions',
+      'Full compliance visibility'
     ],
     icon: <span className="text-gray-700 text-4xl">🎓</span>
   }
@@ -77,7 +83,7 @@ export default function IndustriesExpandingHorizontal() {
 
   return (
     <section className="w-full flex flex-col items-center min-h-[700px] relative py-8 md:py-16 bg-white">
-      <h2 className="text-4xl md:text-5xl font-bold uppercase mb-10 text-center">Industries We Serve</h2>
+      <h2 className="text-4xl md:text-5xl font-bold uppercase mb-10 text-center">Industries We Power</h2>
 
       <div className="max-w-[90vw] mx-auto flex items-stretch justify-start gap-0 overflow-x-auto scrollbar-none">
         {industriesData.map((industry, idx) => {

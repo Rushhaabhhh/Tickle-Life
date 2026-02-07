@@ -12,7 +12,7 @@ const filterCategories = {
 
 const featuredResources = [
   {
-    title: "Why your onboarding keeps getting delayed in LatAm—and what to fix",
+    title: "Why your onboarding keeps getting delayed in LatAm and what to fix",
     image: "/placeholder-latam.jpg"
   },
   {

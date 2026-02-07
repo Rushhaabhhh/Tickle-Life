@@ -7,42 +7,42 @@ import { useRouter } from 'next/navigation'
 const PACKAGES = [
   {
     title: "High-Volume Merchant Track",
-    subtitle: "You process $3M+ monthly and want direct control",
-    cta: "Get Custom Quote",
+    subtitle: "You process $3M+ monthly and want full control",
+    cta: "Get my custom quote",
     benefits: [
-      "Account manager who knows your business",
-      "Custom integration support from actual engineers", 
-      "Volume-based pricing that improves as you grow",
-      "Direct line to compliance team when shit hits the fan"
+      "Dedicated account manager who understands your business",
+      "Custom integrations with real engineers", 
+      "Volume-based pricing that improves as you scale",
+      "Direct access to compliance when things get messy"
     ],
-    bestFor: "Established operators who want partnership, not vendor relationship.",
-    savings: "Monthly savings potential: $8K - $35K based on current volume",
+    bestFor: "Established operators seeking a partner, not a vendor",
+    savings: "Estimated monthly savings: $8K–$35K",
   },
   {
     title: "Growing Business Track",
-    subtitle: "You do $1M-3M monthly and need room to scale",
-    cta: "Get Custom Quote",
+    subtitle: "You process $1M–$3M monthly and need room to scale",
+    cta: "Get my custom rate",
     benefits: [
       "Standard integration with full feature access",
-      "Shared support team with industry experience",
-      "Modular pricing that grows with your business",
+      "Shared expert support team",
+      "Modular pricing that grows with you",
       "Clear upgrade path as volume increases"
     ],
-    bestFor: "Profitable businesses ready to optimize their payment stack.",
-    savings: "Monthly savings potential: $3K - $15K based on current setup",
+    bestFor: "Profitable businesses optimising their payment stack",
+    savings: "Estimated monthly savings: $3K–$15K",
   },
   {
-    title: "Agent/Referral Track",
+    title: "Agent / Referral Track",
     subtitle: "You know merchants who need better processing",
-    cta: "Join Our Referral Program",
+    cta: "Join our referral program",
     benefits: [
-      "Transparent commission tracking (no hidden bullshit)",
-      "Marketing materials that actually convert",
-      "Fast merchant onboarding (your referrals get priority)",
-      "Monthly commission payments, no minimum thresholds"
+      "Transparent commission tracking (no hidden nonsense)",
+      "Proven marketing materials",
+      "Priority onboarding for your referrals",
+      "Monthly payouts, no minimum thresholds"
     ],
     bestFor: "Industry consultants, tech partners, anyone with merchant relationships.",
-    savings: "Earning potential: $500-2,500 per successful referral",
+    savings: "Earning potential: $500–$2,500 per successful referral",
   }
 ]
 
@@ -134,7 +134,7 @@ const Packages = () => {
             onClick={() => router.push('/')}
             className="bg-[#2B1E17] text-white px-10 py-4 rounded-full text-base inter-500 hover:bg-[#4A3A2E] transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer"
           >
-            Try our calculator to see what you could be paying →
+            Try our calculator and see what you could be paying →
           </button>
         </motion.div>
       </div>

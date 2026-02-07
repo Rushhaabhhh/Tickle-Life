@@ -5,17 +5,17 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const TESTIMONIALS = [
   {
-    text: "Approval rates went from 71% to 89%. That's literally $280K monthly that was getting rejected before. My CFO thinks I'm a genius for switching.",
+    text: "Approval rates went from 71% to 89%. That's literally $280K monthly that used to get rejected. My CFO thinks I'm a genius for switching.",
     author: "— Jake Morrison",
     industry: "iGaming"
   },
   {
-    text: "During Brexit chaos, every other PSP was having 'technical difficulties.' We processed £1.4M that weekend while our competitors were down. That's when I knew we made the right choice.",
+    text: "During the Brexit chaos, every other PSP had 'technical difficulties.' We processed £1.4M that weekend while competitors were down.",
     author: "— Sarah Chen",
     industry: "Forex"
   },
   {
-    text: "Their compliance team actually understands adult content regulations. No more explaining why recurring billing isn't money laundering.",
+    text: "Their compliance team actually understands adult regulations. No more explaining why recurring billing isn't money laundering.",
     author: "— Marcus Rodriguez",
     industry: "Adult Entertainment"
   }

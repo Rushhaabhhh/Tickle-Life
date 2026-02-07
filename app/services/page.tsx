@@ -52,12 +52,12 @@ const advancedFeatures = [
   {
     title: 'Smart Routing',
     description:
-      'Your transactions shouldn\'t depend on luck. Our routing adapts in real time to BIN, geo, and issuer signals — staying one step ahead of every decline.'
+      'Your transactions shouldn\'t depend on luck. Our routing adapts in real time to BIN, geo, and issuer signals - staying one step ahead of every decline.'
   },
   {
     title: 'Dashboards That Mean Business',
     description:
-      'Approvals, declines, chargebacks, settlements — all visible, all exportable. Real-time data so you make decisions, not guesses.'
+      'Approvals, declines, chargebacks, settlements - all visible, all exportable. Real-time data so you make decisions, not guesses.'
   }
 ]
 

@@ -8,18 +8,22 @@ import IndustriesExpandingVertical from './components/IndustriesCard'
 const features = [
   {
     title: 'Low processing rates',
+    description: 'Pay only for the rails you actually use.',
     icon: <Zap className="w-12 h-12 text-gray-900" />
   },
   {
     title: 'Unparalleled security',
+    description: 'Level 1 PCI DSS, real-time monitoring, and smart fraud controls.',
     icon: <Shield className="w-12 h-12 text-gray-900" />
   },
   {
     title: 'Compliance expertise',
+    description: 'Industry-aware onboarding, licensing logic, and ongoing risk oversight.',
     icon: <Lock className="w-12 h-12 text-gray-900" />
   },
   {
-    title: 'Tailored Solutions',
+    title: 'Tailored solutions',
+    description: 'No bundles. No assumptions. Built around your flow.',
     icon: <Check className="w-12 h-12 text-gray-900" />
   }
 ]
@@ -46,14 +50,17 @@ export default function IndustriesSection() {
             <h1 className="text-5xl md:text-7xl font-bold uppercase leading-[0.95] tracking-tight text-black mb-4">
               Built for one business.<br />
             </h1>
-            <h1 className="text-5xl md:text-7xl font-bold uppercase leading-[0.95] tracking-tight text-gray-500 mb-12">
+            <h1 className="text-5xl md:text-7xl font-bold uppercase leading-[0.95] tracking-tight text-gray-500 mb-8">
               Yours.
             </h1>
+            <p className="text-xl md:text-2xl text-gray-700 mb-12 max-w-3xl">
+              Payments shouldn&apos;t force you into a template. We adapt to how you operate, not the other way around.
+            </p>
             <a
               href="#industries"
               className="inline-flex items-center gap-2 bg-black text-white px-8 py-4 font-bold text-base hover:bg-gray-800 transition-all duration-300"
             >
-              See if we are a fit
+              See if we&apos;re a fit
               <ArrowRight className="w-5 h-5" />
             </a>
           </motion.div>
@@ -80,7 +87,8 @@ export default function IndustriesSection() {
                 viewport={{ once: true }}
               >
                 <div className="mb-6">{feature.icon}</div>
-                <h3 className="text-2xl font-bold text-gray-900">{feature.title}</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">{feature.title}</h3>
+                <p className="text-lg text-gray-600">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -100,15 +108,21 @@ export default function IndustriesSection() {
       >
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold uppercase mb-8">
-            Ready to get started?
+            Not seeing your industry listed?
           </h2>
           <p className="text-xl text-gray-300 mb-10">
-            Check your eligibility and see what we can do for your business.
+            If you&apos;re licensed, compliant, and serious about scaling, there&apos;s a good chance we can help.
           </p>
-          <button className="inline-flex items-center gap-2 bg-white text-black px-10 py-5 font-bold text-lg hover:bg-gray-200 transition-all duration-300">
-            Check Eligibility
-            <ArrowRight className="w-6 h-6" />
-          </button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="inline-flex items-center gap-2 bg-white text-black px-10 py-5 font-bold text-lg hover:bg-gray-200 transition-all duration-300">
+              Talk to our team
+              <ArrowRight className="w-6 h-6" />
+            </button>
+            <button className="inline-flex items-center gap-2 bg-transparent border-2 border-white text-white px-10 py-5 font-bold text-lg hover:bg-white hover:text-black transition-all duration-300">
+              Start qualification
+              <ArrowRight className="w-6 h-6" />
+            </button>
+          </div>
         </div>
       </motion.section>
 

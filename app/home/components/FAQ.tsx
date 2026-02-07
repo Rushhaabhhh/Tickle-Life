@@ -6,27 +6,27 @@ import { motion, AnimatePresence } from 'framer-motion'
 const FAQ_DATA = [
   {
     question: "How are your rates so much lower?",
-    answer: "You only pay for what you use. No bloated bundles, no \"one-size-fits-all\" rates. Add or remove payment methods anytime — your pricing adjusts automatically."
+    answer: "You only pay for what you use. No bloated bundles, no fixed pricing traps. Add or remove payment methods anytime; pricing adjusts automatically."
   },
   {
     question: "How fast can we go live?",
-    answer: "Depends how fast you move. If your docs are ready and your devs know what they're doing, we've seen merchants live in under a week. Two if things get messy."
+    answer: "Depends how fast you move. With complete docs and a ready dev team, some merchants go live in under a week. Two weeks if things get messy."
   },
   {
-    question: "Do you work with my industry?",
-    answer: "If you're licensed and compliant — probably yes. We specialize in iGaming, Forex, and Adult, but we've onboarded everything from dating platforms to crypto brokerages."
+    question: "Do you work in my industry?",
+    answer: "If you're licensed and compliant, probably yes. We specialise in iGaming, Forex, and Adult, but also support dating platforms, crypto brokerages, and more."
   },
   {
     question: "Do I have to switch everything at once?",
-    answer: "Hell no. Start with 20% of your volume as a test. See the difference. Then decide if you want to move more. Smart merchants always have backup processors anyway."
+    answer: "No. Start with 20% of your volume. Test us. Compare results. Smart merchants always keep backup processors."
   },
   {
-    question: "How long does approval actually take?",
-    answer: "About 48 hours for qualification, then up to a week for integration and testing. We move fast, but never at the cost of compliance."
+    question: "How long does approval take?",
+    answer: "48 hours for qualification, then up to a week for integration and testing. Fast but never at the cost of compliance."
   },
   {
     question: "How do I get started?",
-    answer: "A valid license, clean compliance record, and traffic that doesn't suck. That's it. If you've got those, we can move fast."
+    answer: "A valid license, clean compliance record, and quality traffic. If you've got those, we move fast."
   }
 ]
 
