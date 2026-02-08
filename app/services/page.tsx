@@ -80,6 +80,11 @@ export default function ServicesSection() {
     }
     setDraggedItem(null)
   }
+  const addToStack = (item: typeof supportedPaymentModes[0]) => {
+    if (!customStack.find((s) => s.id === item.id)) {
+      setCustomStack([...customStack, item])
+    }
+  }
   const removeFromStack = (id: string) =>
     setCustomStack(customStack.filter((item) => item.id !== id))
   const totalDiscount = customStack.reduce((sum, item) => sum + item.discount, 0)
@@ -198,13 +203,22 @@ export default function ServicesSection() {
                     key={mode.id}
                     draggable={!mode.default}
                     onDragStart={() => !mode.default && handleDragStart(mode.id)}
-                    className={`inter-400 border border-[#2B1E17] rounded-xl p-6 select-none transition-colors duration-300 bg-white hover:shadow-lg ${mode.default ? 'border-4' : 'hover:border-4 hover:bg-[#2B1E17]/5 cursor-move'}`}
-                    whileHover={!mode.default ? { scale: 1.03 } : {}}
-                    whileTap={!mode.default ? { scale: 0.97 } : {}}
+                    onClick={() => !mode.default && !customStack.find((s) => s.id === mode.id) && addToStack(mode)}
+                    className={`inter-400 border border-[#2B1E17] rounded-xl p-6 select-none transition-colors duration-300 bg-white hover:shadow-lg ${mode.default ? 'border-4' : 'hover:border-4 hover:bg-[#2B1E17]/5 cursor-pointer'}`}
+                    whileHover={!mode.default && !customStack.find((s) => s.id === mode.id) ? { scale: 1.03 } : {}}
+                    whileTap={!mode.default && !customStack.find((s) => s.id === mode.id) ? { scale: 0.97 } : {}}
                   >
                     <div className="flex items-center justify-between">
                       <span className="inter-600 text-lg text-[#2B1E17]">{mode.name}</span>
-                      {!mode.default && <Plus className="w-5 h-5 text-[#2B1E17]" />}
+                      {!mode.default && (
+                        <div className="hover:scale-125 transition-transform duration-200">
+                          {customStack.find((s) => s.id === mode.id) ? (
+                            <span className="text-green-600 font-bold">✓ Added</span>
+                          ) : (
+                            <Plus className="w-5 h-5 text-[#2B1E17]" />
+                          )}
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 ))}
@@ -220,7 +234,7 @@ export default function ServicesSection() {
 
               {customStack.length === 0 ? (
                 <p className="inter-300 text-center text-[#2B1E17]">
-                  Add something to your custom stack to generate your modular pricing savings!
+                  Drag or click items from the left to add to your custom stack and generate your modular pricing savings!
                 </p>
               ) : (
                 <ul className="space-y-3">

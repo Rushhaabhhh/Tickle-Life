@@ -12,42 +12,6 @@ const oxanium = Oxanium({
   weight: ['600'],
 })
 
-/* ------------------- PROGRESS RING ------------------- */
-function ProgressRing({ progress, size = 64, stroke = 3 }) {
-  const radius = (size - stroke) / 2
-  const circumference = 2 * Math.PI * radius
-  const offset = circumference * (1 - progress / 100)
-
-  return (
-    <svg width={size} height={size}>
-      <circle
-        cx={size / 2}
-        cy={size / 2}
-        r={radius}
-        stroke="rgba(20,20,20,1)"
-        strokeWidth={stroke}
-        fill="transparent"
-      />
-      <circle
-        cx={size / 2}
-        cy={size / 2}
-        r={radius}
-        stroke="#D7B790"
-        strokeWidth={stroke}
-        fill="transparent"
-        strokeLinecap="round"
-        strokeDasharray={circumference}
-        strokeDashoffset={offset}
-        style={{
-          transition: 'stroke-dashoffset 0.25s ease',
-          transform: 'rotate(-90deg)',
-          transformOrigin: '50% 50%',
-        }}
-      />
-    </svg>
-  )
-}
-
 /* ------------------- COIN ------------------- */
 function Coin({ data, modelPath }) {
   const ref = useRef()
@@ -175,9 +139,9 @@ export default function LoadingScreen({ onFinish }) {
         ))}
       </div> */}
 
-      {/* 🔘 PROGRESS RING */}
-      <div className="absolute bottom-6 right-6 z-10">
-        <ProgressRing progress={progress} />
+      {/* 🔘 PROGRESS NUMBER */}
+      <div className={`${oxanium.className} absolute bottom-6 right-6 z-10 text-white text-3xl font-bold`}>
+        {Math.floor(progress)}%
       </div>
 
       {/* 👆 CLICK TO CONTINUE */}

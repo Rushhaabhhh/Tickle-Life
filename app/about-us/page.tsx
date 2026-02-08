@@ -1,12 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Mail } from 'lucide-react'
 
 export default function AboutSection() {
   return (
     <section className="bg-white">
-      
+      {/* Hero Banner */}
       <motion.header
         className="min-h-screen flex items-center bg-transparent px-8 md:px-16 py-24"
         initial={{ opacity: 0 }}
@@ -27,25 +27,48 @@ export default function AboutSection() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            Built by high-risk
+            Built by high-risk.
             <br />
-            For high-risk
+            For high-risk.
             <br />
             <span className="bg-gradient-to-r from-[#2B1E17] to-[#3d2b1f] bg-clip-text text-transparent">
-              powered by fintech.
+              Powered by fintech brains.
             </span>
           </motion.h1>
+
+          <motion.div
+            className="flex flex-wrap gap-4 mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <a
+              href="/contact-us"
+              className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 border-2 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] text-white border-transparent hover:opacity-90"
+            >
+              Talk to our team
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
+            <a
+              href="/contact-us"
+              className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 border-2 bg-white/20 backdrop-blur-xl text-[#2B1E17] border-[#2B1E17] hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#4A3428] hover:text-white hover:border-transparent"
+            >
+              See if you qualify
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </motion.div>
         </div>
       </motion.header>
 
+      {/* Our Story */}
       <motion.section
-        className="px-8 md:px-16"
+        className="px-8 md:px-16 py-24 md:py-32"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto">
           <motion.h2
             className="inter-800 text-4xl md:text-5xl lg:text-6xl uppercase mb-12 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
@@ -57,43 +80,75 @@ export default function AboutSection() {
           </motion.h2>
 
           <motion.div
-            className="inter-300 space-y-8 text-xl md:text-2xl leading-relaxed"
+            className="inter-300 space-y-6 text-lg md:text-xl leading-relaxed"
             style={{ color: '#2B1E17' }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <p className="inter-600">
+            <p className="inter-600 text-xl md:text-2xl">
               Just because it was legal didn&apos;t make it easy.
             </p>
 
             <p>
-              We started in sexual wellness to help people learn, connect, and grow.
-              But no matter how compliant we were, banks still labeled us as
-              &apos;high-risk&apos;. Every &quot;solution&quot; we used broke down when
-              we tried to scale. Until finally, we did it ourselves.
+              We started in sexual wellness, helping people learn, connect, and grow.
+              Fully compliant. Properly licensed. Doing everything by the book.
+            </p>
+            <p>
+              And still, banks labelled us &quot;high-risk.&quot;
             </p>
 
             <p>
-              So we built TickleCharge — a payment solution for high-risk, by
-              high-risk. Based on stability, backed by compliance, and designed to
-              grow with you — not against you.
+              Every payment &quot;solution&quot; worked… until we tried to scale.
+              Accounts got frozen. Approvals vanished. Risk teams changed the rules overnight.
             </p>
 
             <p>
-              We stand between you and the bank, taking on the risks they don&apos;t.
-              The chargebacks, the compliance checks, the endless risk reviews —
-              we handle it before it ever reaches you.
+              So we stopped depending on broken systems and built our own.
             </p>
 
-            <p className="inter-600 text-2xl md:text-3xl">
-              And you just move your money the way you want.
+            <p>
+              That&apos;s how <span className="font-bold">TickleCharge</span> was born:
+              <br />
+              A payment solution <span className="font-bold">for high-risk, built by people who&apos;ve lived high-risk.</span>
             </p>
+            <p>
+              We&apos;re built on stability, backed by real compliance, and designed to grow with you, not against you.
+            </p>
+
+            <p>
+              We stand between you and the bank, taking on the risks they won&apos;t.
+              Chargebacks. Compliance reviews. Ongoing risk assessments. Regulatory pressure.
+            </p>
+
+            <p>
+              We handle it before it ever reaches you.
+            </p>
+
+            <p>
+              So you don&apos;t fight banks.
+              <br />
+              You don&apos;t explain your business for the hundredth time.
+              <br />
+              You just move money the way you&apos;re supposed to.
+            </p>
+
+            <div className="pt-6">
+              <a
+                href="/contact-us"
+                className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 border-2 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] text-white border-transparent hover:opacity-90"
+              >
+                See if TickleCharge is right for you
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
           </motion.div>
         </div>
       </motion.section>
 
+
+      {/* Our Team */}
       <motion.section
         className="py-24 md:py-32 px-8 md:px-16"
         initial={{ opacity: 0, y: 40 }}
@@ -101,9 +156,9 @@ export default function AboutSection() {
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto">
           <motion.h2
-            className="inter-800 text-5xl md:text-5xl lg:text-6xl uppercase mb-12 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent"
+            className="inter-800 text-4xl md:text-5xl lg:text-6xl uppercase mb-12 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -113,28 +168,64 @@ export default function AboutSection() {
           </motion.h2>
 
           <motion.div
-            className="inter-300 space-y-8 text-xl md:text-2xl leading-relaxed"
+            className="inter-300 space-y-6 text-lg md:text-xl leading-relaxed"
             style={{ color: '#2B1E17' }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <p className="inter-600 text-2xl md:text-3xl">
-              High-risk First. Fintech Now.
+            <p className="inter-600 text-xl md:text-2xl">
+              High-Risk First. Fintech Now.
             </p>
+
             <p>
-              We&apos;re a small team of people who&apos;ve lived the high-risk grind —
-              and built the systems we wish existed back then.
+              We&apos;re a lean team of operators, engineers, and compliance specialists who&apos;ve been on the wrong side of &quot;declined.&quot;
             </p>
+
             <p>
-              Now we bring together industry experience, fintech engineering, and
-              compliance to keep global payments moving.
+              We&apos;ve run high-risk businesses.
+              <br />
+              We&apos;ve survived bank shutdowns.
+              <br />
+              We&apos;ve dealt with regulators, card schemes, and sudden policy changes.
             </p>
+
+            <p>
+              Now we combine:
+            </p>
+
+            <div className="space-y-2 ml-4 border-l-2 border-[#2B1E17] pl-4">
+              <p>Real high-risk operating experience</p>
+              <p>Fintech and payment engineering</p>
+              <p>Deep compliance and licensing expertise</p>
+            </div>
+
+            <p>
+              To keep global payments moving, reliably, legally, and at scale.
+            </p>
+
+            <div className="pt-6 flex gap-4">
+              <a
+                href="/team"
+                className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 border-2 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] text-white border-transparent hover:opacity-90"
+              >
+                Meet the team
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href="/contact-us"
+                className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 border-2 bg-white/20 backdrop-blur-xl text-[#2B1E17] border-[#2B1E17] hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#4A3428] hover:text-white hover:border-transparent"
+              >
+                Talk to compliance
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
           </motion.div>
         </div>
       </motion.section>
 
+      {/* Careers */}
       <motion.section
         className="py-24 md:py-32 px-8 md:px-16"
         initial={{ opacity: 0, y: 40 }}
@@ -142,80 +233,188 @@ export default function AboutSection() {
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <motion.h2
-            className="inter-800 text-4xl md:text-5xl lg:text-5xl leading-tight mb-8 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent"
+            className="inter-800 text-4xl md:text-5xl lg:text-6xl uppercase mb-12 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            We&apos;re growing. It&apos;s a good time to join.
+            Careers
           </motion.h2>
 
-          <motion.p
-            className="inter-500 text-2xl md:text-3xl leading-relaxed mb-12"
+          <motion.div
+            className="inter-300 space-y-6 text-lg md:text-xl leading-relaxed"
             style={{ color: '#2B1E17' }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            We&apos;re hiring across product, onboarding, compliance, and partnerships.
-            <br />
-            Or if you&apos;re a regulator, lawyer, or license-holder and want to
-            collaborate – we&apos;d love to hear from you.
-          </motion.p>
+            <p className="inter-600 text-xl md:text-2xl">
+              We&apos;re Growing. It&apos;s a Good Time to Join.
+            </p>
 
-          <motion.div
-            className="flex flex-wrap gap-4"
+            <p>
+              We&apos;re hiring across:
+            </p>
+
+            <div className="space-y-2 ml-4 border-l-2 border-[#2B1E17] pl-4">
+              <p>Product & Engineering</p>
+              <p>Merchant Onboarding</p>
+              <p>Compliance & Risk</p>
+              <p>Partnerships & Business Development</p>
+            </div>
+
+            <p>
+              If you like solving hard problems and working where regulation meets reality, you&apos;ll fit in.
+            </p>
+
+            <p>
+              Not looking for a job, but want to collaborate?
+            </p>
+
+            <p>
+              If you&apos;re a <span className="font-bold">regulator, lawyer, compliance consultant, or license holder</span>, we&apos;d love to talk.
+            </p>
+
+            <div className="pt-6">
+              <a
+                href="/careers"
+                className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 border-2 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] text-white border-transparent hover:opacity-90"
+              >
+                See Open Roles
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Partner With Us */}
+      <motion.section
+        className="py-24 md:py-32 px-8 md:px-16"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="max-w-4xl mx-auto">
+          <motion.h2
+            className="inter-800 text-4xl md:text-5xl lg:text-6xl uppercase mb-12 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <a
-              href="/careers"
-              className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 hover:scale-105 border-2 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] text-white border-transparent"
-              onMouseEnter={(e) => {
-                const target = e.currentTarget
-                target.style.background = 'rgba(255,255,255,0.2)'
-                target.style.backdropFilter = 'blur(10px)'
-                target.style.color = '#2B1E17'
-                target.style.borderColor = '#2B1E17'
-              }}
-              onMouseLeave={(e) => {
-                const target = e.currentTarget
-                target.style.background = 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)'
-                target.style.backdropFilter = 'none'
-                target.style.color = '#ffffff'
-                target.style.borderColor = 'transparent'
-              }}
+            Partner With Us
+          </motion.h2>
+
+          <motion.div
+            className="inter-300 space-y-6 text-lg md:text-xl leading-relaxed"
+            style={{ color: '#2B1E17' }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <p className="inter-600 text-xl md:text-2xl">
+              Get in Touch
+            </p>
+
+            <p>
+              Have questions? Want to qualify? Need a compliance conversation before anything else?
+            </p>
+
+            <div className="space-y-4 mt-8">
+              <div className="border-l-2 border-[#2B1E17] pl-4">
+                <p className="inter-600 text-lg mb-2">Sales & Partnerships</p>
+                <a
+                  href="mailto:sales@ticklecharge.com"
+                  className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors"
+                >
+                  <Mail className="w-4 h-4" />
+                  sales@ticklecharge.com
+                </a>
+              </div>
+
+              <div className="border-l-2 border-[#2B1E17] pl-4">
+                <p className="inter-600 text-lg mb-2">Compliance & Risk</p>
+                <a
+                  href="mailto:compliance@ticklecharge.com"
+                  className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors"
+                >
+                  <Mail className="w-4 h-4" />
+                  compliance@ticklecharge.com
+                </a>
+              </div>
+
+              <div className="border-l-2 border-[#2B1E17] pl-4">
+                <p className="inter-600 text-lg mb-2">General Enquiries</p>
+                <a
+                  href="mailto:hello@ticklecharge.com"
+                  className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors"
+                >
+                  <Mail className="w-4 h-4" />
+                  hello@ticklecharge.com
+                </a>
+              </div>
+            </div>
+
+            <p className="pt-6">
+              Or skip the email chains:
+            </p>
+
+            <div className="pt-4">
+              <a
+                href="/contact-us"
+                className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 border-2 bg-white/20 backdrop-blur-xl text-[#2B1E17] border-[#2B1E17] hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#4A3428] hover:text-white hover:border-transparent"
+              >
+                Book a Call
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Final CTA */}
+      <motion.section
+        className="py-24 md:py-32 px-8 md:px-16"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            className="inter-300 space-y-6"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="inter-800 text-4xl md:text-5xl lg:text-6xl uppercase bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent">
+              High-risk doesn&apos;t have to mean high stress.
+            </h2>
+
+            <p
+              className="text-lg md:text-xl leading-relaxed"
+              style={{ color: '#2B1E17' }}
             >
-              See Open Roles
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a
-              href="/contact-us"
-              className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 hover:scale-105 border-2 bg-white/20 backdrop-blur-xl text-[#2B1E17] border-[#2B1E17]"
-              onMouseEnter={(e) => {
-                const target = e.currentTarget
-                target.style.background = 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)'
-                target.style.backdropFilter = 'none'
-                target.style.color = '#ffffff'
-                target.style.borderColor = 'transparent'
-              }}
-              onMouseLeave={(e) => {
-                const target = e.currentTarget
-                target.style.background = 'rgba(255,255,255,0.2)'
-                target.style.backdropFilter = 'blur(10px)'
-                target.style.color = '#2B1E17'
-                target.style.borderColor = '#2B1E17'
-              }}
-            >
-              Contact Compliance
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
+              Let&apos;s see if we can move your payments the way they should.
+            </p>
+
+            <div className="pt-8">
+              <a
+                href="/contact-us"
+                className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 border-2 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] text-white border-transparent hover:opacity-90"
+              >
+                Get Started with TickleCharge
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
           </motion.div>
         </div>
       </motion.section>
