@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useRef } from 'react'
+import { motion } from 'framer-motion'
 import Hero from './components/Hero'
 import StorySection from './components/StorySection'
 import ProblemsAndSolutions from './components/ProblemsAndSolutions'

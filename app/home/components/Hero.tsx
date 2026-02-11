@@ -51,7 +51,7 @@ const Hero: React.FC = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 2.2 }}
           >
-            Try our calculator to see what you could be paying.
+            Try our calculator to see what you could be paying
           </motion.p>
           <motion.button
             onClick={() => router.push('/')}
@@ -60,7 +60,7 @@ const Hero: React.FC = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 2.5 }}
           >
-            Try Calculator →
+            Try Calculator
           </motion.button>
         </motion.div>
       </div>

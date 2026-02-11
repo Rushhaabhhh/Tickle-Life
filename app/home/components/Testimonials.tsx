@@ -35,7 +35,7 @@ const Testimonials: React.FC = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
         >
-          Testimonials
+          What Clients Say
         </motion.h2>
 
         <motion.p

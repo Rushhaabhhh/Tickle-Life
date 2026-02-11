@@ -71,29 +71,23 @@ const TrustAndSupport: React.FC = () => {
       {/* CTA Section */}
       <section className="flex items-center justify-center relative px-8 py-16 bg-white">
         <div
-          className="border p-8 max-w-7xl w-full mx-4 flex flex-col items-center rounded-3xl"
+          className=" p-8 max-w-7xl w-full mx-4 flex flex-col items-center rounded-3xl"
           style={{ borderColor: "rgba(74, 58, 46, 0.3)" }}
         >
           <motion.div
-            className="text-center inter-400"
+            className="text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <p 
-              className="text-lg mb-6 font-light leading-relaxed"
-              style={{ color: '#4A3A2E' }}
-            >
-              Still unsure? See if we&apos;re a fit →
-            </p>
             <button
               onClick={() => {
                 window.location.href = '/resources'
               }}
-              className="bg-[#2B1E17] text-white px-10 py-4 rounded-full text-base font-medium hover:bg-[#4A3A2E] transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer inter-400 border-2 border-[#2B1E17] hover:border-[#4A3A2E]"
+              className="bg-[#2B1E17] text-white px-14 py-4 rounded-full text-base font-large hover:bg-[#4A3A2E] transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer border-2 border-[#2B1E17] hover:border-[#4A3A2E]"
             >
-              See if we&apos;re a fit →
+              Still unsure? See if we&apos;re a fit
             </button>
           </motion.div>
         </div>

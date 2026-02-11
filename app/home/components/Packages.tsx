@@ -23,7 +23,7 @@ const PACKAGES = [
     subtitle: "You process $1M–$3M monthly and need room to scale",
     cta: "Get my custom rate",
     benefits: [
-      "Standard integration with full feature access",
+      "Standard integration with full feature access and no hidden fees",
       "Shared expert support team",
       "Modular pricing that grows with you",
       "Clear upgrade path as volume increases"
@@ -115,7 +115,7 @@ const Packages = () => {
 
               <button
                 onClick={() => router.push('/')}
-                className="w-full py-4 rounded-xl inter-500 transition-all duration-400 text-sm tracking-wide bg-white text-[#2B1E17] border-2 border-[#2B1E17] hover:bg-[#2B1E17] hover:text-white hover:scale-105 cursor-pointer"
+                className="w-full py-4 rounded-xl inter-500 transition-all duration-400 text-sm tracking-wide bg-white text-[#2B1E17] border-2 border-[#2B1E17] hover:bg-[#2B1E17] hover:text-[#2B1E17] hover:scale-105 cursor-pointer"
               >
                 {pkg.cta}
               </button>
@@ -132,9 +132,9 @@ const Packages = () => {
         >
           <button
             onClick={() => router.push('/')}
-            className="bg-[#2B1E17] text-white px-10 py-4 rounded-full text-base inter-500 hover:bg-[#4A3A2E] transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer"
+            className="bg-[#2B1E17] text-white px-12 py-4 rounded-full text-base text-lg inter-500 hover:bg-[#4A3A2E] transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer"
           >
-            Try our calculator and see what you could be paying →
+            Try our calculator and see what you could be paying
           </button>
         </motion.div>
       </div>

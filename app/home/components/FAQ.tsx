@@ -46,9 +46,6 @@ const FAQ: React.FC = () => {
           <h2 className="text-5xl md:text-6xl mb-4 tracking-tight" style={{ color: '#2B1E17' }}>
             FAQ
           </h2>
-          <p className="text-lg inter-400" style={{ color: '#4A3A2E' }}>
-            Got questions? We&apos;ve got answers.
-          </p>
         </motion.div>
 
         <div className="space-y-2">
