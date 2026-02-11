@@ -186,21 +186,17 @@ export default function PartnersPage() {
           </motion.p>
 
           <motion.div
-            className="bg-[#2B1E17] text-white py-6 px-8 rounded-full inter-700 uppercase transition-all duration-300 shadow-2xl max-w-xl mx-auto"
+            className="bg-[#2B1E17] text-white py-4 px-16 rounded-full inter-700 uppercase transition-all duration-300 shadow-2xl inline-flex items-center gap-2 mx-auto hover:scale-105"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             viewport={{ once: true }}
           >
-            <h3 className="inter-900 text-2xl md:text-4xl uppercase mb-2">
-              Find your fit
-            </h3>
-
             <a
               href="#partners"
-              className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-full inter-700 text-base uppercase transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 text-white rounded-full inter-700 text-base uppercase transition-all duration-300 hover:scale-105"
             >
-              Explore partner types
+              Find your fit
               <ArrowRight className="w-4 h-4" />
             </a>
           </motion.div>
@@ -367,28 +363,6 @@ export default function PartnersPage() {
         </div>
       </motion.section>
 
-      {/* CTA Banner */}
-      <motion.section
-        className="py-20 px-8 md:px-16 bg-[#2B1E17] text-white"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="inter-900 text-4xl md:text-5xl uppercase mb-6">Ready for a win-win?</h2>
-          <p className="inter-400 text-xl mb-8 max-w-2xl mx-auto">
-            Expand into new markets and create new revenue opportunities. Submit the form below to meet with a partnership specialist.
-          </p>
-          <a
-            href="#contact-form"
-            className="inline-flex items-center gap-2 bg-white text-[#2B1E17] px-8 py-4 rounded-xl inter-700 text-base uppercase hover:bg-[#2B1E17] hover:text-white transition-all duration-300 hover:scale-105"
-          >
-            Get started
-            <ArrowRight className="w-5 h-5" />
-          </a>
-        </div>
-      </motion.section>
 
       {/* Contact Form */}
       <motion.section
@@ -403,9 +377,6 @@ export default function PartnersPage() {
           <h2 className="inter-900 text-4xl md:text-5xl uppercase mb-6 text-[#2B1E17]">
             Partner with us
           </h2>
-          <p className="inter-400 text-lg mb-12 text-[#2B1E17]">
-            Name your niche, regions, and merchant types. We&apos;ll take it from there.
-          </p>
 
           <form className="space-y-6">
             <div>
@@ -503,17 +474,6 @@ export default function PartnersPage() {
               </select>
             </div>
 
-            <div>
-              <label className="block inter-700 text-sm uppercase tracking-widest mb-2 text-[#2B1E17]">
-                Additional information
-              </label>
-              <textarea
-                name="message"
-                rows={4}
-                className="w-full px-6 py-3 border border-[#2B1E17] rounded-lg focus:outline-none focus:border-[#2B1E17]/80 transition-colors bg-white inter-400 text-[#2B1E17] resize-vertical"
-                placeholder="Share anything else we should know about your portfolio, licenses, or goals..."
-              />
-            </div>
 
             <motion.button
               type="submit"
@@ -523,10 +483,6 @@ export default function PartnersPage() {
             >
               Submit
             </motion.button>
-
-            <p className="inter-400 text-xs text-center text-[#2B1E17]">
-              A partnerships specialist will review your details and reach out within one business day.
-            </p>
           </form>
         </div>
       </motion.section>

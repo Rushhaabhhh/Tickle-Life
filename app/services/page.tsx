@@ -23,7 +23,7 @@ const featuredCards = [
     id: '3d-secure',
     title: '3D Secure Authentication',
     description:
-      'Next-gen transaction security that adds an extra layer of protection — without slowing your checkout.',
+      'Next-gen transaction security that adds an extra layer of protection without slowing your checkout.',
     icon: <LockKeyhole className="w-14 h-14" />,
   },
   {
@@ -52,12 +52,12 @@ const advancedFeatures = [
   {
     title: 'Smart Routing',
     description:
-      'Your transactions shouldn\'t depend on luck. Our routing adapts in real time to BIN, geo, and issuer signals - staying one step ahead of every decline.'
+      'Your transactions shouldn\'t depend on luck. Our routing adapts in real time to BIN, geo, and issuer signals, staying one step ahead of every decline.'
   },
   {
     title: 'Dashboards That Mean Business',
     description:
-      'Approvals, declines, chargebacks, settlements - all visible, all exportable. Real-time data so you make decisions, not guesses.'
+      'Approvals, declines, chargebacks, settlements, all visible, all exportable. Real-time data so you make decisions, not guesses.'
   }
 ]
 

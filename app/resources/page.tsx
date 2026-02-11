@@ -62,7 +62,7 @@ export default function ResourceSection() {
             Resource Center
           </h1>
           <p className="inter-light text-xl max-w-3xl mx-auto" style={{ color: '#2B1E17' }}>
-            For those who actually run things. No fluff, no theory—just real guidance.
+            For those who actually run things. No fluff, no theory - just real guidance.
           </p>
         </motion.header>
 

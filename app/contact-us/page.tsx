@@ -431,7 +431,7 @@ export default function ContactSection() {
             >
               Eligibility Widget
             </a>{' '}
-            first →
+            first
           </p>
         </motion.header>
 
@@ -446,7 +446,7 @@ export default function ContactSection() {
                   Free compliance and risk review
                 </h3>
                 <p className="inter-300 text-base" style={{ color: '#2B1E17', opacity: 0.8 }}>
-                  Every inquiry is double-checked by specialists for accuracy and speed.
+                  Every inquiry is double - checked by specialists for accuracy and speed.
                 </p>
               </div>
               <div>
@@ -454,7 +454,7 @@ export default function ContactSection() {
                   Registered & Certified
                 </h3>
                 <p className="inter-300 text-base" style={{ color: '#2B1E17', opacity: 0.8 }}>
-                  FinCEN, FINTRAC, PCI DSS Level 1—plus licensed in 22+ global jurisdictions.
+                  FinCEN, FINTRAC, PCI DSS Level 1 - plus licensed in 22+ global jurisdictions.
                 </p>
               </div>
               <div>
