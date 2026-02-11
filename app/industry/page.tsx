@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight, Lock, Shield, Check, Zap } from 'lucide-react'
+import Link from 'next/link'
 import IndustriesExpandingVertical from './components/IndustriesCard'
 
 
@@ -50,19 +51,18 @@ export default function IndustriesSection() {
             <h1 className="text-5xl md:text-7xl font-bold uppercase leading-[0.95] tracking-tight bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent mb-4">
               Built for one business.<br />
             </h1>
-            <h1 className="text-5xl md:text-7xl font-bold uppercase leading-[0.95] tracking-tight bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent mb-8">
+            <h1 className="text-6xl md:text-8xl font-bold uppercase leading-[0.9] tracking-tight text-[#4A3428] mb-8">
               Yours.
             </h1>
             <p className="text-xl md:text-2xl mb-12 max-w-3xl" style={{ color: '#2B1E17' }}>
               Payments shouldn&apos;t force you into a template. We adapt to how you operate, not the other way around.
             </p>
-            <a
-              href="/contact-us"
-              className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 border-2 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] text-white border-transparent hover:opacity-90"
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 bg-[#2B1E17] text-white px-10 py-4 rounded-full text-base inter-500 hover:bg-[#4A3A2E] transition-all duration-300 hover:shadow-xl hover:scale-105"
             >
-              👉 See if we&apos;re a fit
-              <ArrowRight className="w-5 h-5" />
-            </a>
+              See if we&apos;re a fit
+            </Link>
           </motion.div>
         </div>
       </motion.header>
@@ -89,7 +89,7 @@ export default function IndustriesSection() {
             {features.map((feature, idx) => (
               <motion.div
                 key={idx}
-                className="bg-white p-10 border border-[#2B1E17]/20 rounded-xl flex flex-col items-center text-center hover:shadow-lg transition-all duration-300"
+                className="bg-white p-10 border border-[#4A3A2E]/20 rounded-2xl flex flex-col items-start text-left hover:shadow-lg transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
@@ -153,14 +153,14 @@ export default function IndustriesSection() {
               href="/contact-us"
               className="group inline-flex items-center gap-2 px-10 py-5 font-bold text-lg uppercase transition-all duration-300 border-2 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] text-white border-transparent hover:opacity-90 rounded-xl"
             >
-              👉 Talk to our team
+              Talk to our team
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="/contact-us"
               className="group inline-flex items-center gap-2 px-10 py-5 font-bold text-lg uppercase transition-all duration-300 border-2 bg-white/20 backdrop-blur-xl text-[#2B1E17] border-[#2B1E17] hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#4A3428] hover:text-white hover:border-transparent rounded-xl"
             >
-              👉 Start qualification
+              Start qualification
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>
