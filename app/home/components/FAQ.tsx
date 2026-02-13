@@ -43,7 +43,7 @@ const FAQ: React.FC = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl md:text-6xl mb-4 tracking-tight" style={{ color: '#2B1E17' }}>
+          <h2 className="text-5xl md:text-6xl mb-4 tracking-tight text-brand">
             FAQ
           </h2>
         </motion.div>
@@ -52,7 +52,7 @@ const FAQ: React.FC = () => {
           {FAQ_DATA.map((faq, idx) => (
             <motion.div
               key={idx}
-              className="bg-white border border-[#4A3A2E]/20 rounded-xl overflow-hidden hover:shadow-md transition-all"
+              className="bg-white border border-brand/20 rounded-xl overflow-hidden hover:shadow-md transition-all"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.08 }}
@@ -62,7 +62,7 @@ const FAQ: React.FC = () => {
                 onClick={() => setOpenQuestion(openQuestion === idx ? null : idx)}
                 className="w-full p-6 flex justify-between items-center text-left inter-400 cursor-pointer"
               >
-                <span className="text-base inter-500" style={{ color: '#4A3A2E' }}>
+                <span className="text-base inter-500 text-brand-muted">
                   {faq.question}
                 </span>
                 <motion.div
@@ -70,7 +70,7 @@ const FAQ: React.FC = () => {
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <svg 
-                    className="w-4 h-4 text-[#4A3A2E] group-hover:text-white transition-colors duration-500" 
+                    className="w-4 h-4 text-brand-muted group-hover:text-white transition-colors duration-500" 
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"
@@ -90,7 +90,7 @@ const FAQ: React.FC = () => {
                     className="overflow-hidden"
                   >
                     <div className="px-6 pb-6">
-                      <p className="text-sm leading-relaxed inter-300" style={{ color: '#4A3A2E' }}>
+                      <p className="text-sm leading-relaxed inter-300 text-brand-muted">
                         {faq.answer}
                       </p>
                     </div>

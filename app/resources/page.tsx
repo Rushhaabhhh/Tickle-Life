@@ -50,7 +50,7 @@ export default function ResourceSection() {
   const [activeContentFilter, setActiveContentFilter] = useState<string | null>(null)
 
   return (
-    <section className="bg-transparent py-24 px-4 md:px-8 min-h-screen">
+    <section className="bg-transparent py-24 px-4 md:px-8 min-h-screen inter-400 text-brand">
       <div className="max-w-7xl mx-auto">
         <motion.header
           className="text-center mb-20"
@@ -58,10 +58,10 @@ export default function ResourceSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h1 className="inter-100 text-5xl md:text-7xl leading-tight mb-6 tracking-tight" style={{ color: '#2B1E17' }}>
+          <h1 className="inter-800 text-6xl md:text-7xl leading-tight mb-6 tracking-tight" style={{ color: '#2B1E17' }}>
             Resource Center
           </h1>
-          <p className="inter-light text-xl max-w-3xl mx-auto" style={{ color: '#2B1E17' }}>
+          <p className="inter-400 text-xl md:text-2xl max-w-3xl mx-auto" style={{ color: '#2B1E17' }}>
             For those who actually run things. No fluff, no theory - just real guidance.
           </p>
         </motion.header>
@@ -96,13 +96,13 @@ export default function ResourceSection() {
 
           <div className="flex items-center gap-3 mt-2 md:mt-0">
             <button
-              className="inter-medium px-5 py-3 bg-[#2B1E17] text-white text-sm rounded-xl hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#2B1E17]/80 transition-all duration-300 cursor-pointer border border-[#2B1E17]"
+              className="inter-semibold px-5 py-3 bg-[#2B1E17] text-white text-base rounded-xl hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#2B1E17]/80 transition-all duration-300 cursor-pointer border border-[#2B1E17]"
               onClick={() => console.log('Apply Filters')}
             >
               Apply Filters
             </button>
             <button
-              className="inter-medium px-5 py-3 bg-white text-[#2B1E17] text-sm rounded-xl hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#2B1E17]/80 hover:text-white transition-all duration-300 cursor-pointer border border-[#2B1E17]"
+              className="inter-semibold px-5 py-3 bg-white text-[#2B1E17] text-base rounded-xl hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#2B1E17]/80 hover:text-white transition-all duration-300 cursor-pointer border border-[#2B1E17]"
               onClick={() => {
                 setActiveProductFilter(null)
                 setActiveIndustryFilter(null)
@@ -126,7 +126,7 @@ export default function ResourceSection() {
             placeholder="Find onboarding docs, compliance walkthroughs, or geo-level approval guides…"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="inter-light w-full pl-6 pr-14 py-4 border text-[#2B1E17] border-[#2B1E17] rounded-xl focus:border-[#2B1E17] focus:outline-none transition-all duration-300 text-base bg-white"
+            className="inter-400 w-full pl-6 pr-14 py-4 border text-[#2B1E17] border-[#2B1E17] rounded-xl focus:border-[#2B1E17] focus:outline-none transition-all duration-300 text-lg bg-white"
           />
           <Search className="absolute right-5 top-1/2 transform -translate-y-1/2 w-5 h-5" style={{ color: '#2B1E17' }} />
         </motion.div>
@@ -138,7 +138,7 @@ export default function ResourceSection() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="inter-100 text-3xl md:text-4xl mb-10 text-center" style={{ color: '#2B1E17' }}>
+          <h2 className="inter-800 text-4xl md:text-5xl mb-10 text-center" style={{ color: '#2B1E17' }}>
             Featured Resources
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -155,10 +155,10 @@ export default function ResourceSection() {
                   <span className="inter-normal text-[#2B1E17]/70 text-sm">Image Placeholder</span>
                 </div>
                 <div className="p-6">
-                  <h3 className="inter-semibold text-lg group-hover:text-[#2B1E17] transition-colors" style={{ color: '#2B1E17' }}>
+                  <h3 className="inter-700 text-xl md:text-2xl group-hover:text-[#2B1E17] transition-colors" style={{ color: '#2B1E17' }}>
                     {resource.title}
                   </h3>
-                  <div className="inter-light mt-4 text-sm" style={{ color: '#2B1E17' }}>
+                  <div className="inter-500 mt-4 text-base" style={{ color: '#2B1E17' }}>
                     Read More
                   </div>
                 </div>
@@ -185,14 +185,14 @@ type DropdownFilterProps = {
 function DropdownFilter({ label, items, active, setActive }: DropdownFilterProps) {
   return (
     <div className="flex flex-col relative">
-      <label className="inter-semibold text-sm uppercase tracking-widest mb-2" style={{ color: '#2B1E17' }}>
+      <label className="inter-700 text-sm uppercase tracking-widest mb-2" style={{ color: '#2B1E17' }}>
         {label}
       </label>
       <div className="relative">
         <select
           value={active ?? ''}
           onChange={(e) => setActive(e.target.value || null)}
-          className="inter-normal w-full appearance-none border border-[#2B1E17] rounded-xl px-4 py-3 pr-10 text-[#2B1E17] text-sm bg-white focus:border-[#2B1E17] focus:outline-none transition-all cursor-pointer"
+          className="inter-500 w-full appearance-none border border-[#2B1E17] rounded-xl px-4 py-3 pr-10 text-[#2B1E17] text-base bg-white focus:border-[#2B1E17] focus:outline-none transition-all cursor-pointer"
         >
           <option value="">Select {label}</option>
           {items.map(item => (
@@ -221,7 +221,7 @@ function ContentSection({ title, items, icon: Icon, align }: ContentSectionProps
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
     >
-      <h2 className="inter-100 text-3xl md:text-4xl mb-10" style={{ color: '#2B1E17' }}>
+      <h2 className="inter-800 text-4xl md:text-5xl mb-10" style={{ color: '#2B1E17' }}>
         {title}
       </h2>
       <div className="space-y-6">
@@ -237,8 +237,8 @@ function ContentSection({ title, items, icon: Icon, align }: ContentSectionProps
             viewport={{ once: true }}
           >
             <div className={align === 'right' ? 'text-right' : ''}>
-              <h3 className="inter-semibold text-lg mb-1" style={{ color: '#2B1E17' }}>{item.title}</h3>
-              <span className="inter-light text-sm" style={{ color: '#2B1E17' }}>{item.filter}</span>
+              <h3 className="inter-700 text-xl md:text-2xl mb-1" style={{ color: '#2B1E17' }}>{item.title}</h3>
+              <span className="inter-500 text-base" style={{ color: '#2B1E17' }}>{item.filter}</span>
             </div>
             <Icon className="w-6 h-6" style={{ color: '#2B1E17' }} />
           </motion.div>

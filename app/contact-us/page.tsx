@@ -3,6 +3,7 @@
 import { useState, ChangeEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ShieldCheck, Globe, EyeOff, UserCheck, FileBadge2 } from 'lucide-react'
+import { Button, Input } from '@/app/components/ui'
 
 // Tabs
 const tabs = [
@@ -17,23 +18,23 @@ type TabKey = (typeof tabs)[number]['key']
 function TrustList() {
   const trustItems = [
     {
-      icon: <FileBadge2 size={18} className="text-[#2B1E17]" />,
+      icon: <FileBadge2 size={18} className="text-brand" />,
       text: 'Free compliance and risk review with every inquiry.'
     },
     {
-      icon: <UserCheck size={18} className="text-[#2B1E17]" />,
+      icon: <UserCheck size={18} className="text-brand" />,
       text: 'Real people, no bots - every submission is reviewed manually.'
     },
     {
-      icon: <EyeOff size={18} className="text-[#2B1E17]" />,
+      icon: <EyeOff size={18} className="text-brand" />,
       text: 'Your data stays private - never shared or sold.'
     },
     {
-      icon: <Globe size={18} className="text-[#2B1E17]" />,
+      icon: <Globe size={18} className="text-brand" />,
       text: 'Registered with FinCEN (U.S.) and FINTRAC (Canada).'
     },
     {
-      icon: <ShieldCheck size={18} className="text-[#2B1E17]" />,
+      icon: <ShieldCheck size={18} className="text-brand" />,
       text: 'PCI DSS Level 1 certified and licensed in 22+ jurisdictions.'
     }
   ]
@@ -43,7 +44,7 @@ function TrustList() {
       {trustItems.map(({ icon, text }) => (
         <li
           key={text}
-          className="inter-300 flex items-center gap-3 text-base text-[#2B1E17]"
+          className="inter-300 flex items-center gap-3 text-base text-brand"
         >
           {icon}
           <span>{text}</span>
@@ -68,27 +69,12 @@ type FieldProps = {
 function FormField({ label, ...props }: FieldProps) {
   return (
     <div>
-      <label
-        className="inter-600 mb-2 block text-xs uppercase tracking-widest text-[#2B1E17]"
-      >
+      <label className="inter-600 mb-2 block text-xs uppercase tracking-widest text-brand">
         {label}
       </label>
-
-      <input
+      <Input
         {...props}
-        className="inter-300 w-full rounded-lg border-2 px-4 py-3 text-base text-[#2B1E17] transition-all duration-300 focus:outline-none"
-        style={{
-          borderColor: '#2B1E17',
-          background: 'rgba(255,255,255,0.2)',
-          backdropFilter: 'blur(10px)'
-        }}
-        onFocus={(e) => {
-          e.currentTarget.style.boxShadow =
-            '0 0 0 3px rgba(43, 30, 23, 0.1)'
-        }}
-        onBlur={(e) => {
-          e.currentTarget.style.boxShadow = 'none'
-        }}
+        className="inter-300 rounded-lg px-4 py-3 text-base bg-white/20 backdrop-blur-md"
       />
     </div>
   )
@@ -311,7 +297,7 @@ function PartnerForm({
       <FormField label="Work Email*" type="email" name="email" value={formData.email} onChange={handleChange} />
       <FormField label="Organization Name*" name="org" value={formData.org} onChange={handleChange} />
       <div>
-        <label className="inter-600 mb-2 block text-xs uppercase tracking-widest text-[#2B1E17]">
+        <label className="inter-600 mb-2 block text-xs uppercase tracking-widest text-brand">
           Organization Type*
         </label>
 
@@ -324,12 +310,7 @@ function PartnerForm({
               orgtype: e.target.value
             }))
           }
-          className="inter-300 w-full rounded-lg border-2 px-4 py-3 text-base text-[#2B1E17] transition-all duration-300 focus:outline-none"
-          style={{
-            borderColor: '#2B1E17',
-            background: 'rgba(255,255,255,0.2)',
-            backdropFilter: 'blur(10px)'
-          }}
+          className="inter-300 ui-input w-full rounded-lg px-4 py-3 text-base bg-white/20 backdrop-blur-md"
         >
           <option value="">Select type</option>
           <option value="bank">Bank</option>
@@ -359,37 +340,14 @@ function SubmitButton({
   onClick: () => void
 }) {
   return (
-    <button
+    <Button
       onClick={onClick}
       disabled={loading}
-      className={`inter-700 mt-2 w-full rounded-xl py-4 cursor-pointer text-base transition-all duration-300 ${
-        loading ? 'cursor-not-allowed opacity-70' : 'hover:scale-105'
-      }`}
-      style={{
-        background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
-        color: '#ffffff',
-        border: '2px solid transparent'
-      }}
-      onMouseEnter={(e) => {
-        if (!loading) {
-          e.currentTarget.style.background = 'rgba(255,255,255,0.2)'
-          e.currentTarget.style.backdropFilter = 'blur(10px)'
-          e.currentTarget.style.color = '#2B1E17'
-          e.currentTarget.style.borderColor = '#2B1E17'
-        }
-      }}
-      onMouseLeave={(e) => {
-        if (!loading) {
-          e.currentTarget.style.background =
-            'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)'
-          e.currentTarget.style.color = '#ffffff'
-          e.currentTarget.style.borderColor = 'transparent'
-          e.currentTarget.style.backdropFilter = 'none'
-        }
-      }}
+      variant="secondary"
+      className={`inter-700 mt-2 w-full rounded-xl py-4 text-base ${loading ? 'cursor-not-allowed opacity-70' : 'hover:scale-105'}`}
     >
       {loading ? 'Submitting...' : 'Submit'}
-    </button>
+    </Button>
   )
 }
 
@@ -401,7 +359,7 @@ export default function ContactSection() {
   const [error, setError] = useState<string | null>(null)
   
   return (
-    <section className="bg-white py-24 px-4 md:px-8 min-h-screen">
+    <section className="bg-white py-24 px-4 md:px-8 min-h-screen text-brand">
       <div className="max-w-7xl mx-auto">
         <motion.header
           className="text-left mb-16"
@@ -412,7 +370,7 @@ export default function ContactSection() {
           <h1 className="inter-800 text-5xl leading-tight mb-3 text-center bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent">
             Contact Us
           </h1>
-          <p className="inter-300 text-lg max-w-2xl mx-auto" style={{ color: '#2B1E17' }}>
+          <p className="inter-300 text-lg max-w-2xl mx-auto text-brand">
             Ready to move forward? Let&apos;s talk.<br /><br />
             If you&apos;ve already run the simulator and know you qualify, drop your details here.<br />
             Our compliance team reviews each submission manually; most get a response in 24 hours.
@@ -442,26 +400,26 @@ export default function ContactSection() {
             </h2>
             <div className="space-y-8">
               <div>
-                <h3 className="inter-600 text-lg mb-1" style={{ color: '#2B1E17' }}>
+                <h3 className="inter-600 text-lg mb-1 text-brand">
                   Free compliance and risk review
                 </h3>
-                <p className="inter-300 text-base" style={{ color: '#2B1E17', opacity: 0.8 }}>
+                <p className="inter-300 text-base text-brand/80">
                   Every inquiry is double - checked by specialists for accuracy and speed.
                 </p>
               </div>
               <div>
-                <h3 className="inter-600 text-lg mb-1" style={{ color: '#2B1E17' }}>
+                <h3 className="inter-600 text-lg mb-1 text-brand">
                   Registered & Certified
                 </h3>
-                <p className="inter-300 text-base" style={{ color: '#2B1E17', opacity: 0.8 }}>
+                <p className="inter-300 text-base text-brand/80">
                   FinCEN, FINTRAC, PCI DSS Level 1 - plus licensed in 22+ global jurisdictions.
                 </p>
               </div>
               <div>
-                <h3 className="inter-600 text-lg mb-1" style={{ color: '#2B1E17' }}>
+                <h3 className="inter-600 text-lg mb-1 text-brand">
                   Privacy First
                 </h3>
-                <p className="inter-300 text-base mb-20" style={{ color: '#2B1E17', opacity: 0.8 }}>
+                <p className="inter-300 text-base mb-20 text-brand/80">
                   We never sell or share your data. Real people only, no bots.
                 </p>
               </div>
@@ -479,32 +437,7 @@ export default function ContactSection() {
                     setSubmitted(false);
                     setError(null);
                   }}
-                  className={`inter-500 px-6 py-3 rounded-full transition-all text-sm duration-300 cursor-pointer flex-1 ${tab === t.key ? "" : "border-2"}`}
-                  style={{ 
-                    ...(tab === t.key ? {
-                      background: 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)',
-                      color: '#ffffff'
-                    } : {
-                      background: 'rgba(255,255,255,0.2)',
-                      backdropFilter: 'blur(10px)',
-                      color: '#2B1E17',
-                      borderColor: '#2B1E17'
-                    })
-                  }}
-                  onMouseEnter={(e) => {
-                    if (tab !== t.key) {
-                      e.currentTarget.style.background = 'linear-gradient(135deg, #2B1E17 0%, #4A3428 100%)'
-                      e.currentTarget.style.color = '#ffffff'
-                      e.currentTarget.style.backdropFilter = 'none'
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (tab !== t.key) {
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.2)'
-                      e.currentTarget.style.backdropFilter = 'blur(10px)'
-                      e.currentTarget.style.color = '#2B1E17'
-                    }
-                  }}
+                  className={`inter-500 px-6 py-3 rounded-full transition-all text-sm duration-300 cursor-pointer flex-1 ${tab === t.key ? 'ui-btn ui-btn-secondary border-transparent' : 'ui-btn ui-btn-ghost bg-white/20 backdrop-blur-md border-brand'}`}
                 >
                   {t.label}
                 </button>
@@ -568,8 +501,7 @@ export default function ContactSection() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.6 }}
-                    className="flex flex-col items-center justify-center min-h-[300px] text-center"
-                    style={{ color: '#2B1E17' }}
+                    className="flex flex-col items-center justify-center min-h-[300px] text-center text-brand"
                   >
                     <p className="inter-500 text-2xl mb-4">Great! You&apos;re on your way.</p>
                     <p className="inter-300 opacity-80">If you&apos;re qualified, we&apos;ll reach out to you within 24 hours.</p>
@@ -577,7 +509,7 @@ export default function ContactSection() {
                 )}
               </AnimatePresence>
               {error && !submitted && !loading && (
-                <div className="inter-600 text-sm text-[#2B1E17] mt-4">
+                <div className="inter-600 text-sm text-brand mt-4">
                   {error}
                 </div>
               )}

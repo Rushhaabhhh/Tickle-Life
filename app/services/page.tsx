@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Plus, X, Shield, Bitcoin, LockKeyhole, Landmark } from 'lucide-react'
+import { Card } from '@/app/components/ui'
 
 const featuredCards = [
   {
@@ -90,7 +91,7 @@ export default function ServicesSection() {
   const totalDiscount = customStack.reduce((sum, item) => sum + item.discount, 0)
 
   return (
-    <section className="bg-white min-h-screen px-6 md:px-16 py-16">
+    <section className="bg-white min-h-screen px-6 md:px-16 py-16 text-brand">
       <motion.header
         className="min-h-[50vh] flex items-center"
         initial={{ opacity: 0 }}
@@ -99,7 +100,7 @@ export default function ServicesSection() {
       >
         <div className="max-w-7xl w-full">
           <motion.h1
-            className="ardela-800 text-5xl md:text-7xl leading-tight tracking-tight text-[#2B1E17]"
+            className="ardela-800 text-5xl md:text-7xl leading-tight tracking-tight text-brand"
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -121,13 +122,13 @@ export default function ServicesSection() {
           return (
             <motion.div
               key={card.id}
-              className="inter-400 relative w-full h-[360px] rounded-2xl border border-[#2B1E17] overflow-hidden shadow-sm group"
+              className="inter-400 relative w-full h-[360px] rounded-2xl border border-brand overflow-hidden shadow-sm group"
               onClick={() => setExpandedCard(expanded ? null : card.id)}
               onMouseEnter={() => setExpandedCard(card.id)}
               onMouseLeave={() => setExpandedCard(null)}
               whileHover={{ scale: 1.02 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-white via-[#f8f6f4] to-[#f0ede9] group-hover:from-[#f5f3f0] group-hover:to-[#e9e5e0]"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-white via-brand-paper to-brand-paper2 group-hover:from-[#f5f3f0] group-hover:to-[#e9e5e0]"></div>
               
               <motion.div
                 className="absolute bottom-0 left-0 right-0 p-8 z-10"
@@ -139,7 +140,7 @@ export default function ServicesSection() {
                 animate={{ y: expanded ? "-80%" : "0%" }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
               >
-                <h3 className="inter-800 text-3xl uppercase select-none text-[#2B1E17]" style={{ 
+                <h3 className="inter-800 text-3xl uppercase select-none text-brand" style={{ 
                   textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
                 }}>
                   {card.title}
@@ -161,7 +162,7 @@ export default function ServicesSection() {
                     exit={{ opacity: 0, y: 80 }}
                     transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
                   >
-                    <p className="inter-300 text-lg leading-relaxed text-[#2B1E17] select-text">
+                    <p className="inter-300 text-lg leading-relaxed text-brand select-text">
                       {card.description}
                     </p>
                   </motion.div>
@@ -189,13 +190,13 @@ export default function ServicesSection() {
         viewport={{ once: true }}
       >
         <div className="max-w-7xl mx-auto">
-          <h2 className="inter-800 text-4xl md:text-6xl uppercase mb-16 text-center text-[#2B1E17]">
+          <h2 className="inter-800 text-4xl md:text-6xl uppercase mb-16 text-center text-brand">
             Build Your Stack
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <h3 className="inter-800 text-2xl mb-6 text-[#2B1E17]">Supported Payment Modes</h3>
+              <h3 className="inter-800 text-2xl mb-6 text-brand">Supported Payment Modes</h3>
 
               <div className="space-y-4">
                 {supportedPaymentModes.map((mode) => (
@@ -204,18 +205,18 @@ export default function ServicesSection() {
                     draggable={!mode.default}
                     onDragStart={() => !mode.default && handleDragStart(mode.id)}
                     onClick={() => !mode.default && !customStack.find((s) => s.id === mode.id) && addToStack(mode)}
-                    className={`inter-400 border border-[#2B1E17] rounded-xl p-6 select-none transition-colors duration-300 bg-white hover:shadow-lg ${mode.default ? 'border-4' : 'hover:border-4 hover:bg-[#2B1E17]/5 cursor-pointer'}`}
+                    className={`inter-400 border border-brand rounded-xl p-6 select-none transition-colors duration-300 bg-white hover:shadow-lg ${mode.default ? 'border-4' : 'hover:border-4 hover:bg-brand/5 cursor-pointer'}`}
                     whileHover={!mode.default && !customStack.find((s) => s.id === mode.id) ? { scale: 1.03 } : {}}
                     whileTap={!mode.default && !customStack.find((s) => s.id === mode.id) ? { scale: 0.97 } : {}}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="inter-600 text-lg text-[#2B1E17]">{mode.name}</span>
+                      <span className="inter-600 text-lg text-brand">{mode.name}</span>
                       {!mode.default && (
                         <div className="hover:scale-125 transition-transform duration-200">
                           {customStack.find((s) => s.id === mode.id) ? (
                             <span className="text-green-600 font-bold">✓ Added</span>
                           ) : (
-                            <Plus className="w-5 h-5 text-[#2B1E17]" />
+                            <Plus className="w-5 h-5 text-brand" />
                           )}
                         </div>
                       )}
@@ -228,12 +229,12 @@ export default function ServicesSection() {
             <div
               onDragOver={handleDragOver}
               onDrop={handleDrop}
-              className="inter-400 min-h-[400px] border-2 border-dashed rounded-xl p-6 transition-all duration-300 border-[#2B1E17] bg-gradient-to-b from-[#f8f6f4]/50 to-white hover:shadow-xl"
+              className="inter-400 min-h-[400px] border-2 border-dashed rounded-xl p-6 transition-all duration-300 border-brand bg-gradient-to-b from-brand-paper/50 to-white hover:shadow-xl"
             >
-              <h3 className="inter-800 text-2xl mb-6 text-[#2B1E17]">Your Custom Stack</h3>
+              <h3 className="inter-800 text-2xl mb-6 text-brand">Your Custom Stack</h3>
 
               {customStack.length === 0 ? (
-                <p className="inter-300 text-center text-[#2B1E17]">
+                <p className="inter-300 text-center text-brand">
                   Drag or click items from the left to add to your custom stack and generate your modular pricing savings!
                 </p>
               ) : (
@@ -263,12 +264,12 @@ export default function ServicesSection() {
                 </ul>
               )}
 
-              <div className="mt-8 pt-6 border-t-2 border-[#2B1E17]">
-                <div className="inter-600 flex items-center text-xl text-[#2B1E17]">
+              <div className="mt-8 pt-6 border-t-2 border-brand">
+                <div className="inter-600 flex items-center text-xl text-brand">
                   <span>Total Modular Savings:</span>
-                  <span className="inter-800 text-2xl text-[#2B1E17]">{totalDiscount}%</span>
+                  <span className="inter-800 text-2xl text-brand">{totalDiscount}%</span>
                 </div>
-                <p className="inter-300 mt-2 text-sm text-[#2B1E17]">
+                <p className="inter-300 mt-2 text-sm text-brand">
                   Each module adds 10% to your overall processing costs
                 </p>
               </div>
@@ -284,23 +285,20 @@ export default function ServicesSection() {
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <h2 className="inter-800 text-4xl md:text-5xl uppercase mb-16 text-center text-[#2B1E17]">
+        <h2 className="inter-800 text-4xl md:text-5xl uppercase mb-16 text-center text-brand">
           Advanced Features
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           {advancedFeatures.map((feature, i) => (
-            <motion.div
+            <Card
               key={i}
-              className="inter-400 bg-white p-10 border border-[#2B1E17] text-center rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-transform duration-300 cursor-default select-none"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              viewport={{ once: true }}
+              className="inter-400 p-10 border-brand text-center rounded-2xl cursor-default select-none hover:-translate-y-2 shadow-md hover:shadow-2xl"
+              interactive
             >
-              <h3 className="inter-800 text-2xl mb-4 text-[#2B1E17]">{feature.title}</h3>
-              <p className="inter-300 leading-relaxed text-[#2B1E17]">{feature.description}</p>
-            </motion.div>
+              <h3 className="inter-800 text-2xl mb-4 text-brand">{feature.title}</h3>
+              <p className="inter-300 leading-relaxed text-brand">{feature.description}</p>
+            </Card>
           ))}
         </div>
       </motion.section>

@@ -17,7 +17,7 @@ const ScrollHighlightText: React.FC<{ activeIndex: number }> = ({ activeIndex })
         ) : (
           <motion.span
             key={idx}
-            animate={{ color: idx <= activeIndex ? '#2B1E17' : '#4A3A2E' }}
+            animate={{ color: idx <= activeIndex ? 'var(--color-brand-900)' : 'var(--color-brand-700)' }}
             transition={{ duration: 0.25 }}
           >
             {word}

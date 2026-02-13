@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Check } from 'lucide-react'
+import { Typography } from '@/app/components/ui'
 
 const industriesData = [
   {
@@ -76,8 +77,8 @@ export default function IndustriesExpandingHorizontal() {
   const [expandedId, setExpandedId] = useState<string | null>(null)
 
   return (
-    <section className="w-full flex flex-col items-center min-h-[700px] relative py-8 md:py-16 bg-white">
-      <h2 className="text-4xl md:text-5xl font-bold uppercase mb-10 text-center bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent">Industries We Power</h2>
+    <section className="w-full flex flex-col items-center min-h-[700px] relative py-8 md:py-16 bg-white text-brand">
+      <h2 className="text-4xl md:text-5xl font-bold uppercase mb-10 text-center ui-heading-gradient">Industries We Power</h2>
       <div className="w-full max-w-5xl mx-auto flex flex-col gap-4">
         {industriesData.map((industry) => {
           const expanded = expandedId === industry.id
@@ -86,21 +87,22 @@ export default function IndustriesExpandingHorizontal() {
               key={industry.id}
               layout
               tabIndex={0}
-              className={`bg-white border border-[#2B1E17]/20 rounded-2xl overflow-hidden transition-all duration-300 outline-none ${expanded ? "shadow-xl ring-2 ring-[#2B1E17]" : "hover:shadow-lg"}`}
+              className={`bg-white border border-brand rounded-2xl overflow-hidden transition-all duration-ui ease-ui outline-none ${expanded ? "shadow-xl ring-2 ring-brand" : "hover:shadow-lg"}`}
               onMouseEnter={() => setExpandedId(industry.id)}
               onMouseLeave={() => setExpandedId(null)}
               onClick={() => setExpandedId(expanded ? null : industry.id)}
               onFocus={() => setExpandedId(industry.id)}
               onBlur={() => setExpandedId(null)}
+              aria-expanded={expanded}
             >
               <div className="flex items-center justify-between px-6 md:px-8 py-6 cursor-pointer">
                 <div className="flex items-center gap-4">
-                  <div className="text-xl font-bold bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent">
+                  <div className="text-xl font-bold ui-heading-gradient">
                     {industry.title}
                   </div>
                 </div>
                 <ArrowRight
-                  className={`w-5 h-5 text-[#2B1E17] transition-transform ${expanded ? "rotate-90" : ""}`}
+                  className={`w-5 h-5 text-brand transition-transform ${expanded ? "rotate-90" : ""}`}
                 />
               </div>
 
@@ -112,22 +114,22 @@ export default function IndustriesExpandingHorizontal() {
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.35 }}
-                    className="border-t border-[#2B1E17]/20 px-6 md:px-8 pb-8 pt-6"
+                    className="border-t border-brand px-6 md:px-8 pb-8 pt-6"
                   >
-                    <p className="mb-6 text-lg leading-relaxed" style={{ color: '#2B1E17' }}>
+                    <Typography as="p" variant="body" className="mb-6 text-lg text-brand">
                       {industry.description}
-                    </p>
+                    </Typography>
                     <ul className="mb-6 space-y-3">
                       {industry.benefits.map((b, i) => (
-                        <li key={i} className="flex items-center gap-3 text-lg" style={{ color: '#2B1E17' }}>
-                          <Check className="w-5 h-5 text-[#2B1E17]" />
+                        <li key={i} className="flex items-center gap-3 text-lg text-brand">
+                          <Check className="w-5 h-5 text-brand" />
                           {b}
                         </li>
                       ))}
                     </ul>
                     <a
                       href="/contact-us"
-                      className="inline-flex items-center gap-2 bg-[#2B1E17] text-white px-8 py-3 rounded-full text-sm md:text-base inter-500 hover:bg-[#4A3A2E] transition-all duration-300 hover:shadow-xl"
+                      className="ui-btn ui-btn-primary px-8 py-3 text-sm md:text-base"
                     >
                       Get qualified for {industry.title}
                       <ArrowRight className="w-5 h-5" />

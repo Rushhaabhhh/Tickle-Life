@@ -6,17 +6,17 @@ import { motion, AnimatePresence } from 'framer-motion'
 const TESTIMONIALS = [
   {
     text: "Approval rates went from 71% to 89%. That's literally $280K monthly that used to get rejected. My CFO thinks I'm a genius for switching.",
-    author: "— Jake Morrison",
+    author: "- Jake Morrison",
     industry: "iGaming"
   },
   {
     text: "During the Brexit chaos, every other PSP had 'technical difficulties.' We processed £1.4M that weekend while competitors were down.",
-    author: "— Sarah Chen",
+    author: "- Sarah Chen",
     industry: "Forex"
   },
   {
     text: "Their compliance team actually understands adult regulations. No more explaining why recurring billing isn't money laundering.",
-    author: "— Marcus Rodriguez",
+    author: "- Marcus Rodriguez",
     industry: "Adult Entertainment"
   }
 ]
@@ -28,8 +28,7 @@ const Testimonials: React.FC = () => {
     <section className="py-24 px-8 inter-400">
       <div className="max-w-6xl mx-auto">
         <motion.h2
-          className="text-5xl md:text-6xl font-light text-center mb-8 tracking-tight inter-400"
-          style={{ color: '#2B1E17' }}
+          className="text-5xl md:text-6xl font-light text-center mb-8 tracking-tight inter-400 text-brand"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -39,8 +38,7 @@ const Testimonials: React.FC = () => {
         </motion.h2>
 
         <motion.p
-          className="text-xl text-center mb-16 font-light"
-          style={{ color: '#4A3A2E' }}
+          className="text-xl text-center mb-16 font-light text-brand-muted"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
@@ -62,8 +60,8 @@ const Testimonials: React.FC = () => {
               onClick={() => setActiveTab(idx)}
               className={`px-6 py-3 text-sm font-light tracking-wide transition-all duration-500 border rounded-full cursor-pointer inter-400 ${
                 activeTab === idx
-                  ? 'bg-[#2B1E17] text-white border-[#2B1E17]'
-                  : 'bg-white text-[#4A3A2E] border-[#4A3A2E]/30 hover:border-[#2B1E17]'
+                  ? 'bg-brand text-white border-brand'
+                  : 'bg-white text-brand-muted border-brand/30 hover:border-brand'
               }`}
             >
               {testimonial.industry}
@@ -81,12 +79,12 @@ const Testimonials: React.FC = () => {
               exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-              <p className="text-2xl md:text-3xl font-light leading-relaxed mb-8 italic" style={{ color: '#2B1E17' }}>
+              <p className="text-2xl md:text-3xl font-light leading-relaxed mb-8 italic text-brand">
                 {TESTIMONIALS[activeTab].text}
               </p>
 
               <div className="space-y-1">
-                <p className="text-base font-medium" style={{ color: '#2B1E17' }}>
+                <p className="text-base font-medium text-brand">
                   {TESTIMONIALS[activeTab].author}
                 </p>
               </div>

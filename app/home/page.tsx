@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useRef } from 'react'
-import { motion } from 'framer-motion'
 import Hero from './components/Hero'
 import StorySection from './components/StorySection'
 import ProblemsAndSolutions from './components/ProblemsAndSolutions'
@@ -15,13 +14,9 @@ const PSPHomepage = () => {
   const containerRef = useRef<HTMLDivElement>(null)
 
   return (
-    <div 
-      ref={containerRef} 
-      className="min-h-screen bg-transparent text-[#2B1E17] relative overflow-x-hidden font-['IBM_Plex_Sans']"
-      style={{ 
-        '--title-color': '#2B1E17',
-        '--body-color': '#4A3A2E', 
-      } as React.CSSProperties}
+    <div
+      ref={containerRef}
+      className="min-h-screen bg-transparent text-brand relative overflow-x-hidden inter-400"
     >
       <Hero />
       <TrustAndSupport />

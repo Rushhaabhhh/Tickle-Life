@@ -17,8 +17,7 @@ const FeaturesReality: React.FC = () => {
     <section className="py-24 px-8">
       <div className="max-w-7xl mx-auto">
         <motion.h2
-          className="text-5xl md:text-6xl font-light text-center mb-4 tracking-tight"
-          style={{ color: '#2B1E17' }}
+          className="text-5xl md:text-6xl font-light text-center mb-4 tracking-tight text-brand"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -28,8 +27,7 @@ const FeaturesReality: React.FC = () => {
         </motion.h2>
 
         <motion.div
-          className="border rounded-3xl p-12 md:p-14 max-w-6xl w-full mx-auto"
-          style={{ borderColor: "rgba(74, 58, 46, 0.3)" }}
+          className="border border-brand rounded-3xl p-12 md:p-14 max-w-6xl w-full mx-auto"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
@@ -49,8 +47,8 @@ const FeaturesReality: React.FC = () => {
                 }}
                 viewport={{ once: true }}
               >
-                <span className="w-2 h-2 rounded-full bg-[#2B1E17] flex-shrink-0" />
-                <span className="text-base leading-relaxed" style={{ color: '#4A3A2E' }}>
+                <span className="w-2 h-2 rounded-full bg-brand flex-shrink-0" />
+                <span className="text-base leading-relaxed text-brand-muted">
                   {feature}
                 </span>
 
@@ -61,8 +59,7 @@ const FeaturesReality: React.FC = () => {
         </motion.div>
 
         <motion.p
-          className="text-center text-lg mt-12 inter-400"
-          style={{ color: '#4A3A2E' }}
+          className="text-center text-lg mt-12 inter-400 text-brand-muted"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}

@@ -109,7 +109,7 @@ export default function PartnersPage() {
   ]
 
   return (
-    <section className="bg-white min-h-screen">
+    <section className="bg-white min-h-screen text-brand">
       {/* Hero */}
       <motion.header
         className="py-32 px-8 md:px-16 text-center"
@@ -119,7 +119,7 @@ export default function PartnersPage() {
       >
         <div className="max-w-4xl mx-auto">
           <motion.h1
-            className="inter-900 text-5xl md:text-7xl lg:text-8xl uppercase leading-tight mb-8 text-[#2B1E17]"
+            className="inter-900 text-5xl md:text-7xl lg:text-8xl uppercase leading-tight mb-8 text-brand"
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
@@ -132,7 +132,7 @@ export default function PartnersPage() {
           </motion.h1>
 
           <motion.p
-            className="inter-400 text-2xl md:text-3xl mb-12 leading-relaxed max-w-3xl mx-auto text-[#2B1E17]"
+            className="inter-400 text-2xl md:text-3xl mb-12 leading-relaxed max-w-3xl mx-auto text-brand"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
@@ -147,7 +147,7 @@ export default function PartnersPage() {
           >
             <a
               href="#contact-form"
-              className="inline-flex items-center gap-3 bg-[#2B1E17] text-white px-10 py-6 rounded-full inter-700 text-xl uppercase hover:bg-[#2B1E17] transition-all duration-300 hover:scale-105 shadow-2xl border border-[#2B1E17]"
+              className="ui-btn ui-btn-primary inline-flex items-center gap-3 px-10 py-6 rounded-full inter-700 text-xl uppercase hover:scale-105 shadow-2xl border border-brand"
             >
               Become a partner
               <ArrowRight className="w-6 h-6" />
@@ -166,7 +166,7 @@ export default function PartnersPage() {
       >
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
-            className="inter-900 text-5xl md:text-7xl lg:text-8xl uppercase mb-12 text-[#2B1E17]"
+            className="inter-900 text-5xl md:text-7xl lg:text-8xl uppercase mb-12 text-brand"
             initial={{ y: 40, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -176,7 +176,7 @@ export default function PartnersPage() {
           </motion.h2>
 
           <motion.p
-            className="inter-400 text-2xl md:text-3xl mb-16 max-w-3xl mx-auto leading-relaxed text-[#2B1E17]"
+            className="inter-400 text-2xl md:text-3xl mb-16 max-w-3xl mx-auto leading-relaxed text-brand"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -185,21 +185,17 @@ export default function PartnersPage() {
             High-risk runs on trust. Connections close deals; cold outreach never could. That’s why we grow through middlemen who already make things move.
           </motion.p>
 
-          <motion.div
-            className="bg-[#2B1E17] text-white py-4 px-16 rounded-full inter-700 uppercase transition-all duration-300 shadow-2xl inline-flex items-center gap-2 mx-auto hover:scale-105"
+          <motion.a
+            href="#partners"
+            className="ui-btn ui-btn-primary py-4 px-16 rounded-full inter-700 uppercase shadow-2xl inline-flex items-center gap-2 mx-auto"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             viewport={{ once: true }}
           >
-            <a
-              href="#partners"
-              className="inline-flex items-center gap-2 text-white rounded-full inter-700 text-base uppercase transition-all duration-300 hover:scale-105"
-            >
-              Find your fit
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </motion.div>
+            Find your fit
+            <ArrowRight className="w-4 h-4" />
+          </motion.a>
         </div>
       </motion.section>
 
@@ -223,25 +219,25 @@ export default function PartnersPage() {
               viewport={{ once: true }}
             >
               <div className="lg:w-1/2 space-y-8">
-                <div className="inter-700 text-sm uppercase tracking-widest mb-4 text-[#2B1E17]">
+                <div className="inter-700 text-sm uppercase tracking-widest mb-4 text-brand">
                   {partner.title}
                 </div>
                 
-                <h3 className="inter-900 text-4xl md:text-5xl uppercase mb-6 leading-tight text-[#2B1E17]">
+                <h3 className="inter-900 text-4xl md:text-5xl uppercase mb-6 leading-tight text-brand">
                   {partner.subtitle}
                 </h3>
                 
-                <p className="inter-400 text-xl leading-relaxed mb-12 text-[#2B1E17]">
+                <p className="inter-400 text-xl leading-relaxed mb-12 text-brand">
                   {partner.description}
                 </p>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                   <div className="space-y-4">
-                    <h4 className="inter-700 text-2xl uppercase tracking-wide text-[#2B1E17]">You bring:</h4>
-                    <ul className="space-y-3 text-lg inter-400 text-[#2B1E17]">
+                    <h4 className="inter-700 text-2xl uppercase tracking-wide text-brand">You bring:</h4>
+                    <ul className="space-y-3 text-lg inter-400 text-brand">
                       {partner.you_bring.map((item, i) => (
                         <li key={i} className="flex items-start gap-3">
-                          <span className="text-[#2B1E17] font-bold text-xl mt-0.5">→</span>
+                          <span className="text-brand font-bold text-xl mt-0.5">→</span>
                           <span>{item}</span>
                         </li>
                       ))}
@@ -249,11 +245,11 @@ export default function PartnersPage() {
                   </div>
                   
                   <div className="space-y-4">
-                    <h4 className="inter-700 text-2xl uppercase tracking-wide text-[#2B1E17]">You get:</h4>
-                    <ul className="space-y-3 text-lg inter-400 text-[#2B1E17]">
+                    <h4 className="inter-700 text-2xl uppercase tracking-wide text-brand">You get:</h4>
+                    <ul className="space-y-3 text-lg inter-400 text-brand">
                       {partner.you_get.map((item, i) => (
                         <li key={i} className="flex items-start gap-3">
-                          <span className="text-[#2B1E17] font-bold text-xl mt-0.5">→</span>
+                          <span className="text-brand font-bold text-xl mt-0.5">→</span>
                           <span>{item}</span>
                         </li>
                       ))}
@@ -271,7 +267,7 @@ export default function PartnersPage() {
                   >
                     <a
                       href="#contact-form"
-                      className="inline-flex items-center gap-3 bg-[#2B1E17] text-white px-10 py-5 rounded-full inter-700 text-xl uppercase hover:bg-[#2B1E17]/80 transition-all duration-300 hover:scale-105"
+                      className="ui-btn ui-btn-primary inline-flex items-center gap-3 px-10 py-5 rounded-full inter-700 text-xl uppercase"
                     >
                       Partner with us
                       <ArrowRight className="w-6 h-6" />
@@ -281,10 +277,10 @@ export default function PartnersPage() {
               </div>
 
               <div className="lg:w-1/2">
-                <div className="bg-gradient-to-br from-[#f8f6f4] to-[#f0ede9] h-96 rounded-3xl flex items-center justify-center p-12 border border-[#2B1E17]">
-                  <div className="text-center text-[#2B1E17]">
+                <div className="bg-gradient-to-br from-brand-paper to-brand-paper2 h-96 rounded-3xl flex items-center justify-center p-12 border border-brand">
+                  <div className="text-center text-brand">
                     <div className="w-32 h-32 bg-white/30 rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                      <Network className="w-16 h-16 text-[#2B1E17]" />
+                      <Network className="w-16 h-16 text-brand" />
                     </div>
                     <h4 className="inter-700 text-2xl mb-2">{partner.title}</h4>
                     <p className="inter-400 text-lg">Visual representation</p>
@@ -306,10 +302,10 @@ export default function PartnersPage() {
       >
         <div className="max-w-7xl mx-auto">
           <div className="mb-16 text-center">
-            <h2 className="inter-900 text-4xl md:text-5xl uppercase mb-6 text-[#2B1E17]">
+            <h2 className="inter-900 text-4xl md:text-5xl uppercase mb-6 text-brand">
               Here&apos;s the deal
             </h2>
-            <p className="inter-400 text-xl max-w-2xl mx-auto text-[#2B1E17]">
+            <p className="inter-400 text-xl max-w-2xl mx-auto text-brand">
               Because in high-risk, strong partners mean smoother payouts. This is what your merchants get.
             </p>
           </div>
@@ -320,14 +316,14 @@ export default function PartnersPage() {
               return (
                 <motion.div
                   key={feature.title}
-                  className="bg-white p-8 rounded-xl border border-[#2B1E17] hover:border-[#2B1E17]/80 hover:shadow-md transition-all duration-300 text-[#2B1E17]"
+                  className="bg-white p-8 rounded-xl border border-brand hover:border-brand/80 hover:shadow-md transition-all duration-300 text-brand"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.05 }}
                   viewport={{ once: true }}
                 >
                   <div className="mb-4">
-                    <Icon className="w-10 h-10 text-[#2B1E17]" />
+                    <Icon className="w-10 h-10 text-brand" />
                   </div>
                   <h3 className="inter-700 text-lg mb-2">{feature.title}</h3>
                   <p className="inter-400 text-sm leading-relaxed">{feature.description}</p>
@@ -348,15 +344,15 @@ export default function PartnersPage() {
       >
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="inter-900 text-4xl md:text-5xl uppercase mb-6 text-[#2B1E17]">
+            <h2 className="inter-900 text-4xl md:text-5xl uppercase mb-6 text-brand">
               See it in action
             </h2>
-            <p className="inter-400 text-lg leading-relaxed text-[#2B1E17]">
+            <p className="inter-400 text-lg leading-relaxed text-brand">
               Walk through how high-risk merchants plug into our rails, how partners get paid, and what it looks like when everything just works.
             </p>
           </div>
-          <div className="bg-gradient-to-br from-[#f8f6f4] to-[#f0ede9] aspect-video rounded-xl flex items-center justify-center border border-[#2B1E17]">
-            <span className="inter-700 text-[#2B1E17]/70 text-sm uppercase tracking-[0.2em]">
+          <div className="bg-gradient-to-br from-brand-paper to-brand-paper2 aspect-video rounded-xl flex items-center justify-center border border-brand">
+            <span className="inter-700 text-brand/70 text-sm uppercase tracking-[0.2em]">
               Explainer video placeholder
             </span>
           </div>
@@ -374,95 +370,95 @@ export default function PartnersPage() {
         viewport={{ once: true }}
       >
         <div className="max-w-2xl mx-auto">
-          <h2 className="inter-900 text-4xl md:text-5xl uppercase mb-6 text-[#2B1E17]">
+          <h2 className="inter-900 text-4xl md:text-5xl uppercase mb-6 text-brand">
             Partner with us
           </h2>
 
           <form className="space-y-6">
             <div>
-              <label className="block inter-700 text-sm uppercase tracking-widest mb-2 text-[#2B1E17]">
-                Name <span className="text-[#2B1E17]">*</span>
+              <label className="block inter-700 text-sm uppercase tracking-widest mb-2 text-brand">
+                Name <span className="text-brand">*</span>
               </label>
               <input
                 type="text"
                 name="name"
                 required
-                className="w-full px-6 py-3 border border-[#2B1E17] rounded-lg focus:outline-none focus:border-[#2B1E17]/80 transition-colors bg-white inter-400 text-[#2B1E17]"
+                className="ui-input w-full px-6 py-3 border border-brand rounded-lg focus:border-brand/80 transition-colors bg-white inter-400 text-brand"
                 placeholder="Your name"
               />
             </div>
 
             <div>
-              <label className="block inter-700 text-sm uppercase tracking-widest mb-2 text-[#2B1E17]">
-                Work email <span className="text-[#2B1E17]">*</span>
+              <label className="block inter-700 text-sm uppercase tracking-widest mb-2 text-brand">
+                Work email <span className="text-brand">*</span>
               </label>
               <input
                 type="email"
                 name="email"
                 required
-                className="w-full px-6 py-3 border border-[#2B1E17] rounded-lg focus:outline-none focus:border-[#2B1E17]/80 transition-colors bg-white inter-400 text-[#2B1E17]"
+                className="ui-input w-full px-6 py-3 border border-brand rounded-lg focus:border-brand/80 transition-colors bg-white inter-400 text-brand"
                 placeholder="you@company.com"
               />
             </div>
 
             <div>
-              <label className="block inter-700 text-sm uppercase tracking-widest mb-2 text-[#2B1E17]">
-                Company / agency name <span className="text-[#2B1E17]">*</span>
+              <label className="block inter-700 text-sm uppercase tracking-widest mb-2 text-brand">
+                Company / agency name <span className="text-brand">*</span>
               </label>
               <input
                 type="text"
                 name="company"
                 required
-                className="w-full px-6 py-3 border border-[#2B1E17] rounded-lg focus:outline-none focus:border-[#2B1E17]/80 transition-colors bg-white inter-400 text-[#2B1E17]"
+                className="ui-input w-full px-6 py-3 border border-brand rounded-lg focus:border-brand/80 transition-colors bg-white inter-400 text-brand"
                 placeholder="Your company"
               />
             </div>
 
             <div>
-              <label className="block inter-700 text-sm uppercase tracking-widest mb-2 text-[#2B1E17]">
+              <label className="block inter-700 text-sm uppercase tracking-widest mb-2 text-brand">
                 Website or LinkedIn profile
               </label>
               <input
                 type="text"
                 name="website"
-                className="w-full px-6 py-3 border border-[#2B1E17] rounded-lg focus:outline-none focus:border-[#2B1E17]/80 transition-colors bg-white inter-400 text-[#2B1E17]"
+                className="ui-input w-full px-6 py-3 border border-brand rounded-lg focus:border-brand/80 transition-colors bg-white inter-400 text-brand"
                 placeholder="https://..."
               />
             </div>
 
             <div>
-              <label className="block inter-700 text-sm uppercase tracking-widest mb-2 text-[#2B1E17]">
-                Regions you operate in <span className="text-[#2B1E17]">*</span>
+              <label className="block inter-700 text-sm uppercase tracking-widest mb-2 text-brand">
+                Regions you operate in <span className="text-brand">*</span>
               </label>
               <input
                 type="text"
                 name="regions"
                 required
-                className="w-full px-6 py-3 border border-[#2B1E17] rounded-lg focus:outline-none focus:border-[#2B1E17]/80 transition-colors bg-white inter-400 text-[#2B1E17]"
+                className="ui-input w-full px-6 py-3 border border-brand rounded-lg focus:border-brand/80 transition-colors bg-white inter-400 text-brand"
                 placeholder="e.g., Europe, APAC, North America"
               />
             </div>
 
             <div>
-              <label className="block inter-700 text-sm uppercase tracking-widest mb-2 text-[#2B1E17]">
-                Merchant types you usually work with <span className="text-[#2B1E17]">*</span>
+              <label className="block inter-700 text-sm uppercase tracking-widest mb-2 text-brand">
+                Merchant types you usually work with <span className="text-brand">*</span>
               </label>
               <input
                 type="text"
                 name="merchant_types"
                 required
-                className="w-full px-6 py-3 border border-[#2B1E17] rounded-lg focus:outline-none focus:border-[#2B1E17]/80 transition-colors bg-white inter-400 text-[#2B1E17]"
+                className="ui-input w-full px-6 py-3 border border-brand rounded-lg focus:border-brand/80 transition-colors bg-white inter-400 text-brand"
                 placeholder="e.g., iGaming, Forex, Crypto"
               />
             </div>
 
             <div>
-              <label className="block inter-700 text-sm uppercase tracking-widest mb-2 text-[#2B1E17]">
+              <label className="block inter-700 text-sm uppercase tracking-widest mb-2 text-brand">
                 How do you usually source leads?
               </label>
               <select
                 name="lead_source"
-                className="w-full px-6 py-3 border border-[#2B1E17] rounded-lg focus:outline-none focus:border-[#2B1E17]/80 transition-colors bg-white inter-400 text-[#2B1E17]"
+                className="ui-input w-full px-6 py-3 border border-brand rounded-lg focus:border-brand/80 transition-colors bg-white inter-400 text-brand"
               >
                 <option value="">Select an option</option>
                 <option value="referrals">Referrals</option>
@@ -477,7 +473,7 @@ export default function PartnersPage() {
 
             <motion.button
               type="submit"
-              className="w-full bg-[#2B1E17] text-white py-4 rounded-xl inter-700 text-base uppercase hover:bg-[#2B1E17]/80 transition-all duration-300"
+              className="w-full ui-btn ui-btn-primary py-4 rounded-xl inter-700 text-base uppercase"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

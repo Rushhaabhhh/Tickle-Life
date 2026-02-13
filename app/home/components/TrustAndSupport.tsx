@@ -33,14 +33,12 @@ const TrustAndSupport: React.FC = () => {
               viewport={{ once: true }}
             >
               <div 
-                className="text-2xl md:text-3xl font-bold tracking-tight mb-2 inter-400"
-                style={{ color: '#2B1E17' }}
+                className="text-2xl md:text-3xl font-bold tracking-tight mb-2 inter-400 text-brand"
               >
                 {stat.number}
               </div>
               <div 
-                className="text-base md:text-lg font-light uppercase tracking-wide"
-                style={{ color: '#4A3A2E' }}
+                className="text-base md:text-lg font-light uppercase tracking-wide text-brand-muted"
               >
                 {stat.label}
               </div>
@@ -53,26 +51,22 @@ const TrustAndSupport: React.FC = () => {
       <div className="max-w-9xl mx-auto w-full relative z-10 px-8 py-20 inter-400">
         <motion.h2
           className="text-center font-bold tracking-tight leading-tight inter-600"
-          style={{
-            fontSize: "clamp(1.4rem, 6vw, 3.2rem)",
-            color: '#2B1E17'
-          }}
+          style={{ fontSize: 'clamp(1.4rem, 6vw, 3.2rem)' }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <span style={{ color: '#4A3A2E' }}>Real</span> Support.{" "}
-          <span style={{ color: '#4A3A2E' }}>Real</span> Compliance.{" "}
-          <span style={{ color: '#4A3A2E' }}>Real</span> Coverage.
+          <span className="text-brand-muted">Real</span> Support.{" "}
+          <span className="text-brand-muted">Real</span> Compliance.{" "}
+          <span className="text-brand-muted">Real</span> Coverage.
         </motion.h2>
       </div>
 
       {/* CTA Section */}
       <section className="flex items-center justify-center relative px-8 py-16 bg-white">
         <div
-          className=" p-8 max-w-7xl w-full mx-4 flex flex-col items-center rounded-3xl"
-          style={{ borderColor: "rgba(74, 58, 46, 0.3)" }}
+          className="p-8 max-w-7xl w-full mx-4 flex flex-col items-center rounded-3xl"
         >
           <motion.div
             className="text-center"
@@ -85,7 +79,7 @@ const TrustAndSupport: React.FC = () => {
               onClick={() => {
                 window.location.href = '/resources'
               }}
-              className="bg-[#2B1E17] text-white px-14 py-4 rounded-full text-base font-large hover:bg-[#4A3A2E] transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer border-2 border-[#2B1E17] hover:border-[#4A3A2E]"
+              className="ui-btn ui-btn-primary px-14 py-4 rounded-full text-base font-large hover:scale-105 border-2 border-brand"
             >
               Still unsure? See if we&apos;re a fit
             </button>

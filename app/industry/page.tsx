@@ -4,35 +4,36 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Lock, Shield, Check, Zap } from 'lucide-react'
 import Link from 'next/link'
 import IndustriesExpandingVertical from './components/IndustriesCard'
+import { Card, Typography } from '@/app/components/ui'
 
 
 const features = [
   {
     title: 'Low processing rates',
     description: 'Pay only for the rails you actually use.',
-    icon: <Zap className="w-12 h-12 text-[#2B1E17]" />
+    icon: <Zap className="w-12 h-12 text-brand" />
   },
   {
     title: 'Unparalleled security',
     description: 'Level 1 PCI DSS, real-time monitoring, and smart fraud controls.',
-    icon: <Shield className="w-12 h-12 text-[#2B1E17]" />
+    icon: <Shield className="w-12 h-12 text-brand" />
   },
   {
     title: 'Compliance expertise',
     description: 'Industry-aware onboarding, licensing logic, and ongoing risk oversight.',
-    icon: <Lock className="w-12 h-12 text-[#2B1E17]" />
+    icon: <Lock className="w-12 h-12 text-brand" />
   },
   {
     title: 'Tailored solutions',
     description: 'No bundles. No assumptions. Built around your flow.',
-    icon: <Check className="w-12 h-12 text-[#2B1E17]" />
+    icon: <Check className="w-12 h-12 text-brand" />
   }
 ]
 
 export default function IndustriesSection() {
 
   return (
-    <section className="bg-white min-h-screen">
+    <section className="bg-white min-h-screen text-brand">
 
       {/* Hero Section */}
       <motion.header
@@ -48,19 +49,16 @@ export default function IndustriesSection() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold uppercase leading-[0.95] tracking-tight bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent mb-4">
+            <h1 className="text-5xl md:text-7xl font-bold uppercase leading-[0.95] tracking-tight ui-heading-gradient mb-4">
               Built for one business.<br />
             </h1>
-            <h1 className="text-6xl md:text-8xl font-bold uppercase leading-[0.9] tracking-tight text-[#4A3428] mb-8">
+            <h1 className="text-6xl md:text-8xl font-bold uppercase leading-[0.9] tracking-tight text-brand-muted mb-8">
               Yours.
             </h1>
-            <p className="text-xl md:text-2xl mb-12 max-w-3xl" style={{ color: '#2B1E17' }}>
+            <Typography as="p" variant="body" className="text-xl md:text-2xl mb-12 max-w-3xl text-brand">
               Payments shouldn&apos;t force you into a template. We adapt to how you operate, not the other way around.
-            </p>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 bg-[#2B1E17] text-white px-10 py-4 rounded-full text-base inter-500 hover:bg-[#4A3A2E] transition-all duration-300 hover:shadow-xl hover:scale-105"
-            >
+            </Typography>
+            <Link href="/" className="ui-btn ui-btn-primary px-10 py-4 hover:scale-105 hover:shadow-xl">
               See if we&apos;re a fit
             </Link>
           </motion.div>
@@ -77,7 +75,7 @@ export default function IndustriesSection() {
       >
         <div className="max-w-7xl mx-auto">
           <motion.h2
-            className="text-4xl md:text-5xl font-bold uppercase mb-16 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl font-bold uppercase mb-16 ui-heading-gradient"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -87,18 +85,15 @@ export default function IndustriesSection() {
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {features.map((feature, idx) => (
-              <motion.div
+              <Card
                 key={idx}
-                className="bg-white p-10 border border-[#4A3A2E]/20 rounded-2xl flex flex-col items-start text-left hover:shadow-lg transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                viewport={{ once: true }}
+                className="p-10 flex flex-col items-start text-left"
+                interactive
               >
                 <div className="mb-6">{feature.icon}</div>
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent mb-3">{feature.title}</h3>
-                <p className="text-lg" style={{ color: '#2B1E17' }}>{feature.description}</p>
-              </motion.div>
+                <h3 className="text-2xl font-bold ui-heading-gradient mb-3">{feature.title}</h3>
+                <Typography as="p" variant="body" className="text-lg text-brand">{feature.description}</Typography>
+              </Card>
             ))}
           </div>
         </div>
@@ -124,7 +119,7 @@ export default function IndustriesSection() {
       >
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
-            className="text-4xl md:text-5xl font-bold uppercase mb-8 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl font-bold uppercase mb-8 ui-heading-gradient"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -133,8 +128,7 @@ export default function IndustriesSection() {
             Not seeing your industry listed?
           </motion.h2>
           <motion.p
-            className="text-xl md:text-2xl mb-12"
-            style={{ color: '#2B1E17' }}
+            className="text-xl md:text-2xl mb-12 text-brand"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -151,14 +145,14 @@ export default function IndustriesSection() {
           >
             <a
               href="/contact-us"
-              className="group inline-flex items-center gap-2 px-10 py-5 font-bold text-lg uppercase transition-all duration-300 border-2 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] text-white border-transparent hover:opacity-90 rounded-xl"
+              className="group ui-btn ui-btn-secondary rounded-xl px-10 py-5 font-bold text-lg uppercase"
             >
               Talk to our team
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="/contact-us"
-              className="group inline-flex items-center gap-2 px-10 py-5 font-bold text-lg uppercase transition-all duration-300 border-2 bg-white/20 backdrop-blur-xl text-[#2B1E17] border-[#2B1E17] hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#4A3428] hover:text-white hover:border-transparent rounded-xl"
+              className="bg-transparent group ui-btn ui-btn-ghost rounded-xl px-10 py-5 font-bold text-lg uppercase"
             >
               Start qualification
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />

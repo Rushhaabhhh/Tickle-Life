@@ -5,7 +5,7 @@ import { ArrowRight, Mail } from 'lucide-react'
 
 export default function AboutSection() {
   return (
-    <section className="bg-white">
+    <section className="bg-white text-brand">
       {/* Hero Banner */}
       <motion.header
         className="min-h-screen flex items-center bg-transparent px-8 md:px-16 py-24"
@@ -22,7 +22,7 @@ export default function AboutSection() {
           }}
         >
           <motion.h1
-            className="inter-800 text-5xl leading-none tracking-[-0.03em] uppercase bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent"
+            className="inter-800 text-5xl leading-none tracking-[-0.03em] uppercase ui-heading-gradient"
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
@@ -31,7 +31,7 @@ export default function AboutSection() {
             <br />
             For high-risk.
             <br />
-            <span className="bg-gradient-to-r from-[#2B1E17] to-[#3d2b1f] bg-clip-text text-transparent">
+            <span className="ui-heading-gradient">
               Powered by fintech brains.
             </span>
           </motion.h1>
@@ -44,14 +44,14 @@ export default function AboutSection() {
           >
             <a
               href="/contact-us"
-              className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 border-2 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] text-white border-transparent hover:opacity-90"
+              className="group ui-btn ui-btn-secondary px-8 py-4 rounded-xl inter-700 text-base uppercase"
             >
               Talk to our team
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="/contact-us"
-              className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 border-2 bg-white/20 backdrop-blur-xl text-[#2B1E17] border-[#2B1E17] hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#4A3428] hover:text-white hover:border-transparent"
+              className="group ui-btn ui-btn-ghost px-8 py-4 rounded-xl inter-700 text-base uppercase bg-white/20 backdrop-blur-xl border-brand"
             >
               See if you qualify
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -70,7 +70,7 @@ export default function AboutSection() {
       >
         <div className="max-w-4xl mx-auto">
           <motion.h2
-            className="inter-800 text-4xl md:text-5xl lg:text-6xl uppercase mb-12 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent"
+            className="inter-800 text-4xl md:text-5xl lg:text-6xl uppercase mb-12 ui-heading-gradient"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -80,8 +80,7 @@ export default function AboutSection() {
           </motion.h2>
 
           <motion.div
-            className="inter-300 space-y-6 text-lg md:text-xl leading-relaxed"
-            style={{ color: '#2B1E17' }}
+            className="inter-300 space-y-6 text-lg md:text-xl leading-relaxed text-brand"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -137,7 +136,7 @@ export default function AboutSection() {
             <div className="pt-6">
               <a
                 href="/contact-us"
-                className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 border-2 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] text-white border-transparent hover:opacity-90"
+                className="group ui-btn ui-btn-secondary px-8 py-4 rounded-xl inter-700 text-base uppercase"
               >
                 See if TickleCharge is right for you
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -158,7 +157,7 @@ export default function AboutSection() {
       >
         <div className="max-w-4xl mx-auto">
           <motion.h2
-            className="inter-800 text-4xl md:text-5xl lg:text-6xl uppercase mb-12 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent"
+            className="inter-800 text-4xl md:text-5xl lg:text-6xl uppercase mb-12 ui-heading-gradient"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -168,8 +167,7 @@ export default function AboutSection() {
           </motion.h2>
 
           <motion.div
-            className="inter-300 space-y-6 text-lg md:text-xl leading-relaxed"
-            style={{ color: '#2B1E17' }}
+            className="inter-300 space-y-6 text-lg md:text-xl leading-relaxed text-brand"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -195,7 +193,7 @@ export default function AboutSection() {
               Now we combine:
             </p>
 
-            <div className="space-y-2 ml-4 border-l-2 border-[#2B1E17] pl-4">
+            <div className="space-y-2 ml-4 border-l-2 border-brand pl-4">
               <p>Real high-risk operating experience</p>
               <p>Fintech and payment engineering</p>
               <p>Deep compliance and licensing expertise</p>
@@ -208,14 +206,14 @@ export default function AboutSection() {
             <div className="pt-6 flex gap-4">
               <a
                 href="/team"
-                className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 border-2 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] text-white border-transparent hover:opacity-90"
+                className="group ui-btn ui-btn-secondary px-8 py-4 rounded-xl inter-700 text-base uppercase"
               >
                 Meet the team
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
                 href="/contact-us"
-                className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 border-2 bg-white/20 backdrop-blur-xl text-[#2B1E17] border-[#2B1E17] hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#4A3428] hover:text-white hover:border-transparent"
+                className="group ui-btn ui-btn-ghost px-8 py-4 rounded-xl inter-700 text-base uppercase bg-white/20 backdrop-blur-xl border-brand"
               >
                 Talk to compliance
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -235,7 +233,7 @@ export default function AboutSection() {
       >
         <div className="max-w-4xl mx-auto">
           <motion.h2
-            className="inter-800 text-4xl md:text-5xl lg:text-6xl uppercase mb-12 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent"
+            className="inter-800 text-4xl md:text-5xl lg:text-6xl uppercase mb-12 ui-heading-gradient"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -245,8 +243,7 @@ export default function AboutSection() {
           </motion.h2>
 
           <motion.div
-            className="inter-300 space-y-6 text-lg md:text-xl leading-relaxed"
-            style={{ color: '#2B1E17' }}
+            className="inter-300 space-y-6 text-lg md:text-xl leading-relaxed text-brand"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -260,7 +257,7 @@ export default function AboutSection() {
               We&apos;re hiring across:
             </p>
 
-            <div className="space-y-2 ml-4 border-l-2 border-[#2B1E17] pl-4">
+            <div className="space-y-2 ml-4 border-l-2 border-brand pl-4">
               <p>Product & Engineering</p>
               <p>Merchant Onboarding</p>
               <p>Compliance & Risk</p>
@@ -282,7 +279,7 @@ export default function AboutSection() {
             <div className="pt-6">
               <a
                 href="/careers"
-                className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 border-2 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] text-white border-transparent hover:opacity-90"
+                className="group ui-btn ui-btn-secondary px-8 py-4 rounded-xl inter-700 text-base uppercase"
               >
                 See Open Roles
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -302,7 +299,7 @@ export default function AboutSection() {
       >
         <div className="max-w-4xl mx-auto">
           <motion.h2
-            className="inter-800 text-4xl md:text-5xl lg:text-6xl uppercase mb-12 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent"
+            className="inter-800 text-4xl md:text-5xl lg:text-6xl uppercase mb-12 ui-heading-gradient"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -312,8 +309,7 @@ export default function AboutSection() {
           </motion.h2>
 
           <motion.div
-            className="inter-300 space-y-6 text-lg md:text-xl leading-relaxed"
-            style={{ color: '#2B1E17' }}
+            className="inter-300 space-y-6 text-lg md:text-xl leading-relaxed text-brand"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -328,7 +324,7 @@ export default function AboutSection() {
             </p>
 
             <div className="space-y-4 mt-8">
-              <div className="border-l-2 border-[#2B1E17] pl-4">
+              <div className="border-l-2 border-brand pl-4">
                 <p className="inter-600 text-lg mb-2">Sales & Partnerships</p>
                 <a
                   href="mailto:sales@ticklecharge.com"
@@ -339,7 +335,7 @@ export default function AboutSection() {
                 </a>
               </div>
 
-              <div className="border-l-2 border-[#2B1E17] pl-4">
+              <div className="border-l-2 border-brand pl-4">
                 <p className="inter-600 text-lg mb-2">Compliance & Risk</p>
                 <a
                   href="mailto:compliance@ticklecharge.com"
@@ -350,7 +346,7 @@ export default function AboutSection() {
                 </a>
               </div>
 
-              <div className="border-l-2 border-[#2B1E17] pl-4">
+              <div className="border-l-2 border-brand pl-4">
                 <p className="inter-600 text-lg mb-2">General Enquiries</p>
                 <a
                   href="mailto:hello@ticklecharge.com"
@@ -369,7 +365,7 @@ export default function AboutSection() {
             <div className="pt-4">
               <a
                 href="/contact-us"
-                className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 border-2 bg-white/20 backdrop-blur-xl text-[#2B1E17] border-[#2B1E17] hover:bg-gradient-to-r hover:from-[#2B1E17] hover:to-[#4A3428] hover:text-white hover:border-transparent"
+                className="group ui-btn ui-btn-ghost px-8 py-4 rounded-xl inter-700 text-base uppercase bg-white/20 backdrop-blur-xl border-brand"
               >
                 Book a Call
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -395,21 +391,18 @@ export default function AboutSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="inter-800 text-4xl md:text-5xl lg:text-6xl uppercase bg-gradient-to-r from-[#2B1E17] to-[#4A3428] bg-clip-text text-transparent">
+            <h2 className="inter-800 text-4xl md:text-5xl lg:text-6xl uppercase ui-heading-gradient">
               High-risk doesn&apos;t have to mean high stress.
             </h2>
 
-            <p
-              className="text-lg md:text-xl leading-relaxed"
-              style={{ color: '#2B1E17' }}
-            >
+            <p className="text-lg md:text-xl leading-relaxed text-brand">
               Let&apos;s see if we can move your payments the way they should.
             </p>
 
             <div className="pt-8">
               <a
                 href="/contact-us"
-                className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl inter-700 text-base uppercase transition-all duration-300 border-2 bg-gradient-to-r from-[#2B1E17] to-[#4A3428] text-white border-transparent hover:opacity-90"
+                className="group ui-btn ui-btn-secondary px-8 py-4 rounded-xl inter-700 text-base uppercase"
               >
                 Get Started with TickleCharge
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

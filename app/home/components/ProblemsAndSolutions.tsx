@@ -46,8 +46,7 @@ const ProblemsAndSolutions: React.FC = () => {
     <section className="py-24 px-8 bg-white inter-400">
       <div className="max-w-7xl mx-auto">
         <motion.h2
-          className="text-5xl md:text-6xl text-center mb-20 inter-500"
-          style={{ color: '#2B1E17' }}
+          className="text-5xl md:text-6xl text-center mb-20 inter-500 text-brand"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -83,33 +82,33 @@ const ProblemsAndSolutions: React.FC = () => {
               >
                 {/* Front Face - Problem */}
                 <div
-                  className="absolute w-full h-full bg-white rounded-2xl shadow-lg border-2 border-[#4A3A2E]/20 flex flex-col p-6 md:p-8 overflow-hidden"
+                  className="absolute w-full h-full bg-white rounded-2xl shadow-lg border-2 border-brand-muted/20 flex flex-col p-6 md:p-8 overflow-hidden"
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden'
                   }}
                 >
                   <div className="mb-6 flex-shrink-0">
-                    <h3 className="text-xl md:text-2xl leading-tight line-clamp-2 inter-400" style={{ color: '#2B1E17' }}>
+                    <h3 className="text-xl md:text-2xl leading-tight line-clamp-2 inter-400 text-brand">
                       {item.title}
                     </h3>
                   </div>
 
                   <div className="mb-6 flex-shrink-0">
-                    <p className="text-lg md:text-xl italic leading-relaxed line-clamp-2" style={{ color: '#2B1E17' }}>
+                    <p className="text-lg md:text-xl italic leading-relaxed line-clamp-2 text-brand">
                       &quot;{item.problem}&quot;
                     </p>
                   </div>
 
                   <div className="mb-8 flex-1 min-h-0">
-                    <p className="text-sm md:text-base leading-relaxed h-full max-h-full" style={{ color: '#4A3A2E' }}>
+                    <p className="text-sm md:text-base leading-relaxed h-full max-h-full text-brand-muted">
                       {item.description}
                     </p>
                   </div>
 
-                  <div className="flex-shrink-0 border-t border-[#4A3A2E]/20 pt-6">
+                  <div className="flex-shrink-0 border-t border-brand-muted/20 pt-6">
                     <div className="flex items-center justify-center">
-                      <span className="text-xs md:text-sm  bg-[#F8F6F3] px-4 py-2 rounded-full border border-[#4A3A2E]/20" style={{ color: '#4A3A2E' }}>
+                      <span className="text-xs md:text-sm bg-brand-cream px-4 py-2 rounded-full border border-brand-muted/20 text-brand-muted">
                         Hover to reveal solution →
                       </span>
                     </div>
@@ -127,7 +126,7 @@ const ProblemsAndSolutions: React.FC = () => {
                 >
                   <div className="mb-6 flex-shrink-0">
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-xs  uppercase bg-[#C9A24D]/20 px-3 py-1 rounded-full border border-[#C9A24D]/30">
+                      <span className="text-xs text-white uppercase bg-[#C9A24D]/20 px-3 py-1 rounded-full border border-[#C9A24D]/30">
                         Our Fix
                       </span>
                     </div>
@@ -144,8 +143,8 @@ const ProblemsAndSolutions: React.FC = () => {
 
                   <div className="flex-shrink-0 border-t border-[#C9A24D]/30 pt-6">
                     <div className="flex items-center justify-center">
-                      <span className="text-xs md:text-sm tracking-wide bg-[#C9A24D]/20 px-4 py-2 rounded-full border border-[#C9A24D]/30" style={{ color: '#C9A24D' }}>
-                        Hover away to see problem ←
+                      <span className="text-xs md:text-sm tracking-wide bg-[#C9A24D]/20 px-4 py-2 rounded-full border border-[#C9A24D]/30 text-white">
+                        Hover away to see problem
                       </span>
                     </div>
                   </div>
