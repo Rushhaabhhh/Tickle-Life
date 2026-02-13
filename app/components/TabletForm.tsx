@@ -31,6 +31,100 @@ const industries = [
   { key: 'others', name: 'Others' },
 ];
 
+const tabletLabelStyle: React.CSSProperties = {
+  color: '#00eaff',
+  fontSize: '1rem',
+  marginBottom: '5px',
+  display: 'block',
+};
+
+const sliderRowStyle: React.CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '10px',
+};
+
+const sliderStyle: React.CSSProperties = { flex: 1 };
+
+const amountInputStyle: React.CSSProperties = {
+  flex: '0 0 110px',
+  padding: '6px',
+  borderRadius: '10px',
+  border: '2px solid rgba(0,255,255,0.35)',
+  background: 'rgba(0,10,18,0.9)',
+  color: '#00eaff',
+  outline: 'none',
+};
+
+const dualFieldRowStyle: React.CSSProperties = {
+  width: '95%',
+  display: 'flex',
+  gap: '10px',
+  flexWrap: 'wrap',
+};
+
+const dualFieldColumnStyle: React.CSSProperties = { flex: '1 1 220px', minWidth: 0 };
+
+const selectStyle: React.CSSProperties = {
+  width: '100%',
+  padding: '0.4rem',
+  borderRadius: '12px',
+  background: 'rgba(0,10,18,0.9)',
+  border: '2px solid rgba(0,255,255,0.25)',
+  borderBottom: '4px solid #00eaff',
+  color: '#00eaff',
+  fontSize: '1rem',
+  cursor: 'pointer',
+  outline: 'none',
+  boxShadow: '0 0 12px rgba(0,255,255,0.2)',
+  appearance: 'none',
+  transition: '0.2s',
+};
+
+const otherIndustryStyle: React.CSSProperties = {
+  width: '100%',
+  marginTop: '10px',
+  padding: '0.4rem',
+  borderRadius: '12px',
+  background: 'rgba(0,10,18,0.9)',
+  border: '2px solid rgba(0,255,255,0.25)',
+  color: '#00eaff',
+  fontSize: '1rem',
+  outline: 'none',
+};
+
+const calculateButtonStyle: React.CSSProperties = {
+  width: '95%',
+  padding: '0.8rem',
+  marginTop: '10px',
+  borderRadius: '14px',
+  background: 'rgba(0,15,25,1)',
+  border: '2px solid rgba(0,255,255,0.35)',
+  borderBottom: '4px solid #00eaff',
+  color: '#00eaff',
+  fontSize: '1.25rem',
+  fontWeight: '600',
+  cursor: 'pointer',
+  boxShadow: '0 0 18px rgba(0,255,255,0.35)',
+  transition: '0.25s ease',
+};
+
+const disclaimerTextStyle: React.CSSProperties = {
+  marginTop: '15px',
+  color: '#00eaff',
+  fontSize: '0.9rem',
+};
+
+const resultCardStyle: React.CSSProperties = {
+  width: '95%',
+  marginTop: '20px',
+  padding: '20px',
+  borderRadius: '14px',
+  background: 'rgba(0,255,255,0.1)',
+  border: '2px solid rgba(0,255,255,0.35)',
+  boxShadow: '0 0 18px rgba(0,255,255,0.2)',
+};
+
 interface TabletFormProps {
   trigger: boolean;
   triggerExplosion: boolean;
@@ -180,18 +274,11 @@ const TabletForm: React.FC<TabletFormProps> = ({
       >
         {/* Total Monthly Volume */}
         <div className="lbl" style={{ width: '95%' }}>
-          <label
-            style={{
-              color: '#00eaff',
-              fontSize: '1rem',
-              marginBottom: '5px',
-              display: 'block',
-            }}
-          >
+          <label style={tabletLabelStyle}>
             Total Monthly Volume (USD) *
           </label>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={sliderRowStyle}>
             <input
               autoFocus={true}
               type="range"
@@ -201,7 +288,7 @@ const TabletForm: React.FC<TabletFormProps> = ({
               name="totalVolume"
               value={formData.totalVolume}
               onChange={(e) => handleInputChange('totalVolume', e.target.value)}
-              style={{ flex: 1 }}
+              style={sliderStyle}
             />
 
             <input
@@ -212,33 +299,18 @@ const TabletForm: React.FC<TabletFormProps> = ({
               name="totalVolume"
               value={formData.totalVolume}
               onChange={(e) => handleInputChange('totalVolume', e.target.value)}
-              style={{
-                flex: '0 0 110px',
-                padding: '6px',
-                borderRadius: '10px',
-                border: '2px solid rgba(0,255,255,0.35)',
-                background: 'rgba(0,10,18,0.9)',
-                color: '#00eaff',
-                outline: 'none',
-              }}
+              style={amountInputStyle}
             />
           </div>
         </div>
 
         {/* Average Ticket Size */}
         <div className="lbl" style={{ width: '95%' }}>
-          <label
-            style={{
-              color: '#00eaff',
-              fontSize: '1rem',
-              marginBottom: '5px',
-              display: 'block',
-            }}
-          >
+          <label style={tabletLabelStyle}>
             Average Ticket Size (USD) *
           </label>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={sliderRowStyle}>
             <input
               type="range"
               min="0"
@@ -247,7 +319,7 @@ const TabletForm: React.FC<TabletFormProps> = ({
               name="avgTicket"
               value={formData.avgTicket}
               onChange={(e) => handleInputChange('avgTicket', e.target.value)}
-              style={{ flex: 1 }}
+              style={sliderStyle}
             />
 
             <input
@@ -258,33 +330,18 @@ const TabletForm: React.FC<TabletFormProps> = ({
               name="avgTicket"
               value={formData.avgTicket}
               onChange={(e) => handleInputChange('avgTicket', e.target.value)}
-              style={{
-                flex: '0 0 110px',
-                padding: '6px',
-                borderRadius: '10px',
-                border: '2px solid rgba(0,255,255,0.35)',
-                background: 'rgba(0,10,18,0.9)',
-                color: '#00eaff',
-                outline: 'none',
-              }}
+              style={amountInputStyle}
             />
           </div>
         </div>
 
         {/* Visa/Mastercard Volume */}
         <div className="lbl" style={{ width: '95%' }}>
-          <label
-            style={{
-              color: '#00eaff',
-              fontSize: '1rem',
-              marginBottom: '5px',
-              display: 'block',
-            }}
-          >
+          <label style={tabletLabelStyle}>
             Visa/Mastercard Volume (USD) *
           </label>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={sliderRowStyle}>
             <input
               type="range"
               min="0"
@@ -295,7 +352,7 @@ const TabletForm: React.FC<TabletFormProps> = ({
               onChange={(e) =>
                 handleInputChange('visaMasterVolume', e.target.value)
               }
-              style={{ flex: 1 }}
+              style={sliderStyle}
             />
 
             <input
@@ -308,33 +365,18 @@ const TabletForm: React.FC<TabletFormProps> = ({
               onChange={(e) =>
                 handleInputChange('visaMasterVolume', e.target.value)
               }
-              style={{
-                flex: '0 0 110px',
-                padding: '6px',
-                borderRadius: '10px',
-                border: '2px solid rgba(0,255,255,0.35)',
-                background: 'rgba(0,10,18,0.9)',
-                color: '#00eaff',
-                outline: 'none',
-              }}
+              style={amountInputStyle}
             />
           </div>
         </div>
 
         {/* Other Cards Volume */}
         <div className="lbl" style={{ width: '95%' }}>
-          <label
-            style={{
-              color: '#00eaff',
-              fontSize: '1rem',
-              marginBottom: '5px',
-              display: 'block',
-            }}
-          >
+          <label style={tabletLabelStyle}>
             Other Cards Volume (USD) *
           </label>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={sliderRowStyle}>
             <input
               type="range"
               min="0"
@@ -345,7 +387,7 @@ const TabletForm: React.FC<TabletFormProps> = ({
               onChange={(e) =>
                 handleInputChange('otherCardsVolume', e.target.value)
               }
-              style={{ flex: 1 }}
+              style={sliderStyle}
             />
 
             <input
@@ -358,46 +400,17 @@ const TabletForm: React.FC<TabletFormProps> = ({
               onChange={(e) =>
                 handleInputChange('otherCardsVolume', e.target.value)
               }
-              style={{
-                flex: '0 0 110px',
-                padding: '6px',
-                borderRadius: '10px',
-                border: '2px solid rgba(0,255,255,0.35)',
-                background: 'rgba(0,10,18,0.9)',
-                color: '#00eaff',
-                outline: 'none',
-              }}
+              style={amountInputStyle}
             />
           </div>
         </div>
 
         {/* Industry + Country row */}
-        <div
-          style={{
-            width: '95%',
-            display: 'flex',
-            gap: '10px',
-            flexWrap: 'wrap',
-          }}
-        >
+        <div style={dualFieldRowStyle}>
           {/* Industry */}
-          <div style={{ flex: '1 1 220px', minWidth: 0 }}>
+          <div style={dualFieldColumnStyle}>
             <select
-              style={{
-                width: '100%',
-                padding: '0.4rem',
-                borderRadius: '12px',
-                background: 'rgba(0,10,18,0.9)',
-                border: '2px solid rgba(0,255,255,0.25)',
-                borderBottom: '4px solid #00eaff',
-                color: '#00eaff',
-                fontSize: '1rem',
-                cursor: 'pointer',
-                outline: 'none',
-                boxShadow: '0 0 12px rgba(0,255,255,0.2)',
-                appearance: 'none',
-                transition: '0.2s',
-              }}
+              style={selectStyle}
               value={formData.industry}
               onChange={(e) => handleInputChange('industry', e.target.value)}
             >
@@ -415,39 +428,15 @@ const TabletForm: React.FC<TabletFormProps> = ({
                 placeholder="Please specify your industry"
                 value={otherIndustry}
                 onChange={(e) => setOtherIndustry(e.target.value)}
-                style={{
-                  width: '100%',
-                  marginTop: '10px',
-                  padding: '0.4rem',
-                  borderRadius: '12px',
-                  background: 'rgba(0,10,18,0.9)',
-                  border: '2px solid rgba(0,255,255,0.25)',
-                  color: '#00eaff',
-                  fontSize: '1rem',
-                  outline: 'none',
-                }}
+                style={otherIndustryStyle}
               />
             )}
           </div>
 
           {/* Country */}
-          <div style={{ flex: '1 1 220px', minWidth: 0 }}>
+          <div style={dualFieldColumnStyle}>
             <select
-              style={{
-                width: '100%',
-                padding: '0.4rem',
-                borderRadius: '12px',
-                background: 'rgba(0,10,18,0.9)',
-                border: '2px solid rgba(0,255,255,0.25)',
-                borderBottom: '4px solid #00eaff',
-                color: '#00eaff',
-                fontSize: '1rem',
-                cursor: 'pointer',
-                outline: 'none',
-                boxShadow: '0 0 12px rgba(0,255,255,0.2)',
-                appearance: 'none',
-                transition: '0.2s',
-              }}
+              style={selectStyle}
               value={formData.country}
               onChange={(e) => handleInputChange('country', e.target.value)}
               disabled={loadingCountries}
@@ -470,21 +459,7 @@ const TabletForm: React.FC<TabletFormProps> = ({
       {/* Calculate Button */}
       <button
         className={oxanium.className}
-        style={{
-          width: '95%',
-          padding: '0.8rem',
-          marginTop: '10px',
-          borderRadius: '14px',
-          background: 'rgba(0,15,25,1)',
-          border: '2px solid rgba(0,255,255,0.35)',
-          borderBottom: '4px solid #00eaff',
-          color: '#00eaff',
-          fontSize: '1.25rem',
-          fontWeight: '600',
-          cursor: 'pointer',
-          boxShadow: '0 0 18px rgba(0,255,255,0.35)',
-          transition: '0.25s ease',
-        }}
+        style={calculateButtonStyle}
         onClick={calculateCosts}
         onPointerOver={(e) => {
           e.currentTarget.style.background = 'rgba(0,255,255,0.25)';
@@ -502,7 +477,7 @@ const TabletForm: React.FC<TabletFormProps> = ({
 
       <p
         className={oxanium.className}
-        style={{ marginTop: '15px', color: '#00eaff', fontSize: '0.9rem' }}
+        style={disclaimerTextStyle}
       >
         These rates are estimates for low-risk businesses. If your business
         involves higher risk, please reach out and we will provide a tailored
@@ -517,15 +492,7 @@ const TabletForm: React.FC<TabletFormProps> = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
-            style={{
-              width: '95%',
-              marginTop: '20px',
-              padding: '20px',
-              borderRadius: '14px',
-              background: 'rgba(0,255,255,0.1)',
-              border: '2px solid rgba(0,255,255,0.35)',
-              boxShadow: '0 0 18px rgba(0,255,255,0.2)',
-            }}
+            style={resultCardStyle}
             className={oxanium.className}
           >
             <h3

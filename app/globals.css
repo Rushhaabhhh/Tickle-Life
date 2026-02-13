@@ -3,17 +3,124 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #2B1E17;
   --font-inter: 'Inter', system-ui, sans-serif;
   --font-ardela: 'ArdelaEdgeX01-ExtraBold', 'Ardela Edge', 'Bebas Neue', system-ui, sans-serif;
   --font-sans: var(--font-inter);
+
+  --color-brand-900: #2B1E17;
+  --color-brand-800: #4A3428;
+  --color-brand-700: #4A3A2E;
+  --color-brand-accent: #C9A24D;
+  --color-brand-cream: #F8F6F3;
+  --color-brand-paper: #f8f6f4;
+  --color-brand-paper-2: #f0ede9;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 2px 8px rgba(43, 30, 23, 0.08);
+  --shadow-md: 0 8px 24px rgba(43, 30, 23, 0.12);
+  --shadow-lg: 0 12px 32px rgba(43, 30, 23, 0.16);
+
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-Canvas { height: 100vh !important; }
+canvas { height: 100vh !important; }
 
 @layer base {
   html {
     font-family: var(--font-inter);
+    color: var(--color-brand-900);
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-inter);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-inter);
+    color: var(--color-brand-900);
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 6vw, 4.5rem);
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+  }
+
+  h4 {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-weight: 600;
+  }
+
+  p,
+  li,
+  label,
+  input,
+  select,
+  textarea,
+  button {
+    font-family: var(--font-inter);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-900);
+    outline-offset: 2px;
+  }
+
+  a,
+  button {
+    transition: all var(--duration-normal) var(--ease-standard);
+  }
+
+  button:not(:disabled):hover,
+  .ui-btn:hover {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: var(--shadow-md);
+  }
+
+  button:not(:disabled):active,
+  .ui-btn:active {
+    transform: translateY(0) scale(0.99);
+    box-shadow: var(--shadow-sm);
+  }
+
+  input,
+  select,
+  textarea {
+    border-radius: var(--radius-md);
+  }
+
+  button {
+    border-radius: var(--radius-md);
   }
 }
 
@@ -22,6 +129,138 @@ Canvas { height: 100vh !important; }
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
   --font-ardela: var(--font-ardela);
+}
+
+@layer components {
+  .ui-container {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 3vw, 4rem);
+  }
+
+  .ui-section {
+    padding-block: clamp(4rem, 8vw, 7rem);
+  }
+
+  .ui-heading-gradient {
+    background: linear-gradient(to right, var(--color-brand-900), var(--color-brand-800));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .ui-text-body {
+    color: var(--color-brand-700);
+    font-size: 1rem;
+    line-height: 1.65;
+    font-weight: 400;
+  }
+
+  .ui-card {
+    background: transparent;
+    border: 1px solid color-mix(in oklab, var(--color-brand-900) 18%, transparent);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .ui-input {
+    width: 100%;
+    border: 1px solid color-mix(in oklab, var(--color-brand-900) 28%, transparent);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1rem;
+    color: var(--color-brand-900);
+    background: transparent;
+    transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+  }
+
+  .ui-input:focus-visible {
+    border-color: var(--color-brand-900);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-brand-900) 22%, white);
+    outline: none;
+  }
+
+  .ui-input[data-invalid="true"] {
+    border-color: var(--color-brand-accent);
+  }
+
+  .ui-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: var(--radius-pill);
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1;
+    border: 1px solid transparent;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease-standard);
+  }
+
+  .ui-btn:disabled,
+  .ui-btn[data-disabled="true"] {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  .ui-btn-primary {
+    background: var(--color-brand-900);
+    color: #fff;
+    border-color: var(--color-brand-900);
+  }
+
+  .ui-btn-primary:hover {
+    background: var(--color-brand-700);
+    border-color: var(--color-brand-700);
+    box-shadow: var(--shadow-md);
+  }
+
+  .ui-btn-secondary {
+    background: linear-gradient(to right, var(--color-brand-900), var(--color-brand-800));
+    color: #fff;
+  }
+
+  .ui-btn-secondary:hover {
+    opacity: 0.92;
+    box-shadow: var(--shadow-md);
+  }
+
+  .ui-btn-ghost {
+    background: #fff;
+    color: var(--color-brand-900);
+    border-color: var(--color-brand-900);
+  }
+
+  .ui-btn-ghost:hover {
+    background: linear-gradient(to right, var(--color-brand-900), var(--color-brand-800));
+    color: #fff;
+    border-color: transparent;
+  }
+}
+
+@layer utilities {
+  .text-brand {
+    color: var(--color-brand-900);
+  }
+
+  .text-brand-muted {
+    color: var(--color-brand-700);
+  }
+
+  .bg-brand {
+    background-color: var(--color-brand-900);
+  }
+
+  .bg-white {
+    background-color: transparent !important;
+  }
+
+  .border-brand {
+    border-color: color-mix(in oklab, var(--color-brand-900) 25%, transparent);
+  }
 }
 
 /* Local Ardela Edge Font */
@@ -33,46 +272,67 @@ Canvas { height: 100vh !important; }
   font-display: swap;
 }
 
-/* Inter Classes */
-.inter-100 { font-family: "Inter", sans-serif !important; font-optical-sizing: auto; font-weight: 100; font-style: normal; }
-.inter-200 { font-family: "Inter", sans-serif !important; font-optical-sizing: auto; font-weight: 200; font-style: normal; }
-.inter-300 { font-family: "Inter", sans-serif !important; font-optical-sizing: auto; font-weight: 300; font-style: normal; }
-.inter-400 { font-family: "Inter", sans-serif !important; font-optical-sizing: auto; font-weight: 400; font-style: normal; }
-.inter-500 { font-family: "Inter", sans-serif !important; font-optical-sizing: auto; font-weight: 500; font-style: normal; }
-.inter-600 { font-family: "Inter", sans-serif !important; font-optical-sizing: auto; font-weight: 600; font-style: normal; }
-.inter-700 { font-family: "Inter", sans-serif !important; font-optical-sizing: auto; font-weight: 700; font-style: normal; }
-.inter-800 { font-family: "Inter", sans-serif !important; font-optical-sizing: auto; font-weight: 800; font-style: normal; }
-.inter-900 { font-family: "Inter", sans-serif !important; font-optical-sizing: auto; font-weight: 900; font-style: normal; }
+/* Legacy font utility compatibility */
+.inter-100,
+.inter-200,
+.inter-300,
+.inter-400,
+.inter-500,
+.inter-600,
+.inter-700,
+.inter-800,
+.inter-900,
+.inter-400i,
+.inter-500i,
+.inter-600i,
+.inter-700i {
+  font-family: var(--font-inter) !important;
+  font-optical-sizing: auto;
+}
 
-.inter-400i { font-family: "Inter", sans-serif !important; font-optical-sizing: auto; font-weight: 400; font-style: italic; }
-.inter-500i { font-family: "Inter", sans-serif !important; font-optical-sizing: auto; font-weight: 500; font-style: italic; }
-.inter-600i { font-family: "Inter", sans-serif !important; font-optical-sizing: auto; font-weight: 600; font-style: italic; }
-.inter-700i { font-family: "Inter", sans-serif !important; font-optical-sizing: auto; font-weight: 700; font-style: italic; }
+.inter-100 { font-weight: 100; }
+.inter-200 { font-weight: 200; }
+.inter-300 { font-weight: 300; }
+.inter-400 { font-weight: 400; }
+.inter-500 { font-weight: 500; }
+.inter-600 { font-weight: 600; }
+.inter-700 { font-weight: 700; }
+.inter-800 { font-weight: 800; }
+.inter-900 { font-weight: 900; }
+
+.inter-400i { font-weight: 400; font-style: italic; }
+.inter-500i { font-weight: 500; font-style: italic; }
+.inter-600i { font-weight: 600; font-style: italic; }
+.inter-700i { font-weight: 700; font-style: italic; }
+
+.inter-light { font-family: var(--font-inter) !important; font-weight: 300; }
+.inter-normal { font-family: var(--font-inter) !important; font-weight: 400; }
+.inter-medium { font-family: var(--font-inter) !important; font-weight: 500; }
+.inter-semibold { font-family: var(--font-inter) !important; font-weight: 600; }
 
 /* Ardela Edge Classes - Local file */
-.ardela-400 { font-family: "ArdelaEdgeX01-ExtraBold", "Ardela Edge", "Bebas Neue", system-ui, sans-serif !important; font-weight: 800; font-style: normal; letter-spacing: -0.02em; }
-.ardela-500 { font-family: "ArdelaEdgeX01-ExtraBold", "Ardela Edge", "Bebas Neue", system-ui, sans-serif !important; font-weight: 800; font-style: normal; letter-spacing: -0.02em; }
-.ardela-600 { font-family: "ArdelaEdgeX01-ExtraBold", "Ardela Edge", "Bebas Neue", system-ui, sans-serif !important; font-weight: 800; font-style: normal; letter-spacing: -0.02em; }
-.ardela-700 { font-family: "ArdelaEdgeX01-ExtraBold", "Ardela Edge", "Bebas Neue", system-ui, sans-serif !important; font-weight: 800; font-style: normal; letter-spacing: -0.02em; }
-.ardela-800 { font-family: "ArdelaEdgeX01-ExtraBold", "Ardela Edge", "Bebas Neue", system-ui, sans-serif !important; font-weight: 800; font-style: normal; letter-spacing: -0.02em; }
-.ardela-900 { font-family: "ArdelaEdgeX01-ExtraBold", "Ardela Edge", "Bebas Neue", system-ui, sans-serif !important; font-weight: 900; font-style: normal; letter-spacing: -0.02em; }
+.ardela-400,
+.ardela-500,
+.ardela-600,
+.ardela-700,
+.ardela-800,
+.ardela-900 {
+  font-family: var(--font-ardela) !important;
+  font-style: normal;
+  letter-spacing: -0.02em;
+}
+
+.ardela-400,
+.ardela-500,
+.ardela-600,
+.ardela-700,
+.ardela-800 { font-weight: 800; }
+
+.ardela-900 { font-weight: 900; }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-inter);
-}
-
-.bg-white { background: transparent !important; }
-.bg-gray-950 {
-  background: rgba(255,255,255,0.2) !important;
-  backdrop-filter: blur(10px) !important;
-  transition: 0.3s ease !important;
 }

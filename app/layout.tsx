@@ -42,14 +42,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         </head>
-        <body className="flex flex-col min-h-screen inter-400 bg-gray-100">
+        <body
+          className="flex flex-col min-h-screen inter-400 bg-background text-foreground"
+          suppressHydrationWarning={true}
+        >
           {!isLoaded && <LoadingScreen onFinish={() => setIsLoaded(true)} />}
         </body>
       </html>
     );
   }
 
-  const cursorStyle = pathname === "/" ? "none" : "auto";
+  const cursorClass = pathname === "/" ? "cursor-none" : "cursor-auto";
 
   return (
     <html lang="en">
@@ -58,8 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body
-        className="flex flex-col inter-400 bg-gray-100"
-        style={{ cursor: cursorStyle }}
+        className={`flex flex-col inter-400 bg-background text-foreground ${cursorClass}`}
         suppressHydrationWarning={true}
       >
         {!isLoaded && <LoadingScreen onFinish={() => setIsLoaded(true)} />}
