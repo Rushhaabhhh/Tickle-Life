@@ -91,8 +91,6 @@ export default function HeroText({ active, onExplosion }) {
           fontSize: "clamp(0.8rem, 2vw, 1.2rem)",
         }}
       >
-        Scroll to learn more <br />
-        &darr;
       </p>
     </div>
     // </section>

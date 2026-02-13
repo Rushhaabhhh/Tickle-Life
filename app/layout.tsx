@@ -9,6 +9,7 @@ import { Canvas } from "@react-three/fiber";
 import { ScrollControls } from "@react-three/drei";
 
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Experience from "./components/Experience.jsx";
 import Experience2 from "./components/Experience2.jsx";
 import LoadingScreen from "./components/LoadingScreen";
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   }
 
   const cursorClass = pathname === "/" ? "cursor-none" : "cursor-auto";
+  const isHome = pathname === "/";
 
   return (
     <html lang="en">
@@ -61,40 +63,54 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body
-        className={`flex flex-col inter-400 bg-background text-foreground ${cursorClass}`}
+        className={`flex flex-col min-h-screen inter-400 bg-background text-foreground ${cursorClass}`}
         suppressHydrationWarning={true}
       >
         {!isLoaded && <LoadingScreen onFinish={() => setIsLoaded(true)} />}
-
         <DollarCursor />
         <Navbar />
-        <main className="flex-grow">
-          <div className={pathname === "/" ? "w-full h-screen" : ""}>
-            <Canvas
-              shadows
-              camera={{ position: [25, 30, -58], fov: 50 }}
-              dpr={[1, 1.5]}
-            >
-              <Suspense fallback={null}>
-                <color attach="background" args={["#111"]} />
 
-                {pathname === "/" ? (
-                  <ScrollControls pages={3} damping={0.2}>
-                    <Experience
-                      triggerExplosion={triggerExplosion}
-                      active={active}
-                      onHeartClick={handleExplosion}
-                      isLoaded={isLoaded}
-                    />
-                  </ScrollControls>
-                ) : (
-                  <Experience2 active={active} triggerExplosion={false} isLoaded={isLoaded} />
-                )}
-              </Suspense>
-            </Canvas>
-          </div>
+        {/* 
+          Canvas is isolated in a fixed/absolute container so its injected styles
+          never affect the document flow that Navbar, main content, and Footer live in.
+        */}
+        <div
+          style={{
+            position: isHome ? "fixed" : "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: isHome ? "100vh" : "100%",
+            zIndex: 0,
+            pointerEvents: isHome ? "auto" : "none",
+          }}
+        >
+          <Canvas
+            shadows
+            camera={{ position: [25, 30, -58], fov: 50 }}
+            dpr={[1, 1.5]}
+          >
+            <Suspense fallback={null}>
+              <color attach="background" args={["#111"]} />
+              {isHome ? (
+                <ScrollControls pages={3} damping={0.2}>
+                  <Experience
+                    triggerExplosion={triggerExplosion}
+                    active={active}
+                    onHeartClick={handleExplosion}
+                    isLoaded={isLoaded}
+                  />
+                </ScrollControls>
+              ) : (
+                <Experience2 active={active} triggerExplosion={false} isLoaded={isLoaded} />
+              )}
+            </Suspense>
+          </Canvas>
+        </div>
 
-          {pathname === "/" && (
+        {/* All page content sits above the Canvas in z-index */}
+        <main className="relative z-10 flex-grow">
+          {isHome && (
             <>
               <HeroText active={active} onExplosion={handleExplosion} />
               <TabletForm
@@ -104,9 +120,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               />
             </>
           )}
-
           {children}
         </main>
+
+        {!isHome && <Footer />}
       </body>
     </html>
   );

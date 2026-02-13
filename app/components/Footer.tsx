@@ -3,75 +3,90 @@ import { ShieldCheck, Landmark, Euro, Linkedin, Twitter, Facebook } from "lucide
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
-      {/* Sticky Bar */}
-      <div className="sticky bottom-0 bg-gray-800 bg-opacity-90 backdrop-blur-sm z-50">
-        <div className="container mx-auto px-4 py-3">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2" title="PCI DSS Compliant">
-                <ShieldCheck className="w-5 h-5 text-green-400" />
-                <span className="text-sm font-medium">PCI DSS Compliant</span>
+    <footer className="relative z-10 w-full shrink-0 bg-brand-paper text-brand border-t border-brand text-[10px]">
+      {/* Compliance Bar */}
+      <div className="bg-brand-paper2 border-b border-brand">
+        <div className="container mx-auto px-4 py-2.5">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-1.5" title="PCI DSS Compliant">
+                <ShieldCheck className="w-3 h-3 text-brand" />
+                <span className="font-medium text-[9px]">PCI DSS Compliant</span>
               </div>
-              <div className="flex items-center gap-2" title="Partner Bank">
-                <Landmark className="w-5 h-5 text-blue-400" />
-                <span className="text-sm font-medium">Partner Bank Secured</span>
+              <div className="flex items-center gap-1.5" title="Partner Bank">
+                <Landmark className="w-3 h-3 text-brand" />
+                <span className="font-medium text-[9px]">Partner Bank Secured</span>
               </div>
-              <div className="flex items-center gap-2" title="EU Jurisdiction">
-                <Euro className="w-5 h-5 text-yellow-400" />
-                <span className="text-sm font-medium">EU Jurisdiction</span>
+              <div className="flex items-center gap-1.5" title="EU Jurisdiction">
+                <Euro className="w-3 h-3 text-brand" />
+                <span className="font-medium text-[9px]">EU Jurisdiction</span>
               </div>
             </div>
-            <button className="ui-btn ui-btn-primary text-sm font-semibold py-2 px-4 rounded-lg">
+            <button className="ui-btn ui-btn-primary text-xs font-semibold py-2 px-4 rounded-md">
               Contact Compliance
             </button>
           </div>
         </div>
       </div>
 
-      {/* Footer Links */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8">
-          <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Careers</a>
-          <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Privacy Policy</a>
-          <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Terms of Service</a>
-          <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Support Center</a>
-          <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Agent Login</a>
+      {/* Footer Content */}
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 mb-3 text-[9px]">
+          <a href="#" className="text-brand/70 hover:text-brand transition-colors duration-300">Careers</a>
+          <a href="#" className="text-brand/70 hover:text-brand transition-colors duration-300">Privacy Policy</a>
+          <a href="#" className="text-brand/70 hover:text-brand transition-colors duration-300">Terms of Service</a>
+          <a href="#" className="text-brand/70 hover:text-brand transition-colors duration-300">Support Center</a>
+          <a href="#" className="text-brand/70 hover:text-brand transition-colors duration-300">Agent Login</a>
         </div>
 
-        <div className="border-t border-gray-700 pt-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="border border-brand rounded-lg p-3 mb-3 bg-brand-paper2">
+          <h3 className="font-semibold text-[10px] mb-1">Careers — We&apos;re Hiring</h3>
+          <p className="text-brand/80 text-[9px] mb-1.5">Current openings for our team:</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-[9px]" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '0.625rem' }}>
+            <div className="rounded-md border border-brand p-2 bg-white/60">
+              <p className="font-medium text-brand mb-0.5 text-[9px]">Intern (Operations & Compliance)</p>
+              <p className="text-brand/80 text-[8px]">Support onboarding documentation, compliance checks, reporting, and cross-team coordination.</p>
+            </div>
+            <div className="rounded-md border border-brand p-2 bg-white/60">
+              <p className="font-medium text-brand mb-0.5 text-[9px]">Accountant</p>
+              <p className="text-brand/80 text-[8px]">Own reconciliations, invoicing, payout records, month-end close, and finance process accuracy.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-brand pt-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '1rem' }}>
             {/* Company Info & Social Links */}
             <div>
-              <h3 className="font-semibold text-lg mb-2">Your Company Inc.</h3>
-              <p className="text-gray-400 text-sm">&copy; 2024 Your Company Inc. All Rights Reserved.</p>
-              <div className="flex space-x-4 mt-6">
-                <a href="#" aria-label="LinkedIn" className="text-gray-400 hover:text-white transition-colors duration-300">
-                  <Linkedin className="w-6 h-6" />
+              <h3 className="font-semibold text-[10px] mb-1">Your Company Inc.</h3>
+              <p className="text-brand/70 text-[9px]">&copy; 2024 Your Company Inc. All Rights Reserved.</p>
+              <div className="flex space-x-2.5 mt-2">
+                <a href="#" aria-label="LinkedIn" className="text-brand/70 hover:text-brand transition-colors duration-300">
+                  <Linkedin className="w-3 h-3" />
                 </a>
-                <a href="#" aria-label="Twitter" className="text-gray-400 hover:text-white transition-colors duration-300">
-                  <Twitter className="w-6 h-6" />
+                <a href="#" aria-label="Twitter" className="text-brand/70 hover:text-brand transition-colors duration-300">
+                  <Twitter className="w-3 h-3" />
                 </a>
-                <a href="#" aria-label="Facebook" className="text-gray-400 hover:text-white transition-colors duration-300">
-                  <Facebook className="w-6 h-6" />
+                <a href="#" aria-label="Facebook" className="text-brand/70 hover:text-brand transition-colors duration-300">
+                  <Facebook className="w-3 h-3" />
                 </a>
               </div>
             </div>
 
             {/* Registered Offices */}
             <div className="md:col-span-2">
-              <h3 className="font-semibold text-lg mb-2">Registered Offices</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm text-gray-400">
+              <h3 className="font-semibold text-[10px] mb-1">Registered Offices</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-[9px] text-brand/70">
                 <div>
-                  <p className="font-medium text-white mb-1">North America</p>
+                  <p className="font-medium text-brand mb-0.5 text-[9px]">North America</p>
                   <p>123 Innovation Drive, Suite 100<br />Palo Alto, CA 94304, USA</p>
                 </div>
                 <div>
-                  <p className="font-medium text-white mb-1">Europe</p>
+                  <p className="font-medium text-brand mb-0.5 text-[9px]">Europe</p>
                   <p>789 Global Avenue, Floor 5<br />Dublin 2, D02 F8X, Ireland</p>
                 </div>
                 <div>
-                  <p className="font-medium text-white mb-1">Asia-Pacific</p>
+                  <p className="font-medium text-brand mb-0.5 text-[9px]">Asia-Pacific</p>
                   <p>456 Tech Park, Tower B<br />Singapore 188953</p>
                 </div>
               </div>
@@ -79,9 +94,9 @@ export default function Footer() {
           </div>
 
           {/* Licensing & Regulatory Info */}
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500 text-xs">
+          <div className="border-t border-brand mt-3 pt-3 text-center text-brand/60 text-[8px]">
             <p>Your Company Inc. is licensed and regulated by the Financial Conduct Authority under registration number 900507.</p>
-            <p className="mt-2">Services are provided in accordance with the Payment Services Regulations 2017. All trademarks and brand names belong to their respective owners.</p>
+            <p className="mt-1">Services are provided in accordance with the Payment Services Regulations 2017. All trademarks and brand names belong to their respective owners.</p>
           </div>
         </div>
       </div>

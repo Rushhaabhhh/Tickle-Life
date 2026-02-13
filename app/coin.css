@@ -16,6 +16,10 @@
   .coin-cursor .container {
   transform: scale(0.24); /* tuned for 40px radius */
   transform-origin: center;
+  width: 10em;
+  height: 10em;
+  position: absolute;
+  perspective: 300px;
   }
   /* Root resets */
  
@@ -32,14 +36,7 @@
 
 
   /* Container with perspective */
-  .container {
-  width: 10em;
-  height: 10em;
-  position: absolute;
-  perspective: 300px;
-
   /* margin: 2em auto; */
-  }
 
   /* Coin main */
   .coin {
