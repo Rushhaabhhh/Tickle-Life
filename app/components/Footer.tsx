@@ -1,5 +1,6 @@
 "use client";
 import { ShieldCheck, Landmark, Euro, Linkedin, Twitter, Facebook } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -58,6 +59,13 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '1rem' }}>
             {/* Company Info & Social Links */}
             <div>
+              <Image
+                src="/images/Dark.svg"
+                alt="Tickle Logo"
+                width={90}
+                height={40}
+                className="mb-2"
+              />
               <h3 className="font-semibold text-[10px] mb-1">Your Company Inc.</h3>
               <p className="text-brand/70 text-[9px]">&copy; 2024 Your Company Inc. All Rights Reserved.</p>
               <div className="flex space-x-2.5 mt-2">

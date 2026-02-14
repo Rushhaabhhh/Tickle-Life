@@ -26,20 +26,25 @@ export default function FullscreenMenu() {
     return () => { document.body.style.overflow = '' }
   }, [open])
 
+  // Use Light logo on dark background (landing page), Dark logo on light background (other pages)
+  const isLandingPage = pathname === '/'
+  const logoSrc = isLandingPage ? '/images/Inverse.svg' : '/images/Dark.svg'
+
   return (
     <>
        {/* Top Navbar */}
        <nav className="fixed top-0 w-full z-50 flex justify-end p-6 bg-transparent">
                 <Image
-        src="/images/logo.png"
-        alt="Logo"
-        width={70}
-        height={70}
+        src={logoSrc}
+        alt="Tickle Logo"
+        width={120}
+        height={120}
+        priority
         style={{
           position: "absolute",
           top: "15%",
           left: "5%",
-          width: "clamp(50px, 8vw, 70px)",
+          width: "clamp(70px, 10vw, 120px)",
           height: "auto",
           zIndex: 11,
         }}

@@ -13,11 +13,9 @@ const saira = Saira_Condensed({
 });
 export default function HeroText({ active, onExplosion }) {
   return (
-    // <section id="page">
     <div
       className={active ? "overlay active" : "overlay"}
       style={{
-        // position: "relative",
         position:'absolute',
         top: "0",
         width: "100vw",
@@ -64,11 +62,9 @@ export default function HeroText({ active, onExplosion }) {
           right: "clamp(5%, 12vw, 14%)",
           top: "58%",
           transform: "translateY(-58%)",
-          // fontSize: "clamp(0.9rem, 1.8vw, 1.4rem)",
           opacity: 0,
           textAlign: "center",
           pointerEvents: "none",
-          // cursor: "pointer",
         }}
         
       >
@@ -93,6 +89,5 @@ export default function HeroText({ active, onExplosion }) {
       >
       </p>
     </div>
-    // </section>
   );
 }
