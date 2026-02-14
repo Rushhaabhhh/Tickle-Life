@@ -1,11 +1,18 @@
 'use client'
 
+import { Breadcrumbs } from '@/app/components/Breadcrumbs'
+import { InternalLinks, getInternalLinksForPage } from '@/app/components/InternalLinks'
+
 import { motion } from 'framer-motion'
 import { ArrowRight, Mail } from 'lucide-react'
 
 export default function AboutSection() {
   return (
     <section className="bg-white text-brand">
+      <div className="px-8 md:px-16 py-12 max-w-7xl mx-auto">
+        <Breadcrumbs />
+      </div>
+
       {/* Hero Banner */}
       <motion.header
         className="min-h-screen flex items-center bg-transparent px-8 md:px-16 py-24"
@@ -411,6 +418,10 @@ export default function AboutSection() {
           </motion.div>
         </div>
       </motion.section>
+
+      <div className="px-8 md:px-16 max-w-7xl mx-auto">
+        <InternalLinks links={getInternalLinksForPage("/about-us")} />
+      </div>
     </section>
   )
 }

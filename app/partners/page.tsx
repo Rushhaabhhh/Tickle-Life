@@ -1,5 +1,8 @@
 'use client'
 
+import { Breadcrumbs } from '@/app/components/Breadcrumbs'
+import { InternalLinks, getInternalLinksForPage } from '@/app/components/InternalLinks'
+
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
@@ -110,6 +113,10 @@ export default function PartnersPage() {
 
   return (
     <section className="bg-white min-h-screen text-brand">
+      <div className="px-8 md:px-16 py-12 max-w-7xl mx-auto">
+        <Breadcrumbs />
+      </div>
+
       {/* Hero */}
       <motion.header
         className="py-32 px-8 md:px-16 text-center"
@@ -482,6 +489,10 @@ export default function PartnersPage() {
           </form>
         </div>
       </motion.section>
+
+      <div className="px-8 md:px-16 max-w-7xl mx-auto">
+        <InternalLinks links={getInternalLinksForPage("/partners")} />
+      </div>
     </section>
   )
 }

@@ -3,7 +3,9 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { Search, Download, Users, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Search, Download, Users, ChevronDown, ChevronLeft, ChevronRight, Clock } from 'lucide-react'
+import { Breadcrumbs } from '@/app/components/Breadcrumbs'
+import { calculateReadingTime, stripHtmlTags } from '@/app/components/BlogPostSchema'
 
 const filterCategories = {
   product: ['Cards', 'APMs', 'Crypto', 'Fraud', 'Routing'],
@@ -138,6 +140,8 @@ export default function ResourceSection() {
   return (
     <section className="bg-transparent py-24 px-4 md:px-8 min-h-screen inter-400 text-brand">
       <div className="max-w-7xl mx-auto">
+        <Breadcrumbs />
+
         <motion.header
           className="text-center mb-20"
           initial={{ opacity: 0, y: 20 }}
@@ -268,8 +272,18 @@ export default function ResourceSection() {
                         className="inter-400 text-sm mt-2 text-[#2B1E17]/70 line-clamp-3"
                         dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
                       />
-                      <div className="inter-500 mt-4 text-base" style={{ color: '#2B1E17' }}>
-                        Read More →
+                      
+                      {/* Reading Time & Date */}
+                      <div className="flex items-center gap-4 mt-4 text-sm text-[#2B1E17]/60">
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-4 h-4" />
+                          {calculateReadingTime(stripHtmlTags(post.content.rendered))} min read
+                        </span>
+                        <span>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                      </div>
+
+                      <div className="inter-500 mt-4 text-base group-hover:underline" style={{ color: '#2B1E17' }}>
+                        Read the complete guide →
                       </div>
                     </div>
                   </motion.article>

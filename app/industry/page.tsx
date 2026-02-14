@@ -5,6 +5,8 @@ import { ArrowRight, Lock, Shield, Check, Zap } from 'lucide-react'
 import Link from 'next/link'
 import IndustriesExpandingVertical from './components/IndustriesCard'
 import { Card, Typography } from '@/app/components/ui'
+import { Breadcrumbs } from '@/app/components/Breadcrumbs'
+import { InternalLinks, getInternalLinksForPage } from '@/app/components/InternalLinks'
 
 
 const features = [
@@ -34,6 +36,9 @@ export default function IndustriesSection() {
 
   return (
     <section className="bg-white min-h-screen text-brand">
+      <div className="px-8 md:px-16 py-12 max-w-7xl mx-auto">
+        <Breadcrumbs />
+      </div>
 
       {/* Hero Section */}
       <motion.header
@@ -160,6 +165,10 @@ export default function IndustriesSection() {
           </motion.div>
         </div>
       </motion.section>
+
+      <div className="px-8 md:px-16 max-w-7xl mx-auto">
+        <InternalLinks links={getInternalLinksForPage("/industry")} />
+      </div>
 
     </section>
   )

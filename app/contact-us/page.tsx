@@ -1,5 +1,8 @@
 'use client'
 
+import { Breadcrumbs } from '@/app/components/Breadcrumbs'
+import { InternalLinks, getInternalLinksForPage } from '@/app/components/InternalLinks'
+
 import { useState, ChangeEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ShieldCheck, Globe, EyeOff, UserCheck, FileBadge2 } from 'lucide-react'
@@ -361,6 +364,10 @@ export default function ContactSection() {
   return (
     <section className="bg-white py-24 px-4 md:px-8 min-h-screen text-brand">
       <div className="max-w-7xl mx-auto">
+        <div className="mb-12">
+          <Breadcrumbs />
+        </div>
+
         <motion.header
           className="text-left mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -516,6 +523,8 @@ export default function ContactSection() {
             </div>
           </section>
         </div>
+
+        <InternalLinks links={getInternalLinksForPage("/contact-us")} />
       </div>
     </section>
   )

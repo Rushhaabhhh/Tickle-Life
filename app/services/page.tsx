@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Plus, X, Shield, Bitcoin, LockKeyhole, Landmark } from 'lucide-react'
 import { Card } from '@/app/components/ui'
+import { Breadcrumbs } from '@/app/components/Breadcrumbs'
+import { InternalLinks, getInternalLinksForPage } from '@/app/components/InternalLinks'
 
 const featuredCards = [
   {
@@ -92,6 +94,10 @@ export default function ServicesSection() {
 
   return (
     <section className="bg-white min-h-screen px-6 md:px-16 py-16 text-brand">
+      <div className="max-w-7xl mx-auto mb-12">
+        <Breadcrumbs />
+      </div>
+
       <motion.header
         className="min-h-[50vh] flex items-center"
         initial={{ opacity: 0 }}
@@ -302,6 +308,10 @@ export default function ServicesSection() {
           ))}
         </div>
       </motion.section>
+
+      <div className="max-w-7xl mx-auto">
+        <InternalLinks links={getInternalLinksForPage("/services")} />
+      </div>
     </section>
   )
 }
