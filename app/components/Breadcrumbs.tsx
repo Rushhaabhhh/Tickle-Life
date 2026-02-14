@@ -53,7 +53,7 @@ export function Breadcrumbs() {
 
   return (
     <>
-      <nav aria-label="Breadcrumb" className="mb-6">
+      <nav aria-label="Breadcrumb" aria-hidden="true" className="mb-6 hidden">
         <ol className="flex flex-wrap items-center gap-2 text-sm text-gray-600">
           {items.map((item, index) => (
             <li key={item.href} className="flex items-center gap-2">
